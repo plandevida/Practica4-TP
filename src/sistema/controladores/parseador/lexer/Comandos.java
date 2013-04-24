@@ -1,6 +1,6 @@
-package sistema.entrada.parseador.lexer;
+package sistema.controladores.parseador.lexer;
 
-import sistema.entrada.ordenes.Orden;
+import sistema.controlador.ordenes.Orden;
 import sistema.entrada.ordenes.especificas.OrdenAumentarCadencia;
 import sistema.entrada.ordenes.especificas.OrdenBajarPinhon;
 import sistema.entrada.ordenes.especificas.OrdenBajarPlato;

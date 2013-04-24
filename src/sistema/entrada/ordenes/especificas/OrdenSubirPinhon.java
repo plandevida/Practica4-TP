@@ -1,6 +1,6 @@
 package sistema.entrada.ordenes.especificas;
 
-import sistema.entrada.ordenes.OrdenParaCiclista;
+import sistema.controlador.ordenes.OrdenParaCiclista;
 
 public class OrdenSubirPinhon extends OrdenParaCiclista {
 	

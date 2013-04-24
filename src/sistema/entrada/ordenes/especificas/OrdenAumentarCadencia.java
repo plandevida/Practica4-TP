@@ -1,7 +1,7 @@
 package sistema.entrada.ordenes.especificas;
 
+import sistema.controlador.ordenes.Orden;
 import sistema.entidades.personas.ciclistas.Ciclista;
-import sistema.entrada.ordenes.Orden;
 
 public class OrdenAumentarCadencia extends Orden {
 	

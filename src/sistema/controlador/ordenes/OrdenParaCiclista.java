@@ -1,4 +1,4 @@
-package sistema.entrada.ordenes;
+package sistema.controlador.ordenes;
 
 import sistema.entidades.personas.ciclistas.Ciclista;
 

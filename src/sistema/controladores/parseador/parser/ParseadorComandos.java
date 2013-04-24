@@ -1,14 +1,14 @@
-package sistema.entrada.parseador.parser;
+package sistema.controladores.parseador.parser;
 
 import java.util.List;
 
+import sistema.controlador.ordenes.Dispatcher;
+import sistema.controlador.ordenes.Orden;
+import sistema.controlador.ordenes.OrdenParaCiclista;
+import sistema.controladores.parseador.Parseador;
+import sistema.controladores.parseador.lexer.Comandos;
 import sistema.entidades.personas.ciclistas.Ciclista;
-import sistema.entrada.ordenes.Dispatcher;
-import sistema.entrada.ordenes.Orden;
-import sistema.entrada.ordenes.OrdenParaCiclista;
 import sistema.entrada.ordenes.especificas.OrdenAumentarCadencia;
-import sistema.entrada.parseador.Parseador;
-import sistema.entrada.parseador.lexer.Comandos;
 import sistema.interfaces.ObjetosQueSeEjecutan;
 
 /**

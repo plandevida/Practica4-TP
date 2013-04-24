@@ -5,14 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import sistema.controlador.ordenes.Dispatcher;
+import sistema.controladores.parseador.parser.ParseadorCarrera;
+import sistema.controladores.parseador.parser.ParseadorComandos;
 import sistema.entidades.carretera.tramocarreraciclista.TramoCiclista;
 import sistema.entidades.personas.ciclistas.Ciclista;
 import sistema.entidades.tiempo.Reloj;
 import sistema.entidades.vehiculos.bicicletas.Bicicleta;
 import sistema.entrada.lectura.Lector;
-import sistema.entrada.ordenes.Dispatcher;
-import sistema.entrada.parseador.parser.ParseadorCarrera;
-import sistema.entrada.parseador.parser.ParseadorComandos;
 import sistema.factoresexternos.FactoresExternos;
 import sistema.interfaces.ObjetosConSalidaDeDatos;
 import sistema.interfaces.ObjetosQueSeEjecutan;

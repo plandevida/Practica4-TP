@@ -1,8 +1,8 @@
 
 package sistema.entrada.ordenes.especificas;
 
-import sistema.entrada.ordenes.Orden;
-import sistema.entrada.parseador.lexer.Comandos;
+import sistema.controlador.ordenes.Orden;
+import sistema.controladores.parseador.lexer.Comandos;
 
 public class OrdenDesconocida extends Orden {
 

@@ -1,4 +1,4 @@
-package sistema.entrada.ordenes;
+package sistema.controlador.ordenes;
 
 import java.util.PriorityQueue;
 
