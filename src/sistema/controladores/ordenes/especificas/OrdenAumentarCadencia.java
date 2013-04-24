@@ -1,12 +1,12 @@
-package sistema.entrada.ordenes.especificas;
+package sistema.controladores.ordenes.especificas;
 
-import sistema.controlador.ordenes.Orden;
-import sistema.entidades.personas.ciclistas.Ciclista;
+import sistema.controladores.ordenes.Orden;
+import sistema.controladores.ordenes.OrdenParaCiclista;
+import sistema.manager.Manager;
 
-public class OrdenAumentarCadencia extends Orden {
+public class OrdenAumentarCadencia extends OrdenParaCiclista {
 	
 	private int aumentocadencia;
-	private Ciclista ciclista;
 	
 	public OrdenAumentarCadencia() {
 		aumentocadencia = 0;
@@ -14,7 +14,7 @@ public class OrdenAumentarCadencia extends Orden {
 	
 	@Override
 	public void ejecutarOrden() {
-		ciclista.setCadencia(aumentocadencia);
+		getCiclista().setCadencia(aumentocadencia);
 		mostrarMensaje();
 	}
 	
@@ -22,7 +22,7 @@ public class OrdenAumentarCadencia extends Orden {
 	 * Aumenta la cadencia del ciclista.
 	 * @param aumentodecadencia El aumento de la cadencia.
 	 */
-	public void setAumentoCadencia(int aumentodecadencia) {
+	private void setAumentoCadencia(int aumentodecadencia) {
 		aumentocadencia = aumentodecadencia;
 	}
 	
@@ -33,12 +33,14 @@ public class OrdenAumentarCadencia extends Orden {
 
 	@Override
 	public Orden parse(String comando) {
-		// TODO Auto-generated method stub
+		
+		
+		
 		return null;
 	}
 
 	@Override
-	public void configurarContexto() {
+	public void configurarContexto(Manager presentador) {
 		// TODO Auto-generated method stub
 		
 	}

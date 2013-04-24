@@ -3,7 +3,7 @@ package sistema.controladores.parseador.parser;
 import java.util.HashMap;
 import java.util.Map;
 
-import sistema.controladores.parseador.Parseador;
+import sistema.controladores.parseador.InterfazParseador;
 import sistema.entidades.carretera.tramocarreraciclista.TramoCiclista;
 import sistema.factoresexternos.viento.MiViento;
 
@@ -13,7 +13,7 @@ import sistema.factoresexternos.viento.MiViento;
  * @author Daniel Serrano Torres
  * @author Alvaro Quesada Pimentel
  */
-public class ParseadorCarrera implements Parseador {
+public class ParseadorCarrera implements InterfazParseador {
 	
 	private Map<Integer, TramoCiclista> mapa;
 	

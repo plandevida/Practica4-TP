@@ -1,6 +1,8 @@
-package sistema.controlador.ordenes;
+package sistema.controladores.ordenes;
 
 import java.util.PriorityQueue;
+
+import sistema.manager.Manager;
 
 /**
  * Clase que distruye ls ordenes del sistema a los elementos del sistema.
@@ -11,14 +13,19 @@ import java.util.PriorityQueue;
 public class Dispatcher {
 	
 	// Cola de ordenes a procesar.
-	PriorityQueue<Orden> listadeordenes;
+	private PriorityQueue<Orden> listadeordenes;
+	
+	// El presentador del sistema.
+	private Manager presentador;
 	
 	/**
 	 * Crea una instancia del distribuidor con la lista de elementos
 	 * y la cola de ordenes vacía.
 	 */
-	public Dispatcher() {
+	public Dispatcher(Manager presentadorsistema) {
 		listadeordenes = new PriorityQueue<Orden>();
+		
+		presentador = presentadorsistema;
 	}
 	
 	/**
@@ -27,6 +34,8 @@ public class Dispatcher {
 	 * @param orden Orden que se registrará en la cola.
 	 */
 	public void registrarOrdenes(Orden orden) {
+		
+		orden.configurarContexto(presentador);
 		
 		listadeordenes.add(orden);
 	}

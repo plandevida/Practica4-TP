@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import sistema.controlador.ordenes.Dispatcher;
+import sistema.controladores.ordenes.Dispatcher;
 import sistema.controladores.parseador.parser.ParseadorCarrera;
 import sistema.controladores.parseador.parser.ParseadorComandos;
 import sistema.entidades.carretera.tramocarreraciclista.TramoCiclista;
@@ -90,8 +90,8 @@ public class Manager {
 		listaejecutables = new ArrayList<ObjetosQueSeEjecutan>();
 		listasalidadatos = new ArrayList<ObjetosConSalidaDeDatos>();
 		
-		dispatcher = new Dispatcher();
-		parser = new ParseadorComandos(dispatcher, listaejecutables);
+		dispatcher = new Dispatcher(this);
+		parser = new ParseadorComandos(dispatcher);
 		
 		reloj = new Reloj();
 		ciclistas = new ArrayList<Ciclista>();

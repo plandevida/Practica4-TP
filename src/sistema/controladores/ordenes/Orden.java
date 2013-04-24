@@ -1,6 +1,8 @@
-package sistema.controlador.ordenes;
+package sistema.controladores.ordenes;
 
 import java.util.PriorityQueue;
+
+import sistema.manager.Manager;
 
 /**
  * Clase que representa una orden a realizar por un elemento
@@ -36,7 +38,7 @@ public abstract class Orden implements Comparable<Orden> {
 	/**
 	 * Configura los parametros del comando en la orden
 	 */
-	public abstract void configurarContexto();
+	public abstract void configurarContexto(Manager presentador);
 	
 	/**
 	 * Muestra la ayuda del comando.

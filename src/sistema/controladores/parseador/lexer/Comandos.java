@@ -1,13 +1,13 @@
 package sistema.controladores.parseador.lexer;
 
-import sistema.controlador.ordenes.Orden;
-import sistema.entrada.ordenes.especificas.OrdenAumentarCadencia;
-import sistema.entrada.ordenes.especificas.OrdenBajarPinhon;
-import sistema.entrada.ordenes.especificas.OrdenBajarPlato;
-import sistema.entrada.ordenes.especificas.OrdenDesconocida;
-import sistema.entrada.ordenes.especificas.OrdenFrenar;
-import sistema.entrada.ordenes.especificas.OrdenSubirPinhon;
-import sistema.entrada.ordenes.especificas.OrdenSubirPlato;
+import sistema.controladores.ordenes.Orden;
+import sistema.controladores.ordenes.especificas.OrdenAumentarCadencia;
+import sistema.controladores.ordenes.especificas.OrdenBajarPinhon;
+import sistema.controladores.ordenes.especificas.OrdenBajarPlato;
+import sistema.controladores.ordenes.especificas.OrdenDesconocida;
+import sistema.controladores.ordenes.especificas.OrdenFrenar;
+import sistema.controladores.ordenes.especificas.OrdenSubirPinhon;
+import sistema.controladores.ordenes.especificas.OrdenSubirPlato;
 
 /**
  * Instrucciones que se pueden mandar al sistema para que realize

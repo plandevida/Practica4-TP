@@ -157,7 +157,7 @@ public class Ventana extends JFrame {
 				String comando = ((JTextField) e.getSource()).getText();
 				
 				parsercomandos.parse(comando);
-				parsercomandos.dispatch();
+//				parsercomandos.dispatch();
 			}
 		});
 		

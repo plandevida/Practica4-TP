@@ -1,7 +1,7 @@
 package sistema.controladores.parseador;
 
 
-public interface Parseador {
+public interface InterfazParseador {
 
 	/**
 	 * Método que parsea una cadena.

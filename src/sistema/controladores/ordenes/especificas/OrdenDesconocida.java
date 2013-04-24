@@ -1,8 +1,9 @@
 
-package sistema.entrada.ordenes.especificas;
+package sistema.controladores.ordenes.especificas;
 
-import sistema.controlador.ordenes.Orden;
+import sistema.controladores.ordenes.Orden;
 import sistema.controladores.parseador.lexer.Comandos;
+import sistema.manager.Manager;
 
 public class OrdenDesconocida extends Orden {
 
@@ -34,7 +35,7 @@ public class OrdenDesconocida extends Orden {
 	}
 
 	@Override
-	public void configurarContexto() {
+	public void configurarContexto(Manager presentador) {
 		// TODO Auto-generated method stub
 		
 	}
