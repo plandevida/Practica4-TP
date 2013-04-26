@@ -27,6 +27,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	// La candencia de la pedalada del ciclista.
 	private double cadencia;
 	
+	private double tiempopedalada;
 	// Número único del ciclista en la carrera
 	private int numeromallot;
 	
@@ -39,7 +40,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 * @param bicicletaamontar
 	 * @param relojCiclista
 	 */
-	public Ciclista(String nombre, int nummallot, double cadenciaCiclista, Bicicleta bicicletaamontar, Reloj relojCiclista) {
+	public Ciclista(String nombre, int nummallot, double cadenciaCiclista, Bicicleta bicicletaamontar,double tiempopedalada, Reloj relojCiclista) {
 		/**
 		 * Demomento el peso no es relevante, ni el cansancio
 		 * 
@@ -50,6 +51,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 		bicicletamontada = bicicletaamontar;
 		reloj = relojCiclista;
 		numeromallot = nummallot;
+		this.tiempopedalada = tiempopedalada;
 		
 		bicicletamontada.setId(numeromallot);
 	}
@@ -88,7 +90,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 		
 		if (reloj.getSegundos() != segundos) {
 			
-			bicicletamontada.darPedalada(cadencia);
+			bicicletamontada.darPedalada(tiempopedalada);
 	
 			segundos = reloj.getSegundos();
 		}

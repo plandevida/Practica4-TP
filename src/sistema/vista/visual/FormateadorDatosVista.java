@@ -80,10 +80,10 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 //					.append((String) mensaje.nextToken())
 //					.append(" impulsos");
 			
-			Integer hora = (Integer)mensaje.nextElement();
-			Integer minutos = (Integer)mensaje.nextElement();
-			Integer segundos = (Integer)mensaje.nextElement();
-			Integer milisegundos = (Integer)mensaje.nextElement();
+			Integer hora = Integer.valueOf(mensaje.nextToken());
+			Integer minutos = Integer.valueOf(mensaje.nextToken());
+			Integer segundos = Integer.valueOf(mensaje.nextToken());
+			Integer milisegundos = Integer.valueOf(mensaje.nextToken());
 			
 			vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), hora, minutos, segundos, milisegundos);
 			

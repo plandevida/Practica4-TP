@@ -54,7 +54,7 @@ public class ParseadorComandos implements InterfazParseador {
 		Orden nuevaorden = null;
 		
 		for( Orden orden : ordenes) {
-			if (nuevaorden != null) {
+			if (nuevaorden == null) {
 				nuevaorden = orden.parse(comando);
 			}
 		}

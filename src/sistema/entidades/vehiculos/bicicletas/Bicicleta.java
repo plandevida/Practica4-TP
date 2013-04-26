@@ -4,6 +4,7 @@ import java.util.StringTokenizer;
 
 import sistema.entidades.vehiculos.Vehiculo;
 import sistema.interfaces.ObjetosConSalidaDeDatos;
+import sistema.manager.VariablesDeContexto;
 
 
 /**
@@ -13,14 +14,6 @@ import sistema.interfaces.ObjetosConSalidaDeDatos;
  * @author Alvaro Quesada Pimentel
  */
 public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
-
-	// El array representa los piñones de la bicicleta con el indice
-	// del array y su valor es el número de dientes del piñón
-	protected int[] pinhones = new int[] { 15, 20, 25, 30 };
-
-	// El array representa los plato de la bicicleta con el indice
-	// del array y su valor es el número de dientes del plato
-	protected int[] platos = new int[] { 30, 40, 50 };
 
 	// Continen el indice del piñón que se esta utilizando
 	protected int platoactual;
@@ -53,7 +46,7 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 */
 	private int relacionDeTransmision() {
 
-		int relaciondetrasminsion = platos[platoactual] / pinhones[pinhonactual];
+		int relaciondetrasminsion = VariablesDeContexto.platos[platoactual] / VariablesDeContexto.pinhones[pinhonactual];
 
 		return relaciondetrasminsion;
 	}
@@ -89,11 +82,11 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 * @param cadenciaciclista Frecuencia con la que el ciclista da pedaladas.
 	 * @return La velocidad de la bicicleta.
 	 */
-	private double calcularVelocidadCadencia(double cadenciaciclista) {
+	private double calcularAceleracionTiempoPedalada(double tiempopedalada) {
 
-		double velocidadbici = espacioDePedalada() / cadenciaciclista;
+		double aceleracion = espacioDePedalada() / (tiempopedalada)*(tiempopedalada);
 
-		return velocidadbici;
+		return aceleracion;
 	}
 	
 	/**
@@ -113,12 +106,13 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 * 
 	 * @param cadenciaciclista Frecuencia con la que el ciclista da pedaladas. 
 	 */
-	public void darPedalada(double cadenciaciclista) {
-		double velocidad = calcularVelocidadCadencia(cadenciaciclista);
+	public void darPedalada(double tiempopedalada) {
+		double aceleracion = calcularAceleracionTiempoPedalada(tiempopedalada);
 		
-		velocidad = velocidad * factorpendiente;
-		velocidad = velocidad + velocidad*factorviento;
+		//velocidad = velocidad * factorpendiente;
+		//velocidad = velocidad + velocidad*factorviento;
 		setEspacioRecorrido(espacioDePedalada());
+		double velocidad = getVelocidad() + aceleracion*1; 
 		setVelocidadIncremento(velocidad);
 	}
 	
@@ -139,7 +133,7 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 * Incrementa el piñón de la bicicleta.
 	 */
 	public void incrementarPinhon() {
-		if (pinhonactual < pinhones.length - 1) {
+		if (pinhonactual < VariablesDeContexto.pinhones.length - 1) {
 			pinhonactual++;
 		}
 	}
@@ -157,7 +151,7 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 * Incrementa el plato de la bicicleta.
 	 */
 	public void incrementarPlato() {
-		if (platoactual < platos.length - 1) {
+		if (platoactual < VariablesDeContexto.platos.length - 1) {
 			platoactual++;
 		}
 	}
@@ -177,7 +171,7 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 * @return Una lista de los piñones y sus dientes.
 	 */
 	public int[] getPinhones() {
-		return pinhones;
+		return VariablesDeContexto.pinhones;
 	}
 	
 	/**
@@ -186,7 +180,7 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 * @return Una lista de los platos y sus dientes.
 	 */
 	public int[] getPlatos() {
-		return platos;
+		return VariablesDeContexto.platos;
 	}
 	
 	/**
@@ -204,7 +198,7 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 * @param platoactual El nuevo plato a engranar.
 	 */
 	public void setPlatoactual(int platoactual) {
-		if ( platoactual <= platos.length - 1 || platoactual >= 0) {
+		if ( platoactual <= VariablesDeContexto.platos.length - 1 || platoactual >= 0) {
 			this.platoactual = platoactual;
 		}
 	}
@@ -224,7 +218,7 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 * @param pinhonactual El nuevo piñón a engranar.
 	 */
 	public void setPinhonactual(int pinhonactual) {
-		if ( pinhonactual <= pinhones.length - 1 || pinhonactual >= 0) {
+		if ( pinhonactual <= VariablesDeContexto.pinhones.length - 1 || pinhonactual >= 0) {
 			this.pinhonactual = pinhonactual;
 		}
 	}

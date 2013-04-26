@@ -227,20 +227,21 @@ public class Ventana extends JFrame {
 			relojGrafico.setTime(segundo, minuto, hora);
 			
 			break;
-		}
-		
-		for (JTextComponent componente : componenetescreados) {
-			if (componente.getName().equals(id)) {
-				componente.setText( (String) mensaje[0]);
-				
-				componenteexistente = componente;
+		default:
+			for (JTextComponent componente : componenetescreados) {
+				if (componente.getName().equals(id)) {
+					componente.setText( (String) mensaje[0]);
+					
+					componenteexistente = componente;
+				}
 			}
-		}
-		
-		if (componenteexistente == null) {
-//			anadirTextArea(id);
-//			
-//			ponerDatosEnVentana(id, mensaje);
+			
+			if (componenteexistente == null) {
+//				anadirTextArea(id);
+//				
+//				ponerDatosEnVentana(id, mensaje);
+			}
+			break;
 		}
 	}
 	
