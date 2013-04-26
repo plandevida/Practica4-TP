@@ -34,4 +34,10 @@ public class OrdenBajarPinhon extends OrdenParaCiclista {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public String[] misPermisos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

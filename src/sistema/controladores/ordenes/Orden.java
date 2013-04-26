@@ -49,6 +49,16 @@ public abstract class Orden implements Comparable<Orden> {
 	 */
 	public abstract String help(boolean detalles);
 	
+	/**
+	 * Devuelve los permisos de la clase.
+	 * 
+	 * @return Clases o recursos sobre los que tiene permisos.
+	 */
+	public abstract String[] misPermisos();
+	
+	/**
+	 * Este métdo se ha reimplementado para usar la PriorityQueue en el {@link Dispatcher}
+	 */
 	@Override
 	public int compareTo(Orden o) {
 		int resultado = 0;

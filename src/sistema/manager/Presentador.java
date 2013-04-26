@@ -3,6 +3,7 @@ package sistema.manager;
 import java.util.List;
 import java.util.Map;
 
+import sistema.controladores.ordenes.Orden;
 import sistema.entidades.personas.ciclistas.Ciclista;
 import sistema.factoresexternos.viento.MiViento;
 import sistema.interfaces.ObjetosConSalidaDeDatos;
@@ -37,8 +38,10 @@ public class Presentador {
 	 * 
 	 * @return La lista de cilistas, si no tiene permiso la clase devolverá null.
 	 */
-	public List<Ciclista> getListadeciclistas() {
+	public List<Ciclista> getListadeciclistas(Orden orden) {
 		// TODO Hacer las comprobaciones de los permisos
+		
+		
 		return listadeciclistas;
 	}
 
@@ -60,7 +63,7 @@ public class Presentador {
 	 * 
 	 * @return El mapa meteorológico, si no tiene permiso la clase devolverá null.
 	 */
-	public Map<Integer, MiViento> getMapametereológico() {
+	public Map<Integer, MiViento> getMapametereológico(Orden orden) {
 		// TODO Hacer las comprobaciones de los permisos
 		return mapameteorologico;
 	}
