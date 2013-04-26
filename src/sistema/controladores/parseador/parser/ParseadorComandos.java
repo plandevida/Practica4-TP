@@ -9,7 +9,6 @@ import sistema.controladores.ordenes.especificas.OrdenFrenar;
 import sistema.controladores.ordenes.especificas.OrdenSubirPinhon;
 import sistema.controladores.ordenes.especificas.OrdenSubirPlato;
 import sistema.controladores.parseador.InterfazParseador;
-import sistema.manager.Manager;
 
 /**
  * Clase que construye la orden para el sistema a partir
@@ -32,10 +31,6 @@ public class ParseadorComandos implements InterfazParseador {
 		new OrdenSubirPinhon(),
 		new OrdenSubirPlato()
 	};
-	
-	public ParseadorComandos(Manager presentador) {
-		distribuidor = new Dispatcher(presentador);
-	}
 	
 	public ParseadorComandos(Dispatcher dispatcher) {
 		distribuidor = dispatcher;

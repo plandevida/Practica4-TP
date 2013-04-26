@@ -14,6 +14,7 @@ import sistema.entidades.tiempo.Reloj;
 import sistema.entidades.vehiculos.bicicletas.Bicicleta;
 import sistema.entrada.lectura.Lector;
 import sistema.factoresexternos.FactoresExternos;
+import sistema.factoresexternos.viento.MiViento;
 import sistema.interfaces.ObjetosConSalidaDeDatos;
 import sistema.interfaces.ObjetosQueSeEjecutan;
 import sistema.vista.visual.FormateadorDatosVista;
@@ -33,6 +34,7 @@ public class Manager {
 	private Map<Integer, TramoCiclista> carreteradecarreraciclsta;
 	private List<Ciclista> ciclistas;
 	private List<Bicicleta> bicicletas;
+	private Map<Integer, MiViento> mapameteorologico;
 
 	// Entidades del sistema.
 	private Bicicleta bicicleta0;
@@ -51,6 +53,7 @@ public class Manager {
 	// Subsitemas del sistema.
 	private Dispatcher dispatcher;
 	private ParseadorComandos parser;
+	private Presentador presentador;
 
 	Lector lectorConfiguracion;
 
@@ -91,9 +94,6 @@ public class Manager {
 		listaejecutables = new ArrayList<ObjetosQueSeEjecutan>();
 		listasalidadatos = new ArrayList<ObjetosConSalidaDeDatos>();
 
-		dispatcher = new Dispatcher(this);
-		parser = new ParseadorComandos(dispatcher);
-
 		reloj = new Reloj();
 		ciclistas = new ArrayList<Ciclista>();
 		bicicletas = new ArrayList<Bicicleta>();
@@ -110,8 +110,7 @@ public class Manager {
 		bicicletas.add(bicicleta2);
 		bicicletas.add(bicicleta3);
 
-		factoresexternos = new FactoresExternos(bicicletas,
-				carreteradecarreraciclsta);
+		factoresexternos = new FactoresExternos(bicicletas, carreteradecarreraciclsta);
 
 		ciclistas.add(new Ciclista("Pamela", 1, 120, bicicleta0, 500, reloj));
 		ciclistas.add(new Ciclista("Pedro", 2, 60, bicicleta1, 1000, reloj));
@@ -124,6 +123,11 @@ public class Manager {
 		listasalidadatos.add(bicicleta1);
 		listasalidadatos.add(bicicleta2);
 		listasalidadatos.add(bicicleta3);
+		
+		presentador = new Presentador(ciclistas, listasalidadatos, mapameteorologico);
+
+		dispatcher = new Dispatcher(presentador);
+		parser = new ParseadorComandos(dispatcher);
 
 		// Se registran los elementos ejecutables en una lista.
 		listaejecutables.add(reloj);
@@ -136,6 +140,7 @@ public class Manager {
 
 		listaejecutables.add(formateador);
 		listaejecutables.add(factoresexternos);
+		listaejecutables.add(dispatcher);
 	}
 
 	/**

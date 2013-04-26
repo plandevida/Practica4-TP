@@ -2,7 +2,7 @@ package sistema.controladores.ordenes.especificas;
 
 import sistema.controladores.ordenes.Orden;
 import sistema.controladores.ordenes.OrdenParaCiclista;
-import sistema.manager.Manager;
+import sistema.manager.Presentador;
 
 public class OrdenBajarPlato extends OrdenParaCiclista {
 	
@@ -27,7 +27,7 @@ public class OrdenBajarPlato extends OrdenParaCiclista {
 	}
 
 	@Override
-	public void configurarContexto(Manager presentador) {
+	public void configurarContexto(Presentador presentador) {
 		// TODO Auto-generated method stub
 		
 	}

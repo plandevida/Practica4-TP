@@ -2,7 +2,7 @@ package sistema.controladores.ordenes.especificas;
 
 import sistema.controladores.ordenes.Orden;
 import sistema.controladores.ordenes.OrdenParaCiclista;
-import sistema.manager.Manager;
+import sistema.manager.Presentador;
 
 public class OrdenAumentarCadencia extends OrdenParaCiclista {
 	
@@ -34,13 +34,16 @@ public class OrdenAumentarCadencia extends OrdenParaCiclista {
 	@Override
 	public Orden parse(String comando) {
 		
+		// TODO parsear el comando de verdad XD y he puesto esto por que soy un friki quitando warnings
+		int aumentodecadencia = 5;
 		
+		setAumentoCadencia(aumentodecadencia);
 		
 		return null;
 	}
 
 	@Override
-	public void configurarContexto(Manager presentador) {
+	public void configurarContexto(Presentador presentador) {
 		// TODO Auto-generated method stub
 		
 	}
