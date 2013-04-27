@@ -1,4 +1,4 @@
-package src.tests.sistema.entidades.tiempo;
+package src.tests.sistema.testEntidades.tiempo;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import sistema.entidades.tiempo.Reloj;
+import src.tests.sistema.entidadesmock.tiempo.Reloj;
 
 
 

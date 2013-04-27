@@ -1,9 +1,11 @@
-package src.tests.sistema.factoresexternos;
+package src.tests.sistema.testFactoresexternos;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Before;
@@ -11,12 +13,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import sistema.controladores.parseador.parser.ParseadorCarrera;
 import sistema.entidades.carretera.tramocarreraciclista.TramoCiclista;
 import sistema.entidades.vehiculos.bicicletas.Bicicleta;
 import sistema.entrada.lectura.Lector;
-import sistema.entrada.parseador.parser.ParseadorCarrera;
 import sistema.factoresexternos.FactoresExternos;
-import sistema.manager.Manager;
+import sistema.manager.VariablesDeContexto;
 import src.tests.utils.TestUtilidadesFactoresExternos;
 
 @RunWith(JUnit4.class)
@@ -32,7 +34,7 @@ public class TestFactoresExternos {
 	@Before
 	public void run() {
 		
-		Lector lectorConfiguracion = new Lector(Manager.DEFAULT_CONFIG_PATH, true);
+		Lector lectorConfiguracion = new Lector(VariablesDeContexto.DEFAULT_CONFIG_PATH, true);
 		
 		String configuracioncarreraciclista = lectorConfiguracion.cargarFicheroCompelto();
 		
@@ -44,7 +46,11 @@ public class TestFactoresExternos {
 		
 		bicicleta = new Bicicleta();
 		bicicletatest = new Bicicleta();
-		factoresExternos = new FactoresExternos(bicicleta, mapa);
+		
+		List<Bicicleta> listabicicletas = new ArrayList<Bicicleta>();
+		listabicicletas.add(bicicleta);
+		
+		factoresExternos = new FactoresExternos(listabicicletas, mapa);
 		testUtilidadesFactoresExternos = new TestUtilidadesFactoresExternos(mapa, bicicletatest);
 		
 	
@@ -66,7 +72,7 @@ public class TestFactoresExternos {
 		testUtilidadesFactoresExternos.ejecutar();
 		
 		//Se ejecuta el objeto de la clase factores externos
-		factoresExternos.ejecutar();
+		factoresExternos.ejecuta();
 		
 		//Comparamos que la velocidad, al modificarla con los valores externos es la correcta
 		assertEquals("Error: La velocidad de la bicicleta al modificarla con los factores externos no es la correcta", bicicletatest.getVelocidad(), 

@@ -1,4 +1,4 @@
-package src.tests.sistema.entidades.personas.ciclistas;
+package src.tests.sistema.testEntidades.personas.ciclistas;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -11,13 +11,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import sistema.controladores.parseador.parser.ParseadorCarrera;
 import sistema.entidades.carretera.tramocarreraciclista.TramoCiclista;
 import sistema.entidades.personas.ciclistas.Ciclista;
-import sistema.entidades.tiempo.Reloj;
 import sistema.entidades.vehiculos.bicicletas.Bicicleta;
 import sistema.entrada.lectura.Lector;
-import sistema.entrada.parseador.parser.ParseadorCarrera;
-import sistema.manager.Manager;
+import sistema.manager.VariablesDeContexto;
+import src.tests.sistema.entidadesmock.tiempo.Reloj;
 import src.tests.utils.TestUtilidadesBicicleta;
 
 @RunWith(JUnit4.class)
@@ -27,7 +27,8 @@ public class TestCiclista {
 	
 	private String nombreciclista = "Juan";
 	private int numeromallot = 1;
-	private double cadenciaciclista = 1.0d;
+	private int cadenciaciclista = 1;
+	private double tiempopedalada = 1;
 	private Bicicleta bicicletaciclista;
 	private Reloj relojciclista;
 	
@@ -38,7 +39,7 @@ public class TestCiclista {
 	@Before
 	public void run() {
 		
-		Lector lectorConfiguracion = new Lector(Manager.DEFAULT_CONFIG_PATH, true);
+		Lector lectorConfiguracion = new Lector(VariablesDeContexto.DEFAULT_CONFIG_PATH, true);
 		
 		String configuracioncarreraciclista = lectorConfiguracion.cargarFicheroCompelto();
 		
@@ -54,7 +55,7 @@ public class TestCiclista {
 		
 		bicicletaciclista = new Bicicleta();
 		
-		ciclista = new Ciclista(nombreciclista, numeromallot, cadenciaciclista, bicicletaciclista, relojciclista);
+		ciclista = new Ciclista(nombreciclista, numeromallot, cadenciaciclista, bicicletaciclista, tiempopedalada, relojciclista);
 	}
 	
 	@Test
@@ -77,7 +78,7 @@ public class TestCiclista {
 		
 		Bicicleta bicicleta = ciclista.getBicicletamontada();
 		
-		ciclista.ejecutar();
+		ciclista.ejecuta();
 		
 		double velocidadesperada = utilidadesBicicleta.velocidadDeBici(ciclista.getCadencia(), 
 																	bicicleta.getRadiorueda(), 

@@ -1,4 +1,4 @@
-package src.tests.sistema.entidades.veiculos;
+package src.tests.sistema.testEntidades.veiculos;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -11,11 +11,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import sistema.controladores.parseador.parser.ParseadorCarrera;
 import sistema.entidades.carretera.tramocarreraciclista.TramoCiclista;
 import sistema.entidades.vehiculos.bicicletas.Bicicleta;
 import sistema.entrada.lectura.Lector;
-import sistema.entrada.parseador.parser.ParseadorCarrera;
 import sistema.manager.Manager;
+import sistema.manager.VariablesDeContexto;
 import src.tests.utils.TestUtilidadesBicicleta;
 import src.tests.utils.TestUtilidadesCiclista;
 
@@ -32,7 +33,7 @@ public class TestBicicleta {
 	@Before
 	public void run() {
 		
-		Lector lectorConfiguracion = new Lector(Manager.DEFAULT_CONFIG_PATH, true);
+		Lector lectorConfiguracion = new Lector(VariablesDeContexto.DEFAULT_CONFIG_PATH, true);
 		
 		String configuracioncarreraciclista = lectorConfiguracion.cargarFicheroCompelto();
 		
