@@ -25,6 +25,7 @@ public class OrdenAumentarCadencia extends OrdenParaCiclista {
 		
 		if (getCiclista() != null) {
 			getCiclista().setCadencia(aumentocadencia);
+			getCiclista().setPeriodo(periodo);
 			mostrarMensaje();
 		}
 	}

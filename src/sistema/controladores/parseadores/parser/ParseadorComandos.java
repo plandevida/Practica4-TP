@@ -1,4 +1,4 @@
-package sistema.controladores.parseador.parser;
+package sistema.controladores.parseadores.parser;
 
 import sistema.controladores.ordenes.Dispatcher;
 import sistema.controladores.ordenes.Orden;
@@ -8,7 +8,7 @@ import sistema.controladores.ordenes.especificas.OrdenBajarPlato;
 import sistema.controladores.ordenes.especificas.OrdenFrenar;
 import sistema.controladores.ordenes.especificas.OrdenSubirPinhon;
 import sistema.controladores.ordenes.especificas.OrdenSubirPlato;
-import sistema.controladores.parseador.InterfazParseador;
+import sistema.controladores.parseadores.InterfazParseador;
 
 /**
  * Clase que construye la orden para el sistema a partir

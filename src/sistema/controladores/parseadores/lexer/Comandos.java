@@ -1,4 +1,4 @@
-package sistema.controladores.parseador.lexer;
+package sistema.controladores.parseadores.lexer;
 
 import sistema.controladores.ordenes.Orden;
 import sistema.controladores.ordenes.especificas.OrdenAumentarCadencia;

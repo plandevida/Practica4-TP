@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import sistema.controladores.ordenes.Dispatcher;
-import sistema.controladores.parseador.parser.ParseadorCarrera;
-import sistema.controladores.parseador.parser.ParseadorComandos;
+import sistema.controladores.parseadores.parser.ParseadorCarrera;
+import sistema.controladores.parseadores.parser.ParseadorComandos;
 import sistema.entidades.carretera.tramocarreraciclista.TramoCiclista;
 import sistema.entidades.personas.ciclistas.Ciclista;
 import sistema.entidades.tiempo.Reloj;

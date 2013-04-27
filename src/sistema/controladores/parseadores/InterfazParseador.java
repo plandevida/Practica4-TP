@@ -1,4 +1,4 @@
-package sistema.controladores.parseador;
+package sistema.controladores.parseadores;
 
 
 public interface InterfazParseador {

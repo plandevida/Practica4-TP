@@ -1,9 +1,9 @@
-package sistema.controladores.parseador.parser;
+package sistema.controladores.parseadores.parser;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import sistema.controladores.parseador.InterfazParseador;
+import sistema.controladores.parseadores.InterfazParseador;
 import sistema.entidades.carretera.tramocarreraciclista.TramoCiclista;
 import sistema.factoresexternos.viento.MiViento;
 

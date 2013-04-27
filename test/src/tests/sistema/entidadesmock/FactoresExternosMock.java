@@ -1,25 +1,20 @@
-package sistema.factoresexternos;
+package src.tests.sistema.entidadesmock;
 
 import java.util.List;
 import java.util.Map;
 
-import sistema.entidades.carretera.tramocarreraciclista.TramoCiclista;
-import sistema.entidades.vehiculos.bicicletas.Bicicleta;
 import sistema.interfaces.ObjetosQueSeEjecutan;
+import src.tests.sistema.entidadesmock.carretera.tramocarreraciclista.TramoCiclistaMock;
+import src.tests.sistema.entidadesmock.vehiculos.bicicletas.BicicletaMock;
 
-/**
- * Clase que calcula los datos de los elementos climatológicos
- * @author Daniel Serrano Torres
- * @author Alvaro Quesada Pimentel
- */
-public class FactoresExternos implements ObjetosQueSeEjecutan {
+public class FactoresExternosMock implements ObjetosQueSeEjecutan {
 	
-	private List<Bicicleta> bicicletas;
+	private List<BicicletaMock> bicicletas;
 	
 	//Mapa de la carretera
-	private Map<Integer, TramoCiclista> carreteradecarreraciclista;
+	private Map<Integer, TramoCiclistaMock> carreteradecarreraciclista;
 	
-	public FactoresExternos(List<Bicicleta> bicis, Map<Integer, TramoCiclista> carreteradecarreraciclista) {
+	public FactoresExternosMock(List<BicicletaMock> bicis, Map<Integer, TramoCiclistaMock> carreteradecarreraciclista) {
 		
 		this.bicicletas = bicis;
 		this.carreteradecarreraciclista = carreteradecarreraciclista;
@@ -29,11 +24,11 @@ public class FactoresExternos implements ObjetosQueSeEjecutan {
 	 *  Busca el tramo en el que se encuentra la bici 
 	 * @return devuelve el tramo
 	 */
-	private TramoCiclista tramoActual() {
+	private TramoCiclistaMock tramoActual() {
 		
-		TramoCiclista tramo = new TramoCiclista(0, 0, null, 0);
+		TramoCiclistaMock tramo = new TramoCiclistaMock(0, 0, null, 0);
 		
-		for(Bicicleta bici : bicicletas) {
+		for(BicicletaMock bici : bicicletas) {
 			for(Integer reco : carreteradecarreraciclista.keySet()) {
 	
 				if ( carreteradecarreraciclista.get(reco).getKilometros() <= (int) bici.getEspacioRecorrido() ) {
@@ -56,7 +51,7 @@ public class FactoresExternos implements ObjetosQueSeEjecutan {
 		double angulorad = 0d;
 		double factorpendiente = 0d;
 		
-		TramoCiclista tramo = tramoActual();
+		TramoCiclistaMock tramo = tramoActual();
 		
 		angulograd = tramo.getPendiente();
 		angulorad = (angulograd * Math.PI)/180;
@@ -80,7 +75,7 @@ public class FactoresExternos implements ObjetosQueSeEjecutan {
 	 */
 	private double vientoTramoActual(){
 		
-		TramoCiclista tramo = tramoActual();
+		TramoCiclistaMock tramo = tramoActual();
 		
 		
 		int direccionviento = tramo.getViento().getFactor();
@@ -97,7 +92,7 @@ public class FactoresExternos implements ObjetosQueSeEjecutan {
 	 */
 	private void setVientoPendienteModificada() {
 
-		for(Bicicleta bici : bicicletas) {
+		for(BicicletaMock bici : bicicletas) {
 			bici.setPendiente(pendienteTramoActual()) ;
 			
 			bici.setViento(vientoTramoActual());

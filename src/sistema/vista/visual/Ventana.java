@@ -22,7 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.JTextComponent;
 
-import sistema.controladores.parseador.parser.ParseadorComandos;
+import sistema.controladores.parseadores.parser.ParseadorComandos;
 
 /**
  * Vista del sistema en un componente de swing.

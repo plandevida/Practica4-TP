@@ -4,7 +4,6 @@ import java.util.StringTokenizer;
 
 import sistema.interfaces.ObjetosConSalidaDeDatos;
 
-
 public class Reloj extends Contador implements ObjetosConSalidaDeDatos {
 	
 	// Los milisegundos que lleva.

@@ -13,11 +13,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import sistema.controladores.parseador.parser.ParseadorCarrera;
 import sistema.entrada.lectura.Lector;
-import sistema.factoresexternos.FactoresExternos;
 import sistema.manager.VariablesDeContexto;
+import src.tests.sistema.entidadesmock.FactoresExternosMock;
 import src.tests.sistema.entidadesmock.carretera.tramocarreraciclista.TramoCiclistaMock;
+import src.tests.sistema.entidadesmock.parseadores.parser.ParseadorCarreraMock;
 import src.tests.sistema.entidadesmock.vehiculos.bicicletas.BicicletaMock;
 import src.tests.utils.TestUtilidadesFactoresExternos;
 
@@ -26,7 +26,7 @@ public class TestFactoresExternos {
 	
 	private BicicletaMock bicicleta;
 	private BicicletaMock bicicletatest;
-	private FactoresExternos factoresExternos;
+	private FactoresExternosMock factoresExternos;
 	private Map<Integer, TramoCiclistaMock> mapa;
 	
 	
@@ -40,7 +40,7 @@ public class TestFactoresExternos {
 		
 		mapa = new HashMap<Integer, TramoCiclistaMock>();
 		
-		ParseadorCarrera parseadorcarrera = new ParseadorCarrera(mapa);
+		ParseadorCarreraMock parseadorcarrera = new ParseadorCarreraMock(mapa);
 		
 		parseadorcarrera.parse(configuracioncarreraciclista);
 		
@@ -50,7 +50,7 @@ public class TestFactoresExternos {
 		List<BicicletaMock> listabicicletas = new ArrayList<BicicletaMock>();
 		listabicicletas.add(bicicleta);
 		
-		factoresExternos = new FactoresExternos(listabicicletas, mapa);
+		factoresExternos = new FactoresExternosMock(listabicicletas, mapa);
 		testUtilidadesFactoresExternos = new TestUtilidadesFactoresExternos(mapa, bicicletatest);
 		
 	

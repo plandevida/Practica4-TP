@@ -11,10 +11,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import sistema.controladores.parseador.parser.ParseadorCarrera;
 import sistema.entrada.lectura.Lector;
 import sistema.manager.VariablesDeContexto;
 import src.tests.sistema.entidadesmock.carretera.tramocarreraciclista.TramoCiclistaMock;
+import src.tests.sistema.entidadesmock.parseadores.parser.ParseadorCarreraMock;
 import src.tests.sistema.entidadesmock.personas.ciclistas.CiclistaMock;
 import src.tests.sistema.entidadesmock.tiempo.RelojMock;
 import src.tests.sistema.entidadesmock.vehiculos.bicicletas.BicicletaMock;
@@ -45,7 +45,7 @@ public class TestCiclista {
 		
 		mapa = new HashMap<Integer, TramoCiclistaMock>();
 		
-		ParseadorCarrera parseadorcarrera = new ParseadorCarrera(mapa);
+		ParseadorCarreraMock parseadorcarrera = new ParseadorCarreraMock(mapa);
 		
 		parseadorcarrera.parse(configuracioncarreraciclista);
 		
