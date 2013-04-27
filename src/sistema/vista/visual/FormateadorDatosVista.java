@@ -6,6 +6,7 @@ import java.util.StringTokenizer;
 
 import sistema.interfaces.ObjetosConSalidaDeDatos;
 import sistema.interfaces.ObjetosQueSeEjecutan;
+import sistema.manager.Presentador;
 import sistema.vista.InterfaceSalidaDatos;
 
 public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSeEjecutan {
@@ -108,5 +109,11 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 	@Override
 	public void ejecuta() {
 		mostrarDatos();
+	}
+
+	@Override
+	public String[] misPermisos() {
+		
+		return new String[] { Presentador.permisos[1] };
 	}
 }

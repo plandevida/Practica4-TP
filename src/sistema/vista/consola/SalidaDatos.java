@@ -112,4 +112,10 @@ public class SalidaDatos implements InterfaceSalidaDatos{
 			}
 		}
 	}
+
+	@Override
+	public String[] misPermisos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
