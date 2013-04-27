@@ -2,7 +2,7 @@ package src.tests.sistema.entidadesmock.personas;
 
 import sistema.interfaces.ObjetosQueSeEjecutan;
 
-public class Persona implements ObjetosQueSeEjecutan {
+public class PersonaMock implements ObjetosQueSeEjecutan {
 	//nombre de la persona
 	private String nombre;
 	
@@ -12,7 +12,7 @@ public class Persona implements ObjetosQueSeEjecutan {
 	//cansancio de la persona
 	private int cansancio;
 	
-	public Persona(String nombrepersona, int pesopersona, int estadofisico) {
+	public PersonaMock(String nombrepersona, int pesopersona, int estadofisico) {
 		nombre = nombrepersona;
 		peso = pesopersona;
 		cansancio = (estadofisico >= 0 && estadofisico < 100) ? estadofisico : 100;

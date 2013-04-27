@@ -12,11 +12,11 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import sistema.controladores.parseador.parser.ParseadorCarrera;
-import sistema.entidades.carretera.tramocarreraciclista.TramoCiclista;
-import sistema.entidades.vehiculos.bicicletas.Bicicleta;
 import sistema.entrada.lectura.Lector;
 import sistema.manager.Manager;
 import sistema.manager.VariablesDeContexto;
+import src.tests.sistema.entidadesmock.carretera.tramocarreraciclista.TramoCiclistaMock;
+import src.tests.sistema.entidadesmock.vehiculos.bicicletas.BicicletaMock;
 import src.tests.utils.TestUtilidadesBicicleta;
 import src.tests.utils.TestUtilidadesCiclista;
 
@@ -24,11 +24,11 @@ import src.tests.utils.TestUtilidadesCiclista;
 @RunWith(JUnit4.class)
 
 public class TestBicicleta {
-	private Bicicleta bicicleta;
+	private BicicletaMock bicicleta;
 	private TestUtilidadesBicicleta utilidadesBicicleta;
 	private TestUtilidadesCiclista utilidadesCiclista;
 	
-	private Map<Integer, TramoCiclista> mapa;
+	private Map<Integer, TramoCiclistaMock> mapa;
 	
 	@Before
 	public void run() {
@@ -37,7 +37,7 @@ public class TestBicicleta {
 		
 		String configuracioncarreraciclista = lectorConfiguracion.cargarFicheroCompelto();
 		
-		mapa = new HashMap<Integer, TramoCiclista>();
+		mapa = new HashMap<Integer, TramoCiclistaMock>();
 		
 		ParseadorCarrera parseadorcarrera = new ParseadorCarrera(mapa);
 		
@@ -47,7 +47,7 @@ public class TestBicicleta {
 		
 		utilidadesBicicleta = new TestUtilidadesBicicleta();
 		
-		bicicleta = new Bicicleta();
+		bicicleta = new BicicletaMock();
 	}
 	
 	@Test

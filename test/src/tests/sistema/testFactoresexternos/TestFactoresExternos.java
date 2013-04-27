@@ -14,20 +14,20 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import sistema.controladores.parseador.parser.ParseadorCarrera;
-import sistema.entidades.carretera.tramocarreraciclista.TramoCiclista;
-import sistema.entidades.vehiculos.bicicletas.Bicicleta;
 import sistema.entrada.lectura.Lector;
 import sistema.factoresexternos.FactoresExternos;
 import sistema.manager.VariablesDeContexto;
+import src.tests.sistema.entidadesmock.carretera.tramocarreraciclista.TramoCiclistaMock;
+import src.tests.sistema.entidadesmock.vehiculos.bicicletas.BicicletaMock;
 import src.tests.utils.TestUtilidadesFactoresExternos;
 
 @RunWith(JUnit4.class)
 public class TestFactoresExternos {
 	
-	private Bicicleta bicicleta;
-	private Bicicleta bicicletatest;
+	private BicicletaMock bicicleta;
+	private BicicletaMock bicicletatest;
 	private FactoresExternos factoresExternos;
-	private Map<Integer, TramoCiclista> mapa;
+	private Map<Integer, TramoCiclistaMock> mapa;
 	
 	
 	TestUtilidadesFactoresExternos testUtilidadesFactoresExternos;
@@ -38,16 +38,16 @@ public class TestFactoresExternos {
 		
 		String configuracioncarreraciclista = lectorConfiguracion.cargarFicheroCompelto();
 		
-		mapa = new HashMap<Integer, TramoCiclista>();
+		mapa = new HashMap<Integer, TramoCiclistaMock>();
 		
 		ParseadorCarrera parseadorcarrera = new ParseadorCarrera(mapa);
 		
 		parseadorcarrera.parse(configuracioncarreraciclista);
 		
-		bicicleta = new Bicicleta();
-		bicicletatest = new Bicicleta();
+		bicicleta = new BicicletaMock();
+		bicicletatest = new BicicletaMock();
 		
-		List<Bicicleta> listabicicletas = new ArrayList<Bicicleta>();
+		List<BicicletaMock> listabicicletas = new ArrayList<BicicletaMock>();
 		listabicicletas.add(bicicleta);
 		
 		factoresExternos = new FactoresExternos(listabicicletas, mapa);

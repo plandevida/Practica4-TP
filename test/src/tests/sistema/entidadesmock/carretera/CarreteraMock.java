@@ -6,11 +6,11 @@ package src.tests.sistema.entidadesmock.carretera;
  * @author Daniel Serrano Torres
  * @author Alvaro Quesada Pimentel
  */
-public class Carretera {
+public class CarreteraMock {
 	
 	private double kilometros;
 	
-	public Carretera(double kilometrosdecarretera) {
+	public CarreteraMock(double kilometrosdecarretera) {
 		kilometros = kilometrosdecarretera;
 	}
 	

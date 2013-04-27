@@ -12,27 +12,27 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import sistema.controladores.parseador.parser.ParseadorCarrera;
-import sistema.entidades.carretera.tramocarreraciclista.TramoCiclista;
-import sistema.entidades.personas.ciclistas.Ciclista;
-import sistema.entidades.vehiculos.bicicletas.Bicicleta;
 import sistema.entrada.lectura.Lector;
 import sistema.manager.VariablesDeContexto;
-import src.tests.sistema.entidadesmock.tiempo.Reloj;
+import src.tests.sistema.entidadesmock.carretera.tramocarreraciclista.TramoCiclistaMock;
+import src.tests.sistema.entidadesmock.personas.ciclistas.CiclistaMock;
+import src.tests.sistema.entidadesmock.tiempo.RelojMock;
+import src.tests.sistema.entidadesmock.vehiculos.bicicletas.BicicletaMock;
 import src.tests.utils.TestUtilidadesBicicleta;
 
 @RunWith(JUnit4.class)
 public class TestCiclista {
 	
-	private Ciclista ciclista;
+	private CiclistaMock ciclista;
 	
 	private String nombreciclista = "Juan";
 	private int numeromallot = 1;
 	private int cadenciaciclista = 1;
 	private double tiempopedalada = 1;
-	private Bicicleta bicicletaciclista;
-	private Reloj relojciclista;
+	private BicicletaMock bicicletaciclista;
+	private RelojMock relojciclista;
 	
-	private Map<Integer, TramoCiclista> mapa;
+	private Map<Integer, TramoCiclistaMock> mapa;
 	
 	private TestUtilidadesBicicleta utilidadesBicicleta;
 	
@@ -43,7 +43,7 @@ public class TestCiclista {
 		
 		String configuracioncarreraciclista = lectorConfiguracion.cargarFicheroCompelto();
 		
-		mapa = new HashMap<Integer, TramoCiclista>();
+		mapa = new HashMap<Integer, TramoCiclistaMock>();
 		
 		ParseadorCarrera parseadorcarrera = new ParseadorCarrera(mapa);
 		
@@ -51,11 +51,11 @@ public class TestCiclista {
 		
 		utilidadesBicicleta = new TestUtilidadesBicicleta();
 		
-		relojciclista = new Reloj();
+		relojciclista = new RelojMock();
 		
-		bicicletaciclista = new Bicicleta();
+		bicicletaciclista = new BicicletaMock();
 		
-		ciclista = new Ciclista(nombreciclista, numeromallot, cadenciaciclista, bicicletaciclista, tiempopedalada, relojciclista);
+		ciclista = new CiclistaMock(nombreciclista, numeromallot, cadenciaciclista, bicicletaciclista, tiempopedalada, relojciclista);
 	}
 	
 	@Test
@@ -76,7 +76,7 @@ public class TestCiclista {
 		
 		// Incremento de la velocidad de la bicicleta al pedalear
 		
-		Bicicleta bicicleta = ciclista.getBicicletamontada();
+		BicicletaMock bicicleta = ciclista.getBicicletamontada();
 		
 		ciclista.ejecuta();
 		

@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import src.tests.sistema.entidadesmock.tiempo.Reloj;
+import src.tests.sistema.entidadesmock.tiempo.RelojMock;
 
 
 
@@ -16,12 +16,12 @@ import src.tests.sistema.entidadesmock.tiempo.Reloj;
 @RunWith(JUnit4.class)
 public class TestReloj {
 
-	private Reloj reloj;
+	private RelojMock reloj;
 	
 	@Before
 	public void run() {
 			
-		reloj = new Reloj();
+		reloj = new RelojMock();
 		
 	}
 	

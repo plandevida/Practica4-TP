@@ -6,7 +6,7 @@ import sistema.entidades.tiempo.Contador;
 import sistema.interfaces.ObjetosConSalidaDeDatos;
 
 
-public class Reloj extends Contador implements ObjetosConSalidaDeDatos {
+public class RelojMock extends Contador implements ObjetosConSalidaDeDatos {
 	
 	// Los milisegundos que lleva.
 	private int milisegundos;
@@ -20,7 +20,7 @@ public class Reloj extends Contador implements ObjetosConSalidaDeDatos {
 	// Las horas que lleva, es la unidad mas grande del programa
 	private int horas;
 	
-	public Reloj() {
+	public RelojMock() {
 		milisegundos = 0;
 		segundos = 0;
 		minutos = 0;

@@ -5,7 +5,7 @@ package src.tests.sistema.entidadesmock.vehiculos;
  * @author Daniel Serrano Torres
  * @author Alvaro Quesada Pimentel
  */
-public class Vehiculo {
+public class VehiculoMock {
 
 	protected double velocidadactual;
 	
