@@ -51,4 +51,10 @@ public class OrdenDesconocida extends Orden {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	protected boolean comprobarSintaxis(String[] tokenscomando) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

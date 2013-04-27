@@ -36,6 +36,14 @@ public abstract class Orden implements Comparable<Orden> {
 	public abstract Orden parse(String comando);
 	
 	/**
+	 * Comprueba que el comando está bien formado.
+	 * 
+	 * @param tokenscomando El comando separado por tokens.
+	 * @return True si está bien formado, false en cualquier otro caso.
+	 */
+	protected abstract boolean comprobarSintaxis(String[] tokenscomando);
+	
+	/**
 	 * Configura los parametros del comando en la orden
 	 */
 	public abstract void configurarContexto(Presentador presentador);

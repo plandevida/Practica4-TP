@@ -40,8 +40,8 @@ public class OrdenSubirPinhon extends OrdenParaCiclista {
 	}
 
 	@Override
-	public String[] misPermisos() {
+	protected boolean comprobarSintaxis(String[] tokenscomando) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 }
