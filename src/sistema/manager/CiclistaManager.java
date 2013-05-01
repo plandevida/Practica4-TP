@@ -26,7 +26,7 @@ import sistema.vista.visual.Ventana;
  * @author Daniel Serrano Torres
  * @author Alvaro Quesada Pimentel
  */
-public class Manager {
+public class CiclistaManager {
 
 	// Listas con los elemenos del contexto del sistema
 	private List<ObjetosQueSeEjecutan> listaejecutables;
@@ -167,7 +167,7 @@ public class Manager {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Manager manager = new Manager();
+		CiclistaManager manager = new CiclistaManager();
 
 		manager.cargarConfiguracion();
 		manager.iniciar();

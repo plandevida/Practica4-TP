@@ -5,22 +5,21 @@ import sistema.controladores.ordenes.OrdenParaCiclista;
 import sistema.entidades.personas.ciclistas.Ciclista;
 import sistema.manager.Presentador;
 
-public class OrdenFrenar extends OrdenParaCiclista {
+public class OrdenCambiarPlato extends OrdenParaCiclista {
 	
 	private Integer idciclista;
-	private Double cantidadfrendada, tiempofrenada;
+	private Integer indiceplato;
 	
-	public OrdenFrenar(Double cantidad, Double tiempo, Integer idciclista) {
+	public OrdenCambiarPlato(Integer plato, Integer idciclista) {
 		
 		this.idciclista = idciclista;
-		cantidadfrendada = cantidad;
-		tiempofrenada = tiempo;
+		indiceplato = plato;
 	}
 
 	@Override
 	public void ejecutarOrden() {
 		if (getCiclista() != null) {
-			getCiclista().frenar();
+			getCiclista().cambiarPlato(indiceplato);
 		}
 	}
 	
@@ -31,37 +30,34 @@ public class OrdenFrenar extends OrdenParaCiclista {
 				.append("Plato ")
 				.append("ciclista : ")
 				.append(idciclista)
-				.append(" cantidad: ")
-				.append(cantidadfrendada)
-				.append(" tiempo: ")
-				.append(tiempofrenada)
+				.append(" plato: ")
+				.append(indiceplato)
 				).toString();
 	}
 
 	@Override
 	public Orden parse(String comando) {
 		
-		OrdenFrenar ordenfrenar = null;
+		OrdenCambiarPlato ordensubirplato = null;
 		
 		String[] tokens = comando.split(" ");
 		
-		if ( tokens.length > 0 && tokens[2].equalsIgnoreCase("frena") ) {
+		if ( tokens.length > 0 && tokens[2].equalsIgnoreCase("cambia") && tokens[3].equalsIgnoreCase("plato") ) {
 			
-			if ( tokens.length == 6 ) {
+			if ( tokens.length == 5 ) {
 				try {
 					idciclista = Integer.valueOf(tokens[1]);
-					cantidadfrendada = Double.valueOf(tokens[3]);
-					tiempofrenada = Double.valueOf(tokens[5]);
+					indiceplato = Integer.valueOf(tokens[4]);
 					
 				} catch (NumberFormatException ne) {
 					// nada que hacer.
 				}
 				
-				ordenfrenar = new OrdenFrenar(cantidadfrendada, tiempofrenada, idciclista);
+				ordensubirplato = new OrdenCambiarPlato (indiceplato, idciclista);
 			}
 		}
 		
-		return ordenfrenar;
+		return ordensubirplato;
 	}
 
 	@Override

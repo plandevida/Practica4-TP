@@ -62,19 +62,24 @@ public class Presentador {
 	 * 
 	 * @return La lista de cilistas, si no tiene permiso la clase devolverá null.
 	 */
-	public List<Ciclista> getListadeciclistas(Orden orden) {
+	public Ciclista getciclista(Orden orden, int identificadorciclista) {
 		
 		String[] permisosdelaorden = orden.misPermisos();
+
+		Ciclista ciclista = null;
 		
-		boolean sepermiteelacceso = false;
-		
-		for (int i = 0; (i < permisos.length) && !sepermiteelacceso; i++) {
-			if ( permisos[i].equals(permisosdelaorden[i]) ) {
-				sepermiteelacceso = true;
+		for (int i = 0; (i < permisosdelaorden.length) && ciclista == null; i++) {
+			
+			if (permisos[1].equals(permisosdelaorden[i])) {
+				
+				for (Ciclista c : listadeciclistas) {
+					
+					ciclista = (c.getNumeromallot() == identificadorciclista) ? c : null;
+				}
 			}
 		}
 		
-		return sepermiteelacceso ? listadeciclistas : null;
+		return ciclista;
 	}
 
 	/**
@@ -90,8 +95,8 @@ public class Presentador {
 		
 		boolean sepermiteelacceso = false;
 		
-		for (int i = 0; (i < permisos.length) && !sepermiteelacceso; i++) {
-			if ( permisos[i].equals(permisosdelaorden[i]) ) {
+		for (int i = 0; (i < permisosdelaorden.length) && !sepermiteelacceso; i++) {
+			if ( permisos[1].equals(permisosdelaorden[i]) ) {
 				sepermiteelacceso = true;
 			}
 		}
@@ -111,8 +116,8 @@ public class Presentador {
 		
 		boolean sepermiteelacceso = false;
 		
-		for (int i = 0; (i < permisos.length) && !sepermiteelacceso; i++) {
-			if ( permisos[i].equals(permisosdelaorden[i]) ) {
+		for (int i = 0; (i < permisosdelaorden.length) && !sepermiteelacceso; i++) {
+			if ( permisos[1].equals(permisosdelaorden[i]) ) {
 				sepermiteelacceso = true;
 			}
 		}

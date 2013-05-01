@@ -5,22 +5,21 @@ import sistema.controladores.ordenes.OrdenParaCiclista;
 import sistema.entidades.personas.ciclistas.Ciclista;
 import sistema.manager.Presentador;
 
-public class OrdenFrenar extends OrdenParaCiclista {
+public class OrdenCambiarPinhon extends OrdenParaCiclista {
 	
 	private Integer idciclista;
-	private Double cantidadfrendada, tiempofrenada;
+	private Integer indicepinhon;
 	
-	public OrdenFrenar(Double cantidad, Double tiempo, Integer idciclista) {
+	public OrdenCambiarPinhon(Integer pinhon, Integer idciclista) {
 		
 		this.idciclista = idciclista;
-		cantidadfrendada = cantidad;
-		tiempofrenada = tiempo;
+		indicepinhon = pinhon;
 	}
 
 	@Override
 	public void ejecutarOrden() {
 		if (getCiclista() != null) {
-			getCiclista().frenar();
+			getCiclista().cambiarPinhon(indicepinhon);
 		}
 	}
 	
@@ -31,37 +30,34 @@ public class OrdenFrenar extends OrdenParaCiclista {
 				.append("Plato ")
 				.append("ciclista : ")
 				.append(idciclista)
-				.append(" cantidad: ")
-				.append(cantidadfrendada)
-				.append(" tiempo: ")
-				.append(tiempofrenada)
+				.append(" piñon: ")
+				.append(indicepinhon)
 				).toString();
 	}
 
 	@Override
 	public Orden parse(String comando) {
 		
-		OrdenFrenar ordenfrenar = null;
+		OrdenCambiarPinhon ordensubirpinhon = null;
 		
 		String[] tokens = comando.split(" ");
 		
-		if ( tokens.length > 0 && tokens[2].equalsIgnoreCase("frena") ) {
+		if ( tokens.length > 0 && tokens[2].equalsIgnoreCase("cambia") && tokens[3].equalsIgnoreCase("piñon") ) {
 			
-			if ( tokens.length == 6 ) {
+			if ( tokens.length == 5 ) {
 				try {
 					idciclista = Integer.valueOf(tokens[1]);
-					cantidadfrendada = Double.valueOf(tokens[3]);
-					tiempofrenada = Double.valueOf(tokens[5]);
+					indicepinhon = Integer.valueOf(tokens[4]);
 					
 				} catch (NumberFormatException ne) {
 					// nada que hacer.
 				}
 				
-				ordenfrenar = new OrdenFrenar(cantidadfrendada, tiempofrenada, idciclista);
+				ordensubirpinhon = new OrdenCambiarPinhon(indicepinhon, idciclista);
 			}
 		}
 		
-		return ordenfrenar;
+		return ordensubirpinhon;
 	}
 
 	@Override

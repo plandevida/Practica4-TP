@@ -2,12 +2,10 @@ package src.tests.sistema.entidadesmock.parseadores.parser;
 
 import sistema.controladores.ordenes.Dispatcher;
 import sistema.controladores.ordenes.Orden;
-import sistema.controladores.ordenes.especificas.OrdenAumentarCadencia;
-import sistema.controladores.ordenes.especificas.OrdenBajarPinhon;
-import sistema.controladores.ordenes.especificas.OrdenBajarPlato;
+import sistema.controladores.ordenes.especificas.OrdenAsingarCadencia;
+import sistema.controladores.ordenes.especificas.OrdenCambiarPinhon;
+import sistema.controladores.ordenes.especificas.OrdenCambiarPlato;
 import sistema.controladores.ordenes.especificas.OrdenFrenar;
-import sistema.controladores.ordenes.especificas.OrdenSubirPinhon;
-import sistema.controladores.ordenes.especificas.OrdenSubirPlato;
 import sistema.controladores.parseadores.InterfazParseador;
 
 public class ParseadorComandosMock implements InterfazParseador {
@@ -17,12 +15,10 @@ public class ParseadorComandosMock implements InterfazParseador {
 	
 	// Lista de ordenes del sistema.
 	Orden[] ordenes = {
-		new OrdenAumentarCadencia(),
-		new OrdenBajarPinhon(),
-		new OrdenBajarPlato(),
-		new OrdenFrenar(),
-		new OrdenSubirPinhon(),
-		new OrdenSubirPlato()
+		new OrdenAsingarCadencia(null, null, null),
+		new OrdenFrenar(null, null, null),
+		new OrdenCambiarPinhon(null, null),
+		new OrdenCambiarPlato(null, null)
 	};
 	
 	public ParseadorComandosMock(Dispatcher dispatcher) {

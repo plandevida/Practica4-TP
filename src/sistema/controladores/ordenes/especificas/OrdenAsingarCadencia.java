@@ -1,7 +1,5 @@
 package sistema.controladores.ordenes.especificas;
 
-import java.util.List;
-
 import sistema.controladores.ordenes.Orden;
 import sistema.controladores.ordenes.OrdenParaCiclista;
 import sistema.entidades.personas.ciclistas.Ciclista;
@@ -14,11 +12,17 @@ import sistema.manager.Presentador;
  * @author Daniel Serrano Torres
  * @author Alvaro Quesada Pimentel
  */
-public class OrdenAumentarCadencia extends OrdenParaCiclista {
+public class OrdenAsingarCadencia extends OrdenParaCiclista {
+	private Integer aumentocadencia;
+	private Integer periodo;
+	private Integer idciclista;
 	
-	private int aumentocadencia;
-	private int periodo;
-	private int idciclista;
+	public OrdenAsingarCadencia(Integer nuevacadencia, Integer nuevoperiodo, Integer idciclista) {
+		
+		aumentocadencia = nuevacadencia;
+		periodo = nuevoperiodo;
+		this.idciclista = idciclista;
+	}
 	
 	@Override
 	public void ejecutarOrden() {
@@ -26,43 +30,27 @@ public class OrdenAumentarCadencia extends OrdenParaCiclista {
 		if (getCiclista() != null) {
 			getCiclista().setCadencia(aumentocadencia);
 			getCiclista().setPeriodo(periodo);
-			mostrarMensaje();
 		}
-	}
-	
-	/**
-	 * Pone la cadencia del ciclista.
-	 * @param aumentodecadencia El aumento de la cadencia.
-	 */
-	private void setAumentoCadencia(int aumentodecadencia) {
-		aumentocadencia = aumentodecadencia;
-	}
-
-	/**
-	 * Pone el periodo del ciclista
-	 * 
-	 * @param periodo
-	 */
-	public void setPeriodo(int periodo) {
-		this.periodo = periodo;
 	}
 
 	@Override
 	public String mostrarMensaje() {
 		
 		return (new StringBuilder())
-				.append(this.getClass().getName())
-				.append(": Aumentando la cadencia en : ")
-				.append(aumentocadencia)
+				.append("Cadencia ")
+				.append("ciclista : ")
+				.append(idciclista.intValue())
+				.append(" cadencia : ")
+				.append(aumentocadencia.intValue())
 				.append(" y el periodo: ")
-				.append(periodo)
+				.append(periodo.intValue())
 				.toString();
 	}
 
 	@Override
 	public Orden parse(String comando) {
 		
-		OrdenAumentarCadencia ordenaumentarcadencia = null;
+		OrdenAsingarCadencia ordenaumentarcadencia = null;
 		
 		String[] tokens = comando.split(" ");
 		
@@ -78,9 +66,7 @@ public class OrdenAumentarCadencia extends OrdenParaCiclista {
 					// nada que hacer.
 				}
 				
-				ordenaumentarcadencia = new OrdenAumentarCadencia();
-				ordenaumentarcadencia.setAumentoCadencia(aumentocadencia);
-				ordenaumentarcadencia.setPeriodo(periodo);
+				ordenaumentarcadencia = new OrdenAsingarCadencia(aumentocadencia, periodo, idciclista);
 			}
 		}
 		
@@ -105,24 +91,19 @@ public class OrdenAumentarCadencia extends OrdenParaCiclista {
 	@Override
 	public void configurarContexto(Presentador presentador) {
 		
-		List<Ciclista> ciclistas = presentador.getListadeciclistas(this);
+		Ciclista ciclista = presentador.getciclista(this, idciclista);
 		
 		// Si la orden tiene permisos sobre los ciclistas
 		// buscamos cual es el que le corresponde.
-		if (ciclistas != null) {
+		if (ciclista != null) {
 			
-			for ( Ciclista ciclista : ciclistas) {
-				if ( ciclista.getNumeromallot() == idciclista ) {
-					
-					setCiclista(ciclista);
-				}
-			}
+			setCiclista(ciclista);
 		}
 	}
 
 	@Override
 	public String help(boolean detalles) {
 		
-		return "ciclista n cadencia n1 periodo n2";
+		return "ciclista <id_ciclista> cadencia <numero_cadencia> periodo <numero_periodo>";
 	}
 }

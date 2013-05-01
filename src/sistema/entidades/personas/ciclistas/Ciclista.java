@@ -6,6 +6,7 @@ import sistema.entidades.personas.Persona;
 import sistema.entidades.tiempo.Reloj;
 import sistema.entidades.vehiculos.bicicletas.Bicicleta;
 import sistema.interfaces.ObjetosConSalidaDeDatos;
+import sistema.manager.VariablesDeContexto;
 
 /**
  * Clase que representa un ciclista.
@@ -114,21 +115,12 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 * 
 	 * @return El piñón al que se ha cambiado.
 	 */
-	public int aumentarPinhon() {
+	public int cambiarPinhon(int indicepinhon) {
 		
-		bicicletamontada.setPinhonactual(bicicletamontada.getPinhonactual()+1);
-		
-		return bicicletamontada.getPinhonactual();
-	}
-	
-	/**
-	 * Desminuir el piñón actual al menor adyacente.
-	 * 
-	 * @return El piñón al que se ha cambiado.
-	 */
-	public int disminuirPinhon() {
-		
-		bicicletamontada.setPinhonactual(bicicletamontada.getPinhonactual()-1);
+		if (indicepinhon >= 0 && indicepinhon < VariablesDeContexto.pinhones.length) {
+			
+			bicicletamontada.setPinhonactual(indicepinhon);
+		}
 		
 		return bicicletamontada.getPinhonactual();
 	}
@@ -138,21 +130,12 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 * 
 	 * @return El plato al que se ha cambiado.
 	 */
-	public int aumentarPlato() {
+	public int cambiarPlato(int indiceplato) {
 		
-		bicicletamontada.setPlatoactual(bicicletamontada.getPlatoactual()+1);
+		if (indiceplato >= 0 && indiceplato< VariablesDeContexto.platos.length) {
 		
-		return bicicletamontada.getPlatoactual();
-	}
-	
-	/**
-	 * Desminuir el plato actual al menor adyacente.
-	 * 
-	 * @return El plato al que se ha cambiado.
-	 */
-	public int disminuirPlato() {
-		
-		bicicletamontada.setPlatoactual(bicicletamontada.getPlatoactual()-1);
+			bicicletamontada.setPinhonactual(indiceplato);
+		}
 		
 		return bicicletamontada.getPlatoactual();
 	}
