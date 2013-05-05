@@ -112,10 +112,10 @@ public class CiclistaManager {
 
 		factoresexternos = new FactoresExternos(bicicletas, carreteradecarreraciclsta);
 
-		ciclistas.add(new Ciclista("Pamela", 1, 120, bicicleta0, 500, reloj));
-		ciclistas.add(new Ciclista("Pedro", 2, 60, bicicleta1, 1000, reloj));
-		ciclistas.add(new Ciclista("Ana", 3, 30, bicicleta2, 700, reloj));
-		ciclistas.add(new Ciclista("Juan", 4, 90, bicicleta3, 600, reloj));
+		ciclistas.add(new Ciclista("Pamela", 1, 120, bicicleta0, 0.5, reloj));
+		ciclistas.add(new Ciclista("Pedro", 2, 60, bicicleta1, 0.8, reloj));
+		ciclistas.add(new Ciclista("Ana", 3, 30, bicicleta2, 1.5, reloj));
+		ciclistas.add(new Ciclista("Juan", 4, 90, bicicleta3, 0.5, reloj));
 
 		// Se registran los elementos con salida de datos en una lista.
 		listasalidadatos.add(reloj);
@@ -149,7 +149,7 @@ public class CiclistaManager {
 	public void ejecutar() {
 
 		while (reloj.getHoras() < 2) {
-
+			
 			for (ObjetosQueSeEjecutan objetoejecutable : listaejecutables) {
 				objetoejecutable.ejecuta();
 			}

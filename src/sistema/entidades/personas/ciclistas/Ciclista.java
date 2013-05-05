@@ -28,7 +28,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	// La candencia de la pedalada del ciclista.
 	private int cadencia;
 	
-	private int periodo;
+	private double  periodo;
 	
 	private double tiempopedalada;
 	
@@ -58,6 +58,8 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 		this.tiempopedalada = tiempopedalada;
 		
 		bicicletamontada.setId(numeromallot);
+		
+		calcularPeriodo();
 	}
 	
 	/**
@@ -97,6 +99,17 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 			bicicletamontada.darPedalada(tiempopedalada);
 	
 			segundos = reloj.getSegundos();
+		}
+	}
+	/**
+	 * Calcula el periodo y se asegura de que el tiempo de pedalada no sea mayor del de el periodo;
+	 */
+	public void calcularPeriodo(){
+		
+		periodo = 1/(cadencia/60);
+		
+		if (periodo <tiempopedalada){
+			tiempopedalada = periodo;
 		}
 	}
 	
@@ -199,7 +212,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 *  
 	 * @return La cadencia
 	 */
-	public int getPeriodo() {
+	public double getPeriodo() {
 		return periodo;
 	}
 
