@@ -1,6 +1,7 @@
 package sistema.manager;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -147,11 +148,18 @@ public class CiclistaManager {
 	 * Ejecuta la aplicación.
 	 */
 	public void ejecutar() {
-
+		
+		int miliseg = 0;
+		
 		while (reloj.getHoras() < 2) {
 			
-			for (ObjetosQueSeEjecutan objetoejecutable : listaejecutables) {
-				objetoejecutable.ejecuta();
+			if (miliseg!= (int)(Calendar.getInstance().getTimeInMillis() % 10)){
+				
+				for (ObjetosQueSeEjecutan objetoejecutable : listaejecutables) {
+					objetoejecutable.ejecuta();
+				}
+				
+				miliseg = (int)(Calendar.getInstance().getTimeInMillis() % 10);
 			}
 		}
 	}
