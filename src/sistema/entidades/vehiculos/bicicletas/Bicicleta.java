@@ -27,6 +27,8 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	
 	protected double factorviento;
 	
+	protected int peso;
+	
 	public Bicicleta() {
 	
 		setVelocidad(0);
@@ -34,7 +36,7 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 		setPinhonactual(0);
 		setPlatoactual(0);
 		radiorueda = 0.2d;
-		
+		peso = 10;
 		factorpendiente = 1;
 		factorviento = 0;
 	}
@@ -117,10 +119,11 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 * Realiza una pedalada en la bicicleta, aumentando su velocidad.
 	 * 
 	 * @param cadenciaciclista Frecuencia con la que el ciclista da pedaladas. 
+	 * @return la fuerza gastada al pedalear
 	 */
 	
 	
-	public void darPedalada(double tiempopedalada) {
+	public double darPedalada(double tiempopedalada, int pesociclista) {
 		double aceleracion = calcularAceleracionTiempoPedalada(tiempopedalada);
 		
 		//velocidad = velocidad * factorpendiente;
@@ -133,6 +136,8 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 		}
 		
 		setEspacioRecorrido(espacioDePedalada());
+		
+		return ((peso/10 + pesociclista/10)*aceleracion);
 	}
 	
 	/**

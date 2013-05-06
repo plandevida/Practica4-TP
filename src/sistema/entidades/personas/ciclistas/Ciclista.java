@@ -37,6 +37,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	
 	private int contadorcandencia;
 	
+	private double fuerza;
 	/**
 	 * Crea un ciclista.
 	 * 
@@ -46,19 +47,19 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 * @param bicicletaamontar
 	 * @param relojCiclista
 	 */
-	public Ciclista(String nombre, int nummallot, int cadenciaCiclista, Bicicleta bicicletaamontar, double tiempopedalada, Reloj relojCiclista) {
+	public Ciclista(String nombre, int nummallot, int cadenciaCiclista, Bicicleta bicicletaamontar, double tiempopedalada, Reloj relojCiclista, int peso, double fuerza) {
 		/**
 		 * Demomento el peso no es relevante, ni el cansancio
 		 * 
 		 * Esta clase hereda de persona @link Persona
 		 */
-		super(nombre, 50, 100);
+		super(nombre, peso);
 		cadencia = cadenciaCiclista;
 		bicicletamontada = bicicletaamontar;
 		reloj = relojCiclista;
 		numeromallot = nummallot;
 		this.tiempopedalada = tiempopedalada;
-		
+		this.fuerza = fuerza;
 		bicicletamontada.setId(numeromallot);
 		
 		calcularPeriodo();
@@ -93,7 +94,8 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	}
 	
 	/**
-	 * Metodo que da pedaladas a la bicicleta
+	 * Metodo que da pedaladas a la bicicleta y actualiza la fuerza consumida.
+	 * Las pedaladas se dan en fuencion de la cadencia
 	 */
 	public void pedalear() {
 		
@@ -102,7 +104,11 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 			
 			if (contadorcandencia >= (periodo * 1000)) {
 				
-				bicicletamontada.darPedalada(tiempopedalada);
+				
+				double fuerzagastada = bicicletamontada.darPedalada(tiempopedalada,getPeso()); 
+				
+				if (fuerza > 0) fuerza = (fuerza - fuerzagastada);
+				
 				contadorcandencia = 1;
 			}
 			

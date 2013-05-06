@@ -9,13 +9,11 @@ public class Persona implements ObjetosQueSeEjecutan {
 	//peso de la persona
 	private int peso;
 	
-	//cansancio de la persona
-	private int cansancio;
 	
-	public Persona(String nombrepersona, int pesopersona, int estadofisico) {
+	public Persona(String nombrepersona, int pesopersona) {
 		nombre = nombrepersona;
 		peso = pesopersona;
-		cansancio = (estadofisico >= 0 && estadofisico < 100) ? estadofisico : 100;
+		
 	}
 	
 	// Este método tiene que hacer las veces del antiguo ejecuta.
@@ -38,22 +36,7 @@ public class Persona implements ObjetosQueSeEjecutan {
 	public void setPeso(int peso) {
 		this.peso = peso;
 	}
-	/**
-	 * Obtiene el cansancio de la persona.
-	 *  
-	 * @return El cansancio
-	 */
-	public int getCansancio() {
-		return cansancio;
-	}
-	/**
-	 * Cambia el cansancio de la persona.
-	 *  
-	 *  @param cansancio Cansancio nuevo de la persona.
-	 */
-	public void setCansancio(int cansancio) {
-		this.cansancio = cansancio;
-	}
+
 	/**
 	 * Obtiene el nombre de la persona.
 	 *  
