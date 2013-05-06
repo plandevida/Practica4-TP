@@ -117,7 +117,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 */
 	public int cambiarPinhon(int indicepinhon) {
 		
-		if (indicepinhon >= 0 && indicepinhon < VariablesDeContexto.pinhones.length) {
+		if (indicepinhon >= 0 && indicepinhon < VariablesDeContexto.PINHONES.length) {
 			
 			bicicletamontada.setPinhonactual(indicepinhon);
 		}
@@ -132,7 +132,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 */
 	public int cambiarPlato(int indiceplato) {
 		
-		if (indiceplato >= 0 && indiceplato< VariablesDeContexto.platos.length) {
+		if (indiceplato >= 0 && indiceplato< VariablesDeContexto.PLATOS.length) {
 		
 			bicicletamontada.setPinhonactual(indiceplato);
 		}

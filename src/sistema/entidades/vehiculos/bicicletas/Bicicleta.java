@@ -46,7 +46,7 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 */
 	private int relacionDeTransmision() {
 
-		int relaciondetrasminsion = VariablesDeContexto.platos[platoactual] / VariablesDeContexto.pinhones[pinhonactual];
+		int relaciondetrasminsion = VariablesDeContexto.PLATOS[platoactual] / VariablesDeContexto.PINHONES[pinhonactual];
 
 		return relaciondetrasminsion;
 	}
@@ -133,7 +133,7 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 * Incrementa el piñón de la bicicleta.
 	 */
 	public void incrementarPinhon() {
-		if (pinhonactual < VariablesDeContexto.pinhones.length - 1) {
+		if (pinhonactual < VariablesDeContexto.PINHONES.length - 1) {
 			pinhonactual++;
 		}
 	}
@@ -151,7 +151,7 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 * Incrementa el plato de la bicicleta.
 	 */
 	public void incrementarPlato() {
-		if (platoactual < VariablesDeContexto.platos.length - 1) {
+		if (platoactual < VariablesDeContexto.PLATOS.length - 1) {
 			platoactual++;
 		}
 	}
@@ -171,7 +171,7 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 * @return Una lista de los piñones y sus dientes.
 	 */
 	public int[] getPinhones() {
-		return VariablesDeContexto.pinhones;
+		return VariablesDeContexto.PINHONES;
 	}
 	
 	/**
@@ -180,7 +180,7 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 * @return Una lista de los platos y sus dientes.
 	 */
 	public int[] getPlatos() {
-		return VariablesDeContexto.platos;
+		return VariablesDeContexto.PLATOS;
 	}
 	
 	/**
@@ -198,7 +198,7 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 * @param platoactual El nuevo plato a engranar.
 	 */
 	public void setPlatoactual(int platoactual) {
-		if ( platoactual <= VariablesDeContexto.platos.length - 1 || platoactual >= 0) {
+		if ( platoactual <= VariablesDeContexto.PLATOS.length - 1 || platoactual >= 0) {
 			this.platoactual = platoactual;
 		}
 	}
@@ -218,7 +218,7 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 * @param pinhonactual El nuevo piñón a engranar.
 	 */
 	public void setPinhonactual(int pinhonactual) {
-		if ( pinhonactual <= VariablesDeContexto.pinhones.length - 1 || pinhonactual >= 0) {
+		if ( pinhonactual <= VariablesDeContexto.PINHONES.length - 1 || pinhonactual >= 0) {
 			this.pinhonactual = pinhonactual;
 		}
 	}
