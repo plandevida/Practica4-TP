@@ -102,18 +102,37 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	}
 	
 	/**
+	 * Calcula la velocidad maxima a la que puede ir la bicicleta
+	 * @param tiempopedalada : tiempo que tarda en dar una pedalada
+	 * 
+	 * @return La velocidad maxima a la que va la bicicleta
+	 */
+	
+	private double velocidadmaxima(double tiempopedalada){
+		double velocidadmax = espacioDePedalada() / tiempopedalada;
+		return velocidadmax;
+	}
+	
+	/**
 	 * Realiza una pedalada en la bicicleta, aumentando su velocidad.
 	 * 
 	 * @param cadenciaciclista Frecuencia con la que el ciclista da pedaladas. 
 	 */
+	
+	
 	public void darPedalada(double tiempopedalada) {
 		double aceleracion = calcularAceleracionTiempoPedalada(tiempopedalada);
 		
 		//velocidad = velocidad * factorpendiente;
 		//velocidad = velocidad + velocidad*factorviento;
-		setEspacioRecorrido(espacioDePedalada());
+		
 		double velocidad = getVelocidad() + aceleracion*1; 
-		setVelocidadIncremento(velocidad);
+		
+		if (velocidad < velocidadmaxima(tiempopedalada)){
+			setVelocidadIncremento(velocidad);
+		}
+		
+		setEspacioRecorrido(espacioDePedalada());
 	}
 	
 	/**
