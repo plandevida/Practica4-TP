@@ -62,7 +62,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 		bicicletamontada.setId(numeromallot);
 		
 		calcularPeriodo();
-		contadorcandencia = 0;
+		contadorcandencia = 1;
 	}
 	
 	/**
@@ -100,10 +100,10 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 		if (reloj.getMilisegundos() != milisegundos) {
 			
 			
-			if (contadorcandencia >= (periodo * 1000)){
+			if (contadorcandencia >= (periodo * 1000)) {
 				
 				bicicletamontada.darPedalada(tiempopedalada);
-				contadorcandencia = 0;
+				contadorcandencia = 1;
 			}
 			
 			contadorcandencia++;
@@ -113,11 +113,11 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	/**
 	 * Calcula el periodo y se asegura de que el tiempo de pedalada no sea mayor del de el periodo;
 	 */
-	public void calcularPeriodo(){
+	public void calcularPeriodo() {
 		
-		periodo = 1/(cadencia/60);
+		periodo = (cadencia >= 0) ? 1/(cadencia/60) : 0;
 		
-		if (periodo <tiempopedalada){
+		if (periodo < tiempopedalada) {
 			tiempopedalada = periodo;
 		}
 	}
