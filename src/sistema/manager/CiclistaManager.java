@@ -35,8 +35,8 @@ public class CiclistaManager {
 	private Map<Integer, TramoCiclista> carreteradecarreraciclsta;
 	private List<Ciclista> ciclistas;
 	private List<Bicicleta> bicicletas;
-	private Map<Integer, MiViento> mapameteorologico;
-
+	private Map<Integer, Map<MiViento, Double>> mapameteorologico;
+	
 	// Entidades del sistema.
 	private Bicicleta bicicleta0;
 	private Bicicleta bicicleta1;
@@ -125,7 +125,7 @@ public class CiclistaManager {
 		listasalidadatos.add(bicicleta2);
 		listasalidadatos.add(bicicleta3);
 		
-		presentador = new Presentador(ciclistas, listasalidadatos, mapameteorologico);
+		presentador = new Presentador(ciclistas, listasalidadatos, mapameteorologico, reloj);
 
 		dispatcher = new Dispatcher(presentador);
 		parser = new ParseadorComandos(dispatcher);
