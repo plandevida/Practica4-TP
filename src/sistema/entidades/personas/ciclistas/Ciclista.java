@@ -48,11 +48,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 * @param relojCiclista
 	 */
 	public Ciclista(String nombre, int nummallot, int cadenciaCiclista, Bicicleta bicicletaamontar, double tiempopedalada, Reloj relojCiclista, int peso, double fuerza) {
-		/**
-		 * Demomento el peso no es relevante, ni el cansancio
-		 * 
-		 * Esta clase hereda de persona @link Persona
-		 */
+		
 		super(nombre, peso);
 		cadencia = cadenciaCiclista;
 		bicicletamontada = bicicletaamontar;

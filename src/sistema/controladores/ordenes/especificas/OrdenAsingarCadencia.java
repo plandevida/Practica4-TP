@@ -55,24 +55,31 @@ public class OrdenAsingarCadencia extends OrdenParaCiclista {
 		
 		String[] tokens = comando.split(" ");
 		
-		if ( tokens.length > 0 && tokens[2].equalsIgnoreCase("cadencia") ) {
+		if ( tokens.length > 0 ) {
 			
-			if ( tokens.length == 6 ) {
-				try {
-					idciclista = Integer.valueOf(tokens[1]);
-					
-					if ( idciclista < VariablesDeContexto.MAX_CICLISTAS ) {
-					
-						aumentocadencia = Integer.valueOf(tokens[3]);
+			if (comprobarSintaxis(tokens)) {
+				
+				if ( tokens.length == 6 ) {
+					try {
+						idciclista = Integer.valueOf(tokens[1]);
 						
-						if ( aumentocadencia < VariablesDeContexto.MAX_CADENCIA ) {
-							periodo = Integer.valueOf(tokens[5]);
+						if (idciclista >= 0 && idciclista < VariablesDeContexto.MAX_CICLISTAS) {
+						
+							aumentocadencia = Integer.valueOf(tokens[3]);
 							
-							ordenaumentarcadencia = new OrdenAsingarCadencia(aumentocadencia, periodo, idciclista);
+							if ( aumentocadencia >= 0 && aumentocadencia <= VariablesDeContexto.MAX_CADENCIA ) {
+								
+								periodo = Integer.valueOf(tokens[5]);
+								
+								if ( periodo >= 0 ) {
+								
+									ordenaumentarcadencia = new OrdenAsingarCadencia(aumentocadencia, periodo, idciclista);
+								}
+							}
 						}
+					} catch (NumberFormatException ne) {
+						// nada que hacer.
 					}
-				} catch (NumberFormatException ne) {
-					// nada que hacer.
 				}
 			}
 		}
@@ -83,16 +90,9 @@ public class OrdenAsingarCadencia extends OrdenParaCiclista {
 	@Override
 	protected boolean comprobarSintaxis(String[] tokenscomando) {
 		
-		boolean sintaxiscorrecta = false;
-		
-		if (tokenscomando[0].equalsIgnoreCase("ciclista") 
+		return (tokenscomando[0].equalsIgnoreCase("ciclista") 
 				&& tokenscomando[2].equalsIgnoreCase("cadencia") 
-				&& tokenscomando[4].equalsIgnoreCase("periodo")) {
-			
-			sintaxiscorrecta = true;
-		}
-		
-		return sintaxiscorrecta;
+				&& tokenscomando[4].equalsIgnoreCase("periodo"));
 	}
 
 	@Override

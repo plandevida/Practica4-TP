@@ -5,6 +5,7 @@ import java.util.Map;
 
 import sistema.controladores.ordenes.Orden;
 import sistema.entidades.personas.ciclistas.Ciclista;
+import sistema.entidades.tiempo.Reloj;
 import sistema.factoresexternos.viento.MiViento;
 import sistema.interfaces.ObjetosConSalidaDeDatos;
 import sistema.vista.InterfaceSalidaDatos;
@@ -25,7 +26,10 @@ public class Presentador {
 	private List<ObjetosConSalidaDeDatos> listadeobjetosamostarenvista;
 	
 	// El viento definido por horas.
-	private Map<Integer, MiViento> mapameteorologico;
+	private Map<Integer, Map<MiViento, Double>> mapameteorologico;
+	
+	// El reloj de la carrera ciclista
+	private Reloj reloj;
 
 	/**
 	 * Permisos del presentador sobre los elementos compartidos.
@@ -37,7 +41,8 @@ public class Presentador {
 	public static final String[] permisos = {
 			"LISTACICLISTAS",
 			"LISTAOBJETOSVISTA",
-			"MAPAMETEOROLOGICO"
+			"MAPAMETEOROLOGICO",
+			"RELOJ"
 	};
 	
 	/**
@@ -49,11 +54,13 @@ public class Presentador {
 	 */
 	public Presentador(List<Ciclista> ciclistas,
 			List<ObjetosConSalidaDeDatos> objetosamostarenvista,
-			Map<Integer, MiViento> vientoporhoras) {
+			Map<Integer, Map<MiViento, Double>> vientoporhoras,
+			Reloj relojcarrera) {
 		
 		listadeciclistas = ciclistas;
 		listadeobjetosamostarenvista = objetosamostarenvista;
 		mapameteorologico = vientoporhoras;
+		this.reloj = relojcarrera;
 	}
 
 	/**
@@ -70,7 +77,7 @@ public class Presentador {
 		
 		for (int i = 0; (i < permisosdelaorden.length) && ciclista == null; i++) {
 			
-			if (permisos[1].equals(permisosdelaorden[i])) {
+			if (permisos[0].equals(permisosdelaorden[i])) {
 				
 				for (Ciclista c : listadeciclistas) {
 					
@@ -101,7 +108,7 @@ public class Presentador {
 			}
 		}
 		
-		return listadeobjetosamostarenvista;
+		return sepermiteelacceso ? listadeobjetosamostarenvista : null;
 	}
 
 	/**
@@ -110,18 +117,33 @@ public class Presentador {
 	 * 
 	 * @return El mapa meteorológico, si no tiene permiso la clase devolverá null.
 	 */
-	public Map<Integer, MiViento> getMapametereológico(Orden orden) {
+	public Map<Integer, Map<MiViento, Double>> getMapametereológico(Orden orden) {
 		
 		String[] permisosdelaorden = orden.misPermisos();
 		
 		boolean sepermiteelacceso = false;
 		
 		for (int i = 0; (i < permisosdelaorden.length) && !sepermiteelacceso; i++) {
-			if ( permisos[1].equals(permisosdelaorden[i]) ) {
+			if ( permisos[2].equals(permisosdelaorden[i]) ) {
 				sepermiteelacceso = true;
 			}
 		}
 		
 		return sepermiteelacceso ? mapameteorologico : null;
+	}
+	
+	public Reloj getReloj(Orden orden) {
+		
+		String[] permisosdelaorden = orden.misPermisos();
+		
+		boolean sepermiteelacceso = false;
+		
+		for (int i = 0; (i < permisosdelaorden.length) && !sepermiteelacceso; i++) {
+			if ( permisos[3].equals(permisosdelaorden[i]) ) {
+				sepermiteelacceso = true;
+			}
+		}
+		
+		return sepermiteelacceso ? reloj : null;
 	}
 }
