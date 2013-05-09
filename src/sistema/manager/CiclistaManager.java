@@ -140,6 +140,7 @@ public class CiclistaManager {
 			e.printStackTrace();
 		}
 		
+		// Generación aleatoria de ciclistas.
 		for (int i = 0; i < VariablesDeContexto.MAX_CICLISTAS; i++) {
 			
 			Bicicleta bicicleta = new Bicicleta();
@@ -215,6 +216,29 @@ public class CiclistaManager {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
+		Integer numerociclistas = null;
+		String ficherocomandos = null;
+		Integer unidadtiempo = null;
+		Integer cambiodeplato = null;
+		Integer cambiodepinhon = null;
+		Double radiorueda = null;
+		try {
+			numerociclistas = Integer.valueOf(args[1]);
+			ficherocomandos = args[2];
+			unidadtiempo = Integer.valueOf(args[3]);
+			cambiodeplato = Integer.valueOf(args[4]);
+			cambiodepinhon = Integer.valueOf(args[4]);
+			radiorueda = Double.valueOf(args[5]);
+			
+		} catch (NumberFormatException ne) {
+			System.out.println("Datos de entrada incorrectos.");
+		}
+		
+		VariablesDeContexto.MAX_CICLISTAS = numerociclistas;
+		VariablesDeContexto.UNIDAD_TIEMPO = unidadtiempo;
+		VariablesDeContexto.CUSTOM_FILE_COMMAND_PATH = ficherocomandos;
+		
 		CiclistaManager manager = new CiclistaManager();
 
 		manager.cargarConfiguracion();

@@ -3,6 +3,7 @@ package sistema.entidades.tiempo;
 import java.util.StringTokenizer;
 
 import sistema.interfaces.ObjetosConSalidaDeDatos;
+import sistema.manager.VariablesDeContexto;
 
 public class Reloj extends Contador implements ObjetosConSalidaDeDatos {
 	
@@ -41,7 +42,7 @@ public class Reloj extends Contador implements ObjetosConSalidaDeDatos {
 	@Override
 	public void nuevoImpulso() {
 		
-		if (++impulsos >= 100) {
+		if (++impulsos >= VariablesDeContexto.UNIDAD_TIEMPO) {
 			impulsos = 0;
 			if (++milisegundos >= 1000) {
 				milisegundos = 0;

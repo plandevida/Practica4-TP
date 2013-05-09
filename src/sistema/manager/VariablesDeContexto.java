@@ -1,11 +1,13 @@
 package sistema.manager;
 
-public final class VariablesDeContexto {
+public class VariablesDeContexto {
 	
 	// Contexto de los ficheros del sistema.
 	public static final String CONFIG_FOLDER_PATH = "resources/configuracion/";
 	public static final String DEFAULT_CONFIG_PATH = "resources/configuracion/carrera";
 	public static final String DEFAULT_SYLLABLE_FILE_PATH = "resources/miscelania/generaciondenombres/syllable";
+	
+	public static String CUSTOM_FILE_COMMAND_PATH;
 
 	// El array representa los piñones de la bicicleta con el indice
 	// del array y su valor es el número de dientes del piñón
@@ -15,8 +17,10 @@ public final class VariablesDeContexto {
 	// del array y su valor es el número de dientes del plato
 	public static int[] PLATOS = new int[] { 30, 40, 50 };
 	
-	public static final double FUERZA_GRAVEDAD = 9.80665;
-    public static final double MASA_BICICLETA = 0.7138;
+	public static double FUERZA_GRAVEDAD = 9.80665;
+    public static double MASA_BICICLETA = 0.7138;
     public static int MAX_CICLISTAS = 6;
     public static int MAX_CADENCIA = 120;
+    
+    public static int UNIDAD_TIEMPO = 100;
 }
