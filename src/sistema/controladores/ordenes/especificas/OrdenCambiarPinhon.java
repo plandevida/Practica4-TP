@@ -49,11 +49,10 @@ public class OrdenCambiarPinhon extends OrdenParaCiclista {
 					idciclista = Integer.valueOf(tokens[1]);
 					indicepinhon = Integer.valueOf(tokens[4]);
 					
+					ordensubirpinhon = new OrdenCambiarPinhon(indicepinhon, idciclista);
 				} catch (NumberFormatException ne) {
 					// nada que hacer.
 				}
-				
-				ordensubirpinhon = new OrdenCambiarPinhon(indicepinhon, idciclista);
 			}
 		}
 		

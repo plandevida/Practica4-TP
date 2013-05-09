@@ -4,6 +4,7 @@ import sistema.controladores.ordenes.Orden;
 import sistema.controladores.ordenes.OrdenParaCiclista;
 import sistema.entidades.personas.ciclistas.Ciclista;
 import sistema.manager.Presentador;
+import sistema.manager.VariablesDeContexto;
 
 /**
  * Esta clase representa una orden de modificación de la cadencia
@@ -59,14 +60,20 @@ public class OrdenAsingarCadencia extends OrdenParaCiclista {
 			if ( tokens.length == 6 ) {
 				try {
 					idciclista = Integer.valueOf(tokens[1]);
-					aumentocadencia = Integer.valueOf(tokens[3]);
-					periodo = Integer.valueOf(tokens[5]);
 					
+					if ( idciclista < VariablesDeContexto.MAX_CICLISTAS ) {
+					
+						aumentocadencia = Integer.valueOf(tokens[3]);
+						
+						if ( aumentocadencia < VariablesDeContexto.MAX_CADENCIA ) {
+							periodo = Integer.valueOf(tokens[5]);
+							
+							ordenaumentarcadencia = new OrdenAsingarCadencia(aumentocadencia, periodo, idciclista);
+						}
+					}
 				} catch (NumberFormatException ne) {
 					// nada que hacer.
 				}
-				
-				ordenaumentarcadencia = new OrdenAsingarCadencia(aumentocadencia, periodo, idciclista);
 			}
 		}
 		

@@ -53,11 +53,10 @@ public class OrdenFrenar extends OrdenParaCiclista {
 					cantidadfrendada = Double.valueOf(tokens[3]);
 					tiempofrenada = Double.valueOf(tokens[5]);
 					
+					ordenfrenar = new OrdenFrenar(cantidadfrendada, tiempofrenada, idciclista);
 				} catch (NumberFormatException ne) {
 					// nada que hacer.
 				}
-				
-				ordenfrenar = new OrdenFrenar(cantidadfrendada, tiempofrenada, idciclista);
 			}
 		}
 		

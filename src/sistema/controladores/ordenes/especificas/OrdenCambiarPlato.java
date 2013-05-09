@@ -49,11 +49,10 @@ public class OrdenCambiarPlato extends OrdenParaCiclista {
 					idciclista = Integer.valueOf(tokens[1]);
 					indiceplato = Integer.valueOf(tokens[4]);
 					
+					ordensubirplato = new OrdenCambiarPlato (indiceplato, idciclista);
 				} catch (NumberFormatException ne) {
 					// nada que hacer.
 				}
-				
-				ordensubirplato = new OrdenCambiarPlato (indiceplato, idciclista);
 			}
 		}
 		

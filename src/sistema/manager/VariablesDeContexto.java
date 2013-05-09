@@ -17,4 +17,5 @@ public class VariablesDeContexto {
 	public static final double FUERZA_GRAVEDAD = 9.80665;
     public static final double MASA_BICICLETA = 0.7138;
     public static int MAX_CICLISTAS = 6;
+    public static int MAX_CADENCIA = 120;
 }
