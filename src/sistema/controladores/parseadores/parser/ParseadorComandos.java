@@ -1,12 +1,10 @@
 package sistema.controladores.parseadores.parser;
 
-import sistema.controladores.ordenes.Dispatcher;
 import sistema.controladores.ordenes.Orden;
 import sistema.controladores.ordenes.especificas.OrdenAsingarCadencia;
 import sistema.controladores.ordenes.especificas.OrdenCambiarPinhon;
 import sistema.controladores.ordenes.especificas.OrdenCambiarPlato;
 import sistema.controladores.ordenes.especificas.OrdenFrenar;
-import sistema.controladores.parseadores.InterfazParseador;
 
 /**
  * Clase que construye la orden para el sistema a partir
@@ -15,10 +13,7 @@ import sistema.controladores.parseadores.InterfazParseador;
  * @author Daniel Serrano Torres
  * @author Alvaro Quesada Pimentel
  */
-public class ParseadorComandos implements InterfazParseador {
-	
-	// Distribuidor de ordenes
-	private Dispatcher distribuidor;
+public class ParseadorComandos {
 	
 	// Lista de ordenes del sistema.
 	private final Orden[] ordenes = {
@@ -28,19 +23,13 @@ public class ParseadorComandos implements InterfazParseador {
 		new OrdenCambiarPlato(null, null)
 	};
 	
-	public ParseadorComandos(Dispatcher dispatcher) {
-		distribuidor = dispatcher;
-	}
-	
 	/**
 	 * Genera una orden para un elemento del sistema,
-	 * a partir de un comando recibido y la registra en el
-	 * dispatcher @see {@link Dispatcher#registrarOrdenes(Orden)}
+	 * a partir de un comando recibido
 	 * 
 	 * @param comando Comando recibido.
 	 */
-	@Override
-	public void parse(String comando) {
+	public Orden parse(String comando) {
 		
 		Orden nuevaorden = null;
 		
@@ -50,17 +39,7 @@ public class ParseadorComandos implements InterfazParseador {
 			}
 		}
 		
-		// Se registra la orden para ser distribuida
-		distribuidor.registrarOrdenes(nuevaorden);
-	}
-	
-	/**
-	 * Devuelve el distribuidor de ordenes del parseador.
-	 * 
-	 * @return El distribuidor de ordenes.
-	 */
-	public Dispatcher getDispatcher() {
-		return distribuidor;
+		return nuevaorden;
 	}
 	
 	/**

@@ -6,9 +6,8 @@ import sistema.controladores.ordenes.especificas.OrdenAsingarCadencia;
 import sistema.controladores.ordenes.especificas.OrdenCambiarPinhon;
 import sistema.controladores.ordenes.especificas.OrdenCambiarPlato;
 import sistema.controladores.ordenes.especificas.OrdenFrenar;
-import sistema.controladores.parseadores.InterfazParseador;
 
-public class ParseadorComandosMock implements InterfazParseador {
+public class ParseadorComandosMock {
 	
 	// Distribuidor de ordenes
 	private Dispatcher distribuidor;
@@ -32,8 +31,7 @@ public class ParseadorComandosMock implements InterfazParseador {
 	 * 
 	 * @param comando Comando recibido.
 	 */
-	@Override
-	public void parse(String comando) {
+	public Orden parse(String comando) {
 		
 		Orden nuevaorden = null;
 		
@@ -43,8 +41,7 @@ public class ParseadorComandosMock implements InterfazParseador {
 			}
 		}
 		
-		// Se registra la orden para ser distribuida
-		distribuidor.registrarOrdenes(nuevaorden);
+		return nuevaorden;
 	}
 	
 	/**

@@ -3,12 +3,11 @@ package src.tests.sistema.entidadesmock.parseadores.parser;
 import java.util.HashMap;
 import java.util.Map;
 
-import sistema.controladores.parseadores.InterfazParseador;
 import sistema.controladores.parseadores.parser.ParseadorCarrera;
 import sistema.factoresexternos.viento.MiViento;
 import src.tests.sistema.entidadesmock.carretera.tramocarreraciclista.TramoCiclistaMock;
 
-public class ParseadorCarreraMock implements InterfazParseador {
+public class ParseadorCarreraMock {
 	
 	private Map<Integer, TramoCiclistaMock> mapa;
 	
@@ -32,7 +31,6 @@ public class ParseadorCarreraMock implements InterfazParseador {
 	/**
 	 * Parsea la cadena pasada.
 	 */
-	@Override
 	public void parse(String contenidofichero) {
 		
 		// Todas las líneas del fichero.

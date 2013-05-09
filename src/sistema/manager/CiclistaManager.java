@@ -1,5 +1,6 @@
 package sistema.manager;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -14,12 +15,14 @@ import sistema.entidades.personas.ciclistas.Ciclista;
 import sistema.entidades.tiempo.Reloj;
 import sistema.entidades.vehiculos.bicicletas.Bicicleta;
 import sistema.entrada.lectura.Lector;
+import sistema.entrada.lectura.generadornombres.NameGenerator;
 import sistema.factoresexternos.FactoresExternos;
 import sistema.factoresexternos.viento.MiViento;
 import sistema.interfaces.ObjetosConSalidaDeDatos;
 import sistema.interfaces.ObjetosQueSeEjecutan;
+import sistema.vista.Lienzo;
+import sistema.vista.VentanaJL;
 import sistema.vista.visual.FormateadorDatosVista;
-import sistema.vista.visual.Ventana;
 
 /**
  * Clase principal que inicia la aplicación.
@@ -48,7 +51,7 @@ public class CiclistaManager {
 	private Reloj reloj;
 
 	// Vistas del sistema.
-	private Ventana ventana;
+	private VentanaJL ventana;
 	private FormateadorDatosVista formateador;
 
 	// Subsitemas del sistema.
@@ -56,16 +59,18 @@ public class CiclistaManager {
 	private ParseadorComandos parser;
 	private Presentador presentador;
 
-	Lector lectorConfiguracion;
+	private Lector lectorconfiguracion;
+	
+	private NameGenerator generadordenombres;
 
 	/**
 	 * Carga la carretera de la carrera ciclista.
 	 */
 	private void cargarConfiguracion() {
-		lectorConfiguracion = new Lector(
+		lectorconfiguracion = new Lector(
 				VariablesDeContexto.DEFAULT_CONFIG_PATH, true);
 
-		String configuracioncarreraciclista = lectorConfiguracion
+		String configuracioncarreraciclista = lectorconfiguracion
 				.cargarFicheroCompelto();
 
 		construirCarretera(configuracioncarreraciclista);
@@ -86,6 +91,15 @@ public class CiclistaManager {
 
 		parseadorcarrera.parse(datos);
 	}
+	
+	/**
+	 * Construye el mapa meteorológico de la carrera ciclista.
+	 */
+	private void construirMapaDelTiempo() {
+		// TODO cargar de fichero el mapa de horas-viento-velocidad
+		
+		mapameteorologico = new HashMap<Integer, Map<MiViento, Double>>();
+	}
 
 	/**
 	 * Inicializa el contexto de la aplicación.
@@ -98,8 +112,12 @@ public class CiclistaManager {
 		reloj = new Reloj();
 		ciclistas = new ArrayList<Ciclista>();
 		bicicletas = new ArrayList<Bicicleta>();
-		ventana = new Ventana(parser);
-
+		
+		parser = new ParseadorComandos();
+		
+		presentador = new Presentador(ciclistas, listasalidadatos, mapameteorologico, reloj, parser.getOrdenes());
+		dispatcher = new Dispatcher(presentador, parser);
+		
 		// Bicicletas para los ciclistas.
 		bicicleta0 = new Bicicleta();
 		bicicleta1 = new Bicicleta();
@@ -113,10 +131,22 @@ public class CiclistaManager {
 
 		factoresexternos = new FactoresExternos(bicicletas, carreteradecarreraciclsta);
 
-		ciclistas.add(new Ciclista("Pamela", 1, 120, bicicleta0, 0.5, reloj,60,80));
-		ciclistas.add(new Ciclista("Pedro", 2, 60, bicicleta1, 0.8, reloj,70,100));
-		ciclistas.add(new Ciclista("Ana", 3, 30, bicicleta2, 1.5, reloj,55,75));
-		ciclistas.add(new Ciclista("Juan", 4, 90, bicicleta3, 0.5, reloj,75,50));
+		try {
+			// Generador de nombres basado en silabas, con prefijos y sufijos.
+			generadordenombres = new NameGenerator(VariablesDeContexto.DEFAULT_SYLLABLE_FILE_PATH);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		for (int i = 0; i < VariablesDeContexto.MAX_CICLISTAS; i++) {
+			
+			ciclistas.add(new Ciclista(generadordenombres.compose(3), 1, 120, bicicleta0, 0.5, reloj,60,80));
+		}
+//		ciclistas.add(new Ciclista("Pamela", 1, 120, bicicleta0, 0.5, reloj,60,80));
+//		ciclistas.add(new Ciclista("Pedro", 2, 60, bicicleta1, 0.8, reloj,70,100));
+//		ciclistas.add(new Ciclista("Ana", 3, 30, bicicleta2, 1.5, reloj,55,75));
+//		ciclistas.add(new Ciclista("Juan", 4, 90, bicicleta3, 0.5, reloj,75,50));
 
 		// Se registran los elementos con salida de datos en una lista.
 		listasalidadatos.add(reloj);
@@ -124,11 +154,6 @@ public class CiclistaManager {
 		listasalidadatos.add(bicicleta1);
 		listasalidadatos.add(bicicleta2);
 		listasalidadatos.add(bicicleta3);
-		
-		presentador = new Presentador(ciclistas, listasalidadatos, mapameteorologico, reloj, parser.getOrdenes());
-
-		dispatcher = new Dispatcher(presentador);
-		parser = new ParseadorComandos(dispatcher);
 
 		// Se registran los elementos ejecutables en una lista.
 		listaejecutables.add(reloj);
@@ -136,6 +161,10 @@ public class CiclistaManager {
 		for (Ciclista ciclista : ciclistas) {
 			listaejecutables.add(ciclista);
 		}
+		
+		Lienzo lienzo = new Lienzo(ciclistas);
+		
+		ventana = new VentanaJL(dispatcher, lienzo);
 
 		formateador = new FormateadorDatosVista(listasalidadatos, ventana);
 
@@ -168,7 +197,7 @@ public class CiclistaManager {
 	 * Finaliza el contexto de la aplicación.
 	 */
 	public void finalizar() {
-		lectorConfiguracion.finalizarLecturas();
+		lectorconfiguracion.finalizarLecturas();
 	}
 
 	/**

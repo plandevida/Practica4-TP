@@ -3,7 +3,6 @@ package sistema.controladores.parseadores.parser;
 import java.util.HashMap;
 import java.util.Map;
 
-import sistema.controladores.parseadores.InterfazParseador;
 import sistema.entidades.carretera.tramocarreraciclista.TramoCiclista;
 import sistema.factoresexternos.viento.MiViento;
 
@@ -13,7 +12,7 @@ import sistema.factoresexternos.viento.MiViento;
  * @author Daniel Serrano Torres
  * @author Alvaro Quesada Pimentel
  */
-public class ParseadorCarrera implements InterfazParseador {
+public class ParseadorCarrera {
 	
 	private Map<Integer, TramoCiclista> mapa;
 	
@@ -37,7 +36,6 @@ public class ParseadorCarrera implements InterfazParseador {
 	/**
 	 * Parsea la cadena pasada.
 	 */
-	@Override
 	public void parse(String contenidofichero) {
 		
 		// Todas las líneas del fichero.

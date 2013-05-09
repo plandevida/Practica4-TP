@@ -2,6 +2,7 @@ package sistema.controladores.ordenes;
 
 import java.util.PriorityQueue;
 
+import sistema.controladores.parseadores.parser.ParseadorComandos;
 import sistema.interfaces.ObjetosQueSeEjecutan;
 import sistema.manager.Presentador;
 
@@ -19,11 +20,14 @@ public class Dispatcher implements ObjetosQueSeEjecutan {
 	// El presentador del sistema.
 	private Presentador presentador;
 	
+	// El parseador de comandos del sistema.
+	private ParseadorComandos parser;
+	
 	/**
 	 * Crea una instancia del distribuidor con la lista de elementos
 	 * y la cola de ordenes vacía.
 	 */
-	public Dispatcher(Presentador presentadorsistema) {
+	public Dispatcher(Presentador presentadorsistema, ParseadorComandos parseadorcomandos) {
 		listadeordenes = new PriorityQueue<Orden>();
 		
 		presentador = presentadorsistema;
@@ -36,9 +40,15 @@ public class Dispatcher implements ObjetosQueSeEjecutan {
 	 */
 	public void registrarOrdenes(Orden orden) {
 		
-		orden.configurarContexto(presentador);
-		
-		listadeordenes.add(orden);
+		if (orden != null) {
+			orden.configurarContexto(presentador);
+			
+			listadeordenes.add(orden);
+		}
+	}
+	
+	public void parsearComando(String comandoaparsear) {
+		registrarOrdenes(parser.parse(comandoaparsear));
 	}
 	
 	/**

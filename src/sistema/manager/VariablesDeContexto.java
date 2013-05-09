@@ -1,10 +1,11 @@
 package sistema.manager;
 
-public class VariablesDeContexto {
+public final class VariablesDeContexto {
 	
 	// Contexto de los ficheros del sistema.
 	public static final String CONFIG_FOLDER_PATH = "resources/configuracion/";
 	public static final String DEFAULT_CONFIG_PATH = "resources/configuracion/carrera";
+	public static final String DEFAULT_SYLLABLE_FILE_PATH = "resources/miscelania/generaciondenombres/syllable";
 
 	// El array representa los piñones de la bicicleta con el indice
 	// del array y su valor es el número de dientes del piñón

@@ -3,7 +3,6 @@ package sistema.vista.visual;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.awt.event.KeyAdapter;
@@ -22,7 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.JTextComponent;
 
-import sistema.controladores.parseadores.parser.ParseadorComandos;
+import sistema.controladores.ordenes.Dispatcher;
 
 /**
  * Vista del sistema en un componente de swing.
@@ -38,8 +37,6 @@ public class Ventana extends JFrame {
 
 	private List<JTextComponent> componenetescreados;
 	
-	private ParseadorComandos parsercomandos;
-	
 	private JPanel panelciclistasylog;
 	private JPanel panelciclistas;
 	private JTextField camporeloj;
@@ -48,8 +45,11 @@ public class Ventana extends JFrame {
 	
 	private RelojSwing relojGrafico;
 	
-	public Ventana(ParseadorComandos parser) {
-		parsercomandos = parser;
+	private Dispatcher micomandero;
+	
+	public Ventana(Dispatcher comandero) {
+		micomandero = comandero;
+		
 		componenetescreados = new ArrayList<JTextComponent>();
 		
 		Init();
@@ -156,8 +156,7 @@ public class Ventana extends JFrame {
 			public void keyTyped(KeyEvent e) {
 				String comando = ((JTextField) e.getSource()).getText();
 				
-				parsercomandos.parse(comando);
-//				parsercomandos.dispatch();
+				micomandero.parsearComando(comando);
 			}
 		});
 		

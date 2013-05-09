@@ -8,14 +8,22 @@ import sistema.interfaces.ObjetosConSalidaDeDatos;
 import sistema.interfaces.ObjetosQueSeEjecutan;
 import sistema.manager.Presentador;
 import sistema.vista.InterfaceSalidaDatos;
+import sistema.vista.VentanaJL;
 
 public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSeEjecutan {
 
 	// Lista de objetos que se van a mostrar
 	private List<ObjetosConSalidaDeDatos> registroobjetossalidadatos;
-	private Ventana vista;
+//	private Ventana vista;
 	
-	public FormateadorDatosVista(List<ObjetosConSalidaDeDatos> listadeobjetosamostrar, Ventana ventana) {
+	private VentanaJL vista;
+	
+	/*public FormateadorDatosVista(List<ObjetosConSalidaDeDatos> listadeobjetosamostrar, Ventana ventana) {
+		registroobjetossalidadatos = listadeobjetosamostrar;
+		vista = ventana;
+	}*/
+	
+	public FormateadorDatosVista(List<ObjetosConSalidaDeDatos> listadeobjetosamostrar, VentanaJL ventana) {
 		registroobjetossalidadatos = listadeobjetosamostrar;
 		vista = ventana;
 	}
