@@ -4,6 +4,7 @@ import sistema.controladores.ordenes.Orden;
 import sistema.controladores.ordenes.OrdenParaCiclista;
 import sistema.entidades.personas.ciclistas.Ciclista;
 import sistema.manager.Presentador;
+import sistema.manager.VariablesDeContexto;
 
 public class OrdenFrenar extends OrdenParaCiclista {
 	
@@ -47,15 +48,27 @@ public class OrdenFrenar extends OrdenParaCiclista {
 		
 		if ( tokens.length > 0 && tokens[2].equalsIgnoreCase("frena") ) {
 			
-			if ( tokens.length == 6 ) {
-				try {
-					idciclista = Integer.valueOf(tokens[1]);
-					cantidadfrendada = Double.valueOf(tokens[3]);
-					tiempofrenada = Double.valueOf(tokens[5]);
-					
-					ordenfrenar = new OrdenFrenar(cantidadfrendada, tiempofrenada, idciclista);
-				} catch (NumberFormatException ne) {
-					// nada que hacer.
+			if (comprobarSintaxis(tokens)) {
+				
+				if ( tokens.length == 6 ) {
+					try {
+						
+						idciclista = Integer.valueOf(tokens[1]);
+						
+						if (idciclista >= 0 && idciclista < VariablesDeContexto.MAX_CICLISTAS) {
+							cantidadfrendada = Double.valueOf(tokens[3]);
+							
+							if (cantidadfrendada >= 0) {
+								tiempofrenada = Double.valueOf(tokens[5]);
+								
+								if (tiempofrenada >= 0) {
+									ordenfrenar = new OrdenFrenar(cantidadfrendada, tiempofrenada, idciclista);
+								}
+							}
+						}
+					} catch (NumberFormatException ne) {
+						// nada que hacer.
+					}
 				}
 			}
 		}
@@ -88,8 +101,8 @@ public class OrdenFrenar extends OrdenParaCiclista {
 		boolean sintaxiscorrecta = false;
 		
 		if (tokenscomando[0].equalsIgnoreCase("ciclista") 
-				&& tokenscomando[2].equalsIgnoreCase("cambia") 
-				&& tokenscomando[4].equalsIgnoreCase("plato")) {
+				&& tokenscomando[2].equalsIgnoreCase("frena") 
+				&& tokenscomando[4].equalsIgnoreCase("en")) {
 			
 			sintaxiscorrecta = true;
 		}

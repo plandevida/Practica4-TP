@@ -125,7 +125,7 @@ public class CiclistaManager {
 		listasalidadatos.add(bicicleta2);
 		listasalidadatos.add(bicicleta3);
 		
-		presentador = new Presentador(ciclistas, listasalidadatos, mapameteorologico, reloj);
+		presentador = new Presentador(ciclistas, listasalidadatos, mapameteorologico, reloj, parser.getOrdenes());
 
 		dispatcher = new Dispatcher(presentador);
 		parser = new ParseadorComandos(dispatcher);

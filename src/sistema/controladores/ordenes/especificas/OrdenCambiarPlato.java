@@ -4,6 +4,7 @@ import sistema.controladores.ordenes.Orden;
 import sistema.controladores.ordenes.OrdenParaCiclista;
 import sistema.entidades.personas.ciclistas.Ciclista;
 import sistema.manager.Presentador;
+import sistema.manager.VariablesDeContexto;
 
 public class OrdenCambiarPlato extends OrdenParaCiclista {
 	
@@ -42,16 +43,23 @@ public class OrdenCambiarPlato extends OrdenParaCiclista {
 		
 		String[] tokens = comando.split(" ");
 		
-		if ( tokens.length > 0 && tokens[2].equalsIgnoreCase("cambia") && tokens[3].equalsIgnoreCase("plato") ) {
+		if ( tokens.length > 0 ) {
 			
-			if ( tokens.length == 5 ) {
-				try {
-					idciclista = Integer.valueOf(tokens[1]);
-					indiceplato = Integer.valueOf(tokens[4]);
-					
-					ordensubirplato = new OrdenCambiarPlato (indiceplato, idciclista);
-				} catch (NumberFormatException ne) {
-					// nada que hacer.
+			if (comprobarSintaxis(tokens)) {
+				if ( tokens.length == 5 ) {
+					try {
+						idciclista = Integer.valueOf(tokens[1]);
+						
+						if (idciclista >= 0 && idciclista < VariablesDeContexto.MAX_CICLISTAS) {
+							
+							// No es necesario controlar el indice del plato, ya lo hace el ciclista.
+							indiceplato = Integer.valueOf(tokens[4]);
+							
+							ordensubirplato = new OrdenCambiarPlato (indiceplato, idciclista);
+						}
+					} catch (NumberFormatException ne) {
+						// nada que hacer.
+					}
 				}
 			}
 		}
@@ -83,7 +91,7 @@ public class OrdenCambiarPlato extends OrdenParaCiclista {
 		
 		boolean sintaxiscorrecta = false;
 		
-		if (tokenscomando[0].equalsIgnoreCase("ciclista") 
+		if (tokenscomando[0].equalsIgnoreCase("bicicleta") 
 				&& tokenscomando[2].equalsIgnoreCase("cambia") 
 				&& tokenscomando[4].equalsIgnoreCase("plato")) {
 			

@@ -30,6 +30,9 @@ public class Presentador {
 	
 	// El reloj de la carrera ciclista
 	private Reloj reloj;
+	
+	// Ordenes del parser y el sistema.
+	private Orden[] ordenes;
 
 	/**
 	 * Permisos del presentador sobre los elementos compartidos.
@@ -37,12 +40,15 @@ public class Presentador {
 	 * 0 = lista de ciclistas
 	 * 1 = lista de objetos que se muestran
 	 * 2 = mapa meteorologico
+	 * 3 = reloj del sistema
+	 * 4 = ordenes del sistema
 	 */
 	public static final String[] permisos = {
 			"LISTACICLISTAS",
 			"LISTAOBJETOSVISTA",
 			"MAPAMETEOROLOGICO",
-			"RELOJ"
+			"RELOJ",
+			"ORDENES"
 	};
 	
 	/**
@@ -51,22 +57,27 @@ public class Presentador {
 	 * @param ciclistas Los ciclistas del sistema que participane el la carrera
 	 * @param objetosamostarenvista Los elementos que se muestran en la vista.
 	 * @param vientoporhoras El viento definido por horas.
+	 * @param relojcarrera El reloj del sistema.
+	 * @param ordenesparseador Las ordenes aceptadas por el sistema.
 	 */
 	public Presentador(List<Ciclista> ciclistas,
 			List<ObjetosConSalidaDeDatos> objetosamostarenvista,
 			Map<Integer, Map<MiViento, Double>> vientoporhoras,
-			Reloj relojcarrera) {
+			Reloj relojcarrera, Orden[] ordenesparseador) {
 		
 		listadeciclistas = ciclistas;
 		listadeobjetosamostarenvista = objetosamostarenvista;
 		mapameteorologico = vientoporhoras;
-		this.reloj = relojcarrera;
+		reloj = relojcarrera;
+		ordenes = ordenesparseador;
 	}
 
 	/**
 	 * Provee acceso a la lista de ciclistas.
 	 * Solo las clases con el permiso adecuado pueden acceder a la lista.
 	 * 
+	 * @param orden La orden que solicita un ciclista
+	 * @param identificadorciclista El id del ciclista (número de mallot).
 	 * @return La lista de cilistas, si no tiene permiso la clase devolverá null.
 	 */
 	public Ciclista getciclista(Orden orden, int identificadorciclista) {
@@ -93,6 +104,7 @@ public class Presentador {
 	 * Provee acceso a la lista de objetos que se presentan en las vista.
 	 * Solo las clases con el permiso adecuado pueden acceder a la lista.
 	 * 
+	 * @param vista El componenete que maneja los datos en la vista.
 	 * @return La lista de objetos a mostrar,
 	 * si no tiene permiso la clase devolverá null.
 	 */
@@ -115,6 +127,7 @@ public class Presentador {
 	 * Provee acceso al mapa meteorológico del sistema.
 	 * Solo las clases con el permiso adecuado pueden acceder a la lista.
 	 * 
+	 * @param orden La orden que solicita el mapa meteorológico.
 	 * @return El mapa meteorológico, si no tiene permiso la clase devolverá null.
 	 */
 	public Map<Integer, Map<MiViento, Double>> getMapametereológico(Orden orden) {
@@ -132,6 +145,13 @@ public class Presentador {
 		return sepermiteelacceso ? mapameteorologico : null;
 	}
 	
+	/**
+	 * Provee acceso al reloj del sistema.
+	 * Solo las clases con el permiso adecuado pueden acceder a la lista.
+	 * 
+	 * @param orden La orden que solicita el reloj.
+	 * @return El reloj del sistema.
+	 */
 	public Reloj getReloj(Orden orden) {
 		
 		String[] permisosdelaorden = orden.misPermisos();
@@ -145,5 +165,27 @@ public class Presentador {
 		}
 		
 		return sepermiteelacceso ? reloj : null;
+	}
+	
+	/**
+	 * Provee acceso a la lista de ordenes del sistema.
+	 * Solo las clases con el permiso adecuado pueden acceder a las ordenes.
+	 * 
+	 * @param orden La orden que solicita la lista de ordenes.
+	 * @return La lista de ordenes aceptada por el sistema.
+	 */
+	public Orden[] getOrdenes(Orden orden) {
+		
+		String[] permisosdelaorden = orden.misPermisos();
+		
+		boolean sepermiteelacceso = false;
+		
+		for (int i = 0; (i < permisosdelaorden.length) && !sepermiteelacceso; i++) {
+			if ( permisos[4].equals(permisosdelaorden[i])) {
+				sepermiteelacceso = true;
+			}
+		}
+		
+		return sepermiteelacceso ? ordenes : null;
 	}
 }

@@ -5,46 +5,77 @@ import sistema.manager.Presentador;
 
 public class OrdenAyuda extends Orden {
 
+	private Orden[] ordenes;
+	
+	public OrdenAyuda(Orden[] ordenesparseador) {
+		ordenes = ordenesparseador;
+	}
+	
 	@Override
 	public String mostrarMensaje() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		StringBuilder mensaje = new StringBuilder();
+		
+		mensaje.append("AYUDA DE COMANDOS:\n");
+		
+		for(Orden orden : ordenes) {
+		
+			mensaje.append(orden.help(false))
+			.append("\n");
+		}
+		
+		return mensaje.toString();
 	}
 
 	@Override
 	public void ejecutarOrden() {
-		// TODO Auto-generated method stub
-
+		
+		System.out.println( mostrarMensaje() );
 	}
 
 	@Override
 	public Orden parse(String comando) {
-		// TODO Auto-generated method stub
-		return null;
+		OrdenAyuda ordenayuda = null;
+		
+		String[] tokens = comando.split(" ");
+		
+		if ( tokens.length > 0 ) {
+			
+			if (comprobarSintaxis(tokens)) {
+				
+				if ( tokens.length == 1 ) {
+					try {
+						ordenayuda = new OrdenAyuda(null);
+					} catch (NumberFormatException ne) {
+						// nada que hacer.
+					}
+				}
+			}
+		}
+		
+		return ordenayuda;
 	}
 
 	@Override
 	protected boolean comprobarSintaxis(String[] tokenscomando) {
-		// TODO Auto-generated method stub
-		return false;
+		return (tokenscomando[0].equalsIgnoreCase("ayuda"));
 	}
 
 	@Override
 	public void configurarContexto(Presentador presentador) {
-		// TODO Auto-generated method stub
-
+		
+		ordenes = presentador.getOrdenes(this);
 	}
 
 	@Override
 	public String help(boolean detalles) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return "ayuda";
 	}
 
 	@Override
 	public String[] misPermisos() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return new String[]{ "ORDENES" };
 	}
-
 }

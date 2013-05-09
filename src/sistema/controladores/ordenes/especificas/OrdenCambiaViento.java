@@ -77,11 +77,17 @@ public class OrdenCambiaViento extends Orden {
 						
 						if ( hora >= 0 && hora <23 ) {
 						
+							// Si el viento introducido no es correcto en tipo
+							// no hace falta comprobarlo por que el enumerado
+							// nos devuelve un viendo DESCONOCIDO y sin efecto
 							viento = MiViento.existe(tokens[2]);
 							
 							velocidadviento = Integer.valueOf(tokens[3]);
 							
-							ordencambiaviento = new OrdenCambiaViento(viento, hora, velocidadviento);
+							if ( velocidadviento >= 0 ) {
+							
+								ordencambiaviento = new OrdenCambiaViento(viento, hora, velocidadviento);
+							}
 						}
 					} catch (NumberFormatException ne) {
 						// nada que hacer.
