@@ -45,7 +45,10 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 * @param nummallot
 	 * @param cadenciaCiclista
 	 * @param bicicletaamontar
+	 * @param tiempopedalada
 	 * @param relojCiclista
+	 * @param peso
+	 * @param fuerza
 	 */
 	public Ciclista(String nombre, int nummallot, int cadenciaCiclista, Bicicleta bicicletaamontar, double tiempopedalada, Reloj relojCiclista, int peso, double fuerza) {
 		

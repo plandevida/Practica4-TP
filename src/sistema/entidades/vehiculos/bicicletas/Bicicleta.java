@@ -256,6 +256,7 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 		return radiorueda;
 	}
 	
+	// identificador de la bicicleta
 	private int id;
 	
 	public void setId(int numerocorredor) {
@@ -281,25 +282,4 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	public void setViento(double viento) {
 		this.factorviento = viento;
 	}
-
-//	 private enum Pinhones {
-//		 UNO(10), //0
-//		 DOS(20), //1
-//		 TRES(30), //2
-//		 CUATRO(40); //3
-//		
-//		 private int numerodedientes;
-//		
-//		 Pinhones(int numerodientes) {
-//			 numerodedientes = numerodientes;
-//		 }
-//		
-//		 public int getNumeroDientes() {
-//			 return numerodedientes;
-//		 }
-//		
-//		 public Pinhones desdeIndice(int indice) {
-//			 return ( indice < Pinhones.values().length) ? Pinhones.values()[indice] : null;
-//		 }
-//	 }
 }

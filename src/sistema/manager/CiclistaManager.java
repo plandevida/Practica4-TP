@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import sistema.controladores.ordenes.Dispatcher;
 import sistema.controladores.parseadores.parser.ParseadorCarrera;
@@ -41,10 +42,10 @@ public class CiclistaManager {
 	private Map<Integer, Map<MiViento, Double>> mapameteorologico;
 	
 	// Entidades del sistema.
-	private Bicicleta bicicleta0;
-	private Bicicleta bicicleta1;
-	private Bicicleta bicicleta2;
-	private Bicicleta bicicleta3;
+//	private Bicicleta bicicleta0;
+//	private Bicicleta bicicleta1;
+//	private Bicicleta bicicleta2;
+//	private Bicicleta bicicleta3;
 
 	private FactoresExternos factoresexternos;
 
@@ -119,15 +120,15 @@ public class CiclistaManager {
 		dispatcher = new Dispatcher(presentador, parser);
 		
 		// Bicicletas para los ciclistas.
-		bicicleta0 = new Bicicleta();
-		bicicleta1 = new Bicicleta();
-		bicicleta2 = new Bicicleta();
-		bicicleta3 = new Bicicleta();
-
-		bicicletas.add(bicicleta0);
-		bicicletas.add(bicicleta1);
-		bicicletas.add(bicicleta2);
-		bicicletas.add(bicicleta3);
+//		bicicleta0 = new Bicicleta();
+//		bicicleta1 = new Bicicleta();
+//		bicicleta2 = new Bicicleta();
+//		bicicleta3 = new Bicicleta();
+//
+//		bicicletas.add(bicicleta0);
+//		bicicletas.add(bicicleta1);
+//		bicicletas.add(bicicleta2);
+//		bicicletas.add(bicicleta3);
 
 		factoresexternos = new FactoresExternos(bicicletas, carreteradecarreraciclsta);
 
@@ -141,7 +142,17 @@ public class CiclistaManager {
 		
 		for (int i = 0; i < VariablesDeContexto.MAX_CICLISTAS; i++) {
 			
-			ciclistas.add(new Ciclista(generadordenombres.compose(3), 1, 120, bicicleta0, 0.5, reloj,60,80));
+			Bicicleta bicicleta = new Bicicleta();
+			bicicleta.setId(i);
+			
+			int cadencia = new Random().nextInt(120);
+			int peso = new Random().nextInt(70);
+			int fuerza = new Random().nextInt(100);
+			
+			ciclistas.add(new Ciclista(generadordenombres.compose(3), i, cadencia, bicicleta, 0.5, reloj, peso, fuerza));
+			
+			bicicletas.add(bicicleta);
+			listasalidadatos.add(bicicleta);
 		}
 //		ciclistas.add(new Ciclista("Pamela", 1, 120, bicicleta0, 0.5, reloj,60,80));
 //		ciclistas.add(new Ciclista("Pedro", 2, 60, bicicleta1, 0.8, reloj,70,100));
@@ -150,10 +161,10 @@ public class CiclistaManager {
 
 		// Se registran los elementos con salida de datos en una lista.
 		listasalidadatos.add(reloj);
-		listasalidadatos.add(bicicleta0);
-		listasalidadatos.add(bicicleta1);
-		listasalidadatos.add(bicicleta2);
-		listasalidadatos.add(bicicleta3);
+//		listasalidadatos.add(bicicleta0);
+//		listasalidadatos.add(bicicleta1);
+//		listasalidadatos.add(bicicleta2);
+//		listasalidadatos.add(bicicleta3);
 
 		// Se registran los elementos ejecutables en una lista.
 		listaejecutables.add(reloj);
