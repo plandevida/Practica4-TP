@@ -4,10 +4,10 @@ public class VariablesDeContexto {
 	
 	// Contexto de los ficheros del sistema.
 	public static final String CONFIG_FOLDER_PATH = "resources/configuracion/";
-	public static final String DEFAULT_CONFIG_PATH = "resources/configuracion/carrera";
+	public static final String DEFAULT_FILE_CONFIG_PATH = "resources/configuracion/carrera";
 	public static final String DEFAULT_SYLLABLE_FILE_PATH = "resources/miscelania/generaciondenombres/syllable";
 	
-	public static String CUSTOM_FILE_COMMAND_PATH;
+	public static String FILE_COMMAND_PATH = "resources/instrucciones/comandos";
 
 	// El array representa los piñones de la bicicleta con el indice
 	// del array y su valor es el número de dientes del piñón

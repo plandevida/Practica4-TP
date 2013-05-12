@@ -13,7 +13,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import sistema.entrada.lectura.Lector;
+import sistema.entrada.lectura.LectorManager;
 import sistema.manager.VariablesDeContexto;
 import src.tests.sistema.entidadesmock.FactoresExternosMock;
 import src.tests.sistema.entidadesmock.carretera.tramocarreraciclista.TramoCiclistaMock;
@@ -34,7 +34,7 @@ public class TestFactoresExternos {
 	@Before
 	public void run() {
 		
-		Lector lectorConfiguracion = new Lector(VariablesDeContexto.DEFAULT_CONFIG_PATH, true);
+		LectorManager lectorConfiguracion = new LectorManager(VariablesDeContexto.DEFAULT_FILE_CONFIG_PATH, true);
 		
 		String configuracioncarreraciclista = lectorConfiguracion.cargarFicheroCompelto();
 		

@@ -18,7 +18,7 @@ import sistema.entidades.carretera.tramocarreraciclista.TramoCiclista;
 import sistema.entidades.personas.ciclistas.Ciclista;
 import sistema.entidades.tiempo.Reloj;
 import sistema.entidades.vehiculos.bicicletas.Bicicleta;
-import sistema.entrada.lectura.Lector;
+import sistema.entrada.lectura.LectorManager;
 import sistema.entrada.lectura.generadornombres.NameGenerator;
 import sistema.factoresexternos.FactoresExternos;
 import sistema.factoresexternos.viento.MiViento;
@@ -46,6 +46,7 @@ public class CiclistaManager {
 
 	private FactoresExternos factoresexternos;
 
+	// Medidor de tiempo del sistema
 	private Reloj reloj;
 
 	// Vistas del sistema.
@@ -58,7 +59,7 @@ public class CiclistaManager {
 	private ParseadorComandos parser;
 	private Presentador presentador;
 
-	private Lector lectorconfiguracion;
+	private LectorManager lectorconfiguracion;
 	
 	private NameGenerator generadordenombres;
 
@@ -90,10 +91,9 @@ public class CiclistaManager {
 	 * Carga la carretera de la carrera ciclista.
 	 */
 	private void cargarConfiguracion() {
-		lectorconfiguracion = new Lector(VariablesDeContexto.DEFAULT_CONFIG_PATH, true);
+		lectorconfiguracion = new LectorManager(VariablesDeContexto.DEFAULT_FILE_CONFIG_PATH, true);
 
-		String configuracioncarreraciclista = lectorconfiguracion
-				.cargarFicheroCompelto();
+		String configuracioncarreraciclista = lectorconfiguracion.cargarFicheroCompelto();
 
 		construirCarretera(configuracioncarreraciclista);
 	}
@@ -134,11 +134,6 @@ public class CiclistaManager {
 		reloj = new Reloj();
 		ciclistas = new ArrayList<Ciclista>();
 		bicicletas = new ArrayList<Bicicleta>();
-		
-//		parser = new ParseadorComandos();
-//		
-//		presentador = new Presentador(ciclistas, listasalidadatos, mapameteorologico, reloj, parser.getOrdenes());
-//		dispatcher = new Dispatcher(presentador, parser);
 
 		factoresexternos = new FactoresExternos(bicicletas, carreteradecarreraciclsta);
 
@@ -175,10 +170,6 @@ public class CiclistaManager {
 		for (Ciclista ciclista : ciclistas) {
 			listaejecutables.add(ciclista);
 		}
-		
-//		lienzo = new Lienzo(ciclistas);
-//		
-//		ventana = new VentanaJL(dispatcher, lienzo);
 
 		formateador = new FormateadorDatosVista(listasalidadatos, ventana);
 
@@ -236,10 +227,10 @@ public class CiclistaManager {
 		
 		if (args.length >= 6) {
 			try {
-				numerociclistas = Integer.valueOf(args[1]);
-				ficherocomandos = args[2];
-				unidadtiempo = Integer.valueOf(args[3]);
-				cambiodeplato = Integer.valueOf(args[4]);
+				numerociclistas = Integer.valueOf(args[0]);
+				ficherocomandos = args[1];
+				unidadtiempo = Integer.valueOf(args[2]);
+				cambiodeplato = Integer.valueOf(args[3]);
 				cambiodepinhon = Integer.valueOf(args[4]);
 				radiorueda = Double.valueOf(args[5]);
 				
@@ -252,7 +243,7 @@ public class CiclistaManager {
 		
 		VariablesDeContexto.MAX_CICLISTAS = numerociclistas;
 		VariablesDeContexto.UNIDAD_TIEMPO = unidadtiempo;
-		VariablesDeContexto.CUSTOM_FILE_COMMAND_PATH = ficherocomandos;
+		VariablesDeContexto.FILE_COMMAND_PATH = ficherocomandos;
 		
 		manager.cargarConfiguracion();
 		manager.iniciar();

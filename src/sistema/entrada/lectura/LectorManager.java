@@ -4,12 +4,12 @@ import sistema.entrada.lectura.fichero.LecturaFichero;
 import sistema.entrada.lectura.teclado.LecturaTeclado;
 
 /**
- * Clase que invoca a los sistemas de lectura.
+ * Clase que invoca a los sub-sistemas de lectura.
  * 
  * @author Daniel Serrano Torres
  * @author Alvaro Quesada Pimentel
  */
-public class Lector {
+public class LectorManager {
 	
 	private LecturaTeclado teclado;
 	private LecturaFichero fichero;
@@ -20,7 +20,7 @@ public class Lector {
 	 * @param file Ruta del fichero a leer.
 	 * @param solofichero True si solo se quiere leer de fichero.
 	 */
-	public Lector(String file, boolean solofichero) {
+	public LectorManager(String file, boolean solofichero) {
 		
 		if (! solofichero) {
 			teclado = new LecturaTeclado();
