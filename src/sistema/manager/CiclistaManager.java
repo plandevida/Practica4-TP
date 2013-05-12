@@ -1,12 +1,15 @@
 package sistema.manager;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
+import javax.swing.SwingUtilities;
 
 import sistema.controladores.ordenes.Dispatcher;
 import sistema.controladores.parseadores.parser.ParseadorCarrera;
@@ -40,12 +43,6 @@ public class CiclistaManager {
 	private List<Ciclista> ciclistas;
 	private List<Bicicleta> bicicletas;
 	private Map<Integer, Map<MiViento, Double>> mapameteorologico;
-	
-	// Entidades del sistema.
-//	private Bicicleta bicicleta0;
-//	private Bicicleta bicicleta1;
-//	private Bicicleta bicicleta2;
-//	private Bicicleta bicicleta3;
 
 	private FactoresExternos factoresexternos;
 
@@ -53,6 +50,7 @@ public class CiclistaManager {
 
 	// Vistas del sistema.
 	private VentanaJL ventana;
+	private Lienzo lienzo;
 	private FormateadorDatosVista formateador;
 
 	// Subsitemas del sistema.
@@ -64,12 +62,35 @@ public class CiclistaManager {
 	
 	private NameGenerator generadordenombres;
 
+	private void crearGUI() {
+		parser = new ParseadorComandos();
+		
+		presentador = new Presentador(ciclistas, listasalidadatos, mapameteorologico, reloj, parser.getOrdenes());
+		dispatcher = new Dispatcher(presentador, parser);
+		
+		lienzo = new Lienzo(ciclistas);
+		
+		try {
+			SwingUtilities.invokeAndWait(new Runnable() {
+				
+				@Override
+				public void run() {
+					
+					ventana = new VentanaJL(dispatcher, lienzo);
+				}
+			});
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * Carga la carretera de la carrera ciclista.
 	 */
 	private void cargarConfiguracion() {
-		lectorconfiguracion = new Lector(
-				VariablesDeContexto.DEFAULT_CONFIG_PATH, true);
+		lectorconfiguracion = new Lector(VariablesDeContexto.DEFAULT_CONFIG_PATH, true);
 
 		String configuracioncarreraciclista = lectorconfiguracion
 				.cargarFicheroCompelto();
@@ -114,21 +135,10 @@ public class CiclistaManager {
 		ciclistas = new ArrayList<Ciclista>();
 		bicicletas = new ArrayList<Bicicleta>();
 		
-		parser = new ParseadorComandos();
-		
-		presentador = new Presentador(ciclistas, listasalidadatos, mapameteorologico, reloj, parser.getOrdenes());
-		dispatcher = new Dispatcher(presentador, parser);
-		
-		// Bicicletas para los ciclistas.
-//		bicicleta0 = new Bicicleta();
-//		bicicleta1 = new Bicicleta();
-//		bicicleta2 = new Bicicleta();
-//		bicicleta3 = new Bicicleta();
-//
-//		bicicletas.add(bicicleta0);
-//		bicicletas.add(bicicleta1);
-//		bicicletas.add(bicicleta2);
-//		bicicletas.add(bicicleta3);
+//		parser = new ParseadorComandos();
+//		
+//		presentador = new Presentador(ciclistas, listasalidadatos, mapameteorologico, reloj, parser.getOrdenes());
+//		dispatcher = new Dispatcher(presentador, parser);
 
 		factoresexternos = new FactoresExternos(bicicletas, carreteradecarreraciclsta);
 
@@ -155,17 +165,9 @@ public class CiclistaManager {
 			bicicletas.add(bicicleta);
 			listasalidadatos.add(bicicleta);
 		}
-//		ciclistas.add(new Ciclista("Pamela", 1, 120, bicicleta0, 0.5, reloj,60,80));
-//		ciclistas.add(new Ciclista("Pedro", 2, 60, bicicleta1, 0.8, reloj,70,100));
-//		ciclistas.add(new Ciclista("Ana", 3, 30, bicicleta2, 1.5, reloj,55,75));
-//		ciclistas.add(new Ciclista("Juan", 4, 90, bicicleta3, 0.5, reloj,75,50));
 
 		// Se registran los elementos con salida de datos en una lista.
 		listasalidadatos.add(reloj);
-//		listasalidadatos.add(bicicleta0);
-//		listasalidadatos.add(bicicleta1);
-//		listasalidadatos.add(bicicleta2);
-//		listasalidadatos.add(bicicleta3);
 
 		// Se registran los elementos ejecutables en una lista.
 		listaejecutables.add(reloj);
@@ -174,9 +176,9 @@ public class CiclistaManager {
 			listaejecutables.add(ciclista);
 		}
 		
-		Lienzo lienzo = new Lienzo(ciclistas);
-		
-		ventana = new VentanaJL(dispatcher, lienzo);
+//		lienzo = new Lienzo(ciclistas);
+//		
+//		ventana = new VentanaJL(dispatcher, lienzo);
 
 		formateador = new FormateadorDatosVista(listasalidadatos, ventana);
 
@@ -211,11 +213,19 @@ public class CiclistaManager {
 	public void finalizar() {
 		lectorconfiguracion.finalizarLecturas();
 	}
+	
+	private void ayuda() {
+		ventana.ponerDatosEnVentana("#ayudaMain", "");
+	}
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
+		CiclistaManager manager = new CiclistaManager();
+		
+		manager.crearGUI();
 		
 		Integer numerociclistas = null;
 		String ficherocomandos = null;
@@ -223,24 +233,27 @@ public class CiclistaManager {
 		Integer cambiodeplato = null;
 		Integer cambiodepinhon = null;
 		Double radiorueda = null;
-		try {
-			numerociclistas = Integer.valueOf(args[1]);
-			ficherocomandos = args[2];
-			unidadtiempo = Integer.valueOf(args[3]);
-			cambiodeplato = Integer.valueOf(args[4]);
-			cambiodepinhon = Integer.valueOf(args[4]);
-			radiorueda = Double.valueOf(args[5]);
-			
-		} catch (NumberFormatException ne) {
-			System.out.println("Datos de entrada incorrectos.");
+		
+		if (args.length >= 6) {
+			try {
+				numerociclistas = Integer.valueOf(args[1]);
+				ficherocomandos = args[2];
+				unidadtiempo = Integer.valueOf(args[3]);
+				cambiodeplato = Integer.valueOf(args[4]);
+				cambiodepinhon = Integer.valueOf(args[4]);
+				radiorueda = Double.valueOf(args[5]);
+				
+			} catch (NumberFormatException ne) {
+				System.out.println("Datos de entrada incorrectos.");
+			}
+		} else {
+			manager.ayuda();
 		}
 		
 		VariablesDeContexto.MAX_CICLISTAS = numerociclistas;
 		VariablesDeContexto.UNIDAD_TIEMPO = unidadtiempo;
 		VariablesDeContexto.CUSTOM_FILE_COMMAND_PATH = ficherocomandos;
 		
-		CiclistaManager manager = new CiclistaManager();
-
 		manager.cargarConfiguracion();
 		manager.iniciar();
 		manager.ejecutar();

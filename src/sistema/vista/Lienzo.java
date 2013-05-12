@@ -48,7 +48,7 @@ public class Lienzo extends Canvas implements ObjetosQueSeEjecutan {
 //	pendiente = pen;
 //	pendiente.setArbol(entrada.convertirFicheroAArbol("carretera.txt", ":;"));
 //	arbol = pendiente.getArbol();
-	// matriz = entrada.convertirAArrayFichero("carretera.txt", ":;");
+//	matriz = entrada.convertirAArrayFichero("carretera.txt", ":;");
 	
     }
 

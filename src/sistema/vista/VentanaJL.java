@@ -322,6 +322,10 @@ public class VentanaJL extends JFrame implements ObjetosQueSeEjecutan {
 			relojGrafico.setTime(segundo, minuto, hora);
 			
 			break;*/
+		case "#ayudaMain":
+			
+			tFconsola.setText(tFconsola.getText() + "CiclistaManager <fichero> <> <> <>");
+			break;
 		default:
 			for (JTextComponent componente : componenetescreados) {
 				if (componente.getName().equals(id)) {
