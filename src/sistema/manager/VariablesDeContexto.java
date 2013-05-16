@@ -23,4 +23,6 @@ public class VariablesDeContexto {
     public static int MAX_CADENCIA = 120;
     
     public static int UNIDAD_TIEMPO = 100;
+    
+    public static double RADIO_RUEDA = 0.2d;
 }

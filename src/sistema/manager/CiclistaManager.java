@@ -208,6 +208,57 @@ public class CiclistaManager {
 	private void ayuda() {
 		ventana.ponerDatosEnVentana("#ayudaMain", "");
 	}
+	
+	private void prepararArgumentos(String[] args) {
+		
+		Integer numerociclistas = null;
+		String ficherocomandos = null;
+		Integer unidadtiempo = null;
+		Integer[] cambiodeplato = null;
+		Integer[] cambiodepinhon = null;
+		Double radiorueda = null;
+		
+		if (args.length > 0) {
+			try {
+				numerociclistas = Integer.valueOf(args[0]);
+				ficherocomandos = args[1];
+				unidadtiempo = Integer.valueOf(args[2]);
+				
+				Integer numeroplatos = Integer.valueOf(args[3]);
+				
+				cambiodeplato = new Integer[numeroplatos];
+				
+				int i = 0;
+				while ( i < numeroplatos ) {
+					cambiodeplato[i] = Integer.valueOf(args[3+i+1]);
+					
+					i++;
+				}
+				
+				Integer numeropinhones = Integer.valueOf(++i);
+ 				
+				cambiodepinhon = new Integer[numeropinhones];
+				
+	 		 	while ( i < numeropinhones ) {
+	 		 		cambiodepinhon[i] = Integer.valueOf(args[i+1]);
+				 
+	 		 		i++;
+	 		 	}
+	 		 	
+				radiorueda = Double.valueOf(args[5]);
+				
+			} catch (NumberFormatException ne) {
+				System.out.println("Datos de entrada incorrectos.");
+			}
+		} else {
+			ayuda();
+		}
+		
+		VariablesDeContexto.MAX_CICLISTAS = numerociclistas;
+		VariablesDeContexto.UNIDAD_TIEMPO = unidadtiempo;
+		VariablesDeContexto.FILE_COMMAND_PATH = ficherocomandos;
+		VariablesDeContexto.RADIO_RUEDA = radiorueda;
+	}
 
 	/**
 	 * @param args
@@ -218,32 +269,7 @@ public class CiclistaManager {
 		
 		manager.crearGUI();
 		
-		Integer numerociclistas = null;
-		String ficherocomandos = null;
-		Integer unidadtiempo = null;
-		Integer cambiodeplato = null;
-		Integer cambiodepinhon = null;
-		Double radiorueda = null;
-		
-		if (args.length >= 6) {
-			try {
-				numerociclistas = Integer.valueOf(args[0]);
-				ficherocomandos = args[1];
-				unidadtiempo = Integer.valueOf(args[2]);
-				cambiodeplato = Integer.valueOf(args[3]);
-				cambiodepinhon = Integer.valueOf(args[4]);
-				radiorueda = Double.valueOf(args[5]);
-				
-			} catch (NumberFormatException ne) {
-				System.out.println("Datos de entrada incorrectos.");
-			}
-		} else {
-			manager.ayuda();
-		}
-		
-		VariablesDeContexto.MAX_CICLISTAS = numerociclistas;
-		VariablesDeContexto.UNIDAD_TIEMPO = unidadtiempo;
-		VariablesDeContexto.FILE_COMMAND_PATH = ficherocomandos;
+		manager.prepararArgumentos(args);
 		
 		manager.cargarConfiguracion();
 		manager.iniciar();

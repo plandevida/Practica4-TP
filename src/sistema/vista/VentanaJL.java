@@ -324,7 +324,10 @@ public class VentanaJL extends JFrame implements ObjetosQueSeEjecutan {
 			break;*/
 		case "#ayudaMain":
 			
-			tFconsola.setText(tFconsola.getText() + "CiclistaManager <fichero> <> <> <>");
+			tFconsola.setText(tFconsola.getText()
+					+ "CiclistaManager <número_ciclistas> <fichero_comandos> <unidad_tiempo> "
+					+ "<número_platos> <dientes_plato (separados por espacios)> <número_piñones>"
+					+ " <dientes_piñones (separados por espacios)> <radio_rueda>");
 			break;
 		default:
 			for (JTextComponent componente : componenetescreados) {
