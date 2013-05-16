@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import sistema.interfaces.ObjetosQueSeEjecutan;
-import src.tests.sistema.entidadesmock.carretera.tramocarreraciclista.TramoCiclistaMock;
+import src.tests.sistema.entidadesmock.carretera.tramocarreraciclista.TramoCarreraMock;
 import src.tests.sistema.entidadesmock.vehiculos.bicicletas.BicicletaMock;
 
 public class FactoresExternosMock implements ObjetosQueSeEjecutan {
@@ -12,9 +12,9 @@ public class FactoresExternosMock implements ObjetosQueSeEjecutan {
 	private List<BicicletaMock> bicicletas;
 	
 	//Mapa de la carretera
-	private Map<Integer, TramoCiclistaMock> carreteradecarreraciclista;
+	private Map<Integer, TramoCarreraMock> carreteradecarreraciclista;
 	
-	public FactoresExternosMock(List<BicicletaMock> bicis, Map<Integer, TramoCiclistaMock> carreteradecarreraciclista) {
+	public FactoresExternosMock(List<BicicletaMock> bicis, Map<Integer, TramoCarreraMock> carreteradecarreraciclista) {
 		
 		this.bicicletas = bicis;
 		this.carreteradecarreraciclista = carreteradecarreraciclista;
@@ -24,9 +24,9 @@ public class FactoresExternosMock implements ObjetosQueSeEjecutan {
 	 *  Busca el tramo en el que se encuentra la bici 
 	 * @return devuelve el tramo
 	 */
-	private TramoCiclistaMock tramoActual() {
+	private TramoCarreraMock tramoActual() {
 		
-		TramoCiclistaMock tramo = new TramoCiclistaMock(0, 0, null, 0);
+		TramoCarreraMock tramo = new TramoCarreraMock(0, 0, null, 0);
 		
 		for(BicicletaMock bici : bicicletas) {
 			for(Integer reco : carreteradecarreraciclista.keySet()) {
@@ -51,7 +51,7 @@ public class FactoresExternosMock implements ObjetosQueSeEjecutan {
 		double angulorad = 0d;
 		double factorpendiente = 0d;
 		
-		TramoCiclistaMock tramo = tramoActual();
+		TramoCarreraMock tramo = tramoActual();
 		
 		angulograd = tramo.getPendiente();
 		angulorad = (angulograd * Math.PI)/180;
@@ -75,7 +75,7 @@ public class FactoresExternosMock implements ObjetosQueSeEjecutan {
 	 */
 	private double vientoTramoActual(){
 		
-		TramoCiclistaMock tramo = tramoActual();
+		TramoCarreraMock tramo = tramoActual();
 		
 		
 		int direccionviento = tramo.getViento().getFactor();

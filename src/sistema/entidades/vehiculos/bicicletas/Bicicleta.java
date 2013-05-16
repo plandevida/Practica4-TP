@@ -109,7 +109,6 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 * 
 	 * @return La velocidad maxima a la que va la bicicleta
 	 */
-	
 	private double velocidadmaxima(double tiempopedalada){
 		double velocidadmax = espacioDePedalada() / tiempopedalada;
 		return velocidadmax;
@@ -121,8 +120,6 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 * @param cadenciaciclista Frecuencia con la que el ciclista da pedaladas. 
 	 * @return la fuerza gastada al pedalear
 	 */
-	
-	
 	public double darPedalada(double tiempopedalada, int pesociclista) {
 		double aceleracion = calcularAceleracionTiempoPedalada(tiempopedalada);
 		

@@ -28,7 +28,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	// La candencia de la pedalada del ciclista.
 	private int cadencia;
 	
-	private double  periodo;
+	private double periodo;
 	
 	private double tiempopedalada;
 	
@@ -37,7 +37,11 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	
 	private int contadorcandencia;
 	
+	// El cansancio del ciclista.
 	private double fuerza;
+	
+	private boolean estrellado;
+	
 	/**
 	 * Crea un ciclista.
 	 * 
@@ -221,22 +225,58 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 		this.cadencia = cadencia;
 	}
 	
+//	/**
+//	 * Obtiene el periodo del ciclista
+//	 *  
+//	 * @return La cadencia
+//	 */
+//	public double getPeriodo() {
+//		return periodo;
+//	}
+//
+//	/**
+//	 * Cambia el periodo del ciclista.
+//	 * 
+//	 * @param cadencia Cadencia nueva.
+//	 */
+//	public void setPeriodo(int periodo) {
+//		this.periodo = periodo;
+//	}
+
 	/**
-	 * Obtiene el periodo del ciclista
-	 *  
-	 * @return La cadencia
+	 * Obtiene el tiempo de pedalada del ciclista.
+	 * 
+	 * @return Tiempo de pedalada.
 	 */
-	public double getPeriodo() {
-		return periodo;
+	public double getTiempopedalada() {
+		return tiempopedalada;
 	}
 
 	/**
-	 * Cambia el periodo del ciclista.
+	 * Cambia el tiempo de pedalada del ciclista.
 	 * 
-	 * @param cadencia Cadencia nueva.
+	 * @param tiempopedalada Nuevo tiempo de pedalada.
 	 */
-	public void setPeriodo(int periodo) {
-		this.periodo = periodo;
+	public void setTiempopedalada(double tiempopedalada) {
+		this.tiempopedalada = tiempopedalada;
+	}
+
+	/**
+	 * Obtiene el estado de si el ciclista se ha estrellado.
+	 * 
+	 * @return True si se ha estrellado, false EOC.
+	 */
+	public boolean isEstrellado() {
+		return estrellado;
+	}
+
+	/**
+	 * Cambia el estado del ciclista si se ha estrellado.
+	 * 
+	 * @param estrellado
+	 */
+	public void setEstrellado(boolean estrellado) {
+		this.estrellado = estrellado;
 	}
 
 	/**

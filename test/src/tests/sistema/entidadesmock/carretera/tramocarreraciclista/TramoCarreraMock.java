@@ -10,7 +10,7 @@ import sistema.factoresexternos.viento.MiViento;
  * @author Daniel Serrano Torres
  * @author Alvaro Quesada Pimentel
  */
-public class TramoCiclistaMock extends Carretera {
+public class TramoCarreraMock extends Carretera {
 	
 	private MiViento viento;
 	private int pendiente;
@@ -24,7 +24,7 @@ public class TramoCiclistaMock extends Carretera {
 	 * @param pendientetramo Del tramo.
 	 * @param vientodeltramo Del tramo.
 	 */
-	public TramoCiclistaMock(double kilometros, int pendientetramo, MiViento vientodeltramo, double velodidaddelviento) {
+	public TramoCarreraMock(double kilometros, int pendientetramo, MiViento vientodeltramo, double velodidaddelviento) {
 		super(kilometros);
 		viento = vientodeltramo;
 		pendiente = pendientetramo;

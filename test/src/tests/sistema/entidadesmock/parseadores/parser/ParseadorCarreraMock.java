@@ -5,18 +5,18 @@ import java.util.Map;
 
 import sistema.controladores.parseadores.parser.ParseadorCarrera;
 import sistema.factoresexternos.viento.MiViento;
-import src.tests.sistema.entidadesmock.carretera.tramocarreraciclista.TramoCiclistaMock;
+import src.tests.sistema.entidadesmock.carretera.tramocarreraciclista.TramoCarreraMock;
 
 public class ParseadorCarreraMock {
 	
-	private Map<Integer, TramoCiclistaMock> mapa;
+	private Map<Integer, TramoCarreraMock> mapa;
 	
 	/**
 	 * Al invocar este constructor es necesario invocar a @see {@link ParseadorCarrera#getConfiguracionCarrera()}
 	 * para obtener la configuración parseada.
 	 */
 	public ParseadorCarreraMock() {
-		mapa = new HashMap<Integer, TramoCiclistaMock>();
+		mapa = new HashMap<Integer, TramoCarreraMock>();
 	}
 	
 	/**
@@ -24,7 +24,7 @@ public class ParseadorCarreraMock {
 	 * 
 	 * @param mapa2
 	 */
-	public ParseadorCarreraMock(Map<Integer, TramoCiclistaMock> mapa2) {
+	public ParseadorCarreraMock(Map<Integer, TramoCarreraMock> mapa2) {
 		mapa = mapa2;
 	}
 	
@@ -48,7 +48,7 @@ public class ParseadorCarreraMock {
 				
 				
 				// Mapa con la pendiente y la dirección del viento.
-				TramoCiclistaMock tramo = new TramoCiclistaMock(kilometros, pendiente, viento, velocidadviento);
+				TramoCarreraMock tramo = new TramoCarreraMock(kilometros, pendiente, viento, velocidadviento);
 				
 				mapa.put(i+1, tramo);
 				
@@ -65,7 +65,7 @@ public class ParseadorCarreraMock {
 	 * 
 	 * @return La configuración de la carrera ciclista.
 	 */
-	public Map<Integer, TramoCiclistaMock> getConfiguracionCarrera() {
+	public Map<Integer, TramoCarreraMock> getConfiguracionCarrera() {
 		
 		return mapa;
 	}

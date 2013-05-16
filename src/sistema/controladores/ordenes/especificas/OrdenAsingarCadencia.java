@@ -14,14 +14,22 @@ import sistema.manager.VariablesDeContexto;
  * @author Alvaro Quesada Pimentel
  */
 public class OrdenAsingarCadencia extends OrdenParaCiclista {
+	
 	private Integer aumentocadencia;
-	private Integer periodo;
+	private Integer periodotiempopedalada;
 	private Integer idciclista;
 	
+	/**
+	 * Construye una orden que cambia la cadencia a un ciclista.
+	 * 
+	 * @param nuevacadencia La nueva cadencia.
+	 * @param nuevoperiodo El nuevo periodo de tiempo de pedalada
+	 * @param idciclista El identificador del ciclista al que cambiarle la cadencia.
+	 */
 	public OrdenAsingarCadencia(Integer nuevacadencia, Integer nuevoperiodo, Integer idciclista) {
 		
 		aumentocadencia = nuevacadencia;
-		periodo = nuevoperiodo;
+		periodotiempopedalada = nuevoperiodo;
 		this.idciclista = idciclista;
 	}
 	
@@ -30,7 +38,7 @@ public class OrdenAsingarCadencia extends OrdenParaCiclista {
 		
 		if (getCiclista() != null) {
 			getCiclista().setCadencia(aumentocadencia);
-			getCiclista().setPeriodo(periodo);
+			getCiclista().setTiempopedalada(periodotiempopedalada);
 		}
 	}
 
@@ -44,7 +52,7 @@ public class OrdenAsingarCadencia extends OrdenParaCiclista {
 				.append(" cadencia : ")
 				.append(aumentocadencia.intValue())
 				.append(" y el periodo: ")
-				.append(periodo.intValue())
+				.append(periodotiempopedalada.intValue())
 				.toString();
 	}
 
@@ -69,11 +77,11 @@ public class OrdenAsingarCadencia extends OrdenParaCiclista {
 							
 							if ( aumentocadencia >= 0 && aumentocadencia <= VariablesDeContexto.MAX_CADENCIA ) {
 								
-								periodo = Integer.valueOf(tokens[5]);
+								periodotiempopedalada = Integer.valueOf(tokens[5]);
 								
-								if ( periodo >= 0 ) {
+								if ( periodotiempopedalada >= 0 ) {
 								
-									ordenaumentarcadencia = new OrdenAsingarCadencia(aumentocadencia, periodo, idciclista);
+									ordenaumentarcadencia = new OrdenAsingarCadencia(aumentocadencia, periodotiempopedalada, idciclista);
 								}
 							}
 						}

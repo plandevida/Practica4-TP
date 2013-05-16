@@ -3,7 +3,7 @@ package sistema.factoresexternos;
 import java.util.List;
 import java.util.Map;
 
-import sistema.entidades.carretera.tramocarreraciclista.TramoCiclista;
+import sistema.entidades.carretera.tramocarreraciclista.TramoCarrera;
 import sistema.entidades.vehiculos.bicicletas.Bicicleta;
 import sistema.interfaces.ObjetosQueSeEjecutan;
 
@@ -17,9 +17,9 @@ public class FactoresExternos implements ObjetosQueSeEjecutan {
 	private List<Bicicleta> bicicletas;
 	
 	//Mapa de la carretera
-	private Map<Integer, TramoCiclista> carreteradecarreraciclista;
+	private Map<Integer, TramoCarrera> carreteradecarreraciclista;
 	
-	public FactoresExternos(List<Bicicleta> bicis, Map<Integer, TramoCiclista> carreteradecarreraciclista) {
+	public FactoresExternos(List<Bicicleta> bicis, Map<Integer, TramoCarrera> carreteradecarreraciclista) {
 		
 		this.bicicletas = bicis;
 		this.carreteradecarreraciclista = carreteradecarreraciclista;
@@ -29,9 +29,9 @@ public class FactoresExternos implements ObjetosQueSeEjecutan {
 	 *  Busca el tramo en el que se encuentra la bici 
 	 * @return devuelve el tramo
 	 */
-	private TramoCiclista tramoActual() {
+	private TramoCarrera tramoActual() {
 		
-		TramoCiclista tramo = new TramoCiclista(0, 0, null, 0);
+		TramoCarrera tramo = new TramoCarrera(0, 0, null, 0);
 		
 		for(Bicicleta bici : bicicletas) {
 			for(Integer reco : carreteradecarreraciclista.keySet()) {
@@ -56,7 +56,7 @@ public class FactoresExternos implements ObjetosQueSeEjecutan {
 		double angulorad = 0d;
 		double factorpendiente = 0d;
 		
-		TramoCiclista tramo = tramoActual();
+		TramoCarrera tramo = tramoActual();
 		
 		angulograd = tramo.getPendiente();
 		angulorad = (angulograd * Math.PI)/180;
@@ -80,7 +80,7 @@ public class FactoresExternos implements ObjetosQueSeEjecutan {
 	 */
 	private double vientoTramoActual(){
 		
-		TramoCiclista tramo = tramoActual();
+		TramoCarrera tramo = tramoActual();
 		
 		
 		int direccionviento = tramo.getViento().getFactor();

@@ -3,7 +3,7 @@ package sistema.controladores.parseadores.parser;
 import java.util.HashMap;
 import java.util.Map;
 
-import sistema.entidades.carretera.tramocarreraciclista.TramoCiclista;
+import sistema.entidades.carretera.tramocarreraciclista.TramoCarrera;
 import sistema.factoresexternos.viento.MiViento;
 
 /**
@@ -14,14 +14,14 @@ import sistema.factoresexternos.viento.MiViento;
  */
 public class ParseadorCarrera {
 	
-	private Map<Integer, TramoCiclista> mapa;
+	private Map<Integer, TramoCarrera> mapa;
 	
 	/**
 	 * Al invocar este constructor es necesario invocar a @see {@link ParseadorCarrera#getConfiguracionCarrera()}
 	 * para obtener la configuración parseada.
 	 */
 	public ParseadorCarrera() {
-		mapa = new HashMap<Integer, TramoCiclista>();
+		mapa = new HashMap<Integer, TramoCarrera>();
 	}
 	
 	/**
@@ -29,7 +29,7 @@ public class ParseadorCarrera {
 	 * 
 	 * @param configuracion
 	 */
-	public ParseadorCarrera(Map<Integer, TramoCiclista> configuracion) {
+	public ParseadorCarrera(Map<Integer, TramoCarrera> configuracion) {
 		mapa = configuracion;
 	}
 	
@@ -53,7 +53,7 @@ public class ParseadorCarrera {
 				
 				
 				// Mapa con la pendiente y la dirección del viento.
-				TramoCiclista tramo = new TramoCiclista(kilometros, pendiente, viento, velocidadviento);
+				TramoCarrera tramo = new TramoCarrera(kilometros, pendiente, viento, velocidadviento);
 				
 				mapa.put(i+1, tramo);
 				
@@ -70,7 +70,7 @@ public class ParseadorCarrera {
 	 * 
 	 * @return La configuración de la carrera ciclista.
 	 */
-	public Map<Integer, TramoCiclista> getConfiguracionCarrera() {
+	public Map<Integer, TramoCarrera> getConfiguracionCarrera() {
 		
 		return mapa;
 	}

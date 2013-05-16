@@ -14,7 +14,7 @@ import javax.swing.SwingUtilities;
 import sistema.controladores.ordenes.Dispatcher;
 import sistema.controladores.parseadores.parser.ParseadorCarrera;
 import sistema.controladores.parseadores.parser.ParseadorComandos;
-import sistema.entidades.carretera.tramocarreraciclista.TramoCiclista;
+import sistema.entidades.carretera.tramocarreraciclista.TramoCarrera;
 import sistema.entidades.personas.ciclistas.Ciclista;
 import sistema.entidades.tiempo.Reloj;
 import sistema.entidades.vehiculos.bicicletas.Bicicleta;
@@ -39,7 +39,7 @@ public class CiclistaManager {
 	// Listas con los elemenos del contexto del sistema
 	private List<ObjetosQueSeEjecutan> listaejecutables;
 	private List<ObjetosConSalidaDeDatos> listasalidadatos;
-	private Map<Integer, TramoCiclista> carreteradecarreraciclsta;
+	private Map<Integer, TramoCarrera> carreteradecarreraciclsta;
 	private List<Ciclista> ciclistas;
 	private List<Bicicleta> bicicletas;
 	private Map<Integer, Map<MiViento, Double>> mapameteorologico;
@@ -106,7 +106,7 @@ public class CiclistaManager {
 	 */
 	private void construirCarretera(String datos) {
 
-		carreteradecarreraciclsta = new HashMap<Integer, TramoCiclista>();
+		carreteradecarreraciclsta = new HashMap<Integer, TramoCarrera>();
 
 		ParseadorCarrera parseadorcarrera = new ParseadorCarrera(
 				carreteradecarreraciclsta);

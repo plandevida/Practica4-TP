@@ -2,16 +2,16 @@ package src.tests.utils;
 
 import java.util.Map;
 
-import src.tests.sistema.entidadesmock.carretera.tramocarreraciclista.TramoCiclistaMock;
+import src.tests.sistema.entidadesmock.carretera.tramocarreraciclista.TramoCarreraMock;
 import src.tests.sistema.entidadesmock.vehiculos.bicicletas.BicicletaMock;
 
 public class TestUtilidadesFactoresExternos {
 	
-	private Map<Integer, TramoCiclistaMock> carreteradecarreraciclista;
+	private Map<Integer, TramoCarreraMock> carreteradecarreraciclista;
 	private BicicletaMock bici;
 	
 	
-	public TestUtilidadesFactoresExternos(Map<Integer, TramoCiclistaMock> carreteradecarreraciclista, BicicletaMock bici){
+	public TestUtilidadesFactoresExternos(Map<Integer, TramoCarreraMock> carreteradecarreraciclista, BicicletaMock bici){
 		this.carreteradecarreraciclista = carreteradecarreraciclista;
 		this.bici = bici;
 	}
@@ -21,9 +21,9 @@ public class TestUtilidadesFactoresExternos {
 	 *  Busca el tramo en el que se encuentra la bici 
 	 * @return devuelve el tramo
 	 */
-	public TramoCiclistaMock tramoActual() {
+	public TramoCarreraMock tramoActual() {
 		
-		TramoCiclistaMock tramo = new TramoCiclistaMock(0, 0, null, 0);
+		TramoCarreraMock tramo = new TramoCarreraMock(0, 0, null, 0);
 		
 		for(Integer reco : carreteradecarreraciclista.keySet()) {
 
@@ -45,7 +45,7 @@ public class TestUtilidadesFactoresExternos {
 		double angulorad = 0d;
 		double factorpendiente = 0d;
 		
-		TramoCiclistaMock tramo = tramoActual();
+		TramoCarreraMock tramo = tramoActual();
 		
 		angulograd = tramo.getPendiente();
 		angulorad = (angulograd * Math.PI)/180;
@@ -69,7 +69,7 @@ public class TestUtilidadesFactoresExternos {
 	 */
 	public double vientoTramoActual(){
 		
-		TramoCiclistaMock tramo = tramoActual();
+		TramoCarreraMock tramo = tramoActual();
 		
 		
 		int direccionviento = tramo.getViento().getFactor();

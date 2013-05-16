@@ -13,7 +13,7 @@ import org.junit.runners.JUnit4;
 
 import sistema.entrada.lectura.LectorManager;
 import sistema.manager.VariablesDeContexto;
-import src.tests.sistema.entidadesmock.carretera.tramocarreraciclista.TramoCiclistaMock;
+import src.tests.sistema.entidadesmock.carretera.tramocarreraciclista.TramoCarreraMock;
 import src.tests.sistema.entidadesmock.parseadores.parser.ParseadorCarreraMock;
 import src.tests.sistema.entidadesmock.vehiculos.bicicletas.BicicletaMock;
 import src.tests.utils.TestUtilidadesBicicleta;
@@ -27,7 +27,7 @@ public class TestBicicleta {
 	private TestUtilidadesBicicleta utilidadesBicicleta;
 	private TestUtilidadesCiclista utilidadesCiclista;
 	
-	private Map<Integer, TramoCiclistaMock> mapa;
+	private Map<Integer, TramoCarreraMock> mapa;
 	
 	@Before
 	public void run() {
@@ -36,7 +36,7 @@ public class TestBicicleta {
 		
 		String configuracioncarreraciclista = lectorConfiguracion.cargarFicheroCompelto();
 		
-		mapa = new HashMap<Integer, TramoCiclistaMock>();
+		mapa = new HashMap<Integer, TramoCarreraMock>();
 		
 		ParseadorCarreraMock parseadorcarrera = new ParseadorCarreraMock(mapa);
 		
