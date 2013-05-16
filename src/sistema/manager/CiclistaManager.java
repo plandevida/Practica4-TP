@@ -209,55 +209,93 @@ public class CiclistaManager {
 		ventana.ponerDatosEnVentana("#ayudaMain", "");
 	}
 	
+	/**
+	 * Obtiene los datos necesarios de los argumentos introducidos al sistema.
+	 * Si no se hubiesen introducido estos datos correcatmente se usarán los 
+	 * valores del sistema por defecto.
+	 * 
+	 * @param args Argumentos del sistema.
+	 */
 	private void prepararArgumentos(String[] args) {
 		
-		Integer numerociclistas = null;
+ 		Integer numerociclistas = null;
 		String ficherocomandos = null;
 		Integer unidadtiempo = null;
 		Integer[] cambiodeplato = null;
 		Integer[] cambiodepinhon = null;
 		Double radiorueda = null;
 		
+		// Si no hay ningún argumento no se parsea nada.
 		if (args.length > 0) {
 			try {
-				numerociclistas = Integer.valueOf(args[0]);
-				ficherocomandos = args[1];
-				unidadtiempo = Integer.valueOf(args[2]);
+				// Indice que recorre el array de argumentos.
+				int indicedeargumentos = 0;
 				
+				// El número de platos de las bicicletas
 				Integer numeroplatos = Integer.valueOf(args[3]);
 				
-				cambiodeplato = new Integer[numeroplatos];
+				// El número de piñones de las bicicletas.
+				//												(argumentos precedentes)	(el número de platos)
+				//                                                               ^              ^
+				Integer numeropinhones = Integer.valueOf(args[indicedeargumentos+3+numeroplatos+1]);
 				
-				int i = 0;
-				while ( i < numeroplatos ) {
-					cambiodeplato[i] = Integer.valueOf(args[3+i+1]);
+				// Se comprueba que los argumentos sean en número de ellos esperado.
+				//				(argumentos 1ºs) (dientes y		  (dientes y  (radio de la rueda)
+				//								  nº de platos)	 nº piñones)
+				//					^				 ^					^   ----------^
+				if ( args.length == 3 + numeroplatos+1 + numeropinhones+1 + 1) {
+
+					numerociclistas = Integer.valueOf(args[indicedeargumentos]);
+					ficherocomandos = args[++indicedeargumentos];
+					unidadtiempo = Integer.valueOf(args[++indicedeargumentos]);
 					
-					i++;
+					// Array que contiene los dientes de los platos.
+					cambiodeplato = new Integer[numeroplatos];
+					
+					indicedeargumentos++;
+					
+					// Indice que determina hasta donde son dientes de platos en el array de argumentos.
+					int topedientes = indicedeargumentos+numeroplatos;
+					
+					// Indice del array de dientes de platos.
+					int indicerelativo = 0;
+					while ( indicedeargumentos < topedientes ) {
+						
+						cambiodeplato[indicerelativo] = Integer.valueOf(args[++indicedeargumentos]);
+						
+						indicerelativo++;
+					}
+					
+					cambiodepinhon = new Integer[numeropinhones];
+					
+					indicedeargumentos++;
+					
+					// Indice que determina hasta donde son dientes de piónes en el array de argumentos.
+					topedientes = indicedeargumentos+numeropinhones;
+					
+					// Indice del array de dientes de platos.
+					indicerelativo = 0;
+					while ( indicedeargumentos < topedientes ) {
+						
+						cambiodepinhon[indicerelativo] = Integer.valueOf(args[++indicedeargumentos]);
+						
+						indicerelativo++;
+					}
+		 		 	
+					radiorueda = Double.valueOf(args[++indicedeargumentos]);
 				}
 				
-				Integer numeropinhones = Integer.valueOf(++i);
- 				
-				cambiodepinhon = new Integer[numeropinhones];
-				
-	 		 	while ( i < numeropinhones ) {
-	 		 		cambiodepinhon[i] = Integer.valueOf(args[i+1]);
-				 
-	 		 		i++;
-	 		 	}
-	 		 	
-				radiorueda = Double.valueOf(args[5]);
-				
+				VariablesDeContexto.MAX_CICLISTAS = numerociclistas;
+				VariablesDeContexto.UNIDAD_TIEMPO = unidadtiempo;
+				VariablesDeContexto.FILE_COMMAND_PATH = ficherocomandos;
+				VariablesDeContexto.RADIO_RUEDA = radiorueda;
+			
 			} catch (NumberFormatException ne) {
 				System.out.println("Datos de entrada incorrectos.");
 			}
 		} else {
 			ayuda();
 		}
-		
-		VariablesDeContexto.MAX_CICLISTAS = numerociclistas;
-		VariablesDeContexto.UNIDAD_TIEMPO = unidadtiempo;
-		VariablesDeContexto.FILE_COMMAND_PATH = ficherocomandos;
-		VariablesDeContexto.RADIO_RUEDA = radiorueda;
 	}
 
 	/**
