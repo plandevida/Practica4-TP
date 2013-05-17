@@ -51,7 +51,7 @@ public class TestCiclista {
 		
 		utilidadesBicicleta = new TestUtilidadesBicicleta();
 		
-		relojciclista = new RelojMock();
+		relojciclista = RelojMock.getInstance();
 		
 		bicicletaciclista = new BicicletaMock();
 		

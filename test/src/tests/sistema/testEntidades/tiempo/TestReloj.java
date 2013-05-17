@@ -21,7 +21,7 @@ public class TestReloj {
 	@Before
 	public void run() {
 			
-		reloj = new RelojMock();
+		reloj = RelojMock.getInstance();
 		
 	}
 	

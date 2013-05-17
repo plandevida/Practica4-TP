@@ -2,11 +2,10 @@ package src.tests.sistema.entidadesmock.tiempo;
 
 import java.util.StringTokenizer;
 
-import sistema.entidades.tiempo.Contador;
 import sistema.interfaces.ObjetosConSalidaDeDatos;
+import sistema.manager.VariablesDeContexto;
 
-
-public class RelojMock extends Contador implements ObjetosConSalidaDeDatos {
+public class RelojMock extends ContadorMock implements ObjetosConSalidaDeDatos {
 	
 	// Los milisegundos que lleva.
 	private int milisegundos;
@@ -20,12 +19,25 @@ public class RelojMock extends Contador implements ObjetosConSalidaDeDatos {
 	// Las horas que lleva, es la unidad mas grande del programa
 	private int horas;
 	
-	public RelojMock() {
+	// Instancia del reloj usando el patrón singleton
+	private static RelojMock INSTANCIA = null;
+	
+	private RelojMock() {
 		milisegundos = 0;
 		segundos = 0;
 		minutos = 0;
 		horas = 0;
 	}
+	
+	public static RelojMock getInstance() {
+		
+		if ( INSTANCIA == null ) {
+			INSTANCIA = new RelojMock();
+		}
+		
+		return INSTANCIA;
+	}
+	
 	/**
 	 * Metodo que sirve para contabilizar el tiempo.
 	 * 
@@ -43,7 +55,7 @@ public class RelojMock extends Contador implements ObjetosConSalidaDeDatos {
 	@Override
 	public void nuevoImpulso() {
 		
-		if (++impulsos >= 100) {
+		if (++impulsos >= VariablesDeContexto.UNIDAD_TIEMPO) {
 			impulsos = 0;
 			if (++milisegundos >= 1000) {
 				milisegundos = 0;
