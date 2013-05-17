@@ -19,12 +19,25 @@ public class Reloj extends Contador implements ObjetosConSalidaDeDatos {
 	// Las horas que lleva, es la unidad mas grande del programa
 	private int horas;
 	
-	public Reloj() {
+	// Instancia del reloj usando el patrón singleton
+	private static Reloj INSTANCIA = null;
+	
+	private Reloj() {
 		milisegundos = 0;
 		segundos = 0;
 		minutos = 0;
 		horas = 0;
 	}
+	
+	public static Reloj getInstance() {
+		
+		if ( INSTANCIA == null ) {
+			INSTANCIA = new Reloj();
+		}
+		
+		return INSTANCIA;
+	}
+	
 	/**
 	 * Metodo que sirve para contabilizar el tiempo.
 	 * 

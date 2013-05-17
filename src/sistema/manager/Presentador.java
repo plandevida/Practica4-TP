@@ -33,23 +33,6 @@ public class Presentador {
 	
 	// Ordenes del parser y el sistema.
 	private Orden[] ordenes;
-
-	/**
-	 * Permisos del presentador sobre los elementos compartidos.
-	 * 
-	 * 0 = lista de ciclistas
-	 * 1 = lista de objetos que se muestran
-	 * 2 = mapa meteorologico
-	 * 3 = reloj del sistema
-	 * 4 = ordenes del sistema
-	 */
-	public static final String[] permisos = {
-			"LISTACICLISTAS",
-			"LISTAOBJETOSVISTA",
-			"MAPAMETEOROLOGICO",
-			"RELOJ",
-			"ORDENES"
-	};
 	
 	/**
 	 * Constructor que define todos los elementos del presentador.
@@ -74,27 +57,17 @@ public class Presentador {
 
 	/**
 	 * Provee acceso a la lista de ciclistas.
-	 * Solo las clases con el permiso adecuado pueden acceder a la lista.
 	 * 
-	 * @param orden La orden que solicita un ciclista
 	 * @param identificadorciclista El id del ciclista (número de mallot).
 	 * @return La lista de cilistas, si no tiene permiso la clase devolverá null.
 	 */
-	public Ciclista getciclista(Orden orden, int identificadorciclista) {
-		
-		String[] permisosdelaorden = orden.misPermisos();
+	public Ciclista getCiclista(int identificadorciclista) {
 
 		Ciclista ciclista = null;
-		
-		for (int i = 0; (i < permisosdelaorden.length) && ciclista == null; i++) {
-			
-			if (permisos[0].equals(permisosdelaorden[i])) {
 				
-				for (Ciclista c : listadeciclistas) {
-					
-					ciclista = (c.getNumeromallot() == identificadorciclista) ? c : null;
-				}
-			}
+		for (Ciclista c : listadeciclistas) {
+			
+			ciclista = (c.getNumeromallot() == identificadorciclista) ? c : null;
 		}
 		
 		return ciclista;
@@ -102,90 +75,42 @@ public class Presentador {
 
 	/**
 	 * Provee acceso a la lista de objetos que se presentan en las vista.
-	 * Solo las clases con el permiso adecuado pueden acceder a la lista.
 	 * 
 	 * @param vista El componenete que maneja los datos en la vista.
 	 * @return La lista de objetos a mostrar,
-	 * si no tiene permiso la clase devolverá null.
 	 */
 	public List<ObjetosConSalidaDeDatos> getListadeobjetosamostarenvista(InterfaceSalidaDatos vista) {
-
-		String[] permisosdelaorden = vista.misPermisos();
 		
-		boolean sepermiteelacceso = false;
-		
-		for (int i = 0; (i < permisosdelaorden.length) && !sepermiteelacceso; i++) {
-			if ( permisos[1].equals(permisosdelaorden[i]) ) {
-				sepermiteelacceso = true;
-			}
-		}
-		
-		return sepermiteelacceso ? listadeobjetosamostarenvista : null;
+		return listadeobjetosamostarenvista;
 	}
 
 	/**
 	 * Provee acceso al mapa meteorológico del sistema.
-	 * Solo las clases con el permiso adecuado pueden acceder a la lista.
 	 * 
-	 * @param orden La orden que solicita el mapa meteorológico.
 	 * @return El mapa meteorológico, si no tiene permiso la clase devolverá null.
 	 */
-	public Map<Integer, Map<MiViento, Double>> getMapametereológico(Orden orden) {
+	public Map<Integer, Map<MiViento, Double>> getMapametereológico() {
 		
-		String[] permisosdelaorden = orden.misPermisos();
-		
-		boolean sepermiteelacceso = false;
-		
-		for (int i = 0; (i < permisosdelaorden.length) && !sepermiteelacceso; i++) {
-			if ( permisos[2].equals(permisosdelaorden[i]) ) {
-				sepermiteelacceso = true;
-			}
-		}
-		
-		return sepermiteelacceso ? mapameteorologico : null;
+		return mapameteorologico;
 	}
 	
 	/**
 	 * Provee acceso al reloj del sistema.
-	 * Solo las clases con el permiso adecuado pueden acceder a la lista.
 	 * 
-	 * @param orden La orden que solicita el reloj.
 	 * @return El reloj del sistema.
 	 */
-	public Reloj getReloj(Orden orden) {
+	public Reloj getReloj() {
 		
-		String[] permisosdelaorden = orden.misPermisos();
-		
-		boolean sepermiteelacceso = false;
-		
-		for (int i = 0; (i < permisosdelaorden.length) && !sepermiteelacceso; i++) {
-			if ( permisos[3].equals(permisosdelaorden[i]) ) {
-				sepermiteelacceso = true;
-			}
-		}
-		
-		return sepermiteelacceso ? reloj : null;
+		return reloj;
 	}
 	
 	/**
 	 * Provee acceso a la lista de ordenes del sistema.
-	 * Solo las clases con el permiso adecuado pueden acceder a las ordenes.
 	 * 
-	 * @param orden La orden que solicita la lista de ordenes.
 	 * @return La lista de ordenes aceptada por el sistema.
 	 */
-	public Orden[] getOrdenes(Orden orden) {
+	public Orden[] getOrdenes() {
 		
-		String[] permisosdelaorden = orden.misPermisos();
-		
-		boolean sepermiteelacceso = false;
-		
-		for (int i = 0; (i < permisosdelaorden.length) && !sepermiteelacceso; i++) {
-			if ( permisos[4].equals(permisosdelaorden[i])) {
-				sepermiteelacceso = true;
-			}
-		}
-		
-		return sepermiteelacceso ? ordenes : null;
+		return ordenes;
 	}
 }

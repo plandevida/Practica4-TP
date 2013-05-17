@@ -108,18 +108,12 @@ public class OrdenCambiaViento extends Orden {
 	@Override
 	public void configurarContexto(Presentador presentador) {
 		
-		mapameteorologico = presentador.getMapametereológico(this);
+		mapameteorologico = presentador.getMapametereológico();
 	}
 
 	@Override
 	public String help(boolean detalles) {
 		
 		return "viento <HORA> <TIPO> <KM/H>";
-	}
-
-	@Override
-	public String[] misPermisos() {
-		
-		return new String[]{ Presentador.permisos[2], Presentador.permisos[3] };
 	}
 }

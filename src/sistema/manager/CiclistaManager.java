@@ -131,7 +131,7 @@ public class CiclistaManager {
 		listaejecutables = new ArrayList<ObjetosQueSeEjecutan>();
 		listasalidadatos = new ArrayList<ObjetosConSalidaDeDatos>();
 
-		reloj = new Reloj();
+		reloj = Reloj.getInstance();
 		ciclistas = new ArrayList<Ciclista>();
 		bicicletas = new ArrayList<Bicicleta>();
 

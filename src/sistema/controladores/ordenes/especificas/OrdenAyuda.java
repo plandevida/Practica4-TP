@@ -64,18 +64,12 @@ public class OrdenAyuda extends Orden {
 	@Override
 	public void configurarContexto(Presentador presentador) {
 		
-		ordenes = presentador.getOrdenes(this);
+		ordenes = presentador.getOrdenes();
 	}
 
 	@Override
 	public String help(boolean detalles) {
 		
 		return "ayuda";
-	}
-
-	@Override
-	public String[] misPermisos() {
-		
-		return new String[]{ "ORDENES" };
 	}
 }

@@ -106,7 +106,7 @@ public class OrdenAsingarCadencia extends OrdenParaCiclista {
 	@Override
 	public void configurarContexto(Presentador presentador) {
 		
-		Ciclista ciclista = presentador.getciclista(this, idciclista);
+		Ciclista ciclista = presentador.getCiclista(idciclista);
 		
 		// Si la orden tiene permisos sobre los ciclistas
 		// buscamos cual es el que le corresponde.

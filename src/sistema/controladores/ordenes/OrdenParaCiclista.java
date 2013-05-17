@@ -1,7 +1,6 @@
 package sistema.controladores.ordenes;
 
 import sistema.entidades.personas.ciclistas.Ciclista;
-import sistema.manager.Presentador;
 
 /**
  * Orden solo para los ciclistas.
@@ -31,10 +30,5 @@ public abstract class OrdenParaCiclista extends Orden {
 	 */
 	protected Ciclista getCiclista() {
 		return ciclista;
-	}
-	
-	public String[] misPermisos() {
-		
-		return new String[] { Presentador.permisos[0] };
 	}
 }

@@ -24,11 +24,4 @@ public interface InterfaceSalidaDatos {
 	 * Muestra la salida de datos personalizada para cada tipo de elemento.
 	 */
 	public void mostrarDatos();
-	
-	/**
-	 * Devuelve los permisos de la clase.
-	 * 
-	 * @return Clases o recursos sobre los que tiene permisos.
-	 */
-	public abstract String[] misPermisos();
 }
