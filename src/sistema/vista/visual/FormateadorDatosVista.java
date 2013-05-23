@@ -7,25 +7,24 @@ import java.util.StringTokenizer;
 import sistema.interfaces.ObjetosConSalidaDeDatos;
 import sistema.interfaces.ObjetosQueSeEjecutan;
 import sistema.vista.InterfaceSalidaDatos;
-import sistema.vista.VentanaJL;
 
 public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSeEjecutan {
 
 	// Lista de objetos que se van a mostrar
 	private List<ObjetosConSalidaDeDatos> registroobjetossalidadatos;
-//	private Ventana vista;
+	private Ventana vista;
 	
-	private VentanaJL vista;
+//	private VentanaJL vista;
 	
-	/*public FormateadorDatosVista(List<ObjetosConSalidaDeDatos> listadeobjetosamostrar, Ventana ventana) {
-		registroobjetossalidadatos = listadeobjetosamostrar;
-		vista = ventana;
-	}*/
-	
-	public FormateadorDatosVista(List<ObjetosConSalidaDeDatos> listadeobjetosamostrar, VentanaJL ventana) {
+	public FormateadorDatosVista(List<ObjetosConSalidaDeDatos> listadeobjetosamostrar, Ventana ventana) {
 		registroobjetossalidadatos = listadeobjetosamostrar;
 		vista = ventana;
 	}
+	
+//	public FormateadorDatosVista(List<ObjetosConSalidaDeDatos> listadeobjetosamostrar, VentanaJL ventana) {
+//		registroobjetossalidadatos = listadeobjetosamostrar;
+//		vista = ventana;
+//	}
 	
 	@Override
 	public void registrarObjetoConSalidaDatos(ObjetosConSalidaDeDatos objetoconsalidadatos) {
@@ -78,30 +77,23 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 
 		// Caso para el formato reloj
 		case "#reloj#":
-//			datos.append((String) mensaje.nextToken()).append("h ")
-//					.append((String) mensaje.nextToken())
-//					.append("m ")
-//					.append((String) mensaje.nextToken())
-//					.append("s ")
-//					.append((String) mensaje.nextToken())
-//					.append("ms ")
-//					.append((String) mensaje.nextToken())
-//					.append(" impulsos");
 			
-			Integer hora = Integer.valueOf(mensaje.nextToken());
-			Integer minutos = Integer.valueOf(mensaje.nextToken());
-			Integer segundos = Integer.valueOf(mensaje.nextToken());
-			Integer milisegundos = Integer.valueOf(mensaje.nextToken());
-			
-			vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), hora, minutos, segundos, milisegundos);
+			try {
+				Integer hora = Integer.valueOf(mensaje.nextToken());
+				Integer minutos = Integer.valueOf(mensaje.nextToken());
+				Integer segundos = Integer.valueOf(mensaje.nextToken());
+				Integer milisegundos = Integer.valueOf(mensaje.nextToken());
+				
+				vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), hora, minutos, segundos, milisegundos);
+			} catch (NumberFormatException ne) {
+				vista.ponerDatosEnVentana("log", mensaje);
+			}
 			
 			break;
 
 		default:
 			break;
 		}
-		
-//		return datos.toString();
 	}
 
 	@Override

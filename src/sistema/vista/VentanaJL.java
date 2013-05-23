@@ -26,9 +26,9 @@ import sistema.interfaces.ObjetosQueSeEjecutan;
  */
 public class VentanaJL extends JFrame implements ObjetosQueSeEjecutan {
 
-    private Dispatcher comandero;
-
     private static final long serialVersionUID = -8170475180669923771L;
+    
+    private Dispatcher comandero;
 
     private JPanel contentPane;
     private JPanel contentPrincipal;

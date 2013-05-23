@@ -124,7 +124,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 */
 	public void calcularPeriodo() {
 		
-		periodo = (cadencia >= 0) ? 1/(cadencia/60) : 0;
+		periodo = (cadencia >= 60) ? 1/(cadencia/60) : 0;
 		
 		if (periodo < tiempopedalada) {
 			tiempopedalada = periodo;

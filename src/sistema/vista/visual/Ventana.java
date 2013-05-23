@@ -211,34 +211,41 @@ public class Ventana extends JFrame {
 	 * si fuese necesario.
 	 * 
 	 * @param id Objeto que mostrará sus datos.
-	 * @param mensaje Los datos formateados a poner en el área.
+	 * @param mensajes Los datos formateados a poner en el área.
 	 */
-	public void ponerDatosEnVentana(String id, Object... mensaje) {
+	public void ponerDatosEnVentana(String id, Object... mensajes) {
 		JTextComponent componenteexistente = null;
 		
 		switch(id) {
 		case "ruloj":
 			
-			int hora = (Integer) mensaje[0];
-			int minuto = (Integer) mensaje[1];
-			int segundo = (Integer) mensaje[2];
+			int hora = (Integer) mensajes[0];
+			int minuto = (Integer) mensajes[1];
+			int segundo = (Integer) mensajes[2];
 			
 			relojGrafico.setTime(segundo, minuto, hora);
 			
 			break;
+		case "ayudaMain":
+			
+//			tFconsola.setText(tFconsola.getText()
+//					+ "CiclistaManager <número_ciclistas> <fichero_comandos> <unidad_tiempo> "
+//					+ "<número_platos> <dientes_plato (separados por espacios)> <número_piñones>"
+//					+ " <dientes_piñones (separados por espacios)> <radio_rueda>");
+			break;
 		default:
 			for (JTextComponent componente : componenetescreados) {
 				if (componente.getName().equals(id)) {
-					componente.setText( (String) mensaje[0]);
+					componente.setText( (String) mensajes[0]);
 					
 					componenteexistente = componente;
 				}
 			}
 			
 			if (componenteexistente == null) {
-//				anadirTextArea(id);
-//				
-//				ponerDatosEnVentana(id, mensaje);
+				anadirTextArea(id);
+				
+				ponerDatosEnVentana(id, mensajes);
 			}
 			break;
 		}

@@ -25,8 +25,8 @@ import sistema.factoresexternos.viento.MiViento;
 import sistema.interfaces.ObjetosConSalidaDeDatos;
 import sistema.interfaces.ObjetosQueSeEjecutan;
 import sistema.vista.Lienzo;
-import sistema.vista.VentanaJL;
 import sistema.vista.visual.FormateadorDatosVista;
+import sistema.vista.visual.Ventana;
 
 /**
  * Clase principal que inicia la aplicación.
@@ -50,7 +50,7 @@ public class CiclistaManager {
 	private Reloj reloj;
 
 	// Vistas del sistema.
-	private VentanaJL ventana;
+	private Ventana ventana;
 	private Lienzo lienzo;
 	private FormateadorDatosVista formateador;
 
@@ -77,7 +77,8 @@ public class CiclistaManager {
 				@Override
 				public void run() {
 					
-					ventana = new VentanaJL(dispatcher, lienzo);
+//					ventana = new VentanaJL(dispatcher, lienzo);
+					ventana = new Ventana(dispatcher);
 				}
 			});
 		} catch (InvocationTargetException e) {
@@ -207,7 +208,7 @@ public class CiclistaManager {
 	}
 	
 	private void ayuda() {
-		ventana.ponerDatosEnVentana("#ayudaMain", "");
+		ventana.ponerDatosEnVentana("ayudaMain", "");
 	}
 	
 	/**
