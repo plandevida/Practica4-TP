@@ -1,5 +1,7 @@
 package sistema.manager;
 
+import sistema.factoresexternos.viento.MiViento;
+
 public class VariablesDeContexto {
 	
 	// Contexto de los ficheros del sistema.
@@ -17,8 +19,10 @@ public class VariablesDeContexto {
 	// del array y su valor es el número de dientes del plato
 	public static int[] PLATOS = new int[] { 30, 40, 50 };
 	
-	public static double FUERZA_GRAVEDAD = 9.80665;
-    public static double MASA_BICICLETA = 0.7138;
+	public static MiViento direcionvientoinicial = MiViento.NULO;
+	public static double velocidadvientoinicial = 0d;
+	public static double FUERZA_GRAVEDAD = 9.80665d;
+    public static double MASA_BICICLETA = 0.7138d;
     public static int MAX_CICLISTAS = 6;
     public static int MAX_CADENCIA = 120;
     

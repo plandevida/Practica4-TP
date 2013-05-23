@@ -135,7 +135,8 @@ public class CiclistaManager {
 		ciclistas = new ArrayList<Ciclista>();
 		bicicletas = new ArrayList<Bicicleta>();
 
-		factoresexternos = new FactoresExternos(bicicletas, carreteradecarreraciclsta);
+		// Se generan internamente un objeto Eolo y Curviolo
+		factoresexternos = new FactoresExternos(bicicletas, carreteradecarreraciclsta, null, null);
 
 		try {
 			// Generador de nombres basado en silabas, con prefijos y sufijos.

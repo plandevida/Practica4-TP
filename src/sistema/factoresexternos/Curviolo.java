@@ -30,8 +30,8 @@ public class Curviolo implements ObjetosQueSeEjecutan {
 					double espaciorecorridoporciclista = ciclista.getBicicletamontada().getEspacioRecorrido();
 					
 					// TODO calcular la distancia necesaria para frenar hasta la velocidad de la curva
-					//																		^
-					if (espaciorecorridoporciclista >= curva.getPuntokilometrico() - Constantes.DISTANCIA_FRENADO && espaciorecorridoporciclista < curva.getPuntokilometrico()) {
+					//															     ^
+					if (espaciorecorridoporciclista >= curva.getPuntokilometrico() - 5 && espaciorecorridoporciclista < curva.getPuntokilometrico()) {
 					
 						ciclista.setEstrellado(true);
 					}

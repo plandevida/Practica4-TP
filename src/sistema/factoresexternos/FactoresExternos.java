@@ -15,98 +15,24 @@ import sistema.interfaces.ObjetosQueSeEjecutan;
 public class FactoresExternos implements ObjetosQueSeEjecutan {
 	
 	private List<Bicicleta> bicicletas;
+	private Eolo eolo;
+	private Curviolo curviolo;
 	
 	//Mapa de la carretera
 	private Map<Integer, TramoCarrera> carreteradecarreraciclista;
 	
-	public FactoresExternos(List<Bicicleta> bicis, Map<Integer, TramoCarrera> carreteradecarreraciclista) {
+	public FactoresExternos(List<Bicicleta> bicis, Map<Integer, TramoCarrera> carreteradecarreraciclista, Eolo nuevoEolo, Curviolo nuevoCurviolo) {
 		
 		this.bicicletas = bicis;
 		this.carreteradecarreraciclista = carreteradecarreraciclista;
+		
+		eolo = nuevoEolo != null ? nuevoEolo : new Eolo(bicicletas, this.carreteradecarreraciclista);
+		curviolo = nuevoCurviolo != null ? nuevoCurviolo : new Curviolo();
 	}
-	
-	/**
-	 *  Busca el tramo en el que se encuentra la bici 
-	 * @return devuelve el tramo
-	 */
-	private TramoCarrera tramoActual() {
-		
-		TramoCarrera tramo = new TramoCarrera(0, 0, null, 0);
-		
-		for(Bicicleta bici : bicicletas) {
-			for(Integer reco : carreteradecarreraciclista.keySet()) {
-	
-				if ( carreteradecarreraciclista.get(reco).getKilometros() <= (int) bici.getEspacioRecorrido() ) {
-					tramo = carreteradecarreraciclista.get(reco);
-				}
-			}
-		}
-		
-		return tramo;
-	}
-	
-	/**
-	 * Calcular el factor de la pendiente, gracias al angulo de la pendiente 
-	 * 
-	 * @return devuelve el factorpendiente
-	 */
-	private double pendienteTramoActual() {
-		
-		int angulograd = 0;
-		double angulorad = 0d;
-		double factorpendiente = 0d;
-		
-		TramoCarrera tramo = tramoActual();
-		
-		angulograd = tramo.getPendiente();
-		angulorad = (angulograd * Math.PI)/180;
-		
-
-		factorpendiente = Math.cos(angulorad);
-		
-		if (angulograd < 0) {
-			factorpendiente = factorpendiente + 1d;
-
-		}
-
-		
-		return factorpendiente;
-	}
-	
-	/**
-	 * Mira el viento que hay en el tramo actual y devuelve un factor
-	 * 
-	 * @return devuelve un porcentaje calculado a traves del viento y su direccion
-	 */
-	private double vientoTramoActual(){
-		
-		TramoCarrera tramo = tramoActual();
-		
-		
-		int direccionviento = tramo.getViento().getFactor();
-		
-		double velocidadviento = tramo.getVelocidadViento();
-		
-		return (double)(direccionviento * velocidadviento)/10;
-		
-	}
-
-	/**
-	 * Modifica la velocidad de la bicicleta dependiendo de los factores externos de la carretera
-	 * 
-	 */
-	private void setVientoPendienteModificada() {
-
-		for(Bicicleta bici : bicicletas) {
-			bici.setPendiente(pendienteTramoActual()) ;
-			
-			bici.setViento(vientoTramoActual());
-		}
-	}
-
 
 	@Override
 	public void ejecuta() {
-		setVientoPendienteModificada();
+		eolo.ejecuta();
+		curviolo.ejecuta();
 	}
 }
