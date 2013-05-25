@@ -27,6 +27,7 @@ import sistema.interfaces.ObjetosQueSeEjecutan;
 import sistema.vista.Lienzo;
 import sistema.vista.visual.FormateadorDatosVista;
 import sistema.vista.visual.Ventana;
+import sistema.vista.visual.VentanaConEditor;
 
 /**
  * Clase principal que inicia la aplicación.
@@ -50,7 +51,7 @@ public class CiclistaManager {
 	private Reloj reloj;
 
 	// Vistas del sistema.
-	private Ventana ventana;
+	private VentanaConEditor ventana;
 	private Lienzo lienzo;
 	private FormateadorDatosVista formateador;
 
@@ -78,7 +79,7 @@ public class CiclistaManager {
 				public void run() {
 					
 //					ventana = new VentanaJL(dispatcher, lienzo);
-					ventana = new Ventana(dispatcher);
+					ventana = new VentanaConEditor(dispatcher);
 				}
 			});
 		} catch (InvocationTargetException e) {

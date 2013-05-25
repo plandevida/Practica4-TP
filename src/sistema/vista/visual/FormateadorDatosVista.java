@@ -12,11 +12,17 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 
 	// Lista de objetos que se van a mostrar
 	private List<ObjetosConSalidaDeDatos> registroobjetossalidadatos;
-	private Ventana vista;
+//	private Ventana vista;
 	
 //	private VentanaJL vista;
+	private VentanaConEditor vista;
 	
-	public FormateadorDatosVista(List<ObjetosConSalidaDeDatos> listadeobjetosamostrar, Ventana ventana) {
+//	public FormateadorDatosVista(List<ObjetosConSalidaDeDatos> listadeobjetosamostrar, Ventana ventana) {
+//		registroobjetossalidadatos = listadeobjetosamostrar;
+//		vista = ventana;
+//	}
+	
+	public FormateadorDatosVista(List<ObjetosConSalidaDeDatos> listadeobjetosamostrar, VentanaConEditor ventana) {
 		registroobjetossalidadatos = listadeobjetosamostrar;
 		vista = ventana;
 	}
