@@ -22,13 +22,14 @@ public class FactoresExternos implements ObjetosQueSeEjecutan {
 	//Mapa de la carretera
 	private Map<Integer, TramoCarrera> carreteradecarreraciclista;
 	
-	public FactoresExternos(List<Bicicleta> bicis, Map<Integer, TramoCarrera> carreteradecarreraciclista, Eolo nuevoEolo, Curviolo nuevoCurviolo) {
+	public FactoresExternos(List<Bicicleta> bicis, Map<Integer, TramoCarrera> carreteradecarreraciclista, Eolo nuevoEolo, Curviolo nuevoCurviolo, Pendiolo nuevoPendiolo) {
 		
 		this.bicicletas = bicis;
 		this.carreteradecarreraciclista = carreteradecarreraciclista;
 		
 		eolo = nuevoEolo != null ? nuevoEolo : new Eolo(bicicletas);
 		curviolo = nuevoCurviolo != null ? nuevoCurviolo : new Curviolo();
+		pendiolo = nuevoPendiolo != null ? nuevoPendiolo : new Pendiolo(bicicletas);
 	}
 	/**
 	 *  Busca el tramo en el que se encuentra la bici 
