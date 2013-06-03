@@ -113,7 +113,7 @@ public class BicicletaMock extends Vehiculo implements ObjetosConSalidaDeDatos {
 		//velocidad = velocidad + velocidad*factorviento;
 		setEspacioRecorrido(espacioDePedalada());
 		double velocidad = getVelocidad() + aceleracion*1; 
-		setVelocidadIncremento(velocidad);
+		setVelocidad(velocidad);
 	}
 	
 	/**
@@ -126,7 +126,7 @@ public class BicicletaMock extends Vehiculo implements ObjetosConSalidaDeDatos {
 		
 		double decrementovelocidad = velocidad * 0.2;
 		
-		setVelocidadIncremento(getVelocidad()-decrementovelocidad);
+		setVelocidad(getVelocidad()-decrementovelocidad);
 	}
 	
 	/**

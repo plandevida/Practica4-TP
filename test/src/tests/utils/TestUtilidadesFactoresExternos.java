@@ -90,7 +90,7 @@ public class TestUtilidadesFactoresExternos {
 		
 		velocidad = velocidad + velocidad * vientoTramoActual();
 		
-		bici.setVelocidadIncremento(velocidad);
+		bici.setVelocidad(velocidad);
 	}
 	/**
 	 * Ejecuta los factores externos
