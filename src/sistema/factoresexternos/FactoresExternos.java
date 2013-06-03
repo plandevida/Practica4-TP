@@ -17,6 +17,7 @@ public class FactoresExternos implements ObjetosQueSeEjecutan {
 	private List<Bicicleta> bicicletas;
 	private Eolo eolo;
 	private Curviolo curviolo;
+	private Pendiolo pendiolo;
 	
 	//Mapa de la carretera
 	private Map<Integer, TramoCarrera> carreteradecarreraciclista;
@@ -26,13 +27,33 @@ public class FactoresExternos implements ObjetosQueSeEjecutan {
 		this.bicicletas = bicis;
 		this.carreteradecarreraciclista = carreteradecarreraciclista;
 		
-		eolo = nuevoEolo != null ? nuevoEolo : new Eolo(bicicletas, this.carreteradecarreraciclista);
+		eolo = nuevoEolo != null ? nuevoEolo : new Eolo(bicicletas);
 		curviolo = nuevoCurviolo != null ? nuevoCurviolo : new Curviolo();
 	}
-
+	/**
+	 *  Busca el tramo en el que se encuentra la bici 
+	 * @return devuelve el tramo
+	 */
+	private TramoCarrera tramoActual() {
+		
+		TramoCarrera tramo = new TramoCarrera(0, 0, null, 0);
+		
+		for(Bicicleta bici : bicicletas) {
+			for(Integer reco : carreteradecarreraciclista.keySet()) {
+	
+				if ( carreteradecarreraciclista.get(reco).getKilometros() <= (int) bici.getEspacioRecorrido() ) {
+					tramo = carreteradecarreraciclista.get(reco);
+				}
+			}
+		}
+		
+		return tramo;
+	}
 	@Override
 	public void ejecuta() {
-		eolo.ejecuta();
+		eolo.setVientoModificado(tramoActual());
+		pendiolo.setPendienteodificado(tramoActual());
 		curviolo.ejecuta();
+		
 	}
 }

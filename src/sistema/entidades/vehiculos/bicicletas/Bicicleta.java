@@ -132,6 +132,8 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 			setVelocidadIncremento(velocidad);
 		}
 		
+		else setVelocidadIncremento(velocidadmaxima(tiempopedalada));
+		
 		setEspacioRecorrido(espacioDePedalada());
 		
 		return ((peso/10 + pesociclista/10)*aceleracion);
