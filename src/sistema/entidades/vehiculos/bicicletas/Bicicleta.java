@@ -23,9 +23,9 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	
 	protected double radiorueda;
 	
-	protected double factorpendiente;
+	protected double aceleracionpendiente;
 	
-	protected double factorviento;
+	protected double aceleracionviento;
 	
 	protected int peso;
 	
@@ -37,8 +37,8 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 		setPlatoactual(0);
 		radiorueda = VariablesDeContexto.RADIO_RUEDA;
 		peso = 10;
-		factorpendiente = 1;
-		factorviento = 0;
+		aceleracionpendiente = 1;
+		aceleracionviento = 0;
 	}
 
 	/**
@@ -125,15 +125,16 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 		
 		//velocidad = velocidad * factorpendiente;
 		//velocidad = velocidad + velocidad*factorviento;
-		
+		double aceleracionfactores = aceleracionpendiente + aceleracionviento;
 		double velocidad = getVelocidad() + aceleracion*1; 
 		
-		if (velocidad < velocidadmaxima(tiempopedalada)){
-			setVelocidadIncremento(velocidad);
+		if (velocidad > velocidadmaxima(tiempopedalada)){
+			velocidad = velocidadmaxima(tiempopedalada);
 		}
 		
-		else setVelocidadIncremento(velocidadmaxima(tiempopedalada));
+		velocidad = velocidad + aceleracionfactores*1;
 		
+		setVelocidad(velocidad);
 		setEspacioRecorrido(espacioDePedalada());
 		
 		return ((peso/10 + pesociclista/10)*aceleracion);
@@ -149,7 +150,7 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 		
 		double decrementovelocidad = velocidad * 0.2;
 		
-		setVelocidadIncremento(getVelocidad()-decrementovelocidad);
+		setVelocidad(getVelocidad()-decrementovelocidad);
 	}
 	
 	/**
@@ -268,18 +269,18 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	}
 
 	public double getPendiente() {
-		return factorpendiente;
+		return aceleracionpendiente;
 	}
 
 	public void setPendiente(double pendiente) {
-		this.factorpendiente = pendiente;
+		this.aceleracionpendiente = pendiente;
 	}
 
 	public double getViento() {
-		return factorviento;
+		return aceleracionviento;
 	}
 
 	public void setViento(double viento) {
-		this.factorviento = viento;
+		this.aceleracionviento = viento;
 	}
 }

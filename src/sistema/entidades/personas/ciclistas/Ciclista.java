@@ -134,11 +134,14 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	/**
 	 * Frena la bicicleta.
 	 */
-	public double frenar() {
+	public void frenar() {
+		if (reloj.getMilisegundos() != milisegundos) {
+			bicicletamontada.frenar();
 		
-		bicicletamontada.frenar();
+			milisegundos = reloj.getMilisegundos();
+		}
 		
-		return bicicletamontada.getVelocidad();
+		
 	}
 	
 	/**
