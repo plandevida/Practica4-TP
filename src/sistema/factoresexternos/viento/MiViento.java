@@ -16,10 +16,12 @@ public enum MiViento {
 	/**
 	 * factor que se usa para determinar la dirección de la velocidad del viento
 	 */
-	int factor;
+	private int factor;
+	private double velocidad;
 	
 	MiViento(int factorViento) {
 		factor = factorViento;
+		velocidad = 0;
 	}
 	
 	public static MiViento existe(String viento) {
@@ -44,5 +46,21 @@ public enum MiViento {
 	 */
 	public int getFactor() {
 		return factor;
+	}
+	
+	/**
+	 * Asigna una velocidad al viento.
+	 * @param velocidaddelviento La nueva velocidad del viento.
+	 */
+	public void setVelocidad(double velocidaddelviento) {
+		velocidad = velocidaddelviento;
+	}
+	
+	/**
+	 * Obtiene la velocidad del viento.
+	 * @return La velocidad.
+	 */
+	public double getVelocidad() {
+		return velocidad;
 	}
 }

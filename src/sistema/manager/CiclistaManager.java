@@ -20,13 +20,13 @@ import sistema.entidades.tiempo.Reloj;
 import sistema.entidades.vehiculos.bicicletas.Bicicleta;
 import sistema.entrada.lectura.LectorManager;
 import sistema.entrada.lectura.generadornombres.NameGenerator;
+import sistema.factoresexternos.Eolo;
 import sistema.factoresexternos.FactoresExternos;
 import sistema.factoresexternos.viento.MiViento;
 import sistema.interfaces.ObjetosConSalidaDeDatos;
 import sistema.interfaces.ObjetosQueSeEjecutan;
 import sistema.vista.Lienzo;
 import sistema.vista.visual.FormateadorDatosVista;
-import sistema.vista.visual.Ventana;
 import sistema.vista.visual.VentanaConEditor;
 
 /**
@@ -103,8 +103,7 @@ public class CiclistaManager {
 	/**
 	 * Construye el mapa con la configuración de la carrera ciclista.
 	 * 
-	 * @param datos
-	 *            Cadena con el contenido de la carrera ciclista.
+	 * @param datos Cadena con el contenido de la carrera ciclista.
 	 */
 	private void construirCarretera(String datos) {
 
@@ -120,9 +119,12 @@ public class CiclistaManager {
 	 * Construye el mapa meteorológico de la carrera ciclista.
 	 */
 	private void construirMapaDelTiempo() {
-		// TODO cargar de fichero el mapa de horas-viento-velocidad
 		
+		// TODO cargar de fichero el mapa de horas-viento-velocidad
 		mapameteorologico = new HashMap<Integer, Map<MiViento, Double>>();
+		
+		VariablesDeContexto.velocidadvientoinicial = 0;
+		VariablesDeContexto.direcionvientoinicial = MiViento.NULO;
 	}
 
 	/**
@@ -137,8 +139,8 @@ public class CiclistaManager {
 		ciclistas = new ArrayList<Ciclista>();
 		bicicletas = new ArrayList<Bicicleta>();
 
-		// Se generan internamente un objeto Eolo y Curviolo
-		factoresexternos = new FactoresExternos(bicicletas, carreteradecarreraciclsta, null, null,null);
+		Eolo eolo = new Eolo(bicicletas, reloj);
+		factoresexternos = new FactoresExternos(bicicletas, carreteradecarreraciclsta, eolo, null,null);
 
 		try {
 			// Generador de nombres basado en silabas, con prefijos y sufijos.
@@ -152,7 +154,7 @@ public class CiclistaManager {
 		for (int i = 0; i < VariablesDeContexto.MAX_CICLISTAS; i++) {
 			
 			Bicicleta bicicleta = new Bicicleta();
-			bicicleta.setId(i);
+//			bicicleta.setId(i);
 			
 			int cadencia = new Random().nextInt(120);
 			int peso = new Random().nextInt(70);
@@ -302,7 +304,7 @@ public class CiclistaManager {
 	}
 
 	/**
-	 * @param args
+	 * @param args Argumentos del sistema, esciba help para obtener una ayuda.
 	 */
 	public static void main(String[] args) {
 		
@@ -313,6 +315,7 @@ public class CiclistaManager {
 		manager.prepararArgumentos(args);
 		
 		manager.cargarConfiguracion();
+		manager.construirMapaDelTiempo();
 		manager.iniciar();
 		manager.ejecutar();
 		manager.finalizar();

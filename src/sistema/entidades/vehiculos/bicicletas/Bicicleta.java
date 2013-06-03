@@ -262,6 +262,7 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 		id = numerocorredor;
 	}
 	
+	@Override
 	public String getIdentificadorSalidaDatos() {
 		return "bicicleta " + id;
 	}

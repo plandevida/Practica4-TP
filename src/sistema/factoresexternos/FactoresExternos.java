@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import sistema.entidades.carretera.tramocarreraciclista.TramoCarrera;
+import sistema.entidades.tiempo.Reloj;
 import sistema.entidades.vehiculos.bicicletas.Bicicleta;
 import sistema.interfaces.ObjetosQueSeEjecutan;
 
@@ -27,7 +28,7 @@ public class FactoresExternos implements ObjetosQueSeEjecutan {
 		this.bicicletas = bicis;
 		this.carreteradecarreraciclista = carreteradecarreraciclista;
 		
-		eolo = nuevoEolo != null ? nuevoEolo : new Eolo(bicicletas);
+		eolo = nuevoEolo != null ? nuevoEolo : new Eolo(bicicletas, Reloj.getInstance());
 		curviolo = nuevoCurviolo != null ? nuevoCurviolo : new Curviolo();
 		pendiolo = nuevoPendiolo != null ? nuevoPendiolo : new Pendiolo(bicicletas);
 	}
@@ -52,9 +53,8 @@ public class FactoresExternos implements ObjetosQueSeEjecutan {
 	}
 	@Override
 	public void ejecuta() {
-		eolo.setVientoModificado(tramoActual());
+		eolo.setVientoModificado();
 		pendiolo.setPendienteodificado(tramoActual());
 		curviolo.ejecuta();
-		
 	}
 }

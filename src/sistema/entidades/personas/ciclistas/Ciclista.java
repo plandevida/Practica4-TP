@@ -63,7 +63,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 		numeromallot = nummallot;
 		this.tiempopedalada = tiempopedalada;
 		this.fuerza = fuerza;
-		bicicletamontada.setId(numeromallot);
+//		bicicletamontada.setId(numeromallot);
 		
 		calcularPeriodo();
 		contadorcandencia = 1;
