@@ -2,12 +2,16 @@ package sistema.vista.visual;
 
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -42,6 +46,9 @@ public class VentanaConEditor {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JComboBox<String> cbCiclistaActivo;
+	private JTextArea comandosArea;
+	private JTextArea registroArea;
+	private JProgressBar fuerzaBar;
 
 	private Dispatcher dispatcher;
 	private Lienzo lienzo;
@@ -61,8 +68,7 @@ public class VentanaConEditor {
 					
 					Presentador p = new Presentador(lc, new ArrayList<ObjetosConSalidaDeDatos>(), new HashMap<Integer, MiViento>(), Reloj.getInstance(), new Orden[]{});
 					
-					VentanaConEditor window = new VentanaConEditor(new Dispatcher(p, new ParseadorComandos()), new Lienzo(lc), lc);
-					window.frame.setVisible(true);
+					new VentanaConEditor(new Dispatcher(p, new ParseadorComandos()), new Lienzo(lc));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -71,23 +77,31 @@ public class VentanaConEditor {
 	}
 
 	/**
-	 * Create the application.
+	 * Crea la ventana.
+	 * 
+	 * @param miDispatcher
+	 * @param lienzocarrera
+	 * @param listaciclistas
 	 */
 	public VentanaConEditor(Dispatcher miDispatcher, Lienzo lienzocarrera, List<Ciclista> listaciclistas) {
 		
 		dispatcher = miDispatcher;
 		lienzo = lienzocarrera;
-		ciclistas = listaciclistas;
+		ciclistas = (listaciclistas != null) ? listaciclistas : new ArrayList<Ciclista>();
 		
 		initialize();
 		
 		prepararCiclistas(ciclistas);
 	}
 	
+	public VentanaConEditor(Dispatcher miDispatcher, Lienzo lienzocarrera) {
+		initialize();
+	}
+	
 	/**
 	 * Mete los ciclista en el combo.
 	 */
-	public void prepararCiclistas(List<Ciclista> ciclistaapreparar) {
+	private void prepararCiclistas(List<Ciclista> ciclistaapreparar) {
 		
 		if ( ciclistaapreparar != null) {
 			for( Ciclista c : ciclistaapreparar ) {
@@ -98,6 +112,17 @@ public class VentanaConEditor {
 				cbCiclistaActivo.setSelectedIndex(0);
 			}
 		}
+	}
+	
+	public void setCiclistas(List<Ciclista> ciclistas) {
+		this.ciclistas = ciclistas;
+		
+		prepararCiclistas(ciclistas);
+	}
+	
+	private void bindCiclista(String identificador) {
+		
+		
 	}
 	
 	/**
@@ -155,6 +180,7 @@ public class VentanaConEditor {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 925, 685);
+		frame.setMinimumSize(new Dimension(925, 685));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new GridLayout(2, 1, 0, 0));
 		frame.setAlwaysOnTop(true);
@@ -165,6 +191,16 @@ public class VentanaConEditor {
 		panel.setLayout(sl_panel);
 		
 		cbCiclistaActivo = new JComboBox<String>();
+		cbCiclistaActivo.setModel(new DefaultComboBoxModel<String>());
+		cbCiclistaActivo.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String ciclistaidentificador = cbCiclistaActivo.getItemAt(cbCiclistaActivo.getSelectedIndex());
+				
+				bindCiclista(ciclistaidentificador);
+			}
+		});
 		sl_panel.putConstraint(SpringLayout.NORTH, cbCiclistaActivo, 10, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, cbCiclistaActivo, 102, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, cbCiclistaActivo, -661, SpringLayout.EAST, panel);
@@ -181,22 +217,22 @@ public class VentanaConEditor {
 		sl_panel.putConstraint(SpringLayout.EAST, separator, 899, SpringLayout.WEST, panel);
 		panel.add(separator);
 		
-		JTextArea textArea = new JTextArea();
-		sl_panel.putConstraint(SpringLayout.SOUTH, textArea, -10, SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, separator, -6, SpringLayout.NORTH, textArea);
-		sl_panel.putConstraint(SpringLayout.NORTH, textArea, 169, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, textArea, 0, SpringLayout.WEST, lblCiclsitaActivo);
-		sl_panel.putConstraint(SpringLayout.EAST, textArea, 291, SpringLayout.WEST, panel);
-		textArea.setBorder(new TitledBorder("Comandos"));
-		panel.add(textArea);
+		comandosArea = new JTextArea();
+		sl_panel.putConstraint(SpringLayout.SOUTH, comandosArea, -10, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, separator, -6, SpringLayout.NORTH, comandosArea);
+		sl_panel.putConstraint(SpringLayout.NORTH, comandosArea, 169, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, comandosArea, 0, SpringLayout.WEST, lblCiclsitaActivo);
+		sl_panel.putConstraint(SpringLayout.EAST, comandosArea, 291, SpringLayout.WEST, panel);
+		comandosArea.setBorder(new TitledBorder("Comandos"));
+		panel.add(comandosArea);
 		
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setBorder(new TitledBorder(null, "Registro", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		sl_panel.putConstraint(SpringLayout.NORTH, textArea_1, 6, SpringLayout.SOUTH, separator);
-		sl_panel.putConstraint(SpringLayout.WEST, textArea_1, 24, SpringLayout.EAST, textArea);
-		sl_panel.putConstraint(SpringLayout.SOUTH, textArea_1, 0, SpringLayout.SOUTH, textArea);
-		sl_panel.putConstraint(SpringLayout.EAST, textArea_1, 0, SpringLayout.EAST, separator);
-		panel.add(textArea_1);
+		registroArea = new JTextArea();
+		registroArea.setBorder(new TitledBorder(null, "Registro", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		sl_panel.putConstraint(SpringLayout.NORTH, registroArea, 6, SpringLayout.SOUTH, separator);
+		sl_panel.putConstraint(SpringLayout.WEST, registroArea, 24, SpringLayout.EAST, comandosArea);
+		sl_panel.putConstraint(SpringLayout.SOUTH, registroArea, 0, SpringLayout.SOUTH, comandosArea);
+		sl_panel.putConstraint(SpringLayout.EAST, registroArea, 0, SpringLayout.EAST, separator);
+		panel.add(registroArea);
 		
 		JLabel lblVelocidad = new JLabel("Velocidad:");
 		panel.add(lblVelocidad);
@@ -213,11 +249,11 @@ public class VentanaConEditor {
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblFuerza, -6, SpringLayout.NORTH, separator);
 		panel.add(lblFuerza);
 		
-		JProgressBar progressBar = new JProgressBar();
-		sl_panel.putConstraint(SpringLayout.WEST, progressBar, 43, SpringLayout.EAST, lblFuerza);
-		sl_panel.putConstraint(SpringLayout.EAST, tVelocidad, 0, SpringLayout.EAST, progressBar);
-		sl_panel.putConstraint(SpringLayout.SOUTH, progressBar, -6, SpringLayout.NORTH, separator);
-		panel.add(progressBar);
+		fuerzaBar = new JProgressBar();
+		sl_panel.putConstraint(SpringLayout.WEST, fuerzaBar, 43, SpringLayout.EAST, lblFuerza);
+		sl_panel.putConstraint(SpringLayout.EAST, tVelocidad, 0, SpringLayout.EAST, fuerzaBar);
+		sl_panel.putConstraint(SpringLayout.SOUTH, fuerzaBar, -6, SpringLayout.NORTH, separator);
+		panel.add(fuerzaBar);
 		
 		JLabel lblDistancia = new JLabel("Distancia:");
 		sl_panel.putConstraint(SpringLayout.WEST, lblDistancia, 12, SpringLayout.WEST, panel);
@@ -227,23 +263,23 @@ public class VentanaConEditor {
 		sl_panel.putConstraint(SpringLayout.WEST, textField, 43, SpringLayout.EAST, lblDistancia);
 		sl_panel.putConstraint(SpringLayout.SOUTH, tVelocidad, 0, SpringLayout.NORTH, textField);
 		sl_panel.putConstraint(SpringLayout.NORTH, lblDistancia, 6, SpringLayout.NORTH, textField);
-		sl_panel.putConstraint(SpringLayout.SOUTH, textField, -6, SpringLayout.NORTH, progressBar);
+		sl_panel.putConstraint(SpringLayout.SOUTH, textField, -6, SpringLayout.NORTH, fuerzaBar);
 		textField.setEditable(false);
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblPin = new JLabel("Piñón:");
-		sl_panel.putConstraint(SpringLayout.WEST, lblPin, 0, SpringLayout.WEST, textArea_1);
+		sl_panel.putConstraint(SpringLayout.WEST, lblPin, 0, SpringLayout.WEST, registroArea);
 		panel.add(lblPin);
 		
 		JLabel lblPlato = new JLabel("Plato:");
 		sl_panel.putConstraint(SpringLayout.NORTH, lblPlato, 0, SpringLayout.NORTH, lblDistancia);
-		sl_panel.putConstraint(SpringLayout.WEST, lblPlato, 0, SpringLayout.WEST, textArea_1);
+		sl_panel.putConstraint(SpringLayout.WEST, lblPlato, 0, SpringLayout.WEST, registroArea);
 		panel.add(lblPlato);
 		
 		JLabel lblCadencia = new JLabel("Cadencia:");
-		sl_panel.putConstraint(SpringLayout.EAST, progressBar, -62, SpringLayout.WEST, lblCadencia);
-		sl_panel.putConstraint(SpringLayout.WEST, lblCadencia, 0, SpringLayout.WEST, textArea_1);
+		sl_panel.putConstraint(SpringLayout.EAST, fuerzaBar, -62, SpringLayout.WEST, lblCadencia);
+		sl_panel.putConstraint(SpringLayout.WEST, lblCadencia, 0, SpringLayout.WEST, registroArea);
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblCadencia, -6, SpringLayout.NORTH, separator);
 		panel.add(lblCadencia);
 		
@@ -329,11 +365,32 @@ public class VentanaConEditor {
 		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel, 0, SpringLayout.SOUTH, cbCiclistaActivo);
 		panel.add(lblNewLabel);
 		
+//		JButton btnCargarCiclistas = new JButton("Cargar ciclistas");
+//		btnCargarCiclistas.addActionListener(new ActionListener() {
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				Ciclista a = new Ciclista("pepe", 1, 120, new Bicicleta(), 0.5, Reloj.getInstance(), 60, 100);
+//				Ciclista a1 = new Ciclista("pepe", 2, 120, new Bicicleta(), 0.5, Reloj.getInstance(), 60, 100);
+//				Ciclista a2 = new Ciclista("pepe", 3, 120, new Bicicleta(), 0.5, Reloj.getInstance(), 60, 100);
+//				
+//				List<Ciclista> lc = new ArrayList<Ciclista>();
+//				lc.add(a);
+//				lc.add(a1);
+//				lc.add(a2);
+//				setCiclistas(lc);
+//			}
+//		});
+//		sl_panel.putConstraint(SpringLayout.WEST, btnCargarCiclistas, 0, SpringLayout.WEST, textField_2);
+//		sl_panel.putConstraint(SpringLayout.SOUTH, btnCargarCiclistas, 0, SpringLayout.SOUTH, cbCiclistaActivo);
+//		panel.add(btnCargarCiclistas);
+		
 		JScrollPane scrollPane = new JScrollPane();
 		frame.getContentPane().add(scrollPane);
 		
 		Canvas canvas = new Canvas();
 		scrollPane.setViewportView(canvas);
+		
+		frame.setVisible(true);
 	}
-
 }

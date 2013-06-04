@@ -26,7 +26,6 @@ import sistema.factoresexternos.viento.MiViento;
 import sistema.interfaces.ObjetosConSalidaDeDatos;
 import sistema.interfaces.ObjetosQueSeEjecutan;
 import sistema.vista.Lienzo;
-import sistema.vista.visual.FormateadorDatosVista;
 import sistema.vista.visual.VentanaConEditor;
 
 /**
@@ -73,6 +72,7 @@ public class CiclistaManager {
 		lienzo = new Lienzo(ciclistas);
 		
 		try {
+			// Con este método forzamos la "sincronización" de la vista.
 			SwingUtilities.invokeAndWait(new Runnable() {
 				
 				@Override
@@ -118,7 +118,6 @@ public class CiclistaManager {
 	 */
 	private void construirMapaDelTiempo() {
 		
-		// TODO cargar de fichero el mapa de horas-viento-velocidad
 		mapameteorologico = new HashMap<Integer, MiViento>();
 		
 		VariablesDeContexto.velocidadvientoinicial = 0;
@@ -152,7 +151,6 @@ public class CiclistaManager {
 		for (int i = 0; i < VariablesDeContexto.MAX_CICLISTAS; i++) {
 			
 			Bicicleta bicicleta = new Bicicleta();
-//			bicicleta.setId(i);
 			
 			int cadencia = new Random().nextInt(120);
 			int peso = new Random().nextInt(70);
@@ -164,7 +162,7 @@ public class CiclistaManager {
 			listasalidadatos.add(bicicleta);
 		}
 		
-		ventana.prepararCiclistas(ciclistas);
+		ventana.setCiclistas(ciclistas);
 
 		// Se registran los elementos con salida de datos en una lista.
 		listasalidadatos.add(reloj);
