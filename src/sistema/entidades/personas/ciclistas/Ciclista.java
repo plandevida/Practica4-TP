@@ -64,7 +64,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 		this.tiempopedalada = tiempopedalada;
 		this.fuerza = fuerza;
 //		bicicletamontada.setId(numeromallot);
-		
+		estrellado = false;
 		calcularPeriodo();
 		contadorcandencia = 1;
 	}
@@ -101,22 +101,25 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 * Las pedaladas se dan en fuencion de la cadencia
 	 */
 	public void pedalear() {
-		
-		if (reloj.getMilisegundos() != milisegundos) {
-			
-			
-			if (contadorcandencia >= (periodo * 1000)) {
-				
-				
-				double fuerzagastada = bicicletamontada.darPedalada(tiempopedalada,getPeso()); 
-				
-				if (fuerza > 0) fuerza = (fuerza - fuerzagastada);
-				
-				contadorcandencia = 1;
+		if(!estrellado){
+			if (fuerza>0){
+				if (reloj.getMilisegundos() != milisegundos) {
+					
+					
+					if (contadorcandencia >= (periodo * 1000)) {
+						
+						
+						double fuerzagastada = bicicletamontada.darPedalada(tiempopedalada,getPeso()); 
+						
+						if (fuerza > 0) fuerza = (fuerza - fuerzagastada);
+						
+						contadorcandencia = 1;
+					}
+					
+					contadorcandencia++;
+					milisegundos = reloj.getMilisegundos();
+				}
 			}
-			
-			contadorcandencia++;
-			milisegundos = reloj.getMilisegundos();
 		}
 	}
 	/**
