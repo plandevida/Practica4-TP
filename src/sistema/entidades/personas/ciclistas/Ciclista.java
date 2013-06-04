@@ -299,4 +299,31 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	public String getIdentificadorSalidaDatos() {
 		return numeromallot + " " + getNombre(); 
 	}
+
+	/**
+	 * Obtiene la fuerza del ciclista.
+	 * 
+	 * @return La fuerza de 0 a 100
+	 */
+	public double getFuerza() {
+		return fuerza;
+	}
+	
+	/**
+	 * Obtiene la fuerza del ciclista.
+	 * 
+	 * @return La fuerza de 0 a 100
+	 */
+	public int getFuerzaAsInt() {
+		return (int)fuerza;
+	}
+
+	/**
+	 * Asigna la fuerza del ciclista.
+	 * 
+	 * @param fuerza La nueva fuerza del ciclista.
+	 */
+	public void setFuerza(double fuerza) {
+		this.fuerza = fuerza;
+	}
 }

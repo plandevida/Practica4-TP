@@ -72,6 +72,24 @@ public class Presentador {
 		
 		return ciclista;
 	}
+	
+	/**
+	 * Provee acceso a la lista de ciclistas.
+	 * 
+	 * @param identificadorciclista El identificador del ciclista (número de mallot y nombre).
+	 * @return La lista de cilistas, si no tiene permiso la clase devolverá null.
+	 */
+	public Ciclista getCiclista(String identificadorciclista) {
+		
+		Ciclista ciclista = null;
+		
+		for (Ciclista c : listadeciclistas) {
+			
+			ciclista = (c.getIdentificadorSalidaDatos() == identificadorciclista) ? c : null;
+		}
+		
+		return ciclista;
+	}
 
 	/**
 	 * Provee acceso a la lista de objetos que se presentan en las vista.

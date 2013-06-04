@@ -47,6 +47,11 @@ public class Dispatcher implements ObjetosQueSeEjecutan {
 		}
 	}
 	
+	/**
+	 * Parsea un texto y construye una orden.
+	 * 
+	 * @param comandoaparsear Texto a parsear
+	 */
 	public void parsearComando(String comandoaparsear) {
 		registrarOrdenes(parser.parse(comandoaparsear));
 	}
@@ -64,6 +69,15 @@ public class Dispatcher implements ObjetosQueSeEjecutan {
 				orden.ejecutarOrden();
 			}
 		}	
+	}
+	
+	/**
+	 * Obtiene el presentador del Dispatcher.
+	 * 
+	 * @return El presentador.
+	 */
+	public Presentador getPresentador() {
+		return presentador;
 	}
 
 	@Override
