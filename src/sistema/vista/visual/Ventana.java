@@ -1,209 +1,52 @@
 package sistema.vista.visual;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.GridLayout;
-import java.awt.Rectangle;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.text.JTextComponent;
 
-import sistema.controladores.ordenes.Dispatcher;
+import sistema.entidades.personas.ciclistas.Ciclista;
+import sistema.vista.Lienzo;
 
-/**
- * Vista del sistema en un componente de swing.
- * Con esta clase se puede mostrar una cantidad
- * "infinita" de datos en áreas de texto.
- * 
- * @author Daniel Serrano Torres
- * @author Alvaro Quesada Pimentel
- */
 public class Ventana extends JFrame {
-	
+
 	private static final long serialVersionUID = 1L;
+	
+	private JPanel contentPane;
+	
+	private List<PanelCiclista> listaNombreCiclista;
 
-	private List<JTextComponent> componenetescreados;
-	
-	private JPanel panelciclistasylog;
-	private JPanel panelciclistas;
-	private JTextField camporeloj;
-	
-	private JTextField campocomandos;
-	
-	private RelojSwing relojGrafico;
-	
-	private Dispatcher micomandero;
-	
-	public Ventana(Dispatcher comandero) {
-		micomandero = comandero;
-		
-		componenetescreados = new ArrayList<JTextComponent>();
-		
-		Init();
-	}
-	
 	/**
-	 * Crea la interfaz de la ventana y sus componentes.
+	 * Launch the application.
 	 */
-	private void Init() {
-		
-		setTitle("Carrera ciclista");
-		setPreferredSize(new Dimension(700, 500));
-		
-		JPanel panelPrincipal = new JPanel(new BorderLayout());
-		
-		panelciclistasylog = new JPanel();
-		panelciclistasylog.setLayout(new GridLayout(2, 1, 10, 10));
-		
-		panelciclistas = new JPanel();
-		panelciclistas.setLayout(new GridLayout(0, 2, 10, 10));
-		panelciclistas.setBackground(Color.WHITE);
-		
-		panelciclistasylog.add(panelciclistas);
-		panelciclistasylog.add(crearLogeador());
-		
-		panelPrincipal.add(crearRelojero(), BorderLayout.NORTH);
-		panelPrincipal.add(panelciclistasylog, BorderLayout.CENTER);
-		panelPrincipal.add(crearComandero(), BorderLayout.SOUTH);
-		
-		setContentPane(panelPrincipal);
-
-		setVisible(true);
-		pack();
-		
-		crearReloj().setVisible(true);
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setAlwaysOnTop(true);
-	}
-	
-	/**
-	 * Crea la caja de texto para el registro del sistema.
-	 * @return
-	 */
-	public JPanel crearLogeador() {
-		
-		JPanel panellog = new JPanel();
-		
-		JTextArea arealog = new JTextArea();
-		arealog.setBorder(new TitledBorder("Log"));
-		
-		panellog.add(arealog);
-		
-		pack();
-		
-		return panel;
-	}
-	
-	/**
-	 * crea la caja de texto para introducir comandos al sistema.
-	 * @return
-	 */
-	private JPanel crearRelojero() {
-		JPanel panel = new JPanel();
-		
-		JLabel relojetiqueta = new JLabel("Reloj: ");
-		
-		camporeloj = new JTextField();
-		camporeloj.setBounds(new Rectangle(120, 50));
-		camporeloj.setName("ruloj");
-		
-		componenetescreados.add(camporeloj);
-		
-		panel.add(relojetiqueta);
-		panel.add(camporeloj);
-		
-		return panel;
-	}
-	
-	JPanel panel = new JPanel();
-	/**
-	 * Crea el campo de texto donde se insertan los comando al sistema.
-	 * 
-	 * @return Panel con el cuadro de texto.
-	 */
-	private JPanel crearComandero() {
-		panel.setPreferredSize(new Dimension(120, 60));
-		
-		JLabel campocomandosetiqueta = new JLabel("Comandos: ");
-	
-		campocomandos = new JTextField();
-		campocomandos.setSize(new Dimension(120, 60));
-		campocomandos.setText("Escriba un comando");
-		
-		campocomandos.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				campocomandos.setText("");
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					new Ventana();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		});
-		
-		campocomandos.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				String comando = ((JTextField) e.getSource()).getText();
-				
-				micomandero.parsearComando(comando);
-			}
-		});
-		
-		panel.add(campocomandosetiqueta);
-		panel.add(campocomandos);
-		
-		return panel;
 	}
-	
-	private JDialog crearReloj() {
-		JDialog dialogo = new JDialog();
-		dialogo.setBounds(this.getWidth() + 10, this.getHeight(), 370, 390);
-		
-		relojGrafico = new RelojSwing();
-		
-		dialogo.add(relojGrafico);
-		
-		dialogo.setResizable(false);
-		
-		return dialogo;
-	}
-	
-//	@Override
-//	public void paint(Graphics g) {
-//		relojGrafico.repaint();
-//	}
-	
+
 	/**
-	 * Añade una nueva área de texto.
-	 * El nombre del área de texto es importante
-	 * para determinar si se añade una nueva o se
-	 * modifican sus datos.
-	 * 
-	 * @param nombre Nombre del area de texto.
+	 * Create the frame.
 	 */
-	private void anadirTextArea(String nombre) {
+	public Ventana() {
 		
-		JTextArea nuevaTextArea = new JTextArea();
-		nuevaTextArea.setName(nombre);
-		nuevaTextArea.setPreferredSize(new Dimension(100, 200));
-		nuevaTextArea.setEditable(false);
-		nuevaTextArea.setBorder(new TitledBorder(nombre));
+		listaNombreCiclista = new ArrayList<PanelCiclista>();
 		
-		componenetescreados.add(nuevaTextArea);
-		
-		panelciclistas.add(nuevaTextArea);
-		panelciclistas.validate();
+		init();
 	}
 	
 	/**
@@ -214,46 +57,76 @@ public class Ventana extends JFrame {
 	 * @param mensajes Los datos formateados a poner en el área.
 	 */
 	public void ponerDatosEnVentana(String id, Object... mensajes) {
-		JTextComponent componenteexistente = null;
-		
-		switch(id) {
-		case "ruloj":
-			
-			int hora = (Integer) mensajes[0];
-			int minuto = (Integer) mensajes[1];
-			int segundo = (Integer) mensajes[2];
-			
-			relojGrafico.setTime(segundo, minuto, hora);
-			
-			break;
-		case "ayudaMain":
-			
-//			tFconsola.setText(tFconsola.getText()
-//					+ "CiclistaManager <número_ciclistas> <fichero_comandos> <unidad_tiempo> "
-//					+ "<número_platos> <dientes_plato (separados por espacios)> <número_piñones>"
-//					+ " <dientes_piñones (separados por espacios)> <radio_rueda>");
-			break;
-		default:
-			for (JTextComponent componente : componenetescreados) {
-				if (componente.getName().equals(id)) {
-					componente.setText( (String) mensajes[0]);
-					
-					componenteexistente = componente;
-				}
-			}
-			
-			if (componenteexistente == null) {
-				anadirTextArea(id);
+		try {
+			switch(id) {
+			case "ruloj":
+				break;
+			case "ciclista":
 				
-				ponerDatosEnVentana(id, mensajes);
+				
+				
+				break;
+			default:
 			}
-			break;
+		} catch (NumberFormatException ne) {
+			ne.printStackTrace();
 		}
 	}
 	
-	public void limpia() {
-		for (JTextComponent area : componenetescreados) {
-			area.setText("");
-		}
+	private void init() {
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1220, 900);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(new GridLayout(2, 1, 0, 0));
+
+		JPanel panelsuperior = new JPanel();
+		panelsuperior.setLayout(new BorderLayout());
+		contentPane.add(panelsuperior);
+		
+		JPanel panelCiclistas = new JPanel();
+		panelsuperior.add(panelCiclistas, BorderLayout.CENTER);
+		panelCiclistas.setLayout(new GridLayout(1, 4, 0, 0));
+		
+		PanelCiclista panel = new PanelCiclista();
+		panelCiclistas.add(panel);
+		
+		listaNombreCiclista.add(panel);
+		
+		PanelCiclista panel1 = new PanelCiclista();
+		panelCiclistas.add(panel1);
+		
+		listaNombreCiclista.add(panel1);
+		
+		PanelCiclista panel2 = new PanelCiclista();
+		panelCiclistas.add(panel2);
+		
+		listaNombreCiclista.add(panel2);
+		
+		PanelCiclista panel3 = new PanelCiclista();
+		panelCiclistas.add(panel3);
+		
+		listaNombreCiclista.add(panel3);
+		
+		JPanel panelComandos = new JPanel();
+		panelComandos.setPreferredSize(new Dimension(10, 110));
+		panelComandos.setMaximumSize(new Dimension(32767, 150));
+		panelsuperior.add(panelComandos, BorderLayout.SOUTH);
+		panelComandos.setLayout(new GridLayout(1, 2, 0, 0));
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setBorder(new TitledBorder("Comandos"));
+		panelComandos.add(textArea);
+		
+		JTextArea textArea_1 = new JTextArea();
+		textArea_1.setBorder(new TitledBorder(null, "Registro", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelComandos.add(textArea_1);
+		
+		Lienzo canvas = new Lienzo(new ArrayList<Ciclista>());
+		contentPane.add(canvas);
+		
+		setVisible(true);
 	}
 }

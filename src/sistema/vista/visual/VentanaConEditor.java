@@ -7,6 +7,8 @@ import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -132,6 +134,13 @@ public class VentanaConEditor {
 	}
 	
 	/**
+	 * Actualiza los datos del ciclista.
+	 */
+	public void update() {
+		bindCiclista();
+	}
+	
+	/**
 	 * Rellena los campos con el ciclista indicado.
 	 * 
 	 * @param identificador Ciclista
@@ -154,7 +163,7 @@ public class VentanaConEditor {
 		}
 	}
 	
-	public void unbind() {
+	private void unbind() {
 		
 		tVelocidad.setText("");
 		tDistancia.setText("");
@@ -234,13 +243,10 @@ public class VentanaConEditor {
 		
 		cbCiclistaActivo = new JComboBox<String>();
 		cbCiclistaActivo.setModel(new DefaultComboBoxModel<String>());
-		cbCiclistaActivo.addActionListener(new ActionListener() {
+		cbCiclistaActivo.addItemListener(new ItemListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {
-//				String ciclistaidentificador = cbCiclistaActivo.getItemAt(cbCiclistaActivo.getSelectedIndex());
-				
-//				bindCiclista(ciclistaidentificador);
+			public void itemStateChanged(ItemEvent e) {
 				
 				bindCiclista();
 			}
@@ -432,26 +438,6 @@ public class VentanaConEditor {
 		sl_panel.putConstraint(SpringLayout.WEST, lbCiclistas, 6, SpringLayout.EAST, cbCiclistaActivo);
 		sl_panel.putConstraint(SpringLayout.SOUTH, lbCiclistas, 0, SpringLayout.SOUTH, cbCiclistaActivo);
 		panel.add(lbCiclistas);
-		
-//		JButton btnCargarCiclistas = new JButton("Cargar ciclistas");
-//		btnCargarCiclistas.addActionListener(new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				Ciclista a = new Ciclista("pepe", 1, 120, new Bicicleta(), 0.5, Reloj.getInstance(), 60, 100);
-//				Ciclista a1 = new Ciclista("pepe", 2, 120, new Bicicleta(), 0.5, Reloj.getInstance(), 60, 100);
-//				Ciclista a2 = new Ciclista("pepe", 3, 120, new Bicicleta(), 0.5, Reloj.getInstance(), 60, 100);
-//				
-//				List<Ciclista> lc = new ArrayList<Ciclista>();
-//				lc.add(a);
-//				lc.add(a1);
-//				lc.add(a2);
-//				setCiclistas(lc);
-//			}
-//		});
-//		sl_panel.putConstraint(SpringLayout.WEST, btnCargarCiclistas, 0, SpringLayout.WEST, textField_2);
-//		sl_panel.putConstraint(SpringLayout.SOUTH, btnCargarCiclistas, 0, SpringLayout.SOUTH, cbCiclistaActivo);
-//		panel.add(btnCargarCiclistas);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		frame.getContentPane().add(scrollPane);

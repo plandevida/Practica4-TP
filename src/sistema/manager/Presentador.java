@@ -85,7 +85,8 @@ public class Presentador {
 		
 		for (Ciclista c : listadeciclistas) {
 			
-			ciclista = (c.getIdentificadorSalidaDatos() == identificadorciclista) ? c : null;
+			if (c.getIdentificadorSalidaDatos().equals(identificadorciclista))
+				ciclista = c;
 		}
 		
 		return ciclista;
