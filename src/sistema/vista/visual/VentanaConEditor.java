@@ -41,9 +41,11 @@ public class VentanaConEditor {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	private JComboBox<String> cbCiclistaActivo;
 
 	private Dispatcher dispatcher;
 	private Lienzo lienzo;
+	private List<Ciclista> ciclistas;
 	
 	/**
 	 * Launch the application.
@@ -59,7 +61,7 @@ public class VentanaConEditor {
 					
 					Presentador p = new Presentador(lc, new ArrayList<ObjetosConSalidaDeDatos>(), new HashMap<Integer, MiViento>(), Reloj.getInstance(), new Orden[]{});
 					
-					VentanaConEditor window = new VentanaConEditor(new Dispatcher(p, new ParseadorComandos()), new Lienzo(lc));
+					VentanaConEditor window = new VentanaConEditor(new Dispatcher(p, new ParseadorComandos()), new Lienzo(lc), lc);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -71,12 +73,31 @@ public class VentanaConEditor {
 	/**
 	 * Create the application.
 	 */
-	public VentanaConEditor(Dispatcher miDispatcher, Lienzo lienzocarrera) {
+	public VentanaConEditor(Dispatcher miDispatcher, Lienzo lienzocarrera, List<Ciclista> listaciclistas) {
 		
 		dispatcher = miDispatcher;
 		lienzo = lienzocarrera;
+		ciclistas = listaciclistas;
 		
 		initialize();
+		
+		prepararCiclistas(ciclistas);
+	}
+	
+	/**
+	 * Mete los ciclista en el combo.
+	 */
+	public void prepararCiclistas(List<Ciclista> ciclistaapreparar) {
+		
+		if ( ciclistaapreparar != null) {
+			for( Ciclista c : ciclistaapreparar ) {
+				cbCiclistaActivo.addItem(c.getIdentificadorSalidaDatos());
+			}
+			
+			if ( ciclistaapreparar.size() > 0 ) {
+				cbCiclistaActivo.setSelectedIndex(0);
+			}
+		}
 	}
 	
 	/**
@@ -136,13 +157,14 @@ public class VentanaConEditor {
 		frame.setBounds(100, 100, 925, 685);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new GridLayout(2, 1, 0, 0));
+		frame.setAlwaysOnTop(true);
 		
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel);
 		SpringLayout sl_panel = new SpringLayout();
 		panel.setLayout(sl_panel);
 		
-		JComboBox<String> cbCiclistaActivo = new JComboBox<String>();
+		cbCiclistaActivo = new JComboBox<String>();
 		sl_panel.putConstraint(SpringLayout.NORTH, cbCiclistaActivo, 10, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, cbCiclistaActivo, 102, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, cbCiclistaActivo, -661, SpringLayout.EAST, panel);
@@ -313,4 +335,5 @@ public class VentanaConEditor {
 		Canvas canvas = new Canvas();
 		scrollPane.setViewportView(canvas);
 	}
+
 }

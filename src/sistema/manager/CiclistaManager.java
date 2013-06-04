@@ -53,7 +53,7 @@ public class CiclistaManager {
 	// Vistas del sistema.
 	private VentanaConEditor ventana;
 	private Lienzo lienzo;
-	private FormateadorDatosVista formateador;
+//	private FormateadorDatosVista formateador;
 
 	// Subsitemas del sistema.
 	private Dispatcher dispatcher;
@@ -78,7 +78,7 @@ public class CiclistaManager {
 				@Override
 				public void run() {
 					
-					ventana = new VentanaConEditor(dispatcher, lienzo);
+					ventana = new VentanaConEditor(dispatcher, lienzo, ciclistas);
 				}
 			});
 		} catch (InvocationTargetException e) {
@@ -108,8 +108,7 @@ public class CiclistaManager {
 
 		carreteradecarreraciclsta = new HashMap<Integer, TramoCarrera>();
 
-		ParseadorCarrera parseadorcarrera = new ParseadorCarrera(
-				carreteradecarreraciclsta);
+		ParseadorCarrera parseadorcarrera = new ParseadorCarrera(carreteradecarreraciclsta);
 
 		parseadorcarrera.parse(datos);
 	}
@@ -164,6 +163,8 @@ public class CiclistaManager {
 			bicicletas.add(bicicleta);
 			listasalidadatos.add(bicicleta);
 		}
+		
+		ventana.prepararCiclistas(ciclistas);
 
 		// Se registran los elementos con salida de datos en una lista.
 		listasalidadatos.add(reloj);
@@ -175,9 +176,9 @@ public class CiclistaManager {
 			listaejecutables.add(ciclista);
 		}
 
-		formateador = new FormateadorDatosVista(listasalidadatos, ventana);
+//		formateador = new FormateadorDatosVista(listasalidadatos, ventana);
 
-		listaejecutables.add(formateador);
+//		listaejecutables.add(formateador);
 		listaejecutables.add(factoresexternos);
 		listaejecutables.add(dispatcher);
 	}
