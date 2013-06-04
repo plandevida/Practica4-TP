@@ -43,7 +43,7 @@ public class CiclistaManager {
 	private Map<Integer, TramoCarrera> carreteradecarreraciclsta;
 	private List<Ciclista> ciclistas;
 	private List<Bicicleta> bicicletas;
-	private Map<Integer, Map<MiViento, Double>> mapameteorologico;
+	private Map<Integer, MiViento> mapameteorologico;
 
 	private FactoresExternos factoresexternos;
 
@@ -78,8 +78,7 @@ public class CiclistaManager {
 				@Override
 				public void run() {
 					
-//					ventana = new VentanaJL(dispatcher, lienzo);
-					ventana = new VentanaConEditor(dispatcher);
+					ventana = new VentanaConEditor(dispatcher, lienzo);
 				}
 			});
 		} catch (InvocationTargetException e) {
@@ -121,7 +120,7 @@ public class CiclistaManager {
 	private void construirMapaDelTiempo() {
 		
 		// TODO cargar de fichero el mapa de horas-viento-velocidad
-		mapameteorologico = new HashMap<Integer, Map<MiViento, Double>>();
+		mapameteorologico = new HashMap<Integer, MiViento>();
 		
 		VariablesDeContexto.velocidadvientoinicial = 0;
 		VariablesDeContexto.direcionvientoinicial = MiViento.NULO;
@@ -139,7 +138,7 @@ public class CiclistaManager {
 		ciclistas = new ArrayList<Ciclista>();
 		bicicletas = new ArrayList<Bicicleta>();
 
-		Eolo eolo = new Eolo(bicicletas, reloj);
+		Eolo eolo = new Eolo(bicicletas, reloj, mapameteorologico);
 		factoresexternos = new FactoresExternos(bicicletas, carreteradecarreraciclsta, eolo, null,null);
 
 		try {

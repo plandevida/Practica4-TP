@@ -1,18 +1,15 @@
 package sistema.factoresexternos;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import sistema.entidades.carretera.tramocarreraciclista.TramoCarrera;
 import sistema.entidades.tiempo.Reloj;
 import sistema.entidades.vehiculos.bicicletas.Bicicleta;
 import sistema.factoresexternos.viento.MiViento;
 
 /**
  * Clase que se encarga de transmitir la aceleración
- * generada por el viento que le afecta a los ciclitas
- * y se lo transmite a estos.
+ * generada por el viento que le afecta a los ciclitas.
  * 
  * @author Daniel Serrano Torres
  * @author Alvaro Quesada Pimentel
@@ -21,9 +18,9 @@ public class Eolo  {
  
 	private List<Bicicleta> bicicletas;
 	private Reloj relojTiempo;
-	private HashMap<Integer, MiViento> mapameteorologico;
+	private Map<Integer, MiViento> mapameteorologico;
 	
-	public Eolo(List<Bicicleta> listabicicletas, Reloj reloj, HashMap<Integer, MiViento> mapaviento) {
+	public Eolo(List<Bicicleta> listabicicletas, Reloj reloj, Map<Integer, MiViento> mapaviento) {
 		
 		bicicletas = listabicicletas;
 		relojTiempo = reloj;
@@ -37,18 +34,14 @@ public class Eolo  {
 	 */
 	private double aceleracionViento() {
 		
-		int direccionviento = MiViento.NULO.getFactor();
-		double aceleracionviento = 0;
+		MiViento viento = MiViento.NULO;
 		
 		if ( mapameteorologico.containsKey( relojTiempo.getHoras() ) ) {
 			
-			direccionviento = mapameteorologico.get( relojTiempo.getHoras() ).getFactor();
-			
-			double velocidadviento = tramo.getVelocidadViento();
-			aceleracionviento = Math.pow((velocidadviento / 0.837),2/3);
+			viento = mapameteorologico.get( relojTiempo.getHoras() );
 		}
 		
-		return (double) (aceleracionviento*direccionviento);
+		return viento.getAceleracion();
 	}
 
 	/**

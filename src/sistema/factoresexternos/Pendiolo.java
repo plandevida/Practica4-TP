@@ -5,6 +5,13 @@ import java.util.List;
 import sistema.entidades.carretera.tramocarreraciclista.TramoCarrera;
 import sistema.entidades.vehiculos.bicicletas.Bicicleta;
 
+/**
+ * Clase que se encarga de transmitir la aceleración
+ * provocada por la pendiente que le afecta a los ciclitas.
+ * 
+ * @author Daniel Serrano Torres
+ * @author Alvaro Quesada Pimentel
+ */
 public class Pendiolo {
 	
 	private List<Bicicleta> bicicletas;

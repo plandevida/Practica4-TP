@@ -26,7 +26,7 @@ public class Presentador {
 	private List<ObjetosConSalidaDeDatos> listadeobjetosamostarenvista;
 	
 	// El viento definido por horas.
-	private Map<Integer, Map<MiViento, Double>> mapameteorologico;
+	private Map<Integer, MiViento> mapameteorologico;
 	
 	// El reloj de la carrera ciclista
 	private Reloj reloj;
@@ -45,7 +45,7 @@ public class Presentador {
 	 */
 	public Presentador(List<Ciclista> ciclistas,
 			List<ObjetosConSalidaDeDatos> objetosamostarenvista,
-			Map<Integer, Map<MiViento, Double>> vientoporhoras,
+			Map<Integer, MiViento> vientoporhoras,
 			Reloj relojcarrera, Orden[] ordenesparseador) {
 		
 		listadeciclistas = ciclistas;
@@ -89,7 +89,7 @@ public class Presentador {
 	 * 
 	 * @return El mapa meteorológico, si no tiene permiso la clase devolverá null.
 	 */
-	public Map<Integer, Map<MiViento, Double>> getMapametereológico() {
+	public Map<Integer, MiViento> getMapametereológico() {
 		
 		return mapameteorologico;
 	}

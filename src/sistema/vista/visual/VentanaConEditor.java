@@ -7,7 +7,6 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -33,6 +32,7 @@ import sistema.entidades.vehiculos.bicicletas.Bicicleta;
 import sistema.factoresexternos.viento.MiViento;
 import sistema.interfaces.ObjetosConSalidaDeDatos;
 import sistema.manager.Presentador;
+import sistema.vista.Lienzo;
 
 public class VentanaConEditor {
 
@@ -43,6 +43,7 @@ public class VentanaConEditor {
 	private JTextField textField_2;
 
 	private Dispatcher dispatcher;
+	private Lienzo lienzo;
 	
 	/**
 	 * Launch the application.
@@ -56,9 +57,9 @@ public class VentanaConEditor {
 					List<Ciclista> lc = new ArrayList<Ciclista>();
 					lc.add(a);
 					
-					Presentador p = new Presentador(lc, new ArrayList<ObjetosConSalidaDeDatos>(), new HashMap<Integer, Map<MiViento, Double>>(), Reloj.getInstance(), new Orden[]{});
+					Presentador p = new Presentador(lc, new ArrayList<ObjetosConSalidaDeDatos>(), new HashMap<Integer, MiViento>(), Reloj.getInstance(), new Orden[]{});
 					
-					VentanaConEditor window = new VentanaConEditor(new Dispatcher(p, new ParseadorComandos()));
+					VentanaConEditor window = new VentanaConEditor(new Dispatcher(p, new ParseadorComandos()), new Lienzo(lc));
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -70,9 +71,10 @@ public class VentanaConEditor {
 	/**
 	 * Create the application.
 	 */
-	public VentanaConEditor(Dispatcher miDispatcher) {
+	public VentanaConEditor(Dispatcher miDispatcher, Lienzo lienzocarrera) {
 		
 		dispatcher = miDispatcher;
+		lienzo = lienzocarrera;
 		
 		initialize();
 	}
@@ -87,38 +89,42 @@ public class VentanaConEditor {
 	public void ponerDatosEnVentana(String id, Object... mensajes) {
 		JTextComponent componenteexistente = null;
 		
-		switch(id) {
-		case "ruloj":
-			
-			int hora = (Integer) mensajes[0];
-			int minuto = (Integer) mensajes[1];
-			int segundo = (Integer) mensajes[2];
-			
-//			relojGrafico.setTime(segundo, minuto, hora);
-			
-			break;
-		case "ayudaMain":
-			
-//			tFconsola.setText(tFconsola.getText()
-//					+ "CiclistaManager <número_ciclistas> <fichero_comandos> <unidad_tiempo> "
-//					+ "<número_platos> <dientes_plato (separados por espacios)> <número_piñones>"
-//					+ " <dientes_piñones (separados por espacios)> <radio_rueda>");
-			break;
-		default:
-//			for (JTextComponent componente : componenetescreados) {
-//				if (componente.getName().equals(id)) {
-//					componente.setText( (String) mensajes[0]);
-//					
-//					componenteexistente = componente;
-//				}
-//			}
-			
-			if (componenteexistente == null) {
-//				anadirTextArea(id);
+		try {
+			switch(id) {
+			case "ruloj":
 				
-				ponerDatosEnVentana(id, mensajes);
+				int hora = (Integer) mensajes[0];
+				int minuto = (Integer) mensajes[1];
+				int segundo = (Integer) mensajes[2];
+				
+	//			relojGrafico.setTime(segundo, minuto, hora);
+				
+				break;
+			case "ayudaMain":
+				
+	//			tFconsola.setText(tFconsola.getText()
+	//					+ "CiclistaManager <número_ciclistas> <fichero_comandos> <unidad_tiempo> "
+	//					+ "<número_platos> <dientes_plato (separados por espacios)> <número_piñones>"
+	//					+ " <dientes_piñones (separados por espacios)> <radio_rueda>");
+				break;
+			default:
+	//			for (JTextComponent componente : componenetescreados) {
+	//				if (componente.getName().equals(id)) {
+	//					componente.setText( (String) mensajes[0]);
+	//					
+	//					componenteexistente = componente;
+	//				}
+	//			}
+				
+				if (componenteexistente == null) {
+	//				anadirTextArea(id);
+					
+					ponerDatosEnVentana(id, mensajes);
+				}
+				break;
 			}
-			break;
+		} catch (NumberFormatException ne) {
+			ne.printStackTrace();
 		}
 	}
 
@@ -136,7 +142,7 @@ public class VentanaConEditor {
 		SpringLayout sl_panel = new SpringLayout();
 		panel.setLayout(sl_panel);
 		
-		JComboBox cbCiclistaActivo = new JComboBox();
+		JComboBox<String> cbCiclistaActivo = new JComboBox<String>();
 		sl_panel.putConstraint(SpringLayout.NORTH, cbCiclistaActivo, 10, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, cbCiclistaActivo, 102, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, cbCiclistaActivo, -661, SpringLayout.EAST, panel);

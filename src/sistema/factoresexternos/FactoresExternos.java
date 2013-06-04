@@ -1,11 +1,13 @@
 package sistema.factoresexternos;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import sistema.entidades.carretera.tramocarreraciclista.TramoCarrera;
 import sistema.entidades.tiempo.Reloj;
 import sistema.entidades.vehiculos.bicicletas.Bicicleta;
+import sistema.factoresexternos.viento.MiViento;
 import sistema.interfaces.ObjetosQueSeEjecutan;
 
 /**
@@ -28,7 +30,7 @@ public class FactoresExternos implements ObjetosQueSeEjecutan {
 		this.bicicletas = bicis;
 		this.carreteradecarreraciclista = carreteradecarreraciclista;
 		
-		eolo = nuevoEolo != null ? nuevoEolo : new Eolo(bicicletas, Reloj.getInstance());
+		eolo = nuevoEolo != null ? nuevoEolo : new Eolo(bicicletas, Reloj.getInstance(), new HashMap<Integer, MiViento>());
 		curviolo = nuevoCurviolo != null ? nuevoCurviolo : new Curviolo();
 		pendiolo = nuevoPendiolo != null ? nuevoPendiolo : new Pendiolo(bicicletas);
 	}
@@ -38,7 +40,7 @@ public class FactoresExternos implements ObjetosQueSeEjecutan {
 	 */
 	private TramoCarrera tramoActual() {
 		
-		TramoCarrera tramo = new TramoCarrera(0, 0, null, 0);
+		TramoCarrera tramo = new TramoCarrera(0, 0);
 		
 		for(Bicicleta bici : bicicletas) {
 			for(Integer reco : carreteradecarreraciclista.keySet()) {

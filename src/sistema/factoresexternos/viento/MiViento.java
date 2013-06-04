@@ -63,4 +63,17 @@ public enum MiViento {
 	public double getVelocidad() {
 		return velocidad;
 	}
+	
+	/**
+	 * Obtiene la aceleración del viento
+	 * @return La aceleración
+	 */
+	public double getAceleracion() {
+		
+		// Se calcula la aceleración del viento.
+		double aceleracionviento = Math.pow((getVelocidad() / 0.837),2/3);
+		
+		// Se multiplica por el factor de la direccíon.
+		return aceleracionviento * getFactor();
+	}
 }

@@ -1,6 +1,5 @@
 package sistema.controladores.ordenes.especificas;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import sistema.controladores.ordenes.Orden;
@@ -11,7 +10,7 @@ import sistema.manager.Presentador;
 public class OrdenCambiaViento extends Orden {
 
 	// El viento definido por horas.
-	private Map<Integer, Map<MiViento, Double>> mapameteorologico;
+	private Map<Integer, MiViento> mapameteorologico;
 	
 	// Hora en la que el viento cambiará
 	private int hora;
@@ -25,13 +24,13 @@ public class OrdenCambiaViento extends Orden {
 	// La velocidad con la que el viento sopla.
 	private double velocidadviento;
 	
-	public OrdenCambiaViento(MiViento nuevoviento, int enlahora, double nuevavelocidad) {
+	public OrdenCambiaViento(MiViento nuevoviento, int enlahora) {
 		mapameteorologico = null;
 		reloj = null;
 		
 		viento = nuevoviento;
 		hora = enlahora;
-		velocidadviento = nuevavelocidad;
+		velocidadviento = 0;
 	}
 	
 	@Override
@@ -53,9 +52,7 @@ public class OrdenCambiaViento extends Orden {
 			
 			if ( reloj.getHoras() < hora ) {
 				
-				Map<MiViento, Double> vientovelocidad = new HashMap<MiViento, Double>();
-				
-				mapameteorologico.put(hora, vientovelocidad);
+				mapameteorologico.put(hora, viento);
 			}
 		}
 	}
@@ -86,7 +83,9 @@ public class OrdenCambiaViento extends Orden {
 							
 							if ( velocidadviento >= 0 ) {
 							
-								ordencambiaviento = new OrdenCambiaViento(viento, hora, velocidadviento);
+								viento.setVelocidad(velocidadviento);
+								
+								ordencambiaviento = new OrdenCambiaViento(viento, hora);
 							}
 						}
 					} catch (NumberFormatException ne) {

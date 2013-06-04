@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import sistema.entidades.carretera.tramocarreraciclista.TramoCarrera;
-import sistema.factoresexternos.viento.MiViento;
 
 /**
  * Clase que parsea una cadena para construir la carretera de la carrera ciclista.
@@ -48,12 +47,9 @@ public class ParseadorCarrera {
 				
 				Integer kilometros = Integer.valueOf(cadena[0]);
 				Integer pendiente = Integer.valueOf(cadena[1]);
-				MiViento viento = MiViento.existe(cadena[2]);
-				Double velocidadviento = Double.valueOf(cadena[3]);
-				
 				
 				// Mapa con la pendiente y la dirección del viento.
-				TramoCarrera tramo = new TramoCarrera(kilometros, pendiente, viento, velocidadviento);
+				TramoCarrera tramo = new TramoCarrera(kilometros, pendiente);
 				
 				mapa.put(i+1, tramo);
 				
