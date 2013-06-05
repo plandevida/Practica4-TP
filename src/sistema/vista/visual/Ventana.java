@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import sistema.entidades.personas.ciclistas.Ciclista;
+import sistema.manager.VariablesDeContexto;
 import sistema.vista.Lienzo;
 import javax.swing.JLabel;
 
@@ -50,6 +51,8 @@ public class Ventana extends JFrame {
 		listaNombreCiclista = new ArrayList<PanelCiclista>();
 		
 		init();
+		
+		VariablesDeContexto.SYN_GUI = true;
 	}
 	
 	/**

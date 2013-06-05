@@ -28,7 +28,6 @@ import sistema.interfaces.ObjetosQueSeEjecutan;
 import sistema.vista.Lienzo;
 import sistema.vista.visual.FormateadorDatosVista;
 import sistema.vista.visual.Ventana;
-import sistema.vista.visual.VentanaConEditor;
 
 /**
  * Clase principal que inicia la aplicación.
@@ -52,8 +51,8 @@ public class CiclistaManager {
 	private Reloj reloj;
 
 	// Vistas del sistema.
-	private VentanaConEditor ventana;
-	private Ventana ventana2;
+//	private VentanaConEditor ventana2;
+	private Ventana ventana;
 	private Lienzo lienzo;
 	private FormateadorDatosVista formateador;
 
@@ -68,21 +67,22 @@ public class CiclistaManager {
 
 	private void crearGUI() {
 		
-		try {
+//		try {
 			// Con este método forzamos la "sincronización" de la vista.
-			SwingUtilities.invokeAndWait(new Runnable() {
+//			SwingUtilities.invokeAndWait(new Runnable() {
+			SwingUtilities.invokeLater(new Runnable() {
 				
 				@Override
 				public void run() {
 					
-					ventana2 = new Ventana();
+					ventana = new Ventana();
 				}
 			});
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+//		} catch (InvocationTargetException e) {
+//			e.printStackTrace();
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
 	}
 	
 	/**
@@ -159,10 +159,10 @@ public class CiclistaManager {
 			ciclistas.add(ciclista);
 			bicicletas.add(bicicleta);
 			
-			listaejecutables.add(ciclista);
-			
-			listasalidadatos.add(ciclista);
-			listasalidadatos.add(bicicleta);
+//			listaejecutables.add(ciclista);
+//			
+//			listasalidadatos.add(ciclista);
+//			listasalidadatos.add(bicicleta);
 		}
 		
 		parser = new ParseadorComandos();
@@ -171,14 +171,25 @@ public class CiclistaManager {
 		dispatcher = new Dispatcher(presentador, parser);
 		
 		lienzo = new Lienzo(ciclistas);
+
+		ventana = new Ventana();
+		
+		formateador = new FormateadorDatosVista(listasalidadatos, ventana);
+		
+		for( Ciclista c : ciclistas) {
+			listasalidadatos.add(c);
+			listaejecutables.add(c);
+		}
+		
+		for ( Bicicleta b : bicicletas) {
+			listasalidadatos.add(b);
+		}
 		
 		// Se registran los elementos con salida de datos en una lista.
 		listasalidadatos.add(reloj);
-
+		
 		// Se registran los elementos ejecutables en una lista.
 		listaejecutables.add(reloj);
-
-		formateador = new FormateadorDatosVista(listasalidadatos, ventana2);
 
 		listaejecutables.add(formateador);
 		listaejecutables.add(factoresexternos);
@@ -193,7 +204,7 @@ public class CiclistaManager {
 		
 		int miliseg = 0;
 		
-		while (reloj.getHoras() < 2) {
+		while (VariablesDeContexto.SYN_GUI && reloj.getHoras() < 2) {
 			
 			if (miliseg!= (int)(Calendar.getInstance().getTimeInMillis() % 10)){
 				
@@ -314,7 +325,7 @@ public class CiclistaManager {
 		
 		CiclistaManager manager = new CiclistaManager();
 		
-		manager.crearGUI();
+//		manager.crearGUI();
 		
 		manager.prepararArgumentos(args);
 		

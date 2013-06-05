@@ -133,17 +133,10 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	public void calcularPeriodo() {
 		
 		periodo = (float)60/cadencia;
-//		System.out.println(numeromallot);
-//		System.out.println("	tiem "+tiempopedalada);
-//		System.out.println("	peri "+periodo);
-//		System.out.println("	cad "+cadencia);
 		
 		if (periodo < tiempopedalada) {
 			tiempopedalada = periodo;
 		}
-		
-//		System.out.println("	tiem2 "+tiempopedalada);
-//		System.out.println("	peri2 "+periodo);
 	}
 	
 	/**
