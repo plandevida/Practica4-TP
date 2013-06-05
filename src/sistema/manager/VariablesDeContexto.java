@@ -23,10 +23,10 @@ public class VariablesDeContexto {
 	public static double velocidadvientoinicial = 0d;
 	public static double FUERZA_GRAVEDAD = 9.80665d;
     public static double MASA_BICICLETA = 0.7138d;
-    public static int MAX_CICLISTAS = 6;
+    public static int MAX_CICLISTAS = 4;
     public static int MAX_CADENCIA = 120;
     
-    public static int UNIDAD_TIEMPO = 1000;
+    public static int UNIDAD_TIEMPO = 100;
     
     public static double RADIO_RUEDA = 0.2d;
 }

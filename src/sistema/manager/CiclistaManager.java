@@ -148,14 +148,20 @@ public class CiclistaManager {
 		for (int i = 0; i < VariablesDeContexto.MAX_CICLISTAS; i++) {
 			
 			Bicicleta bicicleta = new Bicicleta();
+			bicicleta.setId(i);
 			
 			int cadencia = new Random().nextInt(120);
 			int peso = new Random().nextInt(70);
-			int fuerza = new Random().nextInt(100);
+			int fuerza = 100;
 			
-			ciclistas.add(new Ciclista(generadordenombres.compose(3), i, cadencia, bicicleta, 0.5, reloj, peso, fuerza));
+			Ciclista ciclista = new Ciclista(generadordenombres.compose(3), i, cadencia, bicicleta, 0.5, reloj, peso, fuerza);
 			
+			ciclistas.add(ciclista);
 			bicicletas.add(bicicleta);
+			
+			listaejecutables.add(ciclista);
+			
+			listasalidadatos.add(ciclista);
 			listasalidadatos.add(bicicleta);
 		}
 		
@@ -171,11 +177,6 @@ public class CiclistaManager {
 
 		// Se registran los elementos ejecutables en una lista.
 		listaejecutables.add(reloj);
-
-		for (Ciclista ciclista : ciclistas) {
-			listaejecutables.add(ciclista);
-			listasalidadatos.add(ciclista);
-		}
 
 		formateador = new FormateadorDatosVista(listasalidadatos, ventana2);
 
