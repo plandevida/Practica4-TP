@@ -46,20 +46,10 @@ public class PanelCiclista extends JPanel {
 	public String getNombreCiclista() {
 		return tnombreCiclista.getText();
 	}
-	
-	public void setCiclistaData(Ciclista ciclista) {
-		
-		tnombreCiclista.setText(ciclista.getNombre());
-		tVelocidad.setText( String.valueOf( ciclista.getBicicletamontada().getVelocidad() ) );
-		tDistancia.setText( String.valueOf( ciclista.getBicicletamontada().getEspacioRecorrido() ) );
-		PBfuerza.setValue( ciclista.getFuerzaAsInt() );
-		sCadencia.setValue( ciclista.getCadencia() );
-		sPlato.setValue( ciclista.getBicicletamontada().getPlatoactual() );
-		sPinhon.setValue( ciclista.getBicicletamontada().getPinhonactual() );
-		sPeriodo.setValue( ciclista.getTiempopedalada() );
-	}
 
 	public void setCiclistaData(String nombre, Integer fuerza, Integer cadencia, Double periodo) {
+		
+		System.out.println("Poniendo datos ciclista");
 		
 		tnombreCiclista.setText(nombre);
 		PBfuerza.setValue(fuerza);
@@ -68,6 +58,8 @@ public class PanelCiclista extends JPanel {
 	}
 	
 	public void setBicicletaData(String velocidad, String distancia, Integer pinhon, Integer plato) {
+		
+		System.out.println("Poniendo datos bicicleta");
 		
 		tVelocidad.setText(velocidad);
 		tDistancia.setText(distancia);

@@ -5,19 +5,29 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SpringLayout;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+import sistema.controladores.ListenerComandos;
+import sistema.controladores.ordenes.Dispatcher;
+import sistema.controladores.parseadores.parser.ParseadorComandos;
 import sistema.entidades.personas.ciclistas.Ciclista;
+import sistema.entidades.tiempo.Reloj;
+import sistema.factoresexternos.viento.MiViento;
+import sistema.interfaces.ObjetosConSalidaDeDatos;
+import sistema.manager.Presentador;
 import sistema.manager.VariablesDeContexto;
 import sistema.vista.Lienzo;
-import javax.swing.JLabel;
 
 public class Ventana extends JFrame {
 
@@ -31,6 +41,10 @@ public class Ventana extends JFrame {
 	private PanelCiclista panel1;
 	private PanelCiclista panel2;
 	private PanelCiclista panel3;
+	private JTextArea taComandos;
+	private JTextArea taRegistro;
+	
+	private Dispatcher micomandero;
 
 	/**
 	 * Launch the application.
@@ -39,7 +53,13 @@ public class Ventana extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					new Ventana();
+					List<Ciclista> a = new ArrayList<>();
+					
+					List<ObjetosConSalidaDeDatos> v = new ArrayList<>();
+					
+					ParseadorComandos p = new ParseadorComandos();
+					
+					new Ventana(new Dispatcher(new Presentador(a, v, new HashMap<Integer, MiViento>(), Reloj.getInstance(), p.getOrdenes()), p));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -50,7 +70,9 @@ public class Ventana extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Ventana() {
+	public Ventana(Dispatcher comandero) {
+		
+		micomandero = comandero;
 		
 		init();
 		
@@ -65,14 +87,21 @@ public class Ventana extends JFrame {
 	 * @param mensajes Los datos formateados a poner en el área.
 	 */
 	public void ponerDatosEnVentana(String id, Object... mensajes) {
+		
+		System.out.println("VENTANA: Poniendo datos...");
+		
 		try {
 			switch(id) {
 			case "ruloj":
 				
-				txtReloj.setText(mensajes[0] + "h " + mensajes[1] + "m " + mensajes[2] + "s " + mensajes[3] + "imp");
+				System.out.println("--Datos reloj");
+				
+				txtReloj.setText(mensajes[0] + "h " + mensajes[1] + "m " + mensajes[2] + "s " + mensajes[3] + "ms " + mensajes[4] + "imp");
 				
 				break;
 			case "0 ciclista":
+				
+				System.out.println("--Datos ciclista 0");
 				
 				String[] datos = (String[])mensajes;
 				
@@ -81,12 +110,16 @@ public class Ventana extends JFrame {
 				break;
 			case "1 ciclista":
 				
+				System.out.println("--Datos ciclista 1");
+				
 				datos = (String[])mensajes;
 				
 				panel1.setCiclistaData(datos[0], Integer.valueOf(datos[1]), Integer.valueOf(datos[2]), Double.valueOf(datos[3]));
 				
 				break;
 			case "2 ciclista":
+				
+				System.out.println("--Datos ciclista 2");
 				
 				datos = (String[])mensajes;
 				
@@ -95,12 +128,16 @@ public class Ventana extends JFrame {
 				break;
 			case "3 ciclista":
 				
+				System.out.println("--Datos ciclista 3");
+				
 				datos = (String[])mensajes;
 				
 				panel3.setCiclistaData(datos[0], Integer.valueOf(datos[1]), Integer.valueOf(datos[2]), Double.valueOf(datos[3]));
 				
 				break;
 			case "0 bicicleta":
+				
+				System.out.println("--Datos bicicleta 0");
 				
 				datos = (String[])mensajes;
 				
@@ -109,12 +146,16 @@ public class Ventana extends JFrame {
 				break;
 			case "1 bicicleta":
 				
+				System.out.println("--Datos bicicleta 1");
+				
 				datos = (String[])mensajes;
 				
 				panel1.setBicicletaData(datos[0], datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]));
 				
 				break;
 			case "2 bicicleta":
+				
+				System.out.println("--Datos bicicleta 2");
 				
 				datos = (String[])mensajes;
 				
@@ -123,9 +164,18 @@ public class Ventana extends JFrame {
 				break;
 			case "3 bicicleta":
 				
+				System.out.println("--Datos bicicleta 3");
+				
 				datos = (String[])mensajes;
 				
 				panel3.setBicicletaData(datos[0], datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]));
+				
+				break;
+			case "ayudaMain":
+				
+				System.out.println("--Datos ayudaMain");
+				
+				taRegistro.setText(taRegistro.getText() + (String)mensajes[0]);
 				
 				break;
 			default:
@@ -148,12 +198,23 @@ public class Ventana extends JFrame {
 		contentPane.setLayout(new BorderLayout());
 		
 		JPanel panelReloj = new JPanel();
+		panelReloj.setPreferredSize(new Dimension(35, 35));
+		panelReloj.setMinimumSize(new Dimension(35, 35));
 		contentPane.add(panelReloj, BorderLayout.NORTH);
+		SpringLayout sl_panelReloj = new SpringLayout();
+		panelReloj.setLayout(sl_panelReloj);
 		
 		JLabel lblReloj = new JLabel("Reloj:");
+		sl_panelReloj.putConstraint(SpringLayout.NORTH, lblReloj, 11, SpringLayout.NORTH, panelReloj);
+		sl_panelReloj.putConstraint(SpringLayout.WEST, lblReloj, 518, SpringLayout.WEST, panelReloj);
 		panelReloj.add(lblReloj);
 		
 		txtReloj = new JTextField();
+		sl_panelReloj.putConstraint(SpringLayout.NORTH, txtReloj, 5, SpringLayout.NORTH, panelReloj);
+		sl_panelReloj.putConstraint(SpringLayout.WEST, txtReloj, 558, SpringLayout.WEST, panelReloj);
+		sl_panelReloj.putConstraint(SpringLayout.EAST, txtReloj, 726, SpringLayout.WEST, panelReloj);
+		txtReloj.setMinimumSize(new Dimension(150, 28));
+		txtReloj.setPreferredSize(new Dimension(150, 28));
 		panelReloj.add(txtReloj);
 		txtReloj.setColumns(10);
 		
@@ -187,13 +248,21 @@ public class Ventana extends JFrame {
 		panelsuperior.add(panelComandos, BorderLayout.SOUTH);
 		panelComandos.setLayout(new GridLayout(1, 2, 0, 0));
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBorder(new TitledBorder("Comandos"));
-		panelComandos.add(textArea);
+		taComandos = new JTextArea();
+		taComandos.setBorder(new TitledBorder("Comandos"));
+		taComandos.setAutoscrolls(true);
+		taComandos.addKeyListener(new ListenerComandos(micomandero));
 		
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setBorder(new TitledBorder(null, "Registro", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelComandos.add(textArea_1);
+		JScrollPane scrollpane = new JScrollPane(taComandos);
+		panelComandos.add(scrollpane);
+		
+		taRegistro = new JTextArea();
+		taRegistro.setBorder(new TitledBorder(null, "Registro", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		taRegistro.setAutoscrolls(true);
+		taRegistro.setEditable(false);
+		
+		JScrollPane scrollpaner = new JScrollPane(taRegistro);
+		panelComandos.add(scrollpaner);
 		
 		Lienzo canvas = new Lienzo(new ArrayList<Ciclista>());
 		panelGlobal.add(canvas);
