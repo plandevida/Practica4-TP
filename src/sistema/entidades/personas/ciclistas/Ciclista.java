@@ -84,12 +84,15 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 * @return Una cadena de texto separada por tokens.
 	 */
 	public StringTokenizer mostrarDatos() {
-		StringBuilder mensaje = new StringBuilder("#ciclista#,");
-		mensaje.append(getNombre())
+		StringBuilder mensaje = new StringBuilder("#ciclista#,")
 			.append(",")
-			.append(getPeso())
+			.append(getNombre())
 			.append(",")
-			.append(getCadencia());
+			.append(getFuerzaAsInt())
+			.append(",")
+			.append(getCadencia())
+			.append(",")
+			.append(getTiempopedalada());
 
 		StringTokenizer stringTokenizer = new StringTokenizer(mensaje.toString(), ",");
 
@@ -218,7 +221,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 *  
 	 * @return La cadencia
 	 */
-	public double getCadencia() {
+	public int getCadencia() {
 		return cadencia;
 	}
 	
@@ -300,7 +303,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 * @return Identificador único.
 	 */
 	public String getIdentificadorSalidaDatos() {
-		return numeromallot + " " + getNombre(); 
+		return numeromallot + " ciclista";
 	}
 
 	/**

@@ -26,6 +26,8 @@ import sistema.factoresexternos.viento.MiViento;
 import sistema.interfaces.ObjetosConSalidaDeDatos;
 import sistema.interfaces.ObjetosQueSeEjecutan;
 import sistema.vista.Lienzo;
+import sistema.vista.visual.FormateadorDatosVista;
+import sistema.vista.visual.Ventana;
 import sistema.vista.visual.VentanaConEditor;
 
 /**
@@ -51,8 +53,9 @@ public class CiclistaManager {
 
 	// Vistas del sistema.
 	private VentanaConEditor ventana;
+	private Ventana ventana2;
 	private Lienzo lienzo;
-//	private FormateadorDatosVista formateador;
+	private FormateadorDatosVista formateador;
 
 	// Subsitemas del sistema.
 	private Dispatcher dispatcher;
@@ -65,8 +68,6 @@ public class CiclistaManager {
 
 	private void crearGUI() {
 		
-		preconfiguracionparaGui();
-		
 		try {
 			// Con este método forzamos la "sincronización" de la vista.
 			SwingUtilities.invokeAndWait(new Runnable() {
@@ -74,7 +75,7 @@ public class CiclistaManager {
 				@Override
 				public void run() {
 					
-					ventana = new VentanaConEditor(dispatcher, lienzo, ciclistas);
+					ventana2 = new Ventana();
 				}
 			});
 		} catch (InvocationTargetException e) {
@@ -123,17 +124,18 @@ public class CiclistaManager {
 	/**
 	 * Configura los elementos necesarios para la vista.
 	 */
-	private void preconfiguracionparaGui() {
-		
-		parser = new ParseadorComandos();
+	public void iniciar() {
+
+		listaejecutables = new ArrayList<ObjetosQueSeEjecutan>();
+		listasalidadatos = new ArrayList<ObjetosConSalidaDeDatos>();
 
 		reloj = Reloj.getInstance();
-		
 		ciclistas = new ArrayList<Ciclista>();
 		bicicletas = new ArrayList<Bicicleta>();
-		
-		listasalidadatos = new ArrayList<ObjetosConSalidaDeDatos>();
-		
+
+		Eolo eolo = new Eolo(bicicletas, reloj, mapameteorologico);
+		factoresexternos = new FactoresExternos(bicicletas, carreteradecarreraciclsta, eolo, null,null);
+
 		try {
 			// Generador de nombres basado en silabas, con prefijos y sufijos.
 			generadordenombres = new NameGenerator(VariablesDeContexto.DEFAULT_SYLLABLE_FILE_PATH);
@@ -157,24 +159,13 @@ public class CiclistaManager {
 			listasalidadatos.add(bicicleta);
 		}
 		
+		parser = new ParseadorComandos();
+		
 		presentador = new Presentador(ciclistas, listasalidadatos, mapameteorologico, reloj, parser.getOrdenes());
 		dispatcher = new Dispatcher(presentador, parser);
 		
 		lienzo = new Lienzo(ciclistas);
-	}
-
-	/**
-	 * Inicializa el contexto de la aplicación.
-	 */
-	public void iniciar() {
-
-		listaejecutables = new ArrayList<ObjetosQueSeEjecutan>();
-
-		Eolo eolo = new Eolo(bicicletas, reloj, mapameteorologico);
-		factoresexternos = new FactoresExternos(bicicletas, carreteradecarreraciclsta, eolo, null,null);
 		
-//		ventana.setCiclistas(ciclistas);
-
 		// Se registran los elementos con salida de datos en una lista.
 		listasalidadatos.add(reloj);
 
@@ -183,11 +174,12 @@ public class CiclistaManager {
 
 		for (Ciclista ciclista : ciclistas) {
 			listaejecutables.add(ciclista);
+			listasalidadatos.add(ciclista);
 		}
 
-//		formateador = new FormateadorDatosVista(listasalidadatos, ventana);
+		formateador = new FormateadorDatosVista(listasalidadatos, ventana2);
 
-//		listaejecutables.add(formateador);
+		listaejecutables.add(formateador);
 		listaejecutables.add(factoresexternos);
 		listaejecutables.add(dispatcher);
 	}
@@ -205,7 +197,6 @@ public class CiclistaManager {
 				
 				for (ObjetosQueSeEjecutan objetoejecutable : listaejecutables) {
 					objetoejecutable.ejecuta();
-//					ventana.update();
 				}
 				
 				miliseg = (int)(Calendar.getInstance().getTimeInMillis() % 10);

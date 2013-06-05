@@ -60,10 +60,62 @@ public class Ventana extends JFrame {
 		try {
 			switch(id) {
 			case "ruloj":
+				
 				break;
-			case "ciclista":
+			case "0 ciclista":
 				
+				String[] datos = (String[])mensajes;
 				
+				listaNombreCiclista.get(0).setCiclistaData(datos[0], Integer.valueOf(datos[1]), Integer.valueOf(datos[2]), Double.valueOf(datos[3]));
+				
+				break;
+			case "1 ciclista":
+				
+				datos = (String[])mensajes;
+				
+				listaNombreCiclista.get(1).setCiclistaData(datos[0], Integer.valueOf(datos[1]), Integer.valueOf(datos[2]), Double.valueOf(datos[3]));
+				
+				break;
+			case "2 ciclista":
+				
+				datos = (String[])mensajes;
+				
+				listaNombreCiclista.get(2).setCiclistaData(datos[0], Integer.valueOf(datos[1]), Integer.valueOf(datos[2]), Double.valueOf(datos[3]));
+				
+				break;
+			case "3 ciclista":
+				
+				datos = (String[])mensajes;
+				
+				listaNombreCiclista.get(3).setCiclistaData(datos[0], Integer.valueOf(datos[1]), Integer.valueOf(datos[2]), Double.valueOf(datos[3]));
+				
+				break;
+			case "0 bicicleta":
+				
+				datos = (String[])mensajes;
+				
+				listaNombreCiclista.get(0).setBicicletaData(datos[0], datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]));
+				
+				break;
+			case "1 bicicleta":
+				
+				datos = (String[])mensajes;
+				
+				listaNombreCiclista.get(1).setBicicletaData(datos[0], datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]));
+				
+				break;
+			case "2 bicicleta":
+				
+				datos = (String[])mensajes;
+				
+				listaNombreCiclista.get(2).setBicicletaData(datos[0], datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]));
+				
+				break;
+			case "3 bicicleta":
+				
+				datos = (String[])mensajes;
+				
+				listaNombreCiclista.get(3).setBicicletaData(datos[0], datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]));
 				
 				break;
 			default:
@@ -73,6 +125,9 @@ public class Ventana extends JFrame {
 		}
 	}
 	
+	/**
+	 * Construye el interfaz.
+	 */
 	private void init() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

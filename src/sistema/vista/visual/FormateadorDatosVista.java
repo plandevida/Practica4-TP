@@ -12,22 +12,16 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 
 	// Lista de objetos que se van a mostrar
 	private List<ObjetosConSalidaDeDatos> registroobjetossalidadatos;
-//	private Ventana vista;
+	private Ventana vista;
 	
-//	private VentanaJL vista;
-	private VentanaConEditor vista;
+//	private VentanaConEditor vista;
 	
-//	public FormateadorDatosVista(List<ObjetosConSalidaDeDatos> listadeobjetosamostrar, Ventana ventana) {
-//		registroobjetossalidadatos = listadeobjetosamostrar;
-//		vista = ventana;
-//	}
-	
-	public FormateadorDatosVista(List<ObjetosConSalidaDeDatos> listadeobjetosamostrar, VentanaConEditor ventana) {
+	public FormateadorDatosVista(List<ObjetosConSalidaDeDatos> listadeobjetosamostrar, Ventana ventana) {
 		registroobjetossalidadatos = listadeobjetosamostrar;
 		vista = ventana;
 	}
 	
-//	public FormateadorDatosVista(List<ObjetosConSalidaDeDatos> listadeobjetosamostrar, VentanaJL ventana) {
+//	public FormateadorDatosVista(List<ObjetosConSalidaDeDatos> listadeobjetosamostrar, VentanaConEditor ventana) {
 //		registroobjetossalidadatos = listadeobjetosamostrar;
 //		vista = ventana;
 //	}
@@ -55,29 +49,30 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 
 		String formato = mensaje.nextToken();
 		
-		StringBuilder datos = new StringBuilder();
+		String[] datos = new String[mensaje.countTokens()];
 		
 		switch (formato) {
 
 		// Caso para el formato de la bicicleta
 		case "#bicicleta#":
-			datos.append("velocidad: ")
-				.append(mensaje.nextToken());
+			datos[0] = mensaje.nextToken();
+			datos[1] = mensaje.nextToken();
+			datos[2] = mensaje.nextToken();
+			datos[3] = mensaje.nextToken();
 			
-			vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), datos.toString());
+			vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), (Object[])datos);
 			
 			break;
 
 		// Caso para el formato del ciclista
 		case "#ciclista#":
-			datos.append("nombre: ")
-			.append(mensaje.nextToken()).append('\n')
-			.append("peso: ")
-			.append(mensaje.nextToken()).append('\n')
-			.append("cadencia: ")
-			.append(mensaje.nextToken());
 			
-			vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), datos.toString());
+			datos[0] = mensaje.nextToken();
+			datos[1] = mensaje.nextToken();
+			datos[2] = mensaje.nextToken();
+			datos[3] = mensaje.nextToken();
+			
+			vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), (Object[])datos);
 			
 			break;
 
@@ -106,7 +101,6 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 	public void mostrarDatos() {
 		
 		for(ObjetosConSalidaDeDatos objetoamostrar : registroobjetossalidadatos) {
-//			vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), formateadorDatos(objetoamostrar));
 			formateadorDatos(objetoamostrar);
 		}
 	}

@@ -97,8 +97,14 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 * @return Una cadena de texto separada por tokens.
 	 */
 	public StringTokenizer mostrarDatos() {
-		StringBuilder mensaje = new StringBuilder("#bicicleta#,");
-		mensaje.append(getVelocidad());
+		StringBuilder mensaje = new StringBuilder("#bicicleta#,")
+			.append(getVelocidad())
+			.append(",")
+			.append(getEspacioRecorrido())
+			.append(",")
+			.append(getPinhonactual())
+			.append(",")
+			.append(getPlatoactual());
 		
 		return new StringTokenizer(mensaje.toString(), ",");
 	}
@@ -263,9 +269,13 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 		id = numerocorredor;
 	}
 	
+	public int getId() {
+		return id;
+	}
+	
 	@Override
 	public String getIdentificadorSalidaDatos() {
-		return "bicicleta " + id;
+		return id + " bicicleta";
 	}
 
 	public double getPendiente() {

@@ -59,6 +59,22 @@ public class PanelCiclista extends JPanel {
 		sPeriodo.setValue( ciclista.getTiempopedalada() );
 	}
 
+	public void setCiclistaData(String nombre, Integer fuerza, Integer cadencia, Double periodo) {
+		
+		tnombreCiclista.setText(nombre);
+		PBfuerza.setValue(fuerza);
+		sCadencia.setValue(cadencia);
+		sPeriodo.setValue(periodo);
+	}
+	
+	public void setBicicletaData(String velocidad, String distancia, Integer pinhon, Integer plato) {
+		
+		tVelocidad.setText(velocidad);
+		tDistancia.setText(distancia);
+		sPinhon.setValue(pinhon);
+		sPlato.setValue(plato);
+	}
+
 	/**
 	 * Construye la interfaz.
 	 */
