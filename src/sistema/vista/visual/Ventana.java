@@ -10,11 +10,13 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import sistema.entidades.personas.ciclistas.Ciclista;
 import sistema.vista.Lienzo;
+import javax.swing.JLabel;
 
 public class Ventana extends JFrame {
 
@@ -23,6 +25,7 @@ public class Ventana extends JFrame {
 	private JPanel contentPane;
 	
 	private List<PanelCiclista> listaNombreCiclista;
+	private JTextField txtReloj;
 
 	/**
 	 * Launch the application.
@@ -61,10 +64,7 @@ public class Ventana extends JFrame {
 			switch(id) {
 			case "ruloj":
 				
-				Integer hora = (Integer)mensajes[0];
-				Integer minuto = (Integer)mensajes[1];
-				Integer segundo = (Integer)mensajes[2];
-				
+				txtReloj.setText(mensajes[0] + "h " + mensajes[1] + "m " + mensajes[2] + "s");
 				
 				break;
 			case "0 ciclista":
@@ -140,11 +140,25 @@ public class Ventana extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(2, 1, 0, 0));
+		contentPane.setLayout(new BorderLayout());
+		
+		JPanel panelReloj = new JPanel();
+		contentPane.add(panelReloj, BorderLayout.NORTH);
+		
+		JLabel lblReloj = new JLabel("Reloj:");
+		panelReloj.add(lblReloj);
+		
+		txtReloj = new JTextField();
+		panelReloj.add(txtReloj);
+		txtReloj.setColumns(10);
+		
+		JPanel panelGlobal = new JPanel();
+		panelGlobal.setLayout(new GridLayout(2, 1, 0, 0));
+		contentPane.add(panelGlobal, BorderLayout.CENTER);
 
 		JPanel panelsuperior = new JPanel();
 		panelsuperior.setLayout(new BorderLayout());
-		contentPane.add(panelsuperior);
+		panelGlobal.add(panelsuperior);
 		
 		JPanel panelCiclistas = new JPanel();
 		panelsuperior.add(panelCiclistas, BorderLayout.CENTER);
@@ -185,7 +199,7 @@ public class Ventana extends JFrame {
 		panelComandos.add(textArea_1);
 		
 		Lienzo canvas = new Lienzo(new ArrayList<Ciclista>());
-		contentPane.add(canvas);
+		panelGlobal.add(canvas);
 		
 		setVisible(true);
 	}

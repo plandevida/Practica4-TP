@@ -150,9 +150,9 @@ public class CiclistaManager {
 			Bicicleta bicicleta = new Bicicleta();
 			bicicleta.setId(i);
 			
-			int cadencia = new Random().nextInt(120);
-			int peso = new Random().nextInt(70);
-			int fuerza = 1000;
+			int cadencia = new Random().nextInt(120)+1;
+			int peso = new Random().nextInt(70)+1;
+			int fuerza = 100;
 			
 			Ciclista ciclista = new Ciclista(generadordenombres.compose(3), i, cadencia, bicicleta,0.5, reloj, peso, fuerza);
 			

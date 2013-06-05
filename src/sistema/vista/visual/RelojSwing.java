@@ -122,6 +122,8 @@ public class RelojSwing extends JPanel /*implements Runnable*/ {
 		second = segundo;
 		minute = minuto;
 		hour = hora;
+		
+		repaint();
 	}
 
 	public static void main(String args[]) {
