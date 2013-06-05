@@ -126,6 +126,10 @@ public class CiclistaManager {
 	 */
 	public void iniciar() {
 
+		while( !VariablesDeContexto.SYN_GUI ) { System.out.println("Esperando GUI"); }
+		
+		System.out.println("Iniciando");
+		
 		listaejecutables = new ArrayList<ObjetosQueSeEjecutan>();
 		listasalidadatos = new ArrayList<ObjetosConSalidaDeDatos>();
 
@@ -151,27 +155,18 @@ public class CiclistaManager {
 			bicicleta.setId(i);
 			
 			int cadencia = new Random().nextInt(120)+1;
-			int peso = new Random().nextInt(40)+41;
+			int peso = new Random().nextInt(70)+1;
+			int fuerza = 100;
 			
-			float periodo = (float) 60/cadencia;
-			int fuerza = 1000;
-			periodo = periodo*10;
-			int periodo2 = (int) periodo;
-			
-			float pedalada =(float) (new Random().nextInt(periodo2)+1)/10;
-			
-//			System.out.println("ped "+pedalada+" cade " +cadencia+" peri "+periodo +" peri2 "+periodo2);
-			
-			
-			Ciclista ciclista = new Ciclista(generadordenombres.compose(3), i, cadencia, bicicleta,pedalada, reloj, peso, fuerza);
+			Ciclista ciclista = new Ciclista(generadordenombres.compose(3), i, cadencia, bicicleta,0.5, reloj, peso, fuerza);
 			
 			ciclistas.add(ciclista);
 			bicicletas.add(bicicleta);
 			
-//			listaejecutables.add(ciclista);
-//			
-//			listasalidadatos.add(ciclista);
-//			listasalidadatos.add(bicicleta);
+			listaejecutables.add(ciclista);
+			
+			listasalidadatos.add(ciclista);
+			listasalidadatos.add(bicicleta);
 		}
 		
 		parser = new ParseadorComandos();
@@ -180,25 +175,14 @@ public class CiclistaManager {
 		dispatcher = new Dispatcher(presentador, parser);
 		
 		lienzo = new Lienzo(ciclistas);
-
-		ventana = new Ventana();
-		
-		formateador = new FormateadorDatosVista(listasalidadatos, ventana);
-		
-		for( Ciclista c : ciclistas) {
-			listasalidadatos.add(c);
-			listaejecutables.add(c);
-		}
-		
-		for ( Bicicleta b : bicicletas) {
-			listasalidadatos.add(b);
-		}
 		
 		// Se registran los elementos con salida de datos en una lista.
 		listasalidadatos.add(reloj);
-		
+
 		// Se registran los elementos ejecutables en una lista.
 		listaejecutables.add(reloj);
+
+		formateador = new FormateadorDatosVista(listasalidadatos, ventana);
 
 		listaejecutables.add(formateador);
 		listaejecutables.add(factoresexternos);
@@ -213,7 +197,7 @@ public class CiclistaManager {
 		
 		int miliseg = 0;
 		
-		while (VariablesDeContexto.SYN_GUI && reloj.getHoras() < 2) {
+		while (reloj.getHoras() < 2) {
 			
 			if (miliseg!= (int)(Calendar.getInstance().getTimeInMillis() % 10)){
 				
@@ -334,7 +318,7 @@ public class CiclistaManager {
 		
 		CiclistaManager manager = new CiclistaManager();
 		
-//		manager.crearGUI();
+		manager.crearGUI();
 		
 		manager.prepararArgumentos(args);
 		

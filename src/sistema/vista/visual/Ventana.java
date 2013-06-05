@@ -25,8 +25,12 @@ public class Ventana extends JFrame {
 	
 	private JPanel contentPane;
 	
-	private List<PanelCiclista> listaNombreCiclista;
 	private JTextField txtReloj;
+	
+	private PanelCiclista panel;
+	private PanelCiclista panel1;
+	private PanelCiclista panel2;
+	private PanelCiclista panel3;
 
 	/**
 	 * Launch the application.
@@ -47,8 +51,6 @@ public class Ventana extends JFrame {
 	 * Create the frame.
 	 */
 	public Ventana() {
-		
-		listaNombreCiclista = new ArrayList<PanelCiclista>();
 		
 		init();
 		
@@ -74,56 +76,56 @@ public class Ventana extends JFrame {
 				
 				String[] datos = (String[])mensajes;
 				
-				listaNombreCiclista.get(0).setCiclistaData(datos[0], Integer.valueOf(datos[1]), Integer.valueOf(datos[2]), Double.valueOf(datos[3]));
+				panel.setCiclistaData(datos[0], Integer.valueOf(datos[1]), Integer.valueOf(datos[2]), Double.valueOf(datos[3]));
 				
 				break;
 			case "1 ciclista":
 				
 				datos = (String[])mensajes;
 				
-				listaNombreCiclista.get(1).setCiclistaData(datos[0], Integer.valueOf(datos[1]), Integer.valueOf(datos[2]), Double.valueOf(datos[3]));
+				panel1.setCiclistaData(datos[0], Integer.valueOf(datos[1]), Integer.valueOf(datos[2]), Double.valueOf(datos[3]));
 				
 				break;
 			case "2 ciclista":
 				
 				datos = (String[])mensajes;
 				
-				listaNombreCiclista.get(2).setCiclistaData(datos[0], Integer.valueOf(datos[1]), Integer.valueOf(datos[2]), Double.valueOf(datos[3]));
+				panel2.setCiclistaData(datos[0], Integer.valueOf(datos[1]), Integer.valueOf(datos[2]), Double.valueOf(datos[3]));
 				
 				break;
 			case "3 ciclista":
 				
 				datos = (String[])mensajes;
 				
-				listaNombreCiclista.get(3).setCiclistaData(datos[0], Integer.valueOf(datos[1]), Integer.valueOf(datos[2]), Double.valueOf(datos[3]));
+				panel3.setCiclistaData(datos[0], Integer.valueOf(datos[1]), Integer.valueOf(datos[2]), Double.valueOf(datos[3]));
 				
 				break;
 			case "0 bicicleta":
 				
 				datos = (String[])mensajes;
 				
-				listaNombreCiclista.get(0).setBicicletaData(datos[0], datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]));
+				panel.setBicicletaData(datos[0], datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]));
 				
 				break;
 			case "1 bicicleta":
 				
 				datos = (String[])mensajes;
 				
-				listaNombreCiclista.get(1).setBicicletaData(datos[0], datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]));
+				panel1.setBicicletaData(datos[0], datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]));
 				
 				break;
 			case "2 bicicleta":
 				
 				datos = (String[])mensajes;
 				
-				listaNombreCiclista.get(2).setBicicletaData(datos[0], datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]));
+				panel2.setBicicletaData(datos[0], datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]));
 				
 				break;
 			case "3 bicicleta":
 				
 				datos = (String[])mensajes;
 				
-				listaNombreCiclista.get(3).setBicicletaData(datos[0], datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]));
+				panel3.setBicicletaData(datos[0], datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]));
 				
 				break;
 			default:
@@ -167,25 +169,17 @@ public class Ventana extends JFrame {
 		panelsuperior.add(panelCiclistas, BorderLayout.CENTER);
 		panelCiclistas.setLayout(new GridLayout(1, 4, 0, 0));
 		
-		PanelCiclista panel = new PanelCiclista();
+		panel = new PanelCiclista();
 		panelCiclistas.add(panel);
 		
-		listaNombreCiclista.add(panel);
-		
-		PanelCiclista panel1 = new PanelCiclista();
+		panel1 = new PanelCiclista();
 		panelCiclistas.add(panel1);
 		
-		listaNombreCiclista.add(panel1);
-		
-		PanelCiclista panel2 = new PanelCiclista();
+		panel2 = new PanelCiclista();
 		panelCiclistas.add(panel2);
 		
-		listaNombreCiclista.add(panel2);
-		
-		PanelCiclista panel3 = new PanelCiclista();
+		panel3 = new PanelCiclista();
 		panelCiclistas.add(panel3);
-		
-		listaNombreCiclista.add(panel3);
 		
 		JPanel panelComandos = new JPanel();
 		panelComandos.setPreferredSize(new Dimension(10, 110));
