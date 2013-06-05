@@ -152,9 +152,9 @@ public class CiclistaManager {
 			
 			int cadencia = new Random().nextInt(120);
 			int peso = new Random().nextInt(70);
-			int fuerza = 100;
+			int fuerza = 1000;
 			
-			Ciclista ciclista = new Ciclista(generadordenombres.compose(3), i, cadencia, bicicleta, 0.5, reloj, peso, fuerza);
+			Ciclista ciclista = new Ciclista(generadordenombres.compose(3), i, cadencia, bicicleta,0.5, reloj, peso, fuerza);
 			
 			ciclistas.add(ciclista);
 			bicicletas.add(bicicleta);
@@ -183,6 +183,7 @@ public class CiclistaManager {
 		listaejecutables.add(formateador);
 		listaejecutables.add(factoresexternos);
 		listaejecutables.add(dispatcher);
+		
 	}
 
 	/**
@@ -198,8 +199,9 @@ public class CiclistaManager {
 				
 				for (ObjetosQueSeEjecutan objetoejecutable : listaejecutables) {
 					objetoejecutable.ejecuta();
+					
 				}
-				
+	
 				miliseg = (int)(Calendar.getInstance().getTimeInMillis() % 10);
 			}
 		}
@@ -213,7 +215,7 @@ public class CiclistaManager {
 	}
 	
 	private void ayuda() {
-		ventana.ponerDatosEnVentana("ayudaMain", "");
+	//	ventana.ponerDatosEnVentana("ayudaMain", "");
 	}
 	
 	/**

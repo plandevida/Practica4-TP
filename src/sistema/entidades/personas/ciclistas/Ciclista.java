@@ -28,7 +28,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	// La candencia de la pedalada del ciclista.
 	private int cadencia;
 	
-	private double periodo;
+	private float periodo;
 	
 	private double tiempopedalada;
 	
@@ -61,10 +61,11 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 		bicicletamontada = bicicletaamontar;
 		reloj = relojCiclista;
 		numeromallot = nummallot;
-		this.tiempopedalada = tiempopedalada;
+		this.tiempopedalada = tiempopedalada;	
 		this.fuerza = fuerza;
 //		bicicletamontada.setId(numeromallot);
 		estrellado = false;
+		
 		calcularPeriodo();
 		contadorcandencia = 1;
 	}
@@ -109,17 +110,18 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 				if (reloj.getMilisegundos() != milisegundos) {
 					
 					
-					if (contadorcandencia >= (periodo * 1000)) {
+					if (contadorcandencia >= (periodo * 10)) {
 						
 						
 						double fuerzagastada = bicicletamontada.darPedalada(tiempopedalada,getPeso()); 
-						
+						System.out.println(numeromallot+" "+bicicletamontada.getVelocidad());
 						if (fuerza > 0) fuerza = (fuerza - fuerzagastada);
 						
 						contadorcandencia = 1;
 					}
 					
 					contadorcandencia++;
+					//System.out.println(contadorcandencia);
 					milisegundos = reloj.getMilisegundos();
 				}
 			}
@@ -130,11 +132,18 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 */
 	public void calcularPeriodo() {
 		
-		periodo = (cadencia >= 60) ? 1/(cadencia/60) : 0;
+		periodo = (float)60/cadencia;
+//		System.out.println(numeromallot);
+//		System.out.println("	tiem "+tiempopedalada);
+//		System.out.println("	peri "+periodo);
+//		System.out.println("	cad "+cadencia);
 		
 		if (periodo < tiempopedalada) {
 			tiempopedalada = periodo;
 		}
+		
+//		System.out.println("	tiem2 "+tiempopedalada);
+//		System.out.println("	peri2 "+periodo);
 	}
 	
 	/**

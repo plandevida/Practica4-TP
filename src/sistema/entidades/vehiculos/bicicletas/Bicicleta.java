@@ -86,8 +86,8 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 */
 	private double calcularAceleracionTiempoPedalada(double tiempopedalada) {
 
-		double aceleracion = espacioDePedalada() / (tiempopedalada)*(tiempopedalada);
-
+		double aceleracion = espacioDePedalada() / (tiempopedalada*tiempopedalada);
+		//System.out.println("esp "+ espacioDePedalada()+ " tiem " + tiempopedalada+" ac" +aceleracion);
 		return aceleracion;
 	}
 	
@@ -128,17 +128,17 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 */
 	public double darPedalada(double tiempopedalada, int pesociclista) {
 		double aceleracion = calcularAceleracionTiempoPedalada(tiempopedalada);
-		
+		//System.out.println("ac "+aceleracion);
 		//velocidad = velocidad * factorpendiente;
 		//velocidad = velocidad + velocidad*factorviento;
 		double aceleracionfactores = aceleracionpendiente + aceleracionviento;
 		double velocidad = getVelocidad() + aceleracion*1; 
-		
+		//System.out.println("bic"+velocidad);
 		if (velocidad > velocidadmaxima(tiempopedalada)){
 			velocidad = velocidadmaxima(tiempopedalada);
 		}
 		
-		velocidad = velocidad + aceleracionfactores*1;
+		//velocidad = velocidad + aceleracionfactores*1;
 		
 		setVelocidad(velocidad);
 		setEspacioRecorrido(espacioDePedalada());
