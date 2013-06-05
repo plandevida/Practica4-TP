@@ -29,6 +29,8 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	
 	protected int peso;
 	
+	protected float aceledacionco;
+	
 	public Bicicleta() {
 	
 		setVelocidad(0);
@@ -74,7 +76,7 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	private double espacioDePedalada() {
 
 		double espaciodepedalada = recorridoLinealDeLaRueda() * relacionDeTransmision();
-
+	
 		return espaciodepedalada;
 	}
 	
@@ -142,8 +144,8 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 		
 		setVelocidad(velocidad);
 		setEspacioRecorrido(espacioDePedalada());
-		
-		return ((peso/10 + pesociclista/10)*(aceleracion+aceleracionfactores));
+		aceledacionco =	(float)aceleracion ;
+		return ((peso/10 + pesociclista/10)*(aceleracion + aceleracionfactores));
 	}
 	
 	/**
@@ -292,5 +294,8 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 
 	public void setViento(double viento) {
 		this.aceleracionviento = viento;
+	}
+	public float getAceleracion(){
+		return aceledacionco;
 	}
 }

@@ -113,8 +113,8 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 					if (contadorcandencia >= (periodo * 10)) {
 						
 						
-						double fuerzagastada = bicicletamontada.darPedalada(tiempopedalada,getPeso()); 
-						System.out.println(numeromallot+" "+bicicletamontada.getVelocidad() +" fuerg-" + fuerzagastada+" fuer-" + fuerza);
+						double fuerzagastada = (bicicletamontada.darPedalada(tiempopedalada,getPeso()))/10; 
+						System.out.println(numeromallot+" "+bicicletamontada.getVelocidad() +" fuerg " + fuerzagastada+" fuer " + fuerza+" peso "+ getPeso() +" ace "+ bicicletamontada.getAceleracion()+ " cad "+cadencia +" teim " + tiempopedalada);
 						if (fuerza > 0) fuerza = (fuerza - fuerzagastada);
 						
 						contadorcandencia = 1;
