@@ -13,7 +13,12 @@ public class Contador implements ObjetosQueSeEjecutan {
 	 * Metodo que ejecuta.
 	 */
 	public void ejecuta() {
+		
+		System.out.println("Contador/Reloj: Ejecutando...");
+		
 		nuevoImpulso();
+		
+		System.out.println("Contador/Reloj: Ejecutado");
 	}
 	
 	/**

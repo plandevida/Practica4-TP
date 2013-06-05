@@ -22,8 +22,11 @@ public class Reloj extends Contador implements ObjetosConSalidaDeDatos {
 	// Instancia del reloj usando el patrón singleton
 	private static Reloj INSTANCIA = null;
 	
+	private int totalImpulsos;
+	
 	private Reloj() {
-		milisegundos = 0;
+		totalImpulsos = 0;
+		milisegundos = 1;
 		segundos = 0;
 		minutos = 0;
 		horas = 0;
@@ -55,7 +58,9 @@ public class Reloj extends Contador implements ObjetosConSalidaDeDatos {
 	@Override
 	public void nuevoImpulso() {
 		
-		if (++impulsos >= VariablesDeContexto.UNIDAD_TIEMPO) {
+		totalImpulsos +=1;
+		
+		if (++impulsos >= 10) {
 			impulsos = 0;
 			if (++milisegundos >= 1000) {
 				milisegundos = 0;
@@ -69,6 +74,7 @@ public class Reloj extends Contador implements ObjetosConSalidaDeDatos {
 			}
 		}
 	}
+	
 	/**
 	 * Método para obtener una salida de datos de un objeto.
 	 * 
@@ -125,6 +131,10 @@ public class Reloj extends Contador implements ObjetosConSalidaDeDatos {
 		return horas;
 	}
 	
+	public int getTotalImpulsos() {
+		return totalImpulsos;
+	}
+	
 	public String getIdentificadorSalidaDatos() {
 		return "ruloj";
 	}
@@ -134,16 +144,25 @@ public class Reloj extends Contador implements ObjetosConSalidaDeDatos {
 	 * 
 	 * Pone un retraso para ir aumentando los impulsos.
 	 */
-//	public static void main(String[] args) {
-//		Reloj reloj = new Reloj();
-//		
-//		for (int i=0; i < (100*60*60*60*60+1600000); i++) {
-//			reloj.nuevoImpulso();
-//			
-//			System.out.println("impulsos: " +reloj.getImpulsos());
-//			System.out.println("segundos: " + reloj.getSegundos());
-//			System.out.println("minutos: " + reloj.getMinutos());
-//			System.out.println("horas: " + reloj.getHoras());
-//		}
-//	}
+	public static void main(String[] args) {
+		Reloj reloj = Reloj.getInstance();
+		
+		for (int i=0; i < (100*60*60*60*60+1600000); i++) {
+//		while (reloj.getMilisegundos() <= 2) {
+			reloj.nuevoImpulso();
+			
+			System.out.println("total impulsos: " + reloj.getTotalImpulsos());
+			System.out.println("impulsos: " + reloj.getImpulsos());
+			System.out.println("milisegundos: " + reloj.getMilisegundos());
+			System.out.println("segundos: " + reloj.getSegundos());
+			System.out.println("minutos: " + reloj.getMinutos());
+			System.out.println("horas: " + reloj.getHoras());
+		}
+		
+		try {
+			Thread.sleep(2);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 }

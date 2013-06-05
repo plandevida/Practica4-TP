@@ -42,7 +42,7 @@ public class Lienzo extends Canvas implements ObjetosQueSeEjecutan {
 		lista_de_ciclistas = micic;
 		contentPane = new JPanel();
 		contentPane.setLayout(null);
-		setBounds(0, 0, Constantes.ANCHO_VENTANA, Constantes.ALTO_VENTANA / 2);
+//		setBounds(0, 0, Constantes.ANCHO_VENTANA, Constantes.ALTO_VENTANA / 2);
 	
 	//	entrada = new EntradaFichero();
 	//	pendiente = pen;
@@ -165,7 +165,7 @@ public class Lienzo extends Canvas implements ObjetosQueSeEjecutan {
     private int calculaYparaPuntoCiclista(Ciclista cic, TreeMap<Integer, Integer> ar) {
 		int yresu = 0;
 		int dify = 0;
-		int yacum = Constantes.ALTO_VENTANA / 4;
+//		int yacum = Constantes.ALTO_VENTANA / 4;
 		boolean encontrado = false;
 		Iterator<Entry<Integer, Integer>> it = ar.entrySet().iterator();
 		Iterator<Entry<Integer, Integer>> itaux = ar.entrySet().iterator();
@@ -191,15 +191,15 @@ public class Lienzo extends Canvas implements ObjetosQueSeEjecutan {
 		
 				    dify = tramoini.getValue();
 		
-				    int yfintramo = yacum + dify;
+//				    int yfintramo = yacum + dify;
 				    yresu = metro_en_el_tramo_del_ciclista * dify / diftramos;
-				    yresu = yacum
-					    - (metro_en_el_tramo_del_ciclista * dify / diftramos)
-					    - Constantes.ANCHO_PUNTO_CICLISTA / 2;
+//				    yresu = yacum
+//					    - (metro_en_el_tramo_del_ciclista * dify / diftramos)
+//					    - Constantes.ANCHO_PUNTO_CICLISTA / 2;
 		
 				}
 		    }
-		    yacum = yacum - tramoini.getValue();
+//		    yacum = yacum - tramoini.getValue();
 	
 		}
 

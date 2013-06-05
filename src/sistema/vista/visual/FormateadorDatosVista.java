@@ -44,6 +44,8 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 		
 		String[] datos = new String[mensaje.countTokens()];
 		
+		System.out.println("FORMATEADOR DE DATOS: ");
+		
 		switch (formato) {
 
 		// Caso para el formato de la bicicleta
@@ -52,6 +54,10 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 			datos[1] = mensaje.nextToken();
 			datos[2] = mensaje.nextToken();
 			datos[3] = mensaje.nextToken();
+			
+			for ( int i = 0; i < datos.length; i++) {
+				System.out.println("bici: " + datos[i]);
+			}
 			
 			vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), (Object[])datos);
 			
@@ -64,6 +70,10 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 			datos[1] = mensaje.nextToken();
 			datos[2] = mensaje.nextToken();
 			datos[3] = mensaje.nextToken();
+			
+			for ( int i = 0; i < datos.length; i++) {
+				System.out.println("cicli: " + datos[i]);
+			}
 			
 			vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), (Object[])datos);
 			
@@ -79,17 +89,46 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 				Integer milisegundos = Integer.valueOf(mensaje.nextToken());
 				Integer impulsos = Integer.valueOf(mensaje.nextToken());
 				
+				for ( int i = 0; i < datos.length; i++) {
+					System.out.println("ruloj: " + hora + "h " + minutos + "m " + segundos + "s " + milisegundos + "ms " + impulsos + "imp");
+				}
+				
 				vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), hora, minutos, segundos, milisegundos, impulsos);
 				
 			} catch (NumberFormatException ne) {
 				vista.ponerDatosEnVentana("log", mensaje);
 			}
-			
 			break;
+			
+		case "#ayudaMain#":
+			
+			vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), mensaje.toString());
 
+			break;
 		default:
+			vista.ponerDatosEnVentana("log", mensaje);
 			break;
 		}
+	}
+	
+	public void formateaDato(final String id, final StringTokenizer mensaje) {
+		
+		ObjetosConSalidaDeDatos o = new ObjetosConSalidaDeDatos() {
+			
+			@Override
+			public StringTokenizer mostrarDatos() {
+				
+				return mensaje;
+			}
+			
+			@Override
+			public String getIdentificadorSalidaDatos() {
+				
+				return id;
+			}
+		};
+		
+		formateadorDatos(o);
 	}
 
 	@Override
@@ -102,6 +141,11 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 	
 	@Override
 	public void ejecuta() {
+		
+		System.out.println("Formateador: Ejecutando...");
+		
 		mostrarDatos();
+		
+		System.out.println("Formateador: Ejecutado");
 	}
 }

@@ -1,6 +1,7 @@
 package sistema.manager;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -24,7 +25,6 @@ import sistema.factoresexternos.FactoresExternos;
 import sistema.factoresexternos.viento.MiViento;
 import sistema.interfaces.ObjetosConSalidaDeDatos;
 import sistema.interfaces.ObjetosQueSeEjecutan;
-import sistema.vista.Lienzo;
 import sistema.vista.visual.FormateadorDatosVista;
 import sistema.vista.visual.Ventana;
 
@@ -52,7 +52,7 @@ public class CiclistaManager {
 	// Vistas del sistema.
 //	private VentanaConEditor ventana2;
 	private Ventana ventana;
-	private Lienzo lienzo;
+//	private Lienzo lienzo;
 	private FormateadorDatosVista formateador;
 
 	// Subsitemas del sistema.
@@ -66,22 +66,27 @@ public class CiclistaManager {
 
 	private void crearGUI() {
 		
-//		try {
+		parser = new ParseadorComandos();
+		
+		presentador = new Presentador(ciclistas, listasalidadatos, mapameteorologico, reloj, parser.getOrdenes());
+		dispatcher = new Dispatcher(presentador, parser);
+		
+		try {
 			// Con este método forzamos la "sincronización" de la vista.
-//			SwingUtilities.invokeAndWait(new Runnable() {
-			SwingUtilities.invokeLater(new Runnable() {
+			SwingUtilities.invokeAndWait(new Runnable() {
+//			SwingUtilities.invokeLater(new Runnable() {
 				
 				@Override
 				public void run() {
 					
-					ventana = new Ventana();
+					ventana = new Ventana(dispatcher);
 				}
 			});
-//		} catch (InvocationTargetException e) {
-//			e.printStackTrace();
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -169,12 +174,12 @@ public class CiclistaManager {
 			listasalidadatos.add(bicicleta);
 		}
 		
-		parser = new ParseadorComandos();
+//		parser = new ParseadorComandos();
+//		
+//		presentador = new Presentador(ciclistas, listasalidadatos, mapameteorologico, reloj, parser.getOrdenes());
+//		dispatcher = new Dispatcher(presentador, parser);
 		
-		presentador = new Presentador(ciclistas, listasalidadatos, mapameteorologico, reloj, parser.getOrdenes());
-		dispatcher = new Dispatcher(presentador, parser);
-		
-		lienzo = new Lienzo(ciclistas);
+//		lienzo = new Lienzo(ciclistas); 
 		
 		// Se registran los elementos con salida de datos en una lista.
 		listasalidadatos.add(reloj);
@@ -197,13 +202,31 @@ public class CiclistaManager {
 		
 		int miliseg = 0;
 		
+		int milisegundospropiosantes = 0;
+		int milisegundospropiosdespues = 100;
+		
 		while (reloj.getHoras() < 2) {
 			
-			if (miliseg!= (int)(Calendar.getInstance().getTimeInMillis() % 10)){
+			if (miliseg != (int)(Calendar.getInstance().getTimeInMillis() % 10)){
 				
-				for (ObjetosQueSeEjecutan objetoejecutable : listaejecutables) {
-					objetoejecutable.ejecuta();
+				if ( (milisegundospropiosdespues-milisegundospropiosantes) >= VariablesDeContexto.UNIDAD_TIEMPO ) {
 					
+					milisegundospropiosantes = reloj.getMilisegundos();
+					
+					for (ObjetosQueSeEjecutan objetoejecutable : listaejecutables) {
+						objetoejecutable.ejecuta();
+						
+						System.out.println("**Ejecutando " + reloj.getTotalImpulsos());
+						
+					}
+					
+					milisegundospropiosdespues = reloj.getMilisegundos();
+				}
+				else {
+					boolean a = (reloj.getMilisegundos() % 100) == 0;
+					
+					reloj.ejecuta();
+					milisegundospropiosdespues = reloj.getMilisegundos();
 				}
 	
 				miliseg = (int)(Calendar.getInstance().getTimeInMillis() % 10);
@@ -219,7 +242,8 @@ public class CiclistaManager {
 	}
 	
 	private void ayuda() {
-	//	ventana.ponerDatosEnVentana("ayudaMain", "");
+		
+		ventana.ponerDatosEnVentana("ayudaMain", "CiclistaManager <número_ciclistas> <fichero_comandos> <unidad_tiempo> <número_platos> <dientes_plato (separados por espacios)> <número_piñones> <dientes_piñones (separados por espacios)> <radio_rueda>");
 	}
 	
 	/**
@@ -231,9 +255,9 @@ public class CiclistaManager {
 	 */
 	private void prepararArgumentos(String[] args) {
 
-		while( !VariablesDeContexto.SYN_GUI ) { System.out.println("Esperando GUI"); }
-		
-		System.out.println("Configurando la aplicación");
+//		while( !VariablesDeContexto.SYN_GUI ) { System.out.println("Esperando GUI"); }
+//		
+//		System.out.println("Configurando la aplicación");
 		
  		Integer numerociclistas = null;
 		String ficherocomandos = null;
@@ -322,14 +346,21 @@ public class CiclistaManager {
 		
 		CiclistaManager manager = new CiclistaManager();
 		
+		System.out.println("Creando GUI");
 		manager.crearGUI();
+		System.out.println("GUI creada");
 		
+		System.out.println("Parseando argumentos");
 		manager.prepararArgumentos(args);
+		System.out.println("Argumentos parseados");
 		
 		manager.cargarConfiguracion();
 		manager.construirMapaDelTiempo();
 		
+		System.out.println("Iniciando");
 		manager.iniciar();
+		System.out.println("Iniciada");
+		System.out.println("Empezando la ejecución");
 		manager.ejecutar();
 		manager.finalizar();
 	}
