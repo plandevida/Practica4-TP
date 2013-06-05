@@ -151,10 +151,19 @@ public class CiclistaManager {
 			bicicleta.setId(i);
 			
 			int cadencia = new Random().nextInt(120)+1;
-			int peso = new Random().nextInt(70)+1;
-			int fuerza = 100;
+			int peso = new Random().nextInt(40)+41;
 			
-			Ciclista ciclista = new Ciclista(generadordenombres.compose(3), i, cadencia, bicicleta,0.5, reloj, peso, fuerza);
+			float periodo = (float) 60/cadencia;
+			int fuerza = 1000;
+			periodo = periodo*10;
+			int periodo2 = (int) periodo;
+			
+			float pedalada =(float) (new Random().nextInt(periodo2)+1)/10;
+			
+//			System.out.println("ped "+pedalada+" cade " +cadencia+" peri "+periodo +" peri2 "+periodo2);
+			
+			
+			Ciclista ciclista = new Ciclista(generadordenombres.compose(3), i, cadencia, bicicleta,pedalada, reloj, peso, fuerza);
 			
 			ciclistas.add(ciclista);
 			bicicletas.add(bicicleta);
