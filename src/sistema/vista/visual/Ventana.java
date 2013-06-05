@@ -69,7 +69,7 @@ public class Ventana extends JFrame {
 			switch(id) {
 			case "ruloj":
 				
-				txtReloj.setText(mensajes[0] + "h " + mensajes[1] + "m " + mensajes[2] + "s");
+				txtReloj.setText(mensajes[0] + "h " + mensajes[1] + "m " + mensajes[2] + "s " + mensajes[3] + "imp");
 				
 				break;
 			case "0 ciclista":

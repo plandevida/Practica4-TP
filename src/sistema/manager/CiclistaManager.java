@@ -124,10 +124,6 @@ public class CiclistaManager {
 	 * Configura los elementos necesarios para la vista.
 	 */
 	public void iniciar() {
-
-		while( !VariablesDeContexto.SYN_GUI ) { System.out.println("Esperando GUI"); }
-		
-		System.out.println("Iniciando");
 		
 		listaejecutables = new ArrayList<ObjetosQueSeEjecutan>();
 		listasalidadatos = new ArrayList<ObjetosConSalidaDeDatos>();
@@ -234,6 +230,10 @@ public class CiclistaManager {
 	 * @param args Argumentos del sistema.
 	 */
 	private void prepararArgumentos(String[] args) {
+
+		while( !VariablesDeContexto.SYN_GUI ) { System.out.println("Esperando GUI"); }
+		
+		System.out.println("Configurando la aplicación");
 		
  		Integer numerociclistas = null;
 		String ficherocomandos = null;
@@ -328,6 +328,7 @@ public class CiclistaManager {
 		
 		manager.cargarConfiguracion();
 		manager.construirMapaDelTiempo();
+		
 		manager.iniciar();
 		manager.ejecutar();
 		manager.finalizar();

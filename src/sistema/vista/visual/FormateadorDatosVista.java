@@ -77,8 +77,10 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 				Integer minutos = Integer.valueOf(mensaje.nextToken());
 				Integer segundos = Integer.valueOf(mensaje.nextToken());
 				Integer milisegundos = Integer.valueOf(mensaje.nextToken());
+				Integer impulsos = Integer.valueOf(mensaje.nextToken());
 				
-				vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), hora, minutos, segundos, milisegundos);
+				vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), hora, minutos, segundos, milisegundos, impulsos);
+				
 			} catch (NumberFormatException ne) {
 				vista.ponerDatosEnVentana("log", mensaje);
 			}
