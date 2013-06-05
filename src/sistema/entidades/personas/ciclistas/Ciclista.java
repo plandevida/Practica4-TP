@@ -114,7 +114,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 						
 						
 						double fuerzagastada = bicicletamontada.darPedalada(tiempopedalada,getPeso()); 
-						System.out.println(numeromallot+" "+bicicletamontada.getVelocidad());
+						System.out.println(numeromallot+" "+bicicletamontada.getVelocidad() +" fuerg-" + fuerzagastada+" fuer-" + fuerza);
 						if (fuerza > 0) fuerza = (fuerza - fuerzagastada);
 						
 						contadorcandencia = 1;
