@@ -113,15 +113,14 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 					if (contadorcandencia >= (periodo * 10)) {
 						
 						
-						double fuerzagastada = bicicletamontada.darPedalada(tiempopedalada,getPeso()); 
-						System.out.println(numeromallot+" "+bicicletamontada.getVelocidad() +" fuerg-" + fuerzagastada+" fuer-" + fuerza);
+						double fuerzagastada = (bicicletamontada.darPedalada(tiempopedalada,getPeso()))/10; 
 						if (fuerza > 0) fuerza = (fuerza - fuerzagastada);
 						
 						contadorcandencia = 1;
 					}
 					
 					contadorcandencia++;
-					//System.out.println(contadorcandencia);
+
 					milisegundos = reloj.getMilisegundos();
 				}
 			}

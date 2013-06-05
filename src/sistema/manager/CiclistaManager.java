@@ -1,7 +1,6 @@
 package sistema.manager;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -155,10 +154,15 @@ public class CiclistaManager {
 			bicicleta.setId(i);
 			
 			int cadencia = new Random().nextInt(120)+1;
-			int peso = new Random().nextInt(70)+1;
-			int fuerza = 1000;
+			int peso = new Random().nextInt(40)+41;
 			
-			Ciclista ciclista = new Ciclista(generadordenombres.compose(3), i, cadencia, bicicleta,0.5, reloj, peso, fuerza);
+			float periodo = (float) 60/cadencia;
+			int fuerza = 100;
+			periodo = periodo*10;
+			int periodo2 = (int) periodo;
+			float pedalada =(float) (new Random().nextInt(periodo2)+5)/10;
+			
+			Ciclista ciclista = new Ciclista(generadordenombres.compose(3), i, cadencia, bicicleta,pedalada, reloj, peso, fuerza);
 			
 			ciclistas.add(ciclista);
 			bicicletas.add(bicicleta);
