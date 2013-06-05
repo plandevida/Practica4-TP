@@ -14,17 +14,10 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 	private List<ObjetosConSalidaDeDatos> registroobjetossalidadatos;
 	private Ventana vista;
 	
-//	private VentanaConEditor vista;
-	
 	public FormateadorDatosVista(List<ObjetosConSalidaDeDatos> listadeobjetosamostrar, Ventana ventana) {
 		registroobjetossalidadatos = listadeobjetosamostrar;
 		vista = ventana;
 	}
-	
-//	public FormateadorDatosVista(List<ObjetosConSalidaDeDatos> listadeobjetosamostrar, VentanaConEditor ventana) {
-//		registroobjetossalidadatos = listadeobjetosamostrar;
-//		vista = ventana;
-//	}
 	
 	@Override
 	public void registrarObjetoConSalidaDatos(ObjetosConSalidaDeDatos objetoconsalidadatos) {

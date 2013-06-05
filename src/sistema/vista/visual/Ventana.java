@@ -61,6 +61,11 @@ public class Ventana extends JFrame {
 			switch(id) {
 			case "ruloj":
 				
+				Integer hora = (Integer)mensajes[0];
+				Integer minuto = (Integer)mensajes[1];
+				Integer segundo = (Integer)mensajes[2];
+				
+				
 				break;
 			case "0 ciclista":
 				

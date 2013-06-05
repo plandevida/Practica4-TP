@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class RelojSwing extends JPanel implements Runnable {
+public class RelojSwing extends JPanel /*implements Runnable*/ {
 	
 	boolean salir = false;
 	
@@ -99,24 +99,24 @@ public class RelojSwing extends JPanel implements Runnable {
 		lastyh = yhour;
 	}
 
-	public void start() {
-		Thread thread = new Thread(this);
-		thread.start();
-	}
-
-	public void stop() {
-		salir = true;
-	}
-
-	public void run() {
-		while (!salir) {
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-			}
-			repaint();
-		}
-	}
+//	public void start() {
+//		Thread thread = new Thread(this);
+//		thread.start();
+//	}
+//
+//	public void stop() {
+//		salir = true;
+//	}
+//
+//	public void run() {
+//		while (!salir) {
+//			try {
+//				Thread.sleep(100);
+//			} catch (InterruptedException e) {
+//			}
+//			repaint();
+//		}
+//	}
 
 	public void setTime(int hora, int minuto, int segundo) {
 		second = segundo;
@@ -133,6 +133,6 @@ public class RelojSwing extends JPanel implements Runnable {
 		RelojSwing clock = new RelojSwing();
 		window.getContentPane().add(clock);
 		window.setVisible(true);
-		clock.start();
+//		clock.start();
 	}
 }
