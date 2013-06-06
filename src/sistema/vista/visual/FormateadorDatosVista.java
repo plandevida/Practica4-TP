@@ -19,6 +19,10 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 		vista = ventana;
 	}
 	
+	public FormateadorDatosVista(List<ObjetosConSalidaDeDatos> listadeobjetosamostrar) {
+		registroobjetossalidadatos = listadeobjetosamostrar;
+	}
+	
 	@Override
 	public void registrarObjetoConSalidaDatos(ObjetosConSalidaDeDatos objetoconsalidadatos) {
 		
@@ -36,6 +40,10 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 		}
 	}
 	
+	public void setVista(Ventana ventana) {
+		vista = ventana;
+	}
+	
 	private void formateadorDatos(ObjetosConSalidaDeDatos objetoamostrar) {
 		
 		StringTokenizer mensaje = objetoamostrar.mostrarDatos();
@@ -44,7 +52,6 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 		
 		String[] datos = new String[mensaje.countTokens()];
 		
-//		System.out.println("FORMATEADOR DE DATOS: ");
 		
 		switch (formato) {
 
@@ -54,10 +61,6 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 			datos[1] = mensaje.nextToken();
 			datos[2] = mensaje.nextToken();
 			datos[3] = mensaje.nextToken();
-			
-//			for ( int i = 0; i < datos.length; i++) {
-//				System.out.println("bici: " + datos[i]);
-//			}
 			
 			vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), (Object[])datos);
 			
@@ -71,10 +74,6 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 			datos[2] = mensaje.nextToken();
 			datos[3] = mensaje.nextToken();
 			datos[4] = mensaje.nextToken();
-			
-//			for ( int i = 0; i < datos.length; i++) {
-//				System.out.println("cicli: " + datos[i]);
-//			}
 			
 			vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), (Object[])datos);
 			
@@ -90,14 +89,10 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 				Integer milisegundos = Integer.valueOf(mensaje.nextToken());
 				Integer impulsos = Integer.valueOf(mensaje.nextToken());
 				
-//				for ( int i = 0; i < datos.length; i++) {
-//					System.out.println("ruloj: " + hora + "h " + minutos + "m " + segundos + "s " + milisegundos + "ms " + impulsos + "imp");
-//				}
-				
 				vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), hora, minutos, segundos, milisegundos, impulsos);
 				
 			} catch (NumberFormatException ne) {
-				vista.ponerDatosEnVentana("log", mensaje);
+				vista.ponerDatosEnVentana("log", mensaje.toString());
 			}
 			break;
 			
@@ -106,8 +101,16 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 			vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), mensaje.toString());
 
 			break;
+			
+		case "#log#":
+			
+			vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), mensaje.toString());
+
+			break;
+			
 		default:
-			vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), mensaje);
+			
+			vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), mensaje.toString());
 			break;
 		}
 	}
@@ -131,7 +134,7 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 			@Override
 			public String getIdentificadorSalidaDatos() {
 				
-				return id;
+				return id.substring(1, id.length());
 			}
 		};
 		
@@ -146,7 +149,7 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 	 */
 	public void formateaDato(final String id, final String mensaje) {
 		
-		formateaDato(id, new StringTokenizer(mensaje));
+		formateaDato(id, new StringTokenizer(id+","+mensaje, ","));
 	}
 
 	@Override
@@ -160,10 +163,6 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 	@Override
 	public void ejecuta() {
 		
-//		System.out.println("Formateador: Ejecutando...");
-		
 		mostrarDatos();
-		
-//		System.out.println("Formateador: Ejecutado");
 	}
 }

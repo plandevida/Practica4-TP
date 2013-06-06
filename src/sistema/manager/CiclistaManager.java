@@ -68,7 +68,14 @@ public class CiclistaManager {
 		
 		parser = new ParseadorComandos();
 		
-		presentador = new Presentador(ciclistas, listasalidadatos, mapameteorologico, reloj, parser.getOrdenes());
+		ciclistas = new ArrayList<Ciclista>();
+		
+		listasalidadatos = new ArrayList<ObjetosConSalidaDeDatos>();
+		
+		presentador = new Presentador(ciclistas, listasalidadatos, mapameteorologico, parser.getOrdenes());
+
+		formateador = new FormateadorDatosVista(listasalidadatos);
+		
 		dispatcher = new Dispatcher(presentador, parser, formateador);
 		
 		try {
@@ -87,6 +94,8 @@ public class CiclistaManager {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		
+		formateador.setVista(ventana);
 	}
 	
 	/**
@@ -131,10 +140,8 @@ public class CiclistaManager {
 	public void iniciar() {
 		
 		listaejecutables = new ArrayList<ObjetosQueSeEjecutan>();
-		listasalidadatos = new ArrayList<ObjetosConSalidaDeDatos>();
 
 		reloj = Reloj.getInstance();
-		ciclistas = new ArrayList<Ciclista>();
 		bicicletas = new ArrayList<Bicicleta>();
 
 		Eolo eolo = new Eolo(bicicletas, reloj, mapameteorologico);
@@ -174,8 +181,6 @@ public class CiclistaManager {
 		
 		// Se registran los elementos con salida de datos en una lista.
 		listasalidadatos.add(reloj);
-
-		formateador = new FormateadorDatosVista(listasalidadatos, ventana);
 
 		listaejecutables.add(formateador);
 		listaejecutables.add(factoresexternos);
@@ -337,21 +342,14 @@ public class CiclistaManager {
 		
 		CiclistaManager manager = new CiclistaManager();
 		
-		System.out.println("Creando GUI");
-		manager.crearGUI();
-		System.out.println("GUI creada");
-		
-		System.out.println("Parseando argumentos");
-		manager.prepararArgumentos(args);
-		System.out.println("Argumentos parseados");
-		
 		manager.cargarConfiguracion();
 		manager.construirMapaDelTiempo();
 		
-		System.out.println("Iniciando");
+		manager.crearGUI();
+		
+		manager.prepararArgumentos(args);
+		
 		manager.iniciar();
-		System.out.println("Iniciada");
-		System.out.println("Empezando la ejecución");
 		manager.ejecutar();
 		manager.finalizar();
 	}

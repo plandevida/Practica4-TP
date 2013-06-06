@@ -5,7 +5,6 @@ import java.util.Map;
 
 import sistema.controladores.ordenes.Orden;
 import sistema.entidades.personas.ciclistas.Ciclista;
-import sistema.entidades.tiempo.Reloj;
 import sistema.factoresexternos.viento.MiViento;
 import sistema.interfaces.ObjetosConSalidaDeDatos;
 import sistema.vista.InterfaceSalidaDatos;
@@ -28,9 +27,6 @@ public class Presentador {
 	// El viento definido por horas.
 	private Map<Integer, MiViento> mapameteorologico;
 	
-	// El reloj de la carrera ciclista
-	private Reloj reloj;
-	
 	// Ordenes del parser y el sistema.
 	private Orden[] ordenes;
 	
@@ -46,12 +42,11 @@ public class Presentador {
 	public Presentador(List<Ciclista> ciclistas,
 			List<ObjetosConSalidaDeDatos> objetosamostarenvista,
 			Map<Integer, MiViento> vientoporhoras,
-			Reloj relojcarrera, Orden[] ordenesparseador) {
+			Orden[] ordenesparseador) {
 		
 		listadeciclistas = ciclistas;
 		listadeobjetosamostarenvista = objetosamostarenvista;
 		mapameteorologico = vientoporhoras;
-		reloj = relojcarrera;
 		ordenes = ordenesparseador;
 	}
 
@@ -111,16 +106,6 @@ public class Presentador {
 	public Map<Integer, MiViento> getMapametereológico() {
 		
 		return mapameteorologico;
-	}
-	
-	/**
-	 * Provee acceso al reloj del sistema.
-	 * 
-	 * @return El reloj del sistema.
-	 */
-	public Reloj getReloj() {
-		
-		return reloj;
 	}
 	
 	/**

@@ -73,7 +73,7 @@ public class Dispatcher implements ObjetosQueSeEjecutan {
 			
 			if ( orden != null) {
 				orden.ejecutarOrden();
-				fomateador.formateaDato("log", orden.mostrarMensaje());
+				fomateador.formateaDato("#log#", orden.mostrarMensaje());
 			}
 		}	
 	}

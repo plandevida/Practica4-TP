@@ -22,7 +22,6 @@ import sistema.controladores.ListenerComandos;
 import sistema.controladores.ordenes.Dispatcher;
 import sistema.controladores.parseadores.ParseadorComandos;
 import sistema.entidades.personas.ciclistas.Ciclista;
-import sistema.entidades.tiempo.Reloj;
 import sistema.factoresexternos.viento.MiViento;
 import sistema.interfaces.ObjetosConSalidaDeDatos;
 import sistema.manager.Presentador;
@@ -61,7 +60,7 @@ public class Ventana extends JFrame {
 					
 					Ventana vv = null;
 					
-					vv = new Ventana(new Dispatcher(new Presentador(a, v, new HashMap<Integer, MiViento>(), Reloj.getInstance(), p.getOrdenes()), p, new FormateadorDatosVista(v, vv)));
+					vv = new Ventana(new Dispatcher(new Presentador(a, v, new HashMap<Integer, MiViento>(), p.getOrdenes()), p, new FormateadorDatosVista(v, vv)));
 					
 				} catch (Exception e) {
 					e.printStackTrace();
