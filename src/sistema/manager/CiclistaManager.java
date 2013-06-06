@@ -154,8 +154,8 @@ public class CiclistaManager {
 			Bicicleta bicicleta = new Bicicleta();
 			bicicleta.setId(i);
 			
-			int cadencia = new Random().nextInt(120)+1;
-			int peso = new Random().nextInt(40)+41;
+			int cadencia = new Random().nextInt(90)+30;
+			int peso = new Random().nextInt(40)+40;
 			
 			float periodo = (float) 60/cadencia;
 			int fuerza = 100;

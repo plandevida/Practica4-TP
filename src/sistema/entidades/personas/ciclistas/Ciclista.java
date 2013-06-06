@@ -157,7 +157,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 		
 		
 	}
-	
+
 	/**
 	 * Aumentar el piñón actual al mayor adyacente.
 	 * 
