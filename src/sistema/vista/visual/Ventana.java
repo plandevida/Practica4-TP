@@ -94,50 +94,50 @@ public class Ventana extends JFrame {
 			switch(id) {
 			case "ruloj":
 				
-				System.out.println("--Datos reloj");
+//				System.out.println("--Datos reloj");
 				
 				txtReloj.setText(mensajes[0] + "h " + mensajes[1] + "m " + mensajes[2] + "s " + mensajes[3] + "ms ");
 				
 				break;
 			case "0 ciclista":
 				
-				System.out.println("--Datos ciclista 0");
+//				System.out.println("--Datos ciclista 0");
 				
 				String[] datos = (String[])mensajes;
 				
-				panel.setCiclistaData(datos[0], Integer.valueOf(datos[1]), Integer.valueOf(datos[2]), Double.valueOf(datos[3]));
+				panel.setCiclistaData(datos[0] + " " + datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]), Double.valueOf(datos[4]));
 				
 				break;
 			case "1 ciclista":
 				
-				System.out.println("--Datos ciclista 1");
+//				System.out.println("--Datos ciclista 1");
 				
 				datos = (String[])mensajes;
 				
-				panel1.setCiclistaData(datos[0], Integer.valueOf(datos[1]), Integer.valueOf(datos[2]), Double.valueOf(datos[3]));
+				panel.setCiclistaData(datos[0] + " " + datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]), Double.valueOf(datos[4]));
 				
 				break;
 			case "2 ciclista":
 				
-				System.out.println("--Datos ciclista 2");
+//				System.out.println("--Datos ciclista 2");
 				
 				datos = (String[])mensajes;
 				
-				panel2.setCiclistaData(datos[0], Integer.valueOf(datos[1]), Integer.valueOf(datos[2]), Double.valueOf(datos[3]));
+				panel.setCiclistaData(datos[0] + " " + datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]), Double.valueOf(datos[4]));
 				
 				break;
 			case "3 ciclista":
 				
-				System.out.println("--Datos ciclista 3");
+//				System.out.println("--Datos ciclista 3");
 				
 				datos = (String[])mensajes;
 				
-				panel3.setCiclistaData(datos[0], Integer.valueOf(datos[1]), Integer.valueOf(datos[2]), Double.valueOf(datos[3]));
+				panel.setCiclistaData(datos[0] + " " + datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]), Double.valueOf(datos[4]));
 				
 				break;
 			case "0 bicicleta":
 				
-				System.out.println("--Datos bicicleta 0");
+//				System.out.println("--Datos bicicleta 0");
 				
 				datos = (String[])mensajes;
 				
@@ -146,7 +146,7 @@ public class Ventana extends JFrame {
 				break;
 			case "1 bicicleta":
 				
-				System.out.println("--Datos bicicleta 1");
+//				System.out.println("--Datos bicicleta 1");
 				
 				datos = (String[])mensajes;
 				
@@ -155,7 +155,7 @@ public class Ventana extends JFrame {
 				break;
 			case "2 bicicleta":
 				
-				System.out.println("--Datos bicicleta 2");
+//				System.out.println("--Datos bicicleta 2");
 				
 				datos = (String[])mensajes;
 				
@@ -164,7 +164,7 @@ public class Ventana extends JFrame {
 				break;
 			case "3 bicicleta":
 				
-				System.out.println("--Datos bicicleta 3");
+//				System.out.println("--Datos bicicleta 3");
 				
 				datos = (String[])mensajes;
 				
@@ -173,14 +173,14 @@ public class Ventana extends JFrame {
 				break;
 			case "ayudaMain":
 				
-				System.out.println("--Datos ayudaMain");
+//				System.out.println("--Datos ayudaMain");
 				
 				taRegistro.setText(taRegistro.getText() + (String)mensajes[0]);
 				
 				break;
 			case "log":
 				
-				System.out.println("--Datos al registro");
+//				System.out.println("--Datos al registro");
 				
 				taRegistro.setText(taRegistro.getText() + (String)mensajes[0]);
 				
@@ -237,16 +237,16 @@ public class Ventana extends JFrame {
 		panelsuperior.add(panelCiclistas, BorderLayout.CENTER);
 		panelCiclistas.setLayout(new GridLayout(1, 4, 0, 0));
 		
-		panel = new PanelCiclista();
+		panel = new PanelCiclista(micomandero);
 		panelCiclistas.add(panel);
 		
-		panel1 = new PanelCiclista();
+		panel1 = new PanelCiclista(micomandero);
 		panelCiclistas.add(panel1);
 		
-		panel2 = new PanelCiclista();
+		panel2 = new PanelCiclista(micomandero);
 		panelCiclistas.add(panel2);
 		
-		panel3 = new PanelCiclista();
+		panel3 = new PanelCiclista(micomandero);
 		panelCiclistas.add(panel3);
 		
 		JPanel panelComandos = new JPanel();

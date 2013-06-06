@@ -70,6 +70,7 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 			datos[1] = mensaje.nextToken();
 			datos[2] = mensaje.nextToken();
 			datos[3] = mensaje.nextToken();
+			datos[4] = mensaje.nextToken();
 			
 			for ( int i = 0; i < datos.length; i++) {
 				System.out.println("cicli: " + datos[i]);

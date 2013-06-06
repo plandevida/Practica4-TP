@@ -2,10 +2,13 @@ package sistema.vista.visual;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
@@ -14,6 +17,14 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
+import sistema.controladores.ListenerFrenar;
+import sistema.controladores.ordenes.Dispatcher;
+import sistema.controladores.parseadores.ParseadorComandos;
+import sistema.entidades.personas.ciclistas.Ciclista;
+import sistema.entidades.tiempo.Reloj;
+import sistema.factoresexternos.viento.MiViento;
+import sistema.interfaces.ObjetosConSalidaDeDatos;
+import sistema.manager.Presentador;
 import sistema.manager.VariablesDeContexto;
 
 import com.jgoodies.forms.factories.FormFactory;
@@ -34,18 +45,51 @@ public class PanelCiclista extends JPanel {
 	private JSpinner sPlato;
 	private JSpinner sPeriodo;
 	private JSpinner sPinhon;
+	
+	private Dispatcher micomandero;
 
 	/**
 	 * Create the panel.
 	 */
-	public PanelCiclista() {
+	public PanelCiclista(Dispatcher comandero) {
+		
+		micomandero = comandero;
+		
 		init();
 	}
 	
 	public String getNombreCiclista() {
 		return tnombreCiclista.getText();
 	}
+	
+	public Integer getCantidadFrenado() {
 
+		Integer cantidad = null;
+		
+		try {
+			cantidad = Integer.valueOf(tCantidad.getText());
+			
+		} catch (NumberFormatException ne) {
+			ne.printStackTrace();
+		}
+		
+		return cantidad;
+	}
+	
+	public Integer getTiempoFrenado() {
+		
+		Integer tiempo = null;
+		
+		try {
+			tiempo = Integer.valueOf(tTiempo.getText());
+			
+		} catch (NumberFormatException ne) {
+			ne.printStackTrace();
+		}
+		
+		return tiempo;
+	}
+	
 	public void setCiclistaData(String nombre, Integer fuerza, Integer cadencia, Double periodo) {
 		
 		System.out.println("Poniendo datos ciclista");
@@ -152,15 +196,11 @@ public class PanelCiclista extends JPanel {
 		
 		SpinnerNumberModel sPlatoModel = new SpinnerNumberModel(0, 0, VariablesDeContexto.PLATOS.length, 1);
 		sPlato = new JSpinner(sPlatoModel);
-//		sPlato = new JSpinner();
 		sPlato.setPreferredSize(new Dimension(45, 28));
 		panel_2.add(sPlato, "8, 2");
 		
 		JButton btnFrenar = new JButton("Frenar");
-		btnFrenar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnFrenar.addActionListener(new ListenerFrenar(micomandero, this, false));
 		
 		JLabel lblPeriodo = new JLabel("Periodo:");
 		panel_2.add(lblPeriodo, "2, 4");
@@ -189,6 +229,7 @@ public class PanelCiclista extends JPanel {
 		
 		JButton btnFs = new JButton("Frenar S");
 		btnFs.setToolTipText("Frena en seco al ciclista");
+		btnFs.addActionListener(new ListenerFrenar(micomandero, this, true));
 		panel_2.add(btnFs, "2, 8");
 		
 		JLabel lblTiempo = new JLabel("Tiempo:");
@@ -197,5 +238,28 @@ public class PanelCiclista extends JPanel {
 		tTiempo = new JTextField();
 		panel_2.add(tTiempo, "6, 8, fill, default");
 		tTiempo.setColumns(10);
+	}
+	
+	public static void main(String[] args) {
+		
+		JFrame v = new JFrame("Prueba Listeners");
+		
+		ParseadorComandos p = new ParseadorComandos();
+		
+		List<Ciclista> ciclistas = new ArrayList<>();
+		List<ObjetosConSalidaDeDatos> objetosamostarenvista = new ArrayList<>();
+		
+		Map<Integer, MiViento> vientoporhoras = new HashMap<Integer, MiViento>();
+		
+		Presentador presentadorsistema = new Presentador(ciclistas, objetosamostarenvista, vientoporhoras, Reloj.getInstance(), p.getOrdenes());
+		
+		PanelCiclista pa = new PanelCiclista(new Dispatcher(presentadorsistema, p));
+		
+		v.getContentPane().add(pa);
+		
+		pa.setCiclistaData("0 Alfredo", 100, 60, 1d);
+		
+		v.pack();
+		v.setVisible(true);
 	}
 }

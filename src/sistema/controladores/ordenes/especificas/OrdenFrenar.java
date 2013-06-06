@@ -29,7 +29,7 @@ public class OrdenFrenar extends OrdenParaCiclista {
 	public String mostrarMensaje() {
 		
 		return (new StringBuilder()
-				.append("Plato ")
+				.append("Frenar ")
 				.append("ciclista : ")
 				.append(idciclista)
 				.append(" cantidad: ")
@@ -46,7 +46,7 @@ public class OrdenFrenar extends OrdenParaCiclista {
 		
 		String[] tokens = comando.split(" ");
 		
-		if ( tokens.length > 0 && tokens[2].equalsIgnoreCase("frena") ) {
+		if ( tokens.length > 0 ) {
 			
 			if (comprobarSintaxis(tokens)) {
 				
@@ -92,7 +92,7 @@ public class OrdenFrenar extends OrdenParaCiclista {
 	@Override
 	public String help(boolean detalles) {
 		
-		return "bicicleta <numero_bicicleta> cambia plato <numero_plato>";
+		return "ciclista <numero_ciclista> frena <cantidad> en <tiempo>";
 	}
 
 	@Override

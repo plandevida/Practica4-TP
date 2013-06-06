@@ -28,7 +28,7 @@ public class OrdenCambiarPinhon extends OrdenParaCiclista {
 	public String mostrarMensaje() {
 		
 		return (new StringBuilder()
-				.append("Plato ")
+				.append("Pión ")
 				.append("ciclista : ")
 				.append(idciclista)
 				.append(" piñon: ")

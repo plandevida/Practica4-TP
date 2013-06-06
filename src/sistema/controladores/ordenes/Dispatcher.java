@@ -31,6 +31,7 @@ public class Dispatcher implements ObjetosQueSeEjecutan {
 		listadeordenes = new PriorityQueue<Orden>();
 		
 		presentador = presentadorsistema;
+		parser = parseadorcomandos;
 	}
 	
 	/**

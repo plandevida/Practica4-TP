@@ -92,6 +92,8 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	public StringTokenizer mostrarDatos() {
 		StringBuilder mensaje = new StringBuilder("#ciclista#,")
 			.append(",")
+			.append(getNumeromallot())
+			.append(",")
 			.append(getNombre())
 			.append(",")
 			.append(getFuerzaAsInt())
