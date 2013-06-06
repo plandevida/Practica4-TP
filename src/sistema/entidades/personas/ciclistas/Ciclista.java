@@ -77,11 +77,11 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	@Override
 	public void ejecuta() {
 		
-		System.out.println("Ciclista: " + getIdentificadorSalidaDatos() + "Ejecutando...");
+//		System.out.println("Ciclista: " + getIdentificadorSalidaDatos() + "Ejecutando...");
 		
 		pedalear();
 		
-		System.out.println("Ciclista: " + getIdentificadorSalidaDatos() + "Ejecutado");
+//		System.out.println("Ciclista: " + getIdentificadorSalidaDatos() + "Ejecutado");
 	}
 	
 	/**

@@ -84,10 +84,10 @@ public class Dispatcher implements ObjetosQueSeEjecutan {
 	@Override
 	public void ejecuta() {
 		
-		System.out.println("Diapatcher: Ejecutando...");
+//		System.out.println("Diapatcher: Ejecutando...");
 		
 		dispatch();
 		
-		System.out.println("Diapatcher: Ejecutado");
+//		System.out.println("Diapatcher: Ejecutado");
 	}
 }
