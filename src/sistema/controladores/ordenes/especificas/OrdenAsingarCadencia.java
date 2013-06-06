@@ -37,8 +37,10 @@ public class OrdenAsingarCadencia extends OrdenParaCiclista {
 	public void ejecutarOrden() {
 		
 		if (getCiclista() != null) {
-			getCiclista().setCadencia(aumentocadencia);
-			getCiclista().setTiempopedalada(periodotiempopedalada);
+			if (periodotiempopedalada <= getCiclista().getPeriodo()) {
+				getCiclista().setCadencia(aumentocadencia);
+				getCiclista().setTiempopedalada(periodotiempopedalada);
+			}
 		}
 	}
 
@@ -79,7 +81,7 @@ public class OrdenAsingarCadencia extends OrdenParaCiclista {
 								
 								periodotiempopedalada = Double.valueOf(tokens[5]);
 								
-								if ( periodotiempopedalada >= 0 && periodotiempopedalada <= 2) {
+								if ( periodotiempopedalada >= 0) {
 								
 									ordenaumentarcadencia = new OrdenAsingarCadencia(aumentocadencia, periodotiempopedalada, idciclista);
 								}

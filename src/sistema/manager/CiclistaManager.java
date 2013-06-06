@@ -159,7 +159,6 @@ public class CiclistaManager {
 		for (int i = 0; i < 4; i++) {
 			
 			Bicicleta bicicleta = new Bicicleta();
-			bicicleta.setId(i);
 			
 			int cadencia = new Random().nextInt(90)+30;
 			int peso = new Random().nextInt(40)+40;

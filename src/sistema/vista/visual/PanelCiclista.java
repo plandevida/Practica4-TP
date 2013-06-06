@@ -280,7 +280,7 @@ public class PanelCiclista extends JPanel {
 		JLabel lblPeriodo = new JLabel("Periodo:");
 		panel_2.add(lblPeriodo, "2, 4");
 		
-		SpinnerNumberModel sPeriodoModel = new SpinnerNumberModel(0, 0.0, VariablesDeContexto.MAX_CADENCIA-5d, 0.5);
+		SpinnerNumberModel sPeriodoModel = new SpinnerNumberModel(0, 0.0, 2.0, 0.5);
 		sPeriodo = new JSpinner(sPeriodoModel);
 		// Añadimos el controlador para cambiar cadencia y periodo
 		sPeriodo.addChangeListener(new ListenerCadenciaPeriodo(micomandero, this));

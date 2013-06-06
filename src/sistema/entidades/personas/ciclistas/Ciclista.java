@@ -63,7 +63,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 		numeromallot = nummallot;
 		this.tiempopedalada = tiempopedalada;	
 		this.fuerza = fuerza;
-//		bicicletamontada.setId(numeromallot);
+		bicicletamontada.setId(numeromallot);
 		estrellado = false;
 		
 		calcularPeriodo();
@@ -339,5 +339,13 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 */
 	public void setFuerza(double fuerza) {
 		this.fuerza = fuerza;
+	}
+
+	public float getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(float periodo) {
+		this.periodo = periodo;
 	}
 }
