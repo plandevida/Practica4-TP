@@ -69,7 +69,7 @@ public class CiclistaManager {
 		parser = new ParseadorComandos();
 		
 		presentador = new Presentador(ciclistas, listasalidadatos, mapameteorologico, reloj, parser.getOrdenes());
-		dispatcher = new Dispatcher(presentador, parser);
+		dispatcher = new Dispatcher(presentador, parser, formateador);
 		
 		try {
 			// Con este método forzamos la "sincronización" de la vista.

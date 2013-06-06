@@ -107,11 +107,17 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 
 			break;
 		default:
-			vista.ponerDatosEnVentana("log", mensaje);
+			vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), mensaje);
 			break;
 		}
 	}
 	
+	/**
+	 * Manda el mensaje a la vista una vez.
+	 * 
+	 * @param id Identificador del mensaje.
+	 * @param mensaje Mensaje hacia la vista.
+	 */
 	public void formateaDato(final String id, final StringTokenizer mensaje) {
 		
 		ObjetosConSalidaDeDatos o = new ObjetosConSalidaDeDatos() {
@@ -130,6 +136,17 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 		};
 		
 		formateadorDatos(o);
+	}
+	
+	/**
+	 * Manda el mensajea la vista una vez.
+	 * 
+	 * @param id Identificador del mensaje.
+	 * @param mensaje Mensaje hacia la vista.
+	 */
+	public void formateaDato(final String id, final String mensaje) {
+		
+		formateaDato(id, new StringTokenizer(mensaje));
 	}
 
 	@Override

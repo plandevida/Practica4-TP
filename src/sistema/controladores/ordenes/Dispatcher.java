@@ -5,6 +5,7 @@ import java.util.PriorityQueue;
 import sistema.controladores.parseadores.ParseadorComandos;
 import sistema.interfaces.ObjetosQueSeEjecutan;
 import sistema.manager.Presentador;
+import sistema.vista.visual.FormateadorDatosVista;
 
 /**
  * Clase que distruye ls ordenes del sistema a los elementos del sistema.
@@ -23,15 +24,19 @@ public class Dispatcher implements ObjetosQueSeEjecutan {
 	// El parseador de comandos del sistema.
 	private ParseadorComandos parser;
 	
+	// El formateador de datos para la vista.
+	private FormateadorDatosVista fomateador;
+	
 	/**
 	 * Crea una instancia del distribuidor con la lista de elementos
 	 * y la cola de ordenes vacía.
 	 */
-	public Dispatcher(Presentador presentadorsistema, ParseadorComandos parseadorcomandos) {
+	public Dispatcher(Presentador presentadorsistema, ParseadorComandos parseadorcomandos, FormateadorDatosVista formateadordatovista) {
 		listadeordenes = new PriorityQueue<Orden>();
 		
 		presentador = presentadorsistema;
 		parser = parseadorcomandos;
+		fomateador = formateadordatovista;
 	}
 	
 	/**
@@ -68,6 +73,7 @@ public class Dispatcher implements ObjetosQueSeEjecutan {
 			
 			if ( orden != null) {
 				orden.ejecutarOrden();
+				fomateador.formateaDato("log", orden.mostrarMensaje());
 			}
 		}	
 	}

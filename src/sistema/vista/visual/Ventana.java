@@ -59,7 +59,10 @@ public class Ventana extends JFrame {
 					
 					ParseadorComandos p = new ParseadorComandos();
 					
-					new Ventana(new Dispatcher(new Presentador(a, v, new HashMap<Integer, MiViento>(), Reloj.getInstance(), p.getOrdenes()), p));
+					Ventana vv = null;
+					
+					vv = new Ventana(new Dispatcher(new Presentador(a, v, new HashMap<Integer, MiViento>(), Reloj.getInstance(), p.getOrdenes()), p, new FormateadorDatosVista(v, vv)));
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

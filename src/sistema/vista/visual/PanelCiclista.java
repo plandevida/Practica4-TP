@@ -339,7 +339,15 @@ public class PanelCiclista extends JPanel {
 		
 		Presentador presentadorsistema = new Presentador(ciclistas, objetosamostarenvista, vientoporhoras, Reloj.getInstance(), p.getOrdenes());
 		
-		PanelCiclista pa = new PanelCiclista(new Dispatcher(presentadorsistema, p));
+		FormateadorDatosVista formateador = null;
+		
+		Dispatcher d = new Dispatcher(presentadorsistema, p, formateador);
+		
+		Ventana vv = new Ventana(d);
+		
+		formateador = new FormateadorDatosVista(objetosamostarenvista, vv);
+		
+		PanelCiclista pa = new PanelCiclista(d);
 		
 		v.getContentPane().add(pa);
 		
