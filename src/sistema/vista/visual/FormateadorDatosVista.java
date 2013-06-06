@@ -137,7 +137,7 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 			@Override
 			public String getIdentificadorSalidaDatos() {
 				
-				return id.substring(1, id.length());
+				return id.substring(1, id.length()-1);
 			}
 		};
 		

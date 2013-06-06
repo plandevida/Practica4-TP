@@ -149,12 +149,12 @@ public class Ventana extends JFrame {
 				break;
 			case "ayudaMain":
 				
-				taRegistro.setText(taRegistro.getText() + (String)mensajes[0]);
+				taRegistro.setText(taRegistro.getText() + "\n" + (String)mensajes[0]);
 				
 				break;
 			case "log":
 				
-				taRegistro.setText(taRegistro.getText() + (String)mensajes[0]);
+				taRegistro.setText(taRegistro.getText() + "\n" + (String)mensajes[0]);
 				
 				break;
 			default:
