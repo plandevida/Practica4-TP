@@ -120,7 +120,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 					if (contadorcandencia >= (periodo * 10)) {
 						
 						
-						double fuerzagastada = (bicicletamontada.darPedalada(tiempopedalada,getPeso()))/10; 
+						double fuerzagastada = (bicicletamontada.darPedalada(tiempopedalada, getPeso()))/10; 
 						if (fuerza > 0) fuerza = (fuerza - fuerzagastada);
 						
 						contadorcandencia = 1;

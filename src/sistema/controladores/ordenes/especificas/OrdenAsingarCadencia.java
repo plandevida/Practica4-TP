@@ -79,7 +79,7 @@ public class OrdenAsingarCadencia extends OrdenParaCiclista {
 								
 								periodotiempopedalada = Double.valueOf(tokens[5]);
 								
-								if ( periodotiempopedalada >= 0 ) {
+								if ( periodotiempopedalada >= 0 && periodotiempopedalada <= 2) {
 								
 									ordenaumentarcadencia = new OrdenAsingarCadencia(aumentocadencia, periodotiempopedalada, idciclista);
 								}

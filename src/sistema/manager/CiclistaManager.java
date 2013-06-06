@@ -157,13 +157,11 @@ public class CiclistaManager {
 			int cadencia = new Random().nextInt(90)+30;
 			int peso = new Random().nextInt(40)+40;
 			
-			float periodo = (float) 60/cadencia;
+			float periodo = ((float) 60/cadencia)*10;
 			int fuerza = 100;
-			periodo = periodo*10;
-			int periodo2 = (int) periodo;
-			float pedalada =(float) (new Random().nextInt(periodo2)+5)/10;
+			float tiempopedalada =(float) (new Random().nextInt((int)periodo)+5)/10;
 			
-			Ciclista ciclista = new Ciclista(generadordenombres.compose(3), i, cadencia, bicicleta,pedalada, reloj, peso, fuerza);
+			Ciclista ciclista = new Ciclista(generadordenombres.compose(3), i, cadencia, bicicleta,tiempopedalada, reloj, peso, fuerza);
 			
 			ciclistas.add(ciclista);
 			bicicletas.add(bicicleta);
@@ -231,9 +229,12 @@ public class CiclistaManager {
 		lectorconfiguracion.finalizarLecturas();
 	}
 	
+	/**
+	 * Muestra en la vista la ayuda de como invocar al CiclistaManager.
+	 */
 	private void ayuda() {
 		
-		ventana.ponerDatosEnVentana("ayudaMain", "CiclistaManager <número_ciclistas> <fichero_comandos> <unidad_tiempo> <número_platos> <dientes_plato (separados por espacios)> <número_piñones> <dientes_piñones (separados por espacios)> <radio_rueda>");
+		ventana.ponerDatosEnVentana("ayudaMain", "Aviso: No se proporcionaron argumentos, se usarán los que valores por defecto.\nCiclistaManager <número_ciclistas> <fichero_comandos> <unidad_tiempo> <número_platos> <dientes_plato (separados por espacios)> <número_piñones> <dientes_piñones (separados por espacios)> <radio_rueda>");
 	}
 	
 	/**
