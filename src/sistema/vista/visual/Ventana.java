@@ -20,7 +20,7 @@ import javax.swing.border.TitledBorder;
 
 import sistema.controladores.ListenerComandos;
 import sistema.controladores.ordenes.Dispatcher;
-import sistema.controladores.parseadores.parser.ParseadorComandos;
+import sistema.controladores.parseadores.ParseadorComandos;
 import sistema.entidades.personas.ciclistas.Ciclista;
 import sistema.entidades.tiempo.Reloj;
 import sistema.factoresexternos.viento.MiViento;

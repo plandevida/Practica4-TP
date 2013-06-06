@@ -12,8 +12,8 @@ import java.util.Random;
 import javax.swing.SwingUtilities;
 
 import sistema.controladores.ordenes.Dispatcher;
-import sistema.controladores.parseadores.parser.ParseadorCarrera;
-import sistema.controladores.parseadores.parser.ParseadorComandos;
+import sistema.controladores.parseadores.ParseadorCarrera;
+import sistema.controladores.parseadores.ParseadorComandos;
 import sistema.entidades.carretera.tramocarreraciclista.TramoCarrera;
 import sistema.entidades.personas.ciclistas.Ciclista;
 import sistema.entidades.tiempo.Reloj;

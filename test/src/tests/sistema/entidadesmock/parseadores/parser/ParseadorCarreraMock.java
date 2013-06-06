@@ -3,7 +3,7 @@ package src.tests.sistema.entidadesmock.parseadores.parser;
 import java.util.HashMap;
 import java.util.Map;
 
-import sistema.controladores.parseadores.parser.ParseadorCarrera;
+import sistema.controladores.parseadores.ParseadorCarrera;
 import sistema.factoresexternos.viento.MiViento;
 import src.tests.sistema.entidadesmock.carretera.tramocarreraciclista.TramoCarreraMock;
 

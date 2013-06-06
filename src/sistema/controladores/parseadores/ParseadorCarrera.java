@@ -1,4 +1,4 @@
-package sistema.controladores.parseadores.parser;
+package sistema.controladores.parseadores;
 
 import java.util.HashMap;
 import java.util.Map;

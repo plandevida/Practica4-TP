@@ -1,4 +1,4 @@
-package sistema.controladores.parseadores.parser;
+package sistema.controladores.parseadores;
 
 import sistema.controladores.ordenes.Orden;
 import sistema.controladores.ordenes.especificas.OrdenAsingarCadencia;

@@ -32,7 +32,7 @@ import javax.swing.text.JTextComponent;
 
 import sistema.controladores.ordenes.Dispatcher;
 import sistema.controladores.ordenes.Orden;
-import sistema.controladores.parseadores.parser.ParseadorComandos;
+import sistema.controladores.parseadores.ParseadorComandos;
 import sistema.entidades.personas.ciclistas.Ciclista;
 import sistema.entidades.tiempo.Reloj;
 import sistema.entidades.vehiculos.bicicletas.Bicicleta;

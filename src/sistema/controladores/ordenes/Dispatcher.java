@@ -2,7 +2,7 @@ package sistema.controladores.ordenes;
 
 import java.util.PriorityQueue;
 
-import sistema.controladores.parseadores.parser.ParseadorComandos;
+import sistema.controladores.parseadores.ParseadorComandos;
 import sistema.interfaces.ObjetosQueSeEjecutan;
 import sistema.manager.Presentador;
 
