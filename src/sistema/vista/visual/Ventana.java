@@ -123,7 +123,7 @@ public class Ventana extends JFrame {
 				
 				datos = (String[])mensajes;
 				
-				panel.setCiclistaData(datos[0] + " " + datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]), Double.valueOf(datos[4]));
+				panel1.setCiclistaData(datos[0] + " " + datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]), Double.valueOf(datos[4]));
 				
 				break;
 			case "3 ciclista":
@@ -132,7 +132,7 @@ public class Ventana extends JFrame {
 				
 				datos = (String[])mensajes;
 				
-				panel.setCiclistaData(datos[0] + " " + datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]), Double.valueOf(datos[4]));
+				panel2.setCiclistaData(datos[0] + " " + datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]), Double.valueOf(datos[4]));
 				
 				break;
 			case "0 bicicleta":
@@ -141,7 +141,7 @@ public class Ventana extends JFrame {
 				
 				datos = (String[])mensajes;
 				
-				panel.setBicicletaData(datos[0], datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]));
+				panel3.setBicicletaData(datos[0], datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]));
 				
 				break;
 			case "1 bicicleta":
