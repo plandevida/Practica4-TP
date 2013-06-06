@@ -96,7 +96,7 @@ public class Ventana extends JFrame {
 				
 				System.out.println("--Datos reloj");
 				
-				txtReloj.setText(mensajes[0] + "h " + mensajes[1] + "m " + mensajes[2] + "s " + mensajes[3] + "ms " + mensajes[4] + "imp");
+				txtReloj.setText(mensajes[0] + "h " + mensajes[1] + "m " + mensajes[2] + "s " + mensajes[3] + "ms ");
 				
 				break;
 			case "0 ciclista":

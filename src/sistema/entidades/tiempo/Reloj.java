@@ -25,7 +25,7 @@ public class Reloj extends Contador implements ObjetosConSalidaDeDatos {
 	
 	private Reloj() {
 		totalImpulsos = 0;
-		milisegundos = 1;
+		milisegundos = 0;
 		segundos = 0;
 		minutos = 0;
 		horas = 0;
