@@ -18,7 +18,6 @@ import javax.swing.border.TitledBorder;
 import sistema.controladores.ListenerComandos;
 import sistema.controladores.ordenes.Dispatcher;
 import sistema.entidades.personas.ciclistas.Ciclista;
-import sistema.manager.VariablesDeContexto;
 import sistema.vista.Lienzo;
 
 public class Ventana extends JFrame {
@@ -70,9 +69,6 @@ public class Ventana extends JFrame {
 		micomandero = comandero;
 		
 		init();
-		
-		// Hace saber al sistema que la gui está lista.
-		VariablesDeContexto.SYN_GUI = true;
 	}
 	
 	/**

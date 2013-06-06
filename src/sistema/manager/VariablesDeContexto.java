@@ -29,6 +29,4 @@ public class VariablesDeContexto {
     public static int UNIDAD_TIEMPO = 100;
     
     public static double RADIO_RUEDA = 0.2d;
-    
-    public static boolean SYN_GUI = false;
 }

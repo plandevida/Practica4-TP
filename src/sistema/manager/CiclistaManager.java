@@ -50,7 +50,6 @@ public class CiclistaManager {
 	private Reloj reloj;
 
 	// Vistas del sistema.
-//	private VentanaConEditor ventana2;
 	private Ventana ventana;
 //	private Lienzo lienzo;
 	private FormateadorDatosVista formateador;
@@ -251,10 +250,6 @@ public class CiclistaManager {
 	 * @param args Argumentos del sistema.
 	 */
 	private void prepararArgumentos(String[] args) {
-
-		while( !VariablesDeContexto.SYN_GUI ) { System.out.println("Esperando GUI"); }
-		
-		System.out.println("Configurando la aplicación");
 		
  		Integer numerociclistas = null;
 		String ficherocomandos = null;
