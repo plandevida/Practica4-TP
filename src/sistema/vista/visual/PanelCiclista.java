@@ -17,7 +17,10 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
+import sistema.controladores.ListenerCadenciaPeriodo;
 import sistema.controladores.ListenerFrenar;
+import sistema.controladores.ListenerPinhon;
+import sistema.controladores.ListenerPlato;
 import sistema.controladores.ordenes.Dispatcher;
 import sistema.controladores.parseadores.ParseadorComandos;
 import sistema.entidades.personas.ciclistas.Ciclista;
@@ -32,6 +35,12 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
+/**
+ * Panel con los datos del ciclista, parte de la vista.
+ * 
+ * @author Daniel Serrano Torres
+ * @author Alvaro Quesada Pimentel
+ */
 public class PanelCiclista extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -58,10 +67,20 @@ public class PanelCiclista extends JPanel {
 		init();
 	}
 	
-	public String getNombreCiclista() {
-		return tnombreCiclista.getText();
+	/**
+	 * Obtiene el id (numero de mallot) del ciclista.
+	 * 
+	 * @return Id del ciclista asociado al panel.
+	 */
+	public String getIdCiclista() {
+		return tnombreCiclista.getText().substring(0, 1);
 	}
 	
+	/**
+	 * Obtiene la cantidad que debe frenar el ciclista.
+	 * 
+	 * @return Cantidad a frenar
+	 */
 	public Integer getCantidadFrenado() {
 
 		Integer cantidad = null;
@@ -76,6 +95,47 @@ public class PanelCiclista extends JPanel {
 		return cantidad;
 	}
 	
+	/**
+	 * Obtien el plato del ciclista.
+	 * 
+	 * @return Plato del ciclista.
+	 */
+	public Integer getPlato() {
+		return (Integer)sPlato.getValue();
+	}
+	
+	/**
+	 * Obtiene el piñón del ciclista.
+	 * 
+	 * @return Piñón del ciclista.
+	 */
+	public Integer getPinhon() {
+		return (Integer)sPlato.getValue();
+	}
+	
+	/**
+	 * Obtiene la cadencia del ciclista.
+	 * 
+	 * @return Cadencia del ciclista.
+	 */
+	public Integer getCadencia() {
+		return (Integer)sCadencia.getValue();
+	}
+	
+	/**
+	 * Obtiene el periodo del ciclista.
+	 * 
+	 * @return El periodo del ciclista.
+	 */
+	public Double getPeriodo() {
+		return (Double)sPeriodo.getValue();
+	}
+	
+	/**
+	 * Obtiene el tiempo de frenado para el ciclista.
+	 * 
+	 * @return El tiempo de frenado.
+	 */
 	public Integer getTiempoFrenado() {
 		
 		Integer tiempo = null;
@@ -90,6 +150,14 @@ public class PanelCiclista extends JPanel {
 		return tiempo;
 	}
 	
+	/**
+	 * Configura los datos de un ciclista en la vista.
+	 * 
+	 * @param nombre Nombre de ciclista con id (0 Pepe).
+	 * @param fuerza Fuerza actual del ciclista.
+	 * @param cadencia Cadencia actual del ciclista.
+	 * @param periodo Periodo de pedalada del ciclista.
+	 */
 	public void setCiclistaData(String nombre, Integer fuerza, Integer cadencia, Double periodo) {
 		
 		System.out.println("Poniendo datos ciclista");
@@ -100,6 +168,14 @@ public class PanelCiclista extends JPanel {
 		sPeriodo.setValue(periodo);
 	}
 	
+	/**
+	 * Configura los datos de la bicicleta de un ciclista.
+	 * 
+	 * @param velocidad Velocidad de la bicicleta.
+	 * @param distancia Espacio recorrido de la bicicleta.
+	 * @param pinhon Piñón actual de la bicicleta.
+	 * @param plato Plato actual de la bicicleta.
+	 */
 	public void setBicicletaData(String velocidad, String distancia, Integer pinhon, Integer plato) {
 		
 		System.out.println("Poniendo datos bicicleta");
@@ -187,8 +263,10 @@ public class PanelCiclista extends JPanel {
 		JLabel lblCadencia = new JLabel("Cadencia:");
 		panel_2.add(lblCadencia, "2, 2");
 		
-		SpinnerNumberModel sCadenciaModel = new SpinnerNumberModel(0, 0.0, 120, 5);
+		SpinnerNumberModel sCadenciaModel = new SpinnerNumberModel(0, 0, 120, 5);
 		sCadencia = new JSpinner(sCadenciaModel);
+		// Añadimos el controlador para cambiar cadencia y periodo
+		sCadencia.addChangeListener(new ListenerCadenciaPeriodo(micomandero, this));
 		panel_2.add(sCadencia, "4, 2");
 		
 		JLabel lblPlato = new JLabel("Plato:");
@@ -197,6 +275,8 @@ public class PanelCiclista extends JPanel {
 		SpinnerNumberModel sPlatoModel = new SpinnerNumberModel(0, 0, VariablesDeContexto.PLATOS.length, 1);
 		sPlato = new JSpinner(sPlatoModel);
 		sPlato.setPreferredSize(new Dimension(45, 28));
+		// Añadimos el controlador para cambiar de plato
+		sPlato.addChangeListener(new ListenerPlato(micomandero, this));
 		panel_2.add(sPlato, "8, 2");
 		
 		JButton btnFrenar = new JButton("Frenar");
@@ -205,8 +285,10 @@ public class PanelCiclista extends JPanel {
 		JLabel lblPeriodo = new JLabel("Periodo:");
 		panel_2.add(lblPeriodo, "2, 4");
 		
-		SpinnerNumberModel sPeriodoModel = new SpinnerNumberModel(0, 0.0, VariablesDeContexto.MAX_CADENCIA-10, 1);
+		SpinnerNumberModel sPeriodoModel = new SpinnerNumberModel(0, 0.0, VariablesDeContexto.MAX_CADENCIA-5d, 0.5);
 		sPeriodo = new JSpinner(sPeriodoModel);
+		// Añadimos el controlador para cambiar cadencia y periodo
+		sPeriodo.addChangeListener(new ListenerCadenciaPeriodo(micomandero, this));
 		panel_2.add(sPeriodo, "4, 4");
 		
 		JLabel lblPin = new JLabel("Piñón:");
@@ -215,7 +297,10 @@ public class PanelCiclista extends JPanel {
 		SpinnerNumberModel sPinhonModel = new SpinnerNumberModel(0, 0, VariablesDeContexto.PINHONES.length, 1);
 		sPinhon = new JSpinner(sPinhonModel);
 		sPinhon.setPreferredSize(new Dimension(45, 28));
+		// Añadimos el controlador para cambiar de piñón
+		sPinhon.addChangeListener(new ListenerPinhon(micomandero, this));
 		panel_2.add(sPinhon, "8, 4");
+		
 		btnFrenar.setPreferredSize(new Dimension(78, 29));
 		btnFrenar.setMinimumSize(new Dimension(78, 29));
 		panel_2.add(btnFrenar, "2, 6");
@@ -229,6 +314,7 @@ public class PanelCiclista extends JPanel {
 		
 		JButton btnFs = new JButton("Frenar S");
 		btnFs.setToolTipText("Frena en seco al ciclista");
+		// Añadimos el controlador para frenar
 		btnFs.addActionListener(new ListenerFrenar(micomandero, this, true));
 		panel_2.add(btnFs, "2, 8");
 		
@@ -260,6 +346,7 @@ public class PanelCiclista extends JPanel {
 		pa.setCiclistaData("0 Alfredo", 100, 60, 1d);
 		
 		v.pack();
+		v.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		v.setVisible(true);
 	}
 }

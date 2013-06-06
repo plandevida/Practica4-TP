@@ -16,7 +16,7 @@ import sistema.manager.VariablesDeContexto;
 public class OrdenAsingarCadencia extends OrdenParaCiclista {
 	
 	private Integer aumentocadencia;
-	private Integer periodotiempopedalada;
+	private Double periodotiempopedalada;
 	private Integer idciclista;
 	
 	/**
@@ -26,7 +26,7 @@ public class OrdenAsingarCadencia extends OrdenParaCiclista {
 	 * @param nuevoperiodo El nuevo periodo de tiempo de pedalada
 	 * @param idciclista El identificador del ciclista al que cambiarle la cadencia.
 	 */
-	public OrdenAsingarCadencia(Integer nuevacadencia, Integer nuevoperiodo, Integer idciclista) {
+	public OrdenAsingarCadencia(Integer nuevacadencia, Double nuevoperiodo, Integer idciclista) {
 		
 		aumentocadencia = nuevacadencia;
 		periodotiempopedalada = nuevoperiodo;
@@ -77,7 +77,7 @@ public class OrdenAsingarCadencia extends OrdenParaCiclista {
 							
 							if ( aumentocadencia >= 0 && aumentocadencia <= VariablesDeContexto.MAX_CADENCIA ) {
 								
-								periodotiempopedalada = Integer.valueOf(tokens[5]);
+								periodotiempopedalada = Double.valueOf(tokens[5]);
 								
 								if ( periodotiempopedalada >= 0 ) {
 								

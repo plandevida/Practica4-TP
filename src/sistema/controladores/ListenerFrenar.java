@@ -39,9 +39,7 @@ public class ListenerFrenar extends ListenerOrdenes implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		String nombreciclista = panel.getNombreCiclista();
-		
-		String idciclista = nombreciclista.substring(0, 1);
+		String idciclista = panel.getIdCiclista();
 		
 		String comando = "";
 		
@@ -58,11 +56,5 @@ public class ListenerFrenar extends ListenerOrdenes implements ActionListener {
 		
 		// Se parsea el comando y si es correcto va a la cola del comandero.
 		getDispatcher().parsearComando(comando);
-	}
-
-	@Override
-	public Dispatcher getDispatcher() {
-		
-		return getDispatcher();
 	}
 }
