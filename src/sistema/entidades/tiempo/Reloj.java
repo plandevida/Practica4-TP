@@ -59,7 +59,7 @@ public class Reloj extends Contador implements ObjetosConSalidaDeDatos {
 		
 		totalImpulsos +=1;
 		
-		if (++impulsos >= 100) {
+		if (++impulsos >= 1) {
 			impulsos = 0;
 			if (++milisegundos >= 1000) {
 				milisegundos = 0;

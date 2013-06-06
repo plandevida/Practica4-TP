@@ -172,20 +172,10 @@ public class CiclistaManager {
 			
 			listasalidadatos.add(ciclista);
 			listasalidadatos.add(bicicleta);
-		}
-		
-//		parser = new ParseadorComandos();
-//		
-//		presentador = new Presentador(ciclistas, listasalidadatos, mapameteorologico, reloj, parser.getOrdenes());
-//		dispatcher = new Dispatcher(presentador, parser);
-		
-//		lienzo = new Lienzo(ciclistas); 
+		} 
 		
 		// Se registran los elementos con salida de datos en una lista.
 		listasalidadatos.add(reloj);
-
-		// Se registran los elementos ejecutables en una lista.
-		listaejecutables.add(reloj);
 
 		formateador = new FormateadorDatosVista(listasalidadatos, ventana);
 
@@ -193,6 +183,8 @@ public class CiclistaManager {
 		listaejecutables.add(factoresexternos);
 		listaejecutables.add(dispatcher);
 		
+		// Se registran los elementos ejecutables en una lista.
+		listaejecutables.add(reloj);
 	}
 
 	/**
@@ -207,9 +199,9 @@ public class CiclistaManager {
 		
 		while (reloj.getHoras() < 2) {
 			
-			if (miliseg != (int)(Calendar.getInstance().getTimeInMillis() % 10)){
+			if (miliseg != (int)(Calendar.getInstance().getTimeInMillis() % 10)) {
 				
-				if ( (milisegundospropiosdespues-milisegundospropiosantes) >= VariablesDeContexto.UNIDAD_TIEMPO ) {
+				if ( Math.abs(milisegundospropiosdespues-milisegundospropiosantes) >= VariablesDeContexto.UNIDAD_TIEMPO) {
 					
 					milisegundospropiosantes = reloj.getMilisegundos();
 					
@@ -253,9 +245,9 @@ public class CiclistaManager {
 	 */
 	private void prepararArgumentos(String[] args) {
 
-//		while( !VariablesDeContexto.SYN_GUI ) { System.out.println("Esperando GUI"); }
-//		
-//		System.out.println("Configurando la aplicación");
+		while( !VariablesDeContexto.SYN_GUI ) { System.out.println("Esperando GUI"); }
+		
+		System.out.println("Configurando la aplicación");
 		
  		Integer numerociclistas = null;
 		String ficherocomandos = null;

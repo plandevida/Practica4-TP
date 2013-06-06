@@ -14,7 +14,6 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
-import sistema.entidades.personas.ciclistas.Ciclista;
 import sistema.manager.VariablesDeContexto;
 
 import com.jgoodies.forms.factories.FormFactory;
