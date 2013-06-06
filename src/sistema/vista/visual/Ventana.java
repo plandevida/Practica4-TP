@@ -178,6 +178,13 @@ public class Ventana extends JFrame {
 				taRegistro.setText(taRegistro.getText() + (String)mensajes[0]);
 				
 				break;
+			case "log":
+				
+				System.out.println("--Datos al registro");
+				
+				taRegistro.setText(taRegistro.getText() + (String)mensajes[0]);
+				
+				break;
 			default:
 			}
 		} catch (NumberFormatException ne) {
