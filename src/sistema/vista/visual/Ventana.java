@@ -141,7 +141,7 @@ public class Ventana extends JFrame {
 				
 				datos = (String[])mensajes;
 				
-				panel3.setBicicletaData(datos[0], datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]));
+				panel.setBicicletaData(datos[0], datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]));
 				
 				break;
 			case "1 bicicleta":
