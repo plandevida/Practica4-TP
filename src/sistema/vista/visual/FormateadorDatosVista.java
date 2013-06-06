@@ -104,13 +104,16 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 			
 		case "#log#":
 			
-			vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), mensaje.toString());
+			datos[0] = mensaje.nextToken();
+			
+			vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), (Object[])datos);
 
 			break;
 			
 		default:
 			
 			vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), mensaje.toString());
+			
 			break;
 		}
 	}

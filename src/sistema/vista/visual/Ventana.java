@@ -2,11 +2,8 @@ package sistema.vista.visual;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,11 +17,7 @@ import javax.swing.border.TitledBorder;
 
 import sistema.controladores.ListenerComandos;
 import sistema.controladores.ordenes.Dispatcher;
-import sistema.controladores.parseadores.ParseadorComandos;
 import sistema.entidades.personas.ciclistas.Ciclista;
-import sistema.factoresexternos.viento.MiViento;
-import sistema.interfaces.ObjetosConSalidaDeDatos;
-import sistema.manager.Presentador;
 import sistema.manager.VariablesDeContexto;
 import sistema.vista.Lienzo;
 
@@ -48,26 +41,26 @@ public class Ventana extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					List<Ciclista> a = new ArrayList<>();
-					
-					List<ObjetosConSalidaDeDatos> v = new ArrayList<>();
-					
-					ParseadorComandos p = new ParseadorComandos();
-					
-					Ventana vv = null;
-					
-					vv = new Ventana(new Dispatcher(new Presentador(a, v, new HashMap<Integer, MiViento>(), p.getOrdenes()), p, new FormateadorDatosVista(v, vv)));
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					List<Ciclista> a = new ArrayList<>();
+//					
+//					List<ObjetosConSalidaDeDatos> v = new ArrayList<>();
+//					
+//					ParseadorComandos p = new ParseadorComandos();
+//					
+//					Ventana vv = null;
+//					
+//					vv = new Ventana(new Dispatcher(new Presentador(a, v, new HashMap<Integer, MiViento>(), p.getOrdenes()), p, new FormateadorDatosVista(v, vv)));
+//					
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
@@ -78,6 +71,7 @@ public class Ventana extends JFrame {
 		
 		init();
 		
+		// Hace saber al sistema que la gui está lista.
 		VariablesDeContexto.SYN_GUI = true;
 	}
 	
@@ -90,20 +84,14 @@ public class Ventana extends JFrame {
 	 */
 	public void ponerDatosEnVentana(String id, Object... mensajes) {
 		
-		System.out.println("VENTANA: Poniendo datos...");
-		
 		try {
 			switch(id) {
 			case "ruloj":
-				
-//				System.out.println("--Datos reloj");
 				
 				txtReloj.setText(mensajes[0] + "h " + mensajes[1] + "m " + mensajes[2] + "s " + mensajes[3] + "ms ");
 				
 				break;
 			case "0 ciclista":
-				
-//				System.out.println("--Datos ciclista 0");
 				
 				String[] datos = (String[])mensajes;
 				
@@ -112,16 +100,12 @@ public class Ventana extends JFrame {
 				break;
 			case "1 ciclista":
 				
-//				System.out.println("--Datos ciclista 1");
-				
 				datos = (String[])mensajes;
 				
 				panel1.setCiclistaData(datos[0] + " " + datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]), Double.valueOf(datos[4]));
 				
 				break;
 			case "2 ciclista":
-				
-//				System.out.println("--Datos ciclista 2");
 				
 				datos = (String[])mensajes;
 				
@@ -130,16 +114,12 @@ public class Ventana extends JFrame {
 				break;
 			case "3 ciclista":
 				
-//				System.out.println("--Datos ciclista 3");
-				
 				datos = (String[])mensajes;
 				
 				panel3.setCiclistaData(datos[0] + " " + datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]), Double.valueOf(datos[4]));
 				
 				break;
 			case "0 bicicleta":
-				
-//				System.out.println("--Datos bicicleta 0");
 				
 				datos = (String[])mensajes;
 				
@@ -148,16 +128,12 @@ public class Ventana extends JFrame {
 				break;
 			case "1 bicicleta":
 				
-//				System.out.println("--Datos bicicleta 1");
-				
 				datos = (String[])mensajes;
 				
 				panel1.setBicicletaData(datos[0], datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]));
 				
 				break;
 			case "2 bicicleta":
-				
-//				System.out.println("--Datos bicicleta 2");
 				
 				datos = (String[])mensajes;
 				
@@ -166,8 +142,6 @@ public class Ventana extends JFrame {
 				break;
 			case "3 bicicleta":
 				
-//				System.out.println("--Datos bicicleta 3");
-				
 				datos = (String[])mensajes;
 				
 				panel3.setBicicletaData(datos[0], datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]));
@@ -175,14 +149,10 @@ public class Ventana extends JFrame {
 				break;
 			case "ayudaMain":
 				
-//				System.out.println("--Datos ayudaMain");
-				
 				taRegistro.setText(taRegistro.getText() + (String)mensajes[0]);
 				
 				break;
 			case "log":
-				
-//				System.out.println("--Datos al registro");
 				
 				taRegistro.setText(taRegistro.getText() + (String)mensajes[0]);
 				

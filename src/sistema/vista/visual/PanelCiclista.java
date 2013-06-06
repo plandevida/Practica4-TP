@@ -159,8 +159,6 @@ public class PanelCiclista extends JPanel {
 	 */
 	public void setCiclistaData(String nombre, Integer fuerza, Integer cadencia, Double periodo) {
 		
-		System.out.println("Poniendo datos ciclista");
-		
 		tnombreCiclista.setText(nombre);
 		PBfuerza.setValue(fuerza);
 		sCadencia.setValue(cadencia);
@@ -176,8 +174,6 @@ public class PanelCiclista extends JPanel {
 	 * @param plato Plato actual de la bicicleta.
 	 */
 	public void setBicicletaData(String velocidad, String distancia, Integer pinhon, Integer plato) {
-		
-		System.out.println("Poniendo datos bicicleta");
 		
 		tVelocidad.setText(velocidad);
 		tDistancia.setText(distancia);

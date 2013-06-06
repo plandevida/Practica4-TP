@@ -204,20 +204,22 @@ public class CiclistaManager {
 			
 			if (miliseg != (int)(Calendar.getInstance().getTimeInMillis() % 10)) {
 				
+				// Solo se ejecuta nuestro "thread" si desde la última ejecución ha pasado como mínimo el valos de UNIDADO_TIEMPO.
 				if ( Math.abs(milisegundospropiosdespues-milisegundospropiosantes) >= VariablesDeContexto.UNIDAD_TIEMPO) {
 					
+					// Obtenemos el momento de ejecución.
 					milisegundospropiosantes = reloj.getMilisegundos();
 					
 					for (ObjetosQueSeEjecutan objetoejecutable : listaejecutables) {
+						
 						objetoejecutable.ejecuta();
-						
-						System.out.println("**Ejecutando " + reloj.getTotalImpulsos());
-						
 					}
 					
+					// Obtenemos el momento de después de haber ejecutado.
 					milisegundospropiosdespues = reloj.getMilisegundos();
 				}
 				else {
+					// Si no ha pasado el tiempo suficiente, seguimos contando impulsos.
 					reloj.ejecuta();
 					milisegundospropiosdespues = reloj.getMilisegundos();
 				}
