@@ -77,11 +77,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	@Override
 	public void ejecuta() {
 		
-//		System.out.println("Ciclista: " + getIdentificadorSalidaDatos() + "Ejecutando...");
-		
 		pedalear();
-		
-//		System.out.println("Ciclista: " + getIdentificadorSalidaDatos() + "Ejecutado");
 	}
 	
 	/**
@@ -242,23 +238,23 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 		this.cadencia = cadencia;
 	}
 	
-//	/**
-//	 * Obtiene el periodo del ciclista
-//	 *  
-//	 * @return La cadencia
-//	 */
-//	public double getPeriodo() {
-//		return periodo;
-//	}
-//
-//	/**
-//	 * Cambia el periodo del ciclista.
-//	 * 
-//	 * @param cadencia Cadencia nueva.
-//	 */
-//	public void setPeriodo(int periodo) {
-//		this.periodo = periodo;
-//	}
+	/**
+	 * Obtiene el periodo del ciclista
+	 *  
+	 * @return La cadencia
+	 */
+	public double getPeriodo() {
+		return periodo;
+	}
+
+	/**
+	 * Cambia el periodo del ciclista.
+	 * 
+	 * @param cadencia Cadencia nueva.
+	 */
+	public void setPeriodo(int periodo) {
+		this.periodo = periodo;
+	}
 
 	/**
 	 * Obtiene el tiempo de pedalada del ciclista.
@@ -339,13 +335,5 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 */
 	public void setFuerza(double fuerza) {
 		this.fuerza = fuerza;
-	}
-
-	public float getPeriodo() {
-		return periodo;
-	}
-
-	public void setPeriodo(float periodo) {
-		this.periodo = periodo;
 	}
 }
