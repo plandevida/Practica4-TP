@@ -48,9 +48,9 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 * 
 	 * @return Un entero que es relación entre ambos valores.
 	 */
-	private int relacionDeTransmision() {
+	private double relacionDeTransmision() {
 
-		int relaciondetrasminsion = VariablesDeContexto.PLATOS[platoactual] / VariablesDeContexto.PINHONES[pinhonactual];
+		double relaciondetrasminsion = redondear(VariablesDeContexto.PLATOS[platoactual] / VariablesDeContexto.PINHONES[pinhonactual],2);
 
 		return relaciondetrasminsion;
 	}
@@ -138,12 +138,12 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 			velocidad = velocidadmaxima(tiempopedalada);
 		}
 		
-		velocidad = (velocidad + aceleracionfactores*impulso)*10;
+		velocidad = (velocidad + aceleracionfactores*impulso);
 		
 		setVelocidad(velocidad);
 		setEspacioRecorrido(velocidad);
 		
-		return ((peso/10 + pesociclista/10)*(aceleracion + aceleracionfactores));
+		return ((peso/VariablesDeContexto.FUERZA_GRAVEDAD + pesociclista/VariablesDeContexto.FUERZA_GRAVEDAD )*(aceleracion + aceleracionfactores));
 	}
 	
 	/**
@@ -293,4 +293,5 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	public void setViento(double viento) {
 		this.aceleracionviento = viento;
 	}
+	
 }

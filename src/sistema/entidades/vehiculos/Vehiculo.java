@@ -34,7 +34,7 @@ public class Vehiculo {
 	 * @param velocidadnueva La nueva velocidad de la bicicleta.
 	 */
 	public void setVelocidad(double velocidadnueva) {
-		velocidadactual = velocidadnueva;
+		velocidadactual = redondear(velocidadnueva,2);
 	}
 	
 	/**
@@ -54,5 +54,9 @@ public class Vehiculo {
 	public void setEspacioRecorrido(double espacioanhadido){
 		
 		espaciorecorrido += espacioanhadido;
+		espaciorecorrido = redondear (espaciorecorrido,2);
 	}
+	public double redondear( double numero, int decimales ) {
+	    return Math.round(numero*Math.pow(10,decimales))/Math.pow(10,decimales);
+	  }
 }
