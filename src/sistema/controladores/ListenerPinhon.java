@@ -25,11 +25,22 @@ public class ListenerPinhon extends ListenerOrdenes implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		Integer pinhon = panel.getPinhon();
+		String actioncmd = e.getActionCommand();
+		
+		Integer offset = 0;
+		
+		if ( "+".equals(actioncmd) ) {
+			offset = 1;
+		}
+		else if ( "-".equals(actioncmd) ) {
+			offset = -1;
+		}
+		
+		Integer pinhon = panel.getPinhon() + offset;
 		
 		String idciclista = panel.getIdCiclista();
 		
-		String comando = "ciclista " + idciclista + "cambia piñon " + pinhon;
+		String comando = "bicicleta " + idciclista + " cambia piñon " + pinhon;
 		
 		getDispatcher().parsearComando(comando);
 	}

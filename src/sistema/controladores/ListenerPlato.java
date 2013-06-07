@@ -25,11 +25,22 @@ public class ListenerPlato extends ListenerOrdenes implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		Integer plato = panel.getPlato();
+		String actioncmd = e.getActionCommand();
+		
+		Integer offset = 0;
+		
+		if ( "+".equals(actioncmd) ) {
+			offset = 1;
+		}
+		else if ( "-".equals(actioncmd) ) {
+			offset = -1;
+		}
+		
+		Integer plato = panel.getPlato() + offset;
 		
 		String idciclista = panel.getIdCiclista();
 		
-		String comando = "ciclista " + idciclista + "cambia plato " + plato;
+		String comando = "bicicleta " + idciclista + " cambia plato " + plato;
 		
 		getDispatcher().parsearComando(comando);
 	}

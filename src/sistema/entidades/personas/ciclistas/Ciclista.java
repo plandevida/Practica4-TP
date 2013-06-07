@@ -145,14 +145,13 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	/**
 	 * Frena la bicicleta.
 	 */
-	public void frenar() {
+	public void frenar(Double cantidadafrenar, Double tiempoparafrenar) {
+		
 		if (reloj.getMilisegundos() != milisegundos) {
 			bicicletamontada.frenar();
 		
 			milisegundos = reloj.getMilisegundos();
 		}
-		
-		
 	}
 
 	/**
@@ -179,7 +178,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 		
 		if (indiceplato >= 0 && indiceplato< VariablesDeContexto.PLATOS.length) {
 		
-			bicicletamontada.setPinhonactual(indiceplato);
+			bicicletamontada.setPlatoactual(indiceplato);
 		}
 		
 		return bicicletamontada.getPlatoactual();

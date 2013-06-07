@@ -62,7 +62,9 @@ public class Presentador {
 				
 		for (Ciclista c : listadeciclistas) {
 			
-			ciclista = (c.getNumeromallot() == identificadorciclista) ? c : null;
+			if ( ciclista == null) {
+				ciclista = (c.getNumeromallot() == identificadorciclista) ? c : null;
+			}
 		}
 		
 		return ciclista;
@@ -80,8 +82,11 @@ public class Presentador {
 		
 		for (Ciclista c : listadeciclistas) {
 			
-			if (c.getIdentificadorSalidaDatos().equals(identificadorciclista))
-				ciclista = c;
+			if ( ciclista == null) {
+				if (c.getIdentificadorSalidaDatos().equals(identificadorciclista)) {
+					ciclista = c;
+				}
+			}
 		}
 		
 		return ciclista;

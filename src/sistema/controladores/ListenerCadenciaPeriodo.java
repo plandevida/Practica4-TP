@@ -25,10 +25,27 @@ public class ListenerCadenciaPeriodo extends ListenerOrdenes implements ActionLi
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		String idciclista = panel.getIdCiclista();
+		String actioncmd = e.getActionCommand();
 		
-		Integer cadencia = panel.getCadencia();
-		Double periodo = panel.getPeriodo();
+		Integer offsetCadencia = 0;
+		Double offsetPeriodo = 0d;
+		
+		if ( "+ cadencia".equals(actioncmd) ) {
+			offsetCadencia = 1;
+		}
+		else if ("+ periodo".equals(actioncmd)) {
+			offsetPeriodo = .1d;
+		}
+		else if ( "- cadencia".equals(actioncmd) ) {
+			offsetCadencia = -1;
+		}
+		else if ( "- periodo".equals(actioncmd) ) {
+			offsetPeriodo = -.1d;
+		}
+		
+		String idciclista = panel.getIdCiclista();
+		Integer cadencia = panel.getCadencia() + offsetCadencia;
+		Double periodo = panel.getPeriodo() + offsetPeriodo;
 		
 		String comando = "ciclista " + idciclista + " cadencia " + cadencia + " periodo " + periodo;
 		

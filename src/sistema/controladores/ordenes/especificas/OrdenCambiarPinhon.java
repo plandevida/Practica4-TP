@@ -44,20 +44,24 @@ public class OrdenCambiarPinhon extends OrdenParaCiclista {
 		String[] tokens = comando.split(" ");
 		
 		if ( tokens.length > 0 ) {
+
+			if (comprobarSintaxis(tokens)) {
 			
-			if ( tokens.length == 5 ) {
-				try {
-					idciclista = Integer.valueOf(tokens[1]);
-					
-					if (idciclista >= 0 && idciclista < VariablesDeContexto.MAX_CICLISTAS) {
+				if ( tokens.length == 5 ) {
+					try {
+						idciclista = Integer.valueOf(tokens[1]);
 						
-						// No es necesario controlar el indice del plato, ya lo hace el ciclista.
-						indicepinhon = Integer.valueOf(tokens[4]);
-						
-						ordensubirpinhon = new OrdenCambiarPinhon(indicepinhon, idciclista);
+						if (idciclista >= 0 && idciclista < VariablesDeContexto.MAX_CICLISTAS) {
+							
+							indicepinhon = Integer.valueOf(tokens[4]);
+							
+							if ( indicepinhon >= 0 && indicepinhon < VariablesDeContexto.PINHONES.length ) {
+							
+								ordensubirpinhon = new OrdenCambiarPinhon(indicepinhon, idciclista);
+							}
+						}
+					} catch (NumberFormatException ne) {
 					}
-				} catch (NumberFormatException ne) {
-					// nada que hacer.
 				}
 			}
 		}
@@ -91,7 +95,7 @@ public class OrdenCambiarPinhon extends OrdenParaCiclista {
 		
 		if (tokenscomando[0].equalsIgnoreCase("bicicleta") 
 				&& tokenscomando[2].equalsIgnoreCase("cambia") 
-				&& tokenscomando[4].equalsIgnoreCase("piñon")) {
+				&& tokenscomando[3].equalsIgnoreCase("piñon")) {
 			
 			sintaxiscorrecta = true;
 		}

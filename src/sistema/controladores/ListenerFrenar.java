@@ -48,8 +48,8 @@ public class ListenerFrenar extends ListenerOrdenes implements ActionListener {
 		}
 		else {
 			
-			Integer cantidad = panel.getCantidadFrenado();
-			Integer tiempo = panel.getTiempoFrenado();
+			Double cantidad = panel.getCantidadFrenado();
+			Double tiempo = panel.getTiempoFrenado();
 			
 			comando = "ciclista " + idciclista + " frena " + cantidad + " en " + tiempo;
 		}

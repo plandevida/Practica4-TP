@@ -54,7 +54,7 @@ public class OrdenAsingarCadencia extends OrdenParaCiclista {
 				.append(" cadencia : ")
 				.append(aumentocadencia.intValue())
 				.append(" y el periodo: ")
-				.append(periodotiempopedalada.intValue())
+				.append(periodotiempopedalada.doubleValue())
 				.toString();
 	}
 
@@ -88,7 +88,6 @@ public class OrdenAsingarCadencia extends OrdenParaCiclista {
 							}
 						}
 					} catch (NumberFormatException ne) {
-						// nada que hacer.
 					}
 				}
 			}

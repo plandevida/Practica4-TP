@@ -155,7 +155,7 @@ public class CiclistaManager {
 		}
 		
 		// Generación aleatoria de ciclistas.
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < VariablesDeContexto.MAX_CICLISTAS; i++) {
 			
 			Bicicleta bicicleta = new Bicicleta();
 			

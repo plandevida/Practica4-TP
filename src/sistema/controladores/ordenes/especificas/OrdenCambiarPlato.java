@@ -52,13 +52,14 @@ public class OrdenCambiarPlato extends OrdenParaCiclista {
 						
 						if (idciclista >= 0 && idciclista < VariablesDeContexto.MAX_CICLISTAS) {
 							
-							// No es necesario controlar el indice del plato, ya lo hace el ciclista.
 							indiceplato = Integer.valueOf(tokens[4]);
 							
-							ordensubirplato = new OrdenCambiarPlato (indiceplato, idciclista);
+							if (indiceplato >= 0 && indiceplato < VariablesDeContexto.PLATOS.length) {
+							
+								ordensubirplato = new OrdenCambiarPlato (indiceplato, idciclista);
+							}
 						}
 					} catch (NumberFormatException ne) {
-						// nada que hacer.
 					}
 				}
 			}
@@ -72,8 +73,7 @@ public class OrdenCambiarPlato extends OrdenParaCiclista {
 		
 		Ciclista ciclista = presentador.getCiclista(idciclista);
 		
-		// Si la orden tiene permisos sobre los ciclistas
-		// buscamos cual es el que le corresponde.
+		// Buscamos cual es el ciclista que le corresponde.
 		if( ciclista != null ) {
 			
 			setCiclista(ciclista);
@@ -93,7 +93,7 @@ public class OrdenCambiarPlato extends OrdenParaCiclista {
 		
 		if (tokenscomando[0].equalsIgnoreCase("bicicleta") 
 				&& tokenscomando[2].equalsIgnoreCase("cambia") 
-				&& tokenscomando[4].equalsIgnoreCase("plato")) {
+				&& tokenscomando[3].equalsIgnoreCase("plato")) {
 			
 			sintaxiscorrecta = true;
 		}

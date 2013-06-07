@@ -21,7 +21,7 @@ public class OrdenFrenar extends OrdenParaCiclista {
 	@Override
 	public void ejecutarOrden() {
 		if (getCiclista() != null) {
-			getCiclista().frenar();
+			getCiclista().frenar(cantidadfrendada, tiempofrenada);
 		}
 	}
 	
@@ -59,6 +59,11 @@ public class OrdenFrenar extends OrdenParaCiclista {
 							cantidadfrendada = Double.valueOf(tokens[3]);
 							
 							if (cantidadfrendada >= 0) {
+								
+								if (cantidadfrendada > 0) {
+									cantidadfrendada = 1/cantidadfrendada;
+								}
+								
 								tiempofrenada = Double.valueOf(tokens[5]);
 								
 								if (tiempofrenada >= 0) {
@@ -67,7 +72,6 @@ public class OrdenFrenar extends OrdenParaCiclista {
 							}
 						}
 					} catch (NumberFormatException ne) {
-						// nada que hacer.
 					}
 				}
 			}

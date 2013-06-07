@@ -37,13 +37,13 @@ public class OrdenCambiaViento extends Orden {
 	public String mostrarMensaje() {
 		
 		return (new StringBuilder()
-					.append("viento: "))
-					.append(viento.name())
-					.append(" hora: ")
-					.append(hora)
-					.append(" velocidad: ")
-					.append(velocidadviento)
-					.toString();
+				.append("viento: "))
+				.append(viento.name())
+				.append(" hora: ")
+				.append(hora)
+				.append(" velocidad: ")
+				.append(velocidadviento)
+				.toString();
 	}
 
 	@Override
@@ -89,7 +89,6 @@ public class OrdenCambiaViento extends Orden {
 							}
 						}
 					} catch (NumberFormatException ne) {
-						// nada que hacer.
 					}
 				}
 			}
