@@ -35,7 +35,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	// Número único del ciclista en la carrera
 	private int numeromallot;
 	
-	private int contadorcandencia;
+	private int contadorcadencia;
 	
 	// El cansancio del ciclista.
 	private double fuerza;
@@ -67,7 +67,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 		estrellado = false;
 		
 		calcularPeriodo();
-		contadorcandencia = 1;
+		contadorcadencia = 1;
 	}
 	
 	/**
@@ -115,17 +115,17 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 				if (reloj.getMilisegundos() != milisegundos) {
 					
 					
-					if (contadorcandencia >= (periodo * 20)) {
+					if (contadorcadencia >= (periodo * 20)) {
 						
 						
 						double fuerzagastada = redondear ((bicicletamontada.darPedalada(tiempopedalada, getPeso()))/10,2); 
 						if (fuerza > 0) fuerza = redondear((fuerza - fuerzagastada),2);
 						
 //						System.out.println(numeromallot+" t "+tiempopedalada+" p "+ periodo+" f "+fuerzagastada+ " f " +fuerza );
-						contadorcandencia = 1;
+						contadorcadencia = 1;
 					}
 					
-					contadorcandencia++;
+					contadorcadencia++;
 
 					milisegundos = reloj.getMilisegundos();
 				}

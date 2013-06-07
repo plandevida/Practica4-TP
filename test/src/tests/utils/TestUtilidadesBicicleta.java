@@ -10,12 +10,31 @@ public class TestUtilidadesBicicleta {
 	 * 
 	 * @param cadenciaciclista Frecuencia con la que el ciclista da pedaladas.
 	 * @return La velocidad de la bicicleta.
-	 */
-	public double velocidadDeBici(double cadenciaciclista, double radiorueda, int dientesPlato, int dientesPinhon, double espaciorecorrido) {
-
-		double velocidadbici = espacioDePedalada(radiorueda, dientesPlato, dientesPinhon) / cadenciaciclista;
-
-		return velocidadbici;
+	 */	
+	public double velocidadDeBici(double velocidadanterior, double tiempopedalada, int peso, double radiorueda, int dientesPlato, int dientesPinhon) {
+		
+		// Variables no calculadas por que no hay factores externos
+		int impulso = 1;
+		int aceleracionpendiente = 0;
+		int aceleracionviento = 0;
+		
+		double aceleracion = espacioDePedalada(radiorueda, dientesPlato, dientesPinhon) / (tiempopedalada*tiempopedalada);
+		
+		double aceleracionfactores = aceleracionpendiente + aceleracionviento;
+		double velocidad = velocidadanterior + aceleracion*impulso; 
+		
+		if (velocidad > velocidadmaxima(tiempopedalada, radiorueda, dientesPlato, dientesPinhon)) {
+			velocidad = velocidadmaxima(tiempopedalada, radiorueda, dientesPlato, dientesPinhon);
+		}
+		
+		velocidad = (velocidad + aceleracionfactores*impulso);
+		
+		return UtilidadesNumericas.redondear(velocidad, 2);
+	}
+	
+	private double velocidadmaxima(double tiempopedalada, double radiorueda, int dientesPlato, int dientesPinhon) {
+		double velocidadmax = espacioDePedalada(radiorueda, dientesPlato, dientesPinhon) / tiempopedalada;
+		return velocidadmax;
 	}
 	
 	/**

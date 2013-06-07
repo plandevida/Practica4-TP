@@ -35,7 +35,7 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 		// Número único del ciclista en la carrera
 		private int numeromallot;
 		
-		private int contadorcandencia;
+		private int contadorcadencia;
 		
 		// El cansancio del ciclista.
 		private double fuerza;
@@ -67,7 +67,7 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 		estrellado = false;
 		
 		calcularPeriodo();
-		contadorcandencia = 1;
+		contadorcadencia = 1;
 	}
 	
 	/**
@@ -78,8 +78,6 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 	public void ejecuta() {
 		
 		pedalear();
-		
-		System.out.println(getIdentificadorSalidaDatos() + " " + bicicletamontada.getEspacioRecorrido());
 	}
 	
 	/**
@@ -115,17 +113,17 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 				if (reloj.getMilisegundos() != milisegundos) {
 					
 					
-					if (contadorcandencia >= (periodo * 20)) {
+					if (contadorcadencia >= (periodo * 20)) {
 						
 						
 						double fuerzagastada = redondear ((bicicletamontada.darPedalada(tiempopedalada, getPeso()))/10,2); 
 						if (fuerza > 0) fuerza = redondear((fuerza - fuerzagastada),2);
 						
 //						System.out.println(numeromallot+" t "+tiempopedalada+" p "+ periodo+" f "+fuerzagastada+ " f " +fuerza );
-						contadorcandencia = 1;
+						contadorcadencia = 1;
 					}
 					
-					contadorcandencia++;
+					contadorcadencia++;
 
 					milisegundos = reloj.getMilisegundos();
 				}
@@ -250,14 +248,9 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 		return periodo;
 	}
 
-//	/**
-//	 * Cambia el periodo del ciclista.
-//	 * 
-//	 * @param cadencia Cadencia nueva.
-//	 */
-//	public void setPeriodo(int periodo) {
-//		this.periodo = periodo;
-//	}
+	public void setContadorCadencia(int contador) {
+		contadorcadencia = contador;
+	}
 
 	/**
 	 * Obtiene el tiempo de pedalada del ciclista.

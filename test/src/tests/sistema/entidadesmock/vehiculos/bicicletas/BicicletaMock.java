@@ -39,7 +39,7 @@ public class BicicletaMock extends Vehiculo implements ObjetosConSalidaDeDatos {
 		setPlatoactual(0);
 		radiorueda = VariablesDeContexto.RADIO_RUEDA;
 		peso = 10;
-		aceleracionpendiente = 1;
+		aceleracionpendiente = 0;
 		aceleracionviento = 0;
 		impulso = 1;
 	}
@@ -133,9 +133,9 @@ public class BicicletaMock extends Vehiculo implements ObjetosConSalidaDeDatos {
 		double aceleracion = calcularAceleracionTiempoPedalada(tiempopedalada);
 		
 		double aceleracionfactores = aceleracionpendiente + aceleracionviento;
-		double velocidad = getVelocidad() + aceleracion*impulso; 
+		double velocidad = getVelocidad() + aceleracion*impulso;
 		
-		if (velocidad > velocidadmaxima(tiempopedalada)){
+		if (velocidad > velocidadmaxima(tiempopedalada)) {
 			velocidad = velocidadmaxima(tiempopedalada);
 		}
 		

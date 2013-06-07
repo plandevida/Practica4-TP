@@ -80,13 +80,15 @@ public class TestCiclista {
 		
 		BicicletaMock bicicleta = ciclista.getBicicletamontada();
 		
-		ciclista.ejecuta();
+		while ( relojciclista.getMilisegundos() < 2) {
+			relojciclista.ejecuta();
+		}
 		
-		double velocidadesperada = utilidadesBicicleta.velocidadDeBici(ciclista.getCadencia(), 
-																	bicicleta.getRadiorueda(), 
-																	bicicleta.getPlatos()[bicicleta.getPlatoactual()], 
-																	bicicleta.getPinhones()[bicicleta.getPinhonactual()],
-																	bicicleta.getEspacioRecorrido());
+		ciclista.setContadorCadencia(ciclista.getPeso()+21);
+		
+		ciclista.pedalear();
+		
+		double velocidadesperada = utilidadesBicicleta.velocidadDeBici(0, ciclista.getTiempopedalada(), ciclista.getPeso(), bicicleta.getRadiorueda(), bicicleta.getPlatos()[bicicleta.getPlatoactual()], bicicleta.getPinhones()[bicicleta.getPinhonactual()]);
 		
 		assertEquals("Error: La velocidad de la bicicleta no es la correcta", velocidadesperada, bicicleta.getVelocidad(), 0);
 	}

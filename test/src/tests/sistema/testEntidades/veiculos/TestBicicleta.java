@@ -75,11 +75,10 @@ public class TestBicicleta {
 		
 		//se comprueba que la velocidad sea la esperada
 		
-		double velocidadesperada = utilidadesBicicleta.velocidadDeBici(utilidadesCiclista.getCadencia(), 
-																	bicicleta.getRadiorueda(), 
+		double velocidadesperada = utilidadesBicicleta.velocidadDeBici(0, utilidadesCiclista.getCadencia(), 
+																	65, bicicleta.getRadiorueda(), 
 																	bicicleta.getPlatos()[bicicleta.getPlatoactual()], 
-																	bicicleta.getPinhones()[bicicleta.getPinhonactual()],
-																	bicicleta.getEspacioRecorrido());
+																	bicicleta.getPinhones()[bicicleta.getPinhonactual()]);
 		
 		
 		assertEquals("Error: La velocidad de la bicicleta no es la correcta", velocidadesperada, bicicleta.getVelocidad(), 0);
@@ -121,10 +120,9 @@ public class TestBicicleta {
 		
 		//se comprueba que la velocidad halla decrementado como esperamos despues de frenar
 		
-		double velocidadfrenado = utilidadesBicicleta.velocidadDeBici(1,bicicleta.getRadiorueda(),
+		double velocidadfrenado = utilidadesBicicleta.velocidadDeBici(0, 1, 65, bicicleta.getRadiorueda(),
 																bicicleta.getPlatos()[bicicleta.getPlatoactual()], 
-																bicicleta.getPinhones()[bicicleta.getPinhonactual()],
-															    bicicleta.getEspacioRecorrido());
+																bicicleta.getPinhones()[bicicleta.getPinhonactual()]);
 		
 		velocidadfrenado = -(velocidadfrenado *0.2);
 		

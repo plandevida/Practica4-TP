@@ -38,7 +38,7 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 		setPlatoactual(0);
 		radiorueda = VariablesDeContexto.RADIO_RUEDA;
 		peso = 10;
-		aceleracionpendiente = 1;
+		aceleracionpendiente = 0;
 		aceleracionviento = 0;
 		impulso = 1;
 	}
