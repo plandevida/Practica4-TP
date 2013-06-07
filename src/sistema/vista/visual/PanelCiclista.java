@@ -8,14 +8,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
 import javax.swing.JTextField;
-import javax.swing.SpinnerNumberModel;
 
 import sistema.controladores.ListenerCadenciaPeriodo;
 import sistema.controladores.ListenerFrenar;
@@ -27,7 +26,6 @@ import sistema.entidades.personas.ciclistas.Ciclista;
 import sistema.factoresexternos.viento.MiViento;
 import sistema.interfaces.ObjetosConSalidaDeDatos;
 import sistema.manager.Presentador;
-import sistema.manager.VariablesDeContexto;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -49,12 +47,12 @@ public class PanelCiclista extends JPanel {
 	private JTextField tCantidad;
 	private JTextField tTiempo;
 	private JProgressBar PBfuerza;
-	private JSpinner sCadencia;
-	private JSpinner sPlato;
-	private JSpinner sPeriodo;
-	private JSpinner sPinhon;
 	
 	private Dispatcher micomandero;
+	private JFormattedTextField ftCadencia;
+	private JFormattedTextField ftPeriodo;
+	private JFormattedTextField ftPlato;
+	private JFormattedTextField ftPinhon;
 
 	/**
 	 * Create the panel.
@@ -100,7 +98,7 @@ public class PanelCiclista extends JPanel {
 	 * @return Plato del ciclista.
 	 */
 	public Integer getPlato() {
-		return (Integer)sPlato.getValue();
+		return (Integer)ftPlato.getValue();
 	}
 	
 	/**
@@ -109,7 +107,7 @@ public class PanelCiclista extends JPanel {
 	 * @return Piñón del ciclista.
 	 */
 	public Integer getPinhon() {
-		return (Integer)sPlato.getValue();
+		return (Integer)ftPinhon.getValue();
 	}
 	
 	/**
@@ -118,7 +116,7 @@ public class PanelCiclista extends JPanel {
 	 * @return Cadencia del ciclista.
 	 */
 	public Integer getCadencia() {
-		return (Integer)sCadencia.getValue();
+		return (Integer)ftCadencia.getValue();
 	}
 	
 	/**
@@ -127,7 +125,7 @@ public class PanelCiclista extends JPanel {
 	 * @return El periodo del ciclista.
 	 */
 	public Double getPeriodo() {
-		return (Double)sPeriodo.getValue();
+		return (Double)ftPeriodo.getValue();
 	}
 	
 	/**
@@ -161,8 +159,8 @@ public class PanelCiclista extends JPanel {
 		
 		tnombreCiclista.setText(nombre);
 		PBfuerza.setValue(fuerza);
-		sCadencia.setValue(cadencia);
-		sPeriodo.setValue(periodo);
+		ftCadencia.setValue(cadencia);
+		ftPeriodo.setValue(periodo);
 	}
 	
 	/**
@@ -177,8 +175,8 @@ public class PanelCiclista extends JPanel {
 		
 		tVelocidad.setText(velocidad);
 		tDistancia.setText(distancia);
-		sPinhon.setValue(pinhon);
-		sPlato.setValue(plato);
+		ftPinhon.setValue(pinhon);
+		ftPlato.setValue(plato);
 	}
 
 	/**
@@ -239,85 +237,145 @@ public class PanelCiclista extends JPanel {
 				FormFactory.RELATED_GAP_COLSPEC,
 				FormFactory.DEFAULT_COLSPEC,
 				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
+				ColumnSpec.decode("default:grow"),
 				FormFactory.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("default:grow"),
 				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
+				ColumnSpec.decode("default:grow"),
+				FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("default:grow"),
+				FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("default:grow"),
 				FormFactory.RELATED_GAP_COLSPEC,},
 			new RowSpec[] {
 				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
+				RowSpec.decode("default:grow"),
 				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
+				RowSpec.decode("default:grow"),
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,}));
 		
 		JLabel lblCadencia = new JLabel("Cadencia:");
-		panel_2.add(lblCadencia, "2, 2");
+		panel_2.add(lblCadencia, "2, 2, right, default");
 		
-		SpinnerNumberModel sCadenciaModel = new SpinnerNumberModel(0, 0, 120, 5);
-		sCadencia = new JSpinner(sCadenciaModel);
-		// Añadimos el controlador para cambiar cadencia y periodo
-		sCadencia.addChangeListener(new ListenerCadenciaPeriodo(micomandero, this));
-		panel_2.add(sCadencia, "4, 2");
+		ftCadencia = new JFormattedTextField();
+		ftCadencia.setMinimumSize(new Dimension(5, 28));
+		ftCadencia.setPreferredSize(new Dimension(5, 28));
+		ftCadencia.setColumns(10);
+		ftCadencia.addActionListener(new ListenerCadenciaPeriodo(micomandero, this));
+		panel_2.add(ftCadencia, "4, 2, fill, default");
+		
+		JPanel panelBotomesCadencia = new JPanel();
+		panel_2.add(panelBotomesCadencia, "6, 2, fill, fill");
+		panelBotomesCadencia.setLayout(new BorderLayout(0, 0));
+		
+		JButton btnMasCadencia = new JButton("+");
+		btnMasCadencia.setMinimumSize(new Dimension(20, 15));
+		btnMasCadencia.setPreferredSize(new Dimension(10, 15));
+		panelBotomesCadencia.add(btnMasCadencia, BorderLayout.NORTH);
+		
+		JButton btnMenosCadencia = new JButton("-");
+		btnMenosCadencia.setPreferredSize(new Dimension(10, 15));
+		btnMenosCadencia.setMinimumSize(new Dimension(20, 15));
+		panelBotomesCadencia.add(btnMenosCadencia, BorderLayout.SOUTH);
 		
 		JLabel lblPlato = new JLabel("Plato:");
-		panel_2.add(lblPlato, "6, 2");
-		
-		SpinnerNumberModel sPlatoModel = new SpinnerNumberModel(0, 0, VariablesDeContexto.PLATOS.length, 1);
-		sPlato = new JSpinner(sPlatoModel);
-		sPlato.setPreferredSize(new Dimension(45, 28));
-		// Añadimos el controlador para cambiar de plato
-		sPlato.addChangeListener(new ListenerPlato(micomandero, this));
-		panel_2.add(sPlato, "8, 2");
+		panel_2.add(lblPlato, "8, 2, center, default");
 		
 		JButton btnFrenar = new JButton("Frenar");
 		btnFrenar.addActionListener(new ListenerFrenar(micomandero, this, false));
 		
-		JLabel lblPeriodo = new JLabel("Periodo:");
-		panel_2.add(lblPeriodo, "2, 4");
+		ftPlato = new JFormattedTextField();
+		ftPlato.setPreferredSize(new Dimension(100, 28));
+		ftPlato.addActionListener(new ListenerPlato(micomandero, this));
+		panel_2.add(ftPlato, "10, 2, fill, default");
 		
-		SpinnerNumberModel sPeriodoModel = new SpinnerNumberModel(0, 0.0, 2.0, 0.5);
-		sPeriodo = new JSpinner(sPeriodoModel);
-		// Añadimos el controlador para cambiar cadencia y periodo
-		sPeriodo.addChangeListener(new ListenerCadenciaPeriodo(micomandero, this));
-		panel_2.add(sPeriodo, "4, 4");
+		JPanel panelBotonoesPlato = new JPanel();
+		panel_2.add(panelBotonoesPlato, "12, 2, fill, fill");
+		panelBotonoesPlato.setLayout(new BorderLayout(0, 0));
+		
+		JButton btnMasPlato = new JButton("+");
+		btnMasPlato.setPreferredSize(new Dimension(10, 15));
+		btnMasPlato.setMinimumSize(new Dimension(20, 15));
+		panelBotonoesPlato.add(btnMasPlato, BorderLayout.NORTH);
+		
+		JButton btnMenosPlato = new JButton("-");
+		btnMenosPlato.setPreferredSize(new Dimension(10, 15));
+		btnMenosPlato.setMinimumSize(new Dimension(20, 15));
+		panelBotonoesPlato.add(btnMenosPlato, BorderLayout.SOUTH);
+		
+		JLabel lblPeriodo = new JLabel("Periodo:");
+		panel_2.add(lblPeriodo, "2, 4, right, default");
+		
+		ftPeriodo = new JFormattedTextField();
+		ftPeriodo.setPreferredSize(new Dimension(5, 28));
+		ftPeriodo.setMinimumSize(new Dimension(5, 28));
+		ftPeriodo.setColumns(10);
+		ftPeriodo.addActionListener(new ListenerCadenciaPeriodo(micomandero, this));
+		panel_2.add(ftPeriodo, "4, 4, fill, default");
+		
+		JPanel panelBotonesPeriodo = new JPanel();
+		panel_2.add(panelBotonesPeriodo, "6, 4, fill, fill");
+		panelBotonesPeriodo.setLayout(new BorderLayout(0, 0));
+		
+		JButton btnMasPeriodo = new JButton("+");
+		btnMasPeriodo.setPreferredSize(new Dimension(10, 15));
+		btnMasPeriodo.setMinimumSize(new Dimension(20, 15));
+		panelBotonesPeriodo.add(btnMasPeriodo, BorderLayout.NORTH);
+		
+		JButton btnMenosPeriodo = new JButton("-");
+		btnMenosPeriodo.setPreferredSize(new Dimension(10, 15));
+		btnMenosPeriodo.setMinimumSize(new Dimension(20, 15));
+		panelBotonesPeriodo.add(btnMenosPeriodo, BorderLayout.SOUTH);
 		
 		JLabel lblPin = new JLabel("Piñón:");
-		panel_2.add(lblPin, "6, 4");
+		panel_2.add(lblPin, "8, 4, center, default");
 		
-		SpinnerNumberModel sPinhonModel = new SpinnerNumberModel(0, 0, VariablesDeContexto.PINHONES.length, 1);
-		sPinhon = new JSpinner(sPinhonModel);
-		sPinhon.setPreferredSize(new Dimension(45, 28));
-		// Añadimos el controlador para cambiar de piñón
-		sPinhon.addChangeListener(new ListenerPinhon(micomandero, this));
-		panel_2.add(sPinhon, "8, 4");
+		ftPinhon = new JFormattedTextField();
+		ftPinhon.setPreferredSize(new Dimension(100, 28));
+		ftPinhon.addActionListener(new ListenerPinhon(micomandero, this));
+		panel_2.add(ftPinhon, "10, 4, fill, default");
 		
-		btnFrenar.setPreferredSize(new Dimension(78, 29));
-		btnFrenar.setMinimumSize(new Dimension(78, 29));
+		JPanel panel = new JPanel();
+		panel_2.add(panel, "12, 4, fill, fill");
+		panel.setLayout(new BorderLayout(0, 0));
+		
+		JButton btnMasPinhon = new JButton("+");
+		btnMasPinhon.setPreferredSize(new Dimension(10, 15));
+		btnMasPinhon.setMinimumSize(new Dimension(20, 15));
+		panel.add(btnMasPinhon, BorderLayout.NORTH);
+		
+		JButton btnMenosPinhon = new JButton("-");
+		btnMenosPinhon.setPreferredSize(new Dimension(10, 15));
+		btnMenosPinhon.setMinimumSize(new Dimension(20, 15));
+		panel.add(btnMenosPinhon, BorderLayout.SOUTH);
+		
+		btnFrenar.setPreferredSize(new Dimension(80, 29));
+		btnFrenar.setMinimumSize(new Dimension(70, 29));
 		panel_2.add(btnFrenar, "2, 6");
 		
 		JLabel lblCantidad = new JLabel("Cantidad:");
-		panel_2.add(lblCantidad, "4, 6, right, default");
+		panel_2.add(lblCantidad, "4, 6, 4, 1, center, default");
 		
 		tCantidad = new JTextField();
-		panel_2.add(tCantidad, "6, 6, fill, default");
+		panel_2.add(tCantidad, "8, 6, fill, default");
 		tCantidad.setColumns(10);
 		
 		JButton btnFs = new JButton("Frenar S");
+		btnFs.setPreferredSize(new Dimension(80, 29));
+		btnFs.setMinimumSize(new Dimension(70, 29));
 		btnFs.setToolTipText("Frena en seco al ciclista");
 		// Añadimos el controlador para frenar
 		btnFs.addActionListener(new ListenerFrenar(micomandero, this, true));
 		panel_2.add(btnFs, "2, 8");
 		
 		JLabel lblTiempo = new JLabel("Tiempo:");
-		panel_2.add(lblTiempo, "4, 8, right, default");
+		panel_2.add(lblTiempo, "4, 8, 4, 1, center, default");
 		
 		tTiempo = new JTextField();
-		panel_2.add(tTiempo, "6, 8, fill, default");
+		panel_2.add(tTiempo, "8, 8, fill, default");
 		tTiempo.setColumns(10);
 	}
 	

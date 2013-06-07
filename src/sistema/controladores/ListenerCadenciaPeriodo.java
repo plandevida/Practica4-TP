@@ -1,7 +1,7 @@
 package sistema.controladores;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import sistema.controladores.ordenes.Dispatcher;
 import sistema.vista.visual.PanelCiclista;
@@ -12,7 +12,7 @@ import sistema.vista.visual.PanelCiclista;
  * @author Daniel Serrano Torres
  * @author Alvaro Quesada Pimentel
  */
-public class ListenerCadenciaPeriodo extends ListenerOrdenes implements ChangeListener {
+public class ListenerCadenciaPeriodo extends ListenerOrdenes implements ActionListener {
 
 	private PanelCiclista panel;
 	
@@ -23,7 +23,7 @@ public class ListenerCadenciaPeriodo extends ListenerOrdenes implements ChangeLi
 	}
 	
 	@Override
-	public void stateChanged(ChangeEvent e) {
+	public void actionPerformed(ActionEvent e) {
 		
 		String idciclista = panel.getIdCiclista();
 		
