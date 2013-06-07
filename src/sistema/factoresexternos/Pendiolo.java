@@ -15,7 +15,6 @@ import sistema.entidades.vehiculos.bicicletas.Bicicleta;
 public class Pendiolo {
 	
 	private List<Bicicleta> bicicletas;
-	private TramoCarrera tramoaux;
 	public Pendiolo(List<Bicicleta> listabicicletas) {
 		
 		bicicletas = listabicicletas;
@@ -27,8 +26,6 @@ public class Pendiolo {
 		double angulorad = 0d;
 		double factorpendiente = 0d;
 		
-		
-		
 		angulograd = tramo.getPendiente();
 		angulorad = (angulograd * Math.PI)/180;
 		
@@ -37,9 +34,7 @@ public class Pendiolo {
 		
 		if (angulograd < 0) {
 			factorpendiente = factorpendiente + 1d;
-	
 		}
-	
 		
 		return factorpendiente;
 	}
@@ -53,7 +48,6 @@ public class Pendiolo {
 		for(Bicicleta bici : bicicletas) {
 			bici.setPendiente(pendienteTramoActual(tramoActual)) ;
 			
-			}
+		}
 	}
-
 }
