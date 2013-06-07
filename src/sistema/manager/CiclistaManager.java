@@ -164,8 +164,9 @@ public class CiclistaManager {
 			
 			float periodo = ((float) 60/cadencia)*10;
 			int fuerza = 100;
-			float tiempopedalada =(float) (new Random().nextInt((int)periodo)+5)/10;
+			double tiempopedalada =(double) (new Random().nextInt((int)periodo)+3)/10;
 			
+			System.out.println(i+" t o"+tiempopedalada);
 			Ciclista ciclista = new Ciclista(generadordenombres.compose(3), i, cadencia, bicicleta,tiempopedalada, reloj, peso, fuerza);
 			
 			ciclistas.add(ciclista);

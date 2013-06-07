@@ -28,7 +28,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	// La candencia de la pedalada del ciclista.
 	private int cadencia;
 	
-	private float periodo;
+	private double periodo;
 	
 	private double tiempopedalada;
 	
@@ -113,12 +113,13 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 				if (reloj.getMilisegundos() != milisegundos) {
 					
 					
-					if (contadorcandencia >= (periodo * 10)) {
+					if (contadorcandencia >= (periodo * 20)) {
 						
 						
-						double fuerzagastada = (bicicletamontada.darPedalada(tiempopedalada, getPeso()))/10; 
-						if (fuerza > 0) fuerza = (fuerza - fuerzagastada);
+						double fuerzagastada = redondear ((bicicletamontada.darPedalada(tiempopedalada, getPeso()))/10,2); 
+						if (fuerza > 0) fuerza = redondear((fuerza - fuerzagastada),2);
 						
+						System.out.println(numeromallot+" t "+tiempopedalada+" p "+ periodo+" f "+fuerzagastada+ " f " +fuerza );
 						contadorcandencia = 1;
 					}
 					
@@ -134,8 +135,8 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 */
 	public void calcularPeriodo() {
 		
-		periodo = (float)60/cadencia;
-		
+		periodo = (double)60/cadencia;
+		periodo = redondear(periodo, 2);
 		if (periodo < tiempopedalada) {
 			tiempopedalada = periodo;
 		}
@@ -270,7 +271,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 * 
 	 * @param tiempopedalada Nuevo tiempo de pedalada.
 	 */
-	public void setTiempopedalada(double tiempopedalada) {
+	public void setTiempopedalada(Double tiempopedalada) {
 		this.tiempopedalada = tiempopedalada;
 	}
 
@@ -336,4 +337,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	public void setFuerza(double fuerza) {
 		this.fuerza = fuerza;
 	}
+	public double redondear( double numero, int decimales ) {
+	    return Math.round(numero*Math.pow(10,decimales))/Math.pow(10,decimales);
+	  }
 }
