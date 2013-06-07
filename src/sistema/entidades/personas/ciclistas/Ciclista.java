@@ -87,16 +87,16 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 */
 	public StringTokenizer mostrarDatos() {
 		StringBuilder mensaje = new StringBuilder("#ciclista#,")
-			.append(",")
-			.append(getNumeromallot())
-			.append(",")
-			.append(getNombre())
-			.append(",")
-			.append(getFuerzaAsInt())
-			.append(",")
-			.append(getCadencia())
-			.append(",")
-			.append(getTiempopedalada());
+										.append(",")
+										.append(getNumeromallot())
+										.append(",")
+										.append(getNombre())
+										.append(",")
+										.append(getFuerzaAsInt())
+										.append(",")
+										.append(getCadencia())
+										.append(",")
+										.append(getTiempopedalada());
 
 		StringTokenizer stringTokenizer = new StringTokenizer(mensaje.toString(), ",");
 
@@ -248,11 +248,11 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 		return periodo;
 	}
 
-	/**
-	 * Cambia el periodo del ciclista.
-	 * 
-	 * @param cadencia Cadencia nueva.
-	 */
+//	/**
+//	 * Cambia el periodo del ciclista.
+//	 * 
+//	 * @param cadencia Cadencia nueva.
+//	 */
 //	public void setPeriodo(int periodo) {
 //		this.periodo = periodo;
 //	}
