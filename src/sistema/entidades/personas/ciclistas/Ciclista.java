@@ -78,6 +78,8 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	public void ejecuta() {
 		
 		pedalear();
+		
+		System.out.println(getIdentificadorSalidaDatos() + " " + bicicletamontada.getEspacioRecorrido());
 	}
 	
 	/**
@@ -119,7 +121,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 						double fuerzagastada = redondear ((bicicletamontada.darPedalada(tiempopedalada, getPeso()))/10,2); 
 						if (fuerza > 0) fuerza = redondear((fuerza - fuerzagastada),2);
 						
-						System.out.println(numeromallot+" t "+tiempopedalada+" p "+ periodo+" f "+fuerzagastada+ " f " +fuerza );
+//						System.out.println(numeromallot+" t "+tiempopedalada+" p "+ periodo+" f "+fuerzagastada+ " f " +fuerza );
 						contadorcandencia = 1;
 					}
 					

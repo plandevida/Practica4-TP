@@ -13,7 +13,7 @@ public class OrdenCambiaViento extends Orden {
 	private Map<Integer, MiViento> mapameteorologico;
 	
 	// Hora en la que el viento cambiará
-	private int hora;
+	private Integer hora;
 	
 	// El nuevo viento en la hora indicada
 	private MiViento viento;
@@ -22,33 +22,34 @@ public class OrdenCambiaViento extends Orden {
 	private Reloj reloj;
 	
 	// La velocidad con la que el viento sopla.
-	private double velocidadviento;
+	private Double velocidadviento;
 	
-	public OrdenCambiaViento(MiViento nuevoviento, int enlahora) {
+	public OrdenCambiaViento(MiViento nuevoviento, Integer enlahora, Double velocidad) {
 		mapameteorologico = null;
 		reloj = null;
 		
 		viento = nuevoviento;
 		hora = enlahora;
-		velocidadviento = 0;
+		velocidadviento = velocidad;
 	}
 	
 	@Override
 	public String mostrarMensaje() {
 		
 		return (new StringBuilder()
-				.append("viento: "))
+				.append("viento: ")
 				.append(viento.name())
 				.append(" hora: ")
 				.append(hora)
 				.append(" velocidad: ")
 				.append(velocidadviento)
+				.append(" km/h"))
 				.toString();
 	}
 
 	@Override
 	public void ejecutarOrden() {
-		if (mapameteorologico != null && viento != null && hora > 0 && reloj != null) {
+		if (mapameteorologico != null && viento != null && hora > 0) {
 			
 			if ( reloj.getHoras() < hora ) {
 				
@@ -79,13 +80,13 @@ public class OrdenCambiaViento extends Orden {
 							// nos devuelve un viendo DESCONOCIDO y sin efecto
 							viento = MiViento.existe(tokens[2]);
 							
-							velocidadviento = Integer.valueOf(tokens[3]);
+							velocidadviento = Double.valueOf(tokens[3]);
 							
 							if ( velocidadviento >= 0 ) {
 							
 								viento.setVelocidad(velocidadviento);
 								
-								ordencambiaviento = new OrdenCambiaViento(viento, hora);
+								ordencambiaviento = new OrdenCambiaViento(viento, hora, velocidadviento);
 							}
 						}
 					} catch (NumberFormatException ne) {
@@ -107,6 +108,7 @@ public class OrdenCambiaViento extends Orden {
 	public void configurarContexto(Presentador presentador) {
 		
 		mapameteorologico = presentador.getMapametereológico();
+		reloj = presentador.getReloj();
 	}
 
 	@Override

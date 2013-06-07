@@ -32,6 +32,14 @@ public class ListenerComandos extends ListenerOrdenes implements KeyListener {
 			
 			String texto = area.getText();
 			
+			if (texto.contains("\n")) {
+				int index = texto.indexOf("\n");
+				
+				if ( index != -1) {
+					texto = texto.substring(0, index);
+				}
+			}
+			
 			getDispatcher().parsearComando(texto);
 			
 			// Limpiamos el campo.

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import sistema.controladores.ordenes.Orden;
 import sistema.entidades.personas.ciclistas.Ciclista;
+import sistema.entidades.tiempo.Reloj;
 import sistema.factoresexternos.viento.MiViento;
 import sistema.interfaces.ObjetosConSalidaDeDatos;
 import sistema.vista.InterfaceSalidaDatos;
@@ -30,6 +31,9 @@ public class Presentador {
 	// Ordenes del parser y el sistema.
 	private Orden[] ordenes;
 	
+	// El reloj del sistema
+	private Reloj reloj;
+	
 	/**
 	 * Constructor que define todos los elementos del presentador.
 	 * 
@@ -42,12 +46,13 @@ public class Presentador {
 	public Presentador(List<Ciclista> ciclistas,
 			List<ObjetosConSalidaDeDatos> objetosamostarenvista,
 			Map<Integer, MiViento> vientoporhoras,
-			Orden[] ordenesparseador) {
+			Orden[] ordenesparseador, Reloj relojdelsistema) {
 		
 		listadeciclistas = ciclistas;
 		listadeobjetosamostarenvista = objetosamostarenvista;
 		mapameteorologico = vientoporhoras;
 		ordenes = ordenesparseador;
+		reloj = relojdelsistema;
 	}
 
 	/**
@@ -121,5 +126,15 @@ public class Presentador {
 	public Orden[] getOrdenes() {
 		
 		return ordenes;
+	}
+	
+	/**
+	 * Provee acceso al reloj del sistema.
+	 * 
+	 * @return El reloj del sistema.
+	 */
+	public Reloj getReloj() {
+		
+		return reloj;
 	}
 }

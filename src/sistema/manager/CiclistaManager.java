@@ -65,13 +65,15 @@ public class CiclistaManager {
 
 	private void crearGUI() {
 		
+		reloj = Reloj.getInstance();
+		
 		parser = new ParseadorComandos();
 		
 		ciclistas = new ArrayList<Ciclista>();
 		
 		listasalidadatos = new ArrayList<ObjetosConSalidaDeDatos>();
 		
-		presentador = new Presentador(ciclistas, listasalidadatos, mapameteorologico, parser.getOrdenes());
+		presentador = new Presentador(ciclistas, listasalidadatos, mapameteorologico, parser.getOrdenes(), reloj);
 
 		formateador = new FormateadorDatosVista(listasalidadatos);
 		
@@ -140,7 +142,6 @@ public class CiclistaManager {
 		
 		listaejecutables = new ArrayList<ObjetosQueSeEjecutan>();
 
-		reloj = Reloj.getInstance();
 		bicicletas = new ArrayList<Bicicleta>();
 
 		Eolo eolo = new Eolo(bicicletas, reloj, mapameteorologico);

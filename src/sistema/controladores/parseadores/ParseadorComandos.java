@@ -2,6 +2,8 @@ package sistema.controladores.parseadores;
 
 import sistema.controladores.ordenes.Orden;
 import sistema.controladores.ordenes.especificas.OrdenAsingarCadencia;
+import sistema.controladores.ordenes.especificas.OrdenAyuda;
+import sistema.controladores.ordenes.especificas.OrdenCambiaViento;
 import sistema.controladores.ordenes.especificas.OrdenCambiarPinhon;
 import sistema.controladores.ordenes.especificas.OrdenCambiarPlato;
 import sistema.controladores.ordenes.especificas.OrdenFrenar;
@@ -20,7 +22,9 @@ public class ParseadorComandos {
 		new OrdenAsingarCadencia(null, null, null),
 		new OrdenFrenar(null, null, null),
 		new OrdenCambiarPinhon(null, null),
-		new OrdenCambiarPlato(null, null)
+		new OrdenCambiarPlato(null, null),
+		new OrdenCambiaViento(null, null, null),
+		new OrdenAyuda(null)
 	};
 	
 	/**
