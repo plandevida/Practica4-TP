@@ -15,7 +15,7 @@ import sistema.entidades.vehiculos.bicicletas.Bicicleta;
 public class Pendiolo {
 	
 	private List<Bicicleta> bicicletas;
-
+	private TramoCarrera tramoaux;
 	public Pendiolo(List<Bicicleta> listabicicletas) {
 		
 		bicicletas = listabicicletas;

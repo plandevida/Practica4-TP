@@ -236,6 +236,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 */
 	public void setCadencia(int cadencia) {
 		this.cadencia = cadencia;
+		calcularPeriodo();
 	}
 	
 	/**
@@ -252,9 +253,9 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 * 
 	 * @param cadencia Cadencia nueva.
 	 */
-	public void setPeriodo(int periodo) {
-		this.periodo = periodo;
-	}
+//	public void setPeriodo(int periodo) {
+//		this.periodo = periodo;
+//	}
 
 	/**
 	 * Obtiene el tiempo de pedalada del ciclista.
@@ -336,6 +337,14 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	public void setFuerza(double fuerza) {
 		this.fuerza = fuerza;
 	}
+	/**
+	 * Metodo que redondea decimales
+	 *
+	 * 
+	 * @param numero
+	 * @param decimales
+	 * @return numero redondeado
+	 */
 	public double redondear( double numero, int decimales ) {
 	    return Math.round(numero*Math.pow(10,decimales))/Math.pow(10,decimales);
 	  }
