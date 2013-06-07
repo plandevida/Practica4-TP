@@ -27,8 +27,10 @@ public class TestCiclista {
 	
 	private String nombreciclista = "Juan";
 	private int numeromallot = 1;
-	private int cadenciaciclista = 1;
+	private int cadenciaciclista = 60;
 	private double tiempopedalada = 1;
+	private int peso = 65;
+	private double fuerza = 100;
 	private BicicletaMock bicicletaciclista;
 	private RelojMock relojciclista;
 	
@@ -55,7 +57,7 @@ public class TestCiclista {
 		
 		bicicletaciclista = new BicicletaMock();
 		
-		ciclista = new CiclistaMock(nombreciclista, numeromallot, cadenciaciclista, bicicletaciclista, tiempopedalada, relojciclista);
+		ciclista = new CiclistaMock(nombreciclista, numeromallot, cadenciaciclista, bicicletaciclista, tiempopedalada, relojciclista, peso, fuerza);
 	}
 	
 	@Test

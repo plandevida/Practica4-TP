@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import sistema.controladores.parseadores.ParseadorCarrera;
-import sistema.factoresexternos.viento.MiViento;
 import src.tests.sistema.entidadesmock.carretera.tramocarreraciclista.TramoCarreraMock;
 
 public class ParseadorCarreraMock {
@@ -22,10 +21,10 @@ public class ParseadorCarreraMock {
 	/**
 	 * Pasando el mapa donde se quiere almacenar la configuración no hace falta invocar al método @see {@link ParseadorCarrera#getConfiguracionCarrera()}
 	 * 
-	 * @param mapa2
+	 * @param configuracion
 	 */
-	public ParseadorCarreraMock(Map<Integer, TramoCarreraMock> mapa2) {
-		mapa = mapa2;
+	public ParseadorCarreraMock(Map<Integer, TramoCarreraMock> configuracion) {
+		mapa = configuracion;
 	}
 	
 	/**
@@ -43,12 +42,9 @@ public class ParseadorCarreraMock {
 				
 				Integer kilometros = Integer.valueOf(cadena[0]);
 				Integer pendiente = Integer.valueOf(cadena[1]);
-				MiViento viento = MiViento.existe(cadena[2]);
-				Double velocidadviento = Double.valueOf(cadena[3]);
-				
 				
 				// Mapa con la pendiente y la dirección del viento.
-				TramoCarreraMock tramo = new TramoCarreraMock(kilometros, pendiente, viento, velocidadviento);
+				TramoCarreraMock tramo = new TramoCarreraMock(kilometros, pendiente);
 				
 				mapa.put(i+1, tramo);
 				

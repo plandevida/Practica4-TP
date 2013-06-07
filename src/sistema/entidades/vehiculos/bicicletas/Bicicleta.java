@@ -293,5 +293,4 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	public void setViento(double viento) {
 		this.aceleracionviento = viento;
 	}
-	
 }

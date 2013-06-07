@@ -22,13 +22,6 @@ public class Vehiculo {
 	}
 	
 	/**
-	 * Incrementa la velocidad de la bicicleta.
-	 * 
-	 * @param incrementovelocidad Valor a aumentar la velocidad de la bicicleta.
-	 */
-
-	
-	/**
 	 * Cambia la velocidad de la bicicleta.
 	 * 
 	 * @param velocidadnueva La nueva velocidad de la bicicleta.
@@ -58,5 +51,5 @@ public class Vehiculo {
 	}
 	public double redondear( double numero, int decimales ) {
 	    return Math.round(numero*Math.pow(10,decimales))/Math.pow(10,decimales);
-	  }
+	}
 }

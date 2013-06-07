@@ -70,7 +70,7 @@ public class TestBicicleta {
 		
 		
 		
-		bicicleta.darPedalada(utilidadesCiclista.getCadencia());
+		bicicleta.darPedalada(utilidadesCiclista.getCadencia(), 75);
 		
 		
 		//se comprueba que la velocidad sea la esperada

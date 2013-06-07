@@ -14,11 +14,7 @@ public class Contador implements ObjetosQueSeEjecutan {
 	 */
 	public void ejecuta() {
 		
-//		System.out.println("Contador/Reloj: Ejecutando...");
-		
 		nuevoImpulso();
-		
-//		System.out.println("Contador/Reloj: Ejecutado");
 	}
 	
 	/**
@@ -27,6 +23,7 @@ public class Contador implements ObjetosQueSeEjecutan {
 	public void nuevoImpulso() {
 		impulsos++;
 	}
+	
 	/**
 	 * Metodo para obtener los impulsos.
 	 * 

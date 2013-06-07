@@ -23,9 +23,13 @@ public class BicicletaMock extends Vehiculo implements ObjetosConSalidaDeDatos {
 	
 	protected double radiorueda;
 	
-	protected double factorpendiente;
+	protected double aceleracionpendiente;
 	
-	protected double factorviento;
+	protected double aceleracionviento;
+	
+	protected int peso;
+	
+	protected int impulso;
 	
 	public BicicletaMock() {
 	
@@ -33,10 +37,11 @@ public class BicicletaMock extends Vehiculo implements ObjetosConSalidaDeDatos {
 		setEspacioRecorrido(0);
 		setPinhonactual(0);
 		setPlatoactual(0);
-		radiorueda = 0.2d;
-		
-		factorpendiente = 1;
-		factorviento = 0;
+		radiorueda = VariablesDeContexto.RADIO_RUEDA;
+		peso = 10;
+		aceleracionpendiente = 1;
+		aceleracionviento = 0;
+		impulso = 1;
 	}
 
 	/**
@@ -44,9 +49,9 @@ public class BicicletaMock extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 * 
 	 * @return Un entero que es relación entre ambos valores.
 	 */
-	private int relacionDeTransmision() {
+	private double relacionDeTransmision() {
 
-		int relaciondetrasminsion = VariablesDeContexto.PLATOS[platoactual] / VariablesDeContexto.PINHONES[pinhonactual];
+		double relaciondetrasminsion = redondear(VariablesDeContexto.PLATOS[platoactual] / VariablesDeContexto.PINHONES[pinhonactual],2);
 
 		return relaciondetrasminsion;
 	}
@@ -72,7 +77,7 @@ public class BicicletaMock extends Vehiculo implements ObjetosConSalidaDeDatos {
 	private double espacioDePedalada() {
 
 		double espaciodepedalada = recorridoLinealDeLaRueda() * relacionDeTransmision();
-
+	
 		return espaciodepedalada;
 	}
 	
@@ -84,8 +89,8 @@ public class BicicletaMock extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 */
 	private double calcularAceleracionTiempoPedalada(double tiempopedalada) {
 
-		double aceleracion = espacioDePedalada() / (tiempopedalada)*(tiempopedalada);
-
+		double aceleracion = espacioDePedalada() / (tiempopedalada*tiempopedalada);
+		//System.out.println("esp "+ espacioDePedalada()+ " tiem " + tiempopedalada+" ac" +aceleracion);
 		return aceleracion;
 	}
 	
@@ -95,25 +100,51 @@ public class BicicletaMock extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 * @return Una cadena de texto separada por tokens.
 	 */
 	public StringTokenizer mostrarDatos() {
-		StringBuilder mensaje = new StringBuilder("#bicicleta#,");
-		mensaje.append(getVelocidad());
+		StringBuilder mensaje = new StringBuilder("#bicicleta#,")
+			.append(getVelocidad())
+			.append(",")
+			.append(getEspacioRecorrido())
+			.append(",")
+			.append(getPinhonactual())
+			.append(",")
+			.append(getPlatoactual());
 		
 		return new StringTokenizer(mensaje.toString(), ",");
+	}
+	
+	/**
+	 * Calcula la velocidad maxima a la que puede ir la bicicleta
+	 * @param tiempopedalada : tiempo que tarda en dar una pedalada
+	 * 
+	 * @return La velocidad maxima a la que va la bicicleta
+	 */
+	private double velocidadmaxima(double tiempopedalada){
+		double velocidadmax = espacioDePedalada() / tiempopedalada;
+		return velocidadmax;
 	}
 	
 	/**
 	 * Realiza una pedalada en la bicicleta, aumentando su velocidad.
 	 * 
 	 * @param cadenciaciclista Frecuencia con la que el ciclista da pedaladas. 
+	 * @return la fuerza gastada al pedalear
 	 */
-	public void darPedalada(double tiempopedalada) {
+	public double darPedalada(double tiempopedalada, int pesociclista) {
 		double aceleracion = calcularAceleracionTiempoPedalada(tiempopedalada);
 		
-		//velocidad = velocidad * factorpendiente;
-		//velocidad = velocidad + velocidad*factorviento;
-		setEspacioRecorrido(espacioDePedalada());
-		double velocidad = getVelocidad() + aceleracion*1; 
+		double aceleracionfactores = aceleracionpendiente + aceleracionviento;
+		double velocidad = getVelocidad() + aceleracion*impulso; 
+		
+		if (velocidad > velocidadmaxima(tiempopedalada)){
+			velocidad = velocidadmaxima(tiempopedalada);
+		}
+		
+		velocidad = (velocidad + aceleracionfactores*impulso);
+		
 		setVelocidad(velocidad);
+		setEspacioRecorrido(velocidad);
+		
+		return ((peso/VariablesDeContexto.FUERZA_GRAVEDAD + pesociclista/VariablesDeContexto.FUERZA_GRAVEDAD )*(aceleracion + aceleracionfactores));
 	}
 	
 	/**
@@ -232,50 +263,35 @@ public class BicicletaMock extends Vehiculo implements ObjetosConSalidaDeDatos {
 		return radiorueda;
 	}
 	
+	// identificador de la bicicleta
 	private int id;
 	
 	public void setId(int numerocorredor) {
 		id = numerocorredor;
 	}
 	
+	public int getId() {
+		return id;
+	}
+	
+	@Override
 	public String getIdentificadorSalidaDatos() {
-		return "bicicleta " + id;
+		return id + " bicicleta";
 	}
 
 	public double getPendiente() {
-		return factorpendiente;
+		return aceleracionpendiente;
 	}
 
 	public void setPendiente(double pendiente) {
-		this.factorpendiente = pendiente;
+		this.aceleracionpendiente = pendiente;
 	}
 
 	public double getViento() {
-		return factorviento;
+		return aceleracionviento;
 	}
 
 	public void setViento(double viento) {
-		this.factorviento = viento;
+		this.aceleracionviento = viento;
 	}
-
-//	 private enum Pinhones {
-//		 UNO(10), //0
-//		 DOS(20), //1
-//		 TRES(30), //2
-//		 CUATRO(40); //3
-//		
-//		 private int numerodedientes;
-//		
-//		 Pinhones(int numerodientes) {
-//			 numerodedientes = numerodientes;
-//		 }
-//		
-//		 public int getNumeroDientes() {
-//			 return numerodedientes;
-//		 }
-//		
-//		 public Pinhones desdeIndice(int indice) {
-//			 return ( indice < Pinhones.values().length) ? Pinhones.values()[indice] : null;
-//		 }
-//	 }
 }

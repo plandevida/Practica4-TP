@@ -3,7 +3,6 @@ package src.tests.sistema.entidadesmock.tiempo;
 import java.util.StringTokenizer;
 
 import sistema.interfaces.ObjetosConSalidaDeDatos;
-import sistema.manager.VariablesDeContexto;
 
 public class RelojMock extends ContadorMock implements ObjetosConSalidaDeDatos {
 	
@@ -22,7 +21,10 @@ public class RelojMock extends ContadorMock implements ObjetosConSalidaDeDatos {
 	// Instancia del reloj usando el patrón singleton
 	private static RelojMock INSTANCIA = null;
 	
+	private int totalImpulsos;
+	
 	private RelojMock() {
+		totalImpulsos = 0;
 		milisegundos = 0;
 		segundos = 0;
 		minutos = 0;
@@ -55,7 +57,9 @@ public class RelojMock extends ContadorMock implements ObjetosConSalidaDeDatos {
 	@Override
 	public void nuevoImpulso() {
 		
-		if (++impulsos >= VariablesDeContexto.UNIDAD_TIEMPO) {
+		totalImpulsos +=1;
+		
+		if (++impulsos >= 1) {
 			impulsos = 0;
 			if (++milisegundos >= 1000) {
 				milisegundos = 0;
@@ -69,6 +73,7 @@ public class RelojMock extends ContadorMock implements ObjetosConSalidaDeDatos {
 			}
 		}
 	}
+	
 	/**
 	 * Método para obtener una salida de datos de un objeto.
 	 * 
@@ -125,25 +130,11 @@ public class RelojMock extends ContadorMock implements ObjetosConSalidaDeDatos {
 		return horas;
 	}
 	
+	public int getTotalImpulsos() {
+		return totalImpulsos;
+	}
+	
 	public String getIdentificadorSalidaDatos() {
 		return "ruloj";
 	}
-	
-	/**
-	 * Main.
-	 * 
-	 * Pone un retraso para ir aumentando los impulsos.
-	 */
-//	public static void main(String[] args) {
-//		Reloj reloj = new Reloj();
-//		
-//		for (int i=0; i < (100*60*60*60*60+1600000); i++) {
-//			reloj.nuevoImpulso();
-//			
-//			System.out.println("impulsos: " +reloj.getImpulsos());
-//			System.out.println("segundos: " + reloj.getSegundos());
-//			System.out.println("minutos: " + reloj.getMinutos());
-//			System.out.println("horas: " + reloj.getHoras());
-//		}
-//	}
 }

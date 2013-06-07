@@ -2,6 +2,8 @@ package src.tests.utils;
 
 import java.util.Map;
 
+import sistema.factoresexternos.viento.MiViento;
+import sistema.manager.VariablesDeContexto;
 import src.tests.sistema.entidadesmock.carretera.tramocarreraciclista.TramoCarreraMock;
 import src.tests.sistema.entidadesmock.vehiculos.bicicletas.BicicletaMock;
 
@@ -23,7 +25,7 @@ public class TestUtilidadesFactoresExternos {
 	 */
 	public TramoCarreraMock tramoActual() {
 		
-		TramoCarreraMock tramo = new TramoCarreraMock(0, 0, null, 0);
+		TramoCarreraMock tramo = new TramoCarreraMock(0, 0);
 		
 		for(Integer reco : carreteradecarreraciclista.keySet()) {
 
@@ -69,14 +71,9 @@ public class TestUtilidadesFactoresExternos {
 	 */
 	public double vientoTramoActual(){
 		
-		TramoCarreraMock tramo = tramoActual();
+		MiViento viento = VariablesDeContexto.direcionvientoinicial;
 		
-		
-		int direccionviento = tramo.getViento().getFactor();
-		
-		double velocidadviento = tramo.getVelocidadViento();
-		
-		return (double)(direccionviento * velocidadviento)/10;
+		return viento.getAceleracion();
 		
 	}
 	

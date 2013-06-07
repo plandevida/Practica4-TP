@@ -9,7 +9,6 @@ public class Persona implements ObjetosQueSeEjecutan {
 	//peso de la persona
 	private int peso;
 	
-	
 	public Persona(String nombrepersona, int pesopersona) {
 		nombre = nombrepersona;
 		peso = pesopersona;

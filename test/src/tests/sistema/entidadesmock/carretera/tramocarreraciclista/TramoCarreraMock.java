@@ -1,7 +1,6 @@
 package src.tests.sistema.entidadesmock.carretera.tramocarreraciclista;
 
 import sistema.entidades.carretera.Carretera;
-import sistema.factoresexternos.viento.MiViento;
 
 /**
  * Clase que representa un tramo de la carrera ciclista
@@ -12,9 +11,7 @@ import sistema.factoresexternos.viento.MiViento;
  */
 public class TramoCarreraMock extends Carretera {
 	
-	private MiViento viento;
 	private int pendiente;
-	private double velocidadviento;
 	
 	/**
 	 * Crea un tramo de la carretera, indicandole el tamaño del tarmo,
@@ -24,20 +21,9 @@ public class TramoCarreraMock extends Carretera {
 	 * @param pendientetramo Del tramo.
 	 * @param vientodeltramo Del tramo.
 	 */
-	public TramoCarreraMock(double kilometros, int pendientetramo, MiViento vientodeltramo, double velodidaddelviento) {
+	public TramoCarreraMock(double kilometros, int pendientetramo) {
 		super(kilometros);
-		viento = vientodeltramo;
 		pendiente = pendientetramo;
-		velocidadviento = velodidaddelviento;
-	}
-	
-	/**
-	 * El viento del tramo.
-	 * 
-	 * @return Objeto viento @see {@link MiViento}
-	 */
-	public MiViento getViento() {
-		return viento;
 	}
 	
 	/**
@@ -47,14 +33,5 @@ public class TramoCarreraMock extends Carretera {
 	 */
 	public int getPendiente() {
 		return pendiente;
-	}
-	
-	/**
-	 * La velocidad del viento en el tramo.
-	 * 
-	 * @return La velocidad.
-	 */
-	public double getVelocidadViento() {
-		return velocidadviento;
 	}
 }
