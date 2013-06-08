@@ -10,10 +10,20 @@ public class Curva {
 	
 	Double puntokilometrico;
 	Double velocidadmaximacurva;
+	int[] ciclistarhanpasadocurva;
 	
-	public Curva( Double kilometro, Double velocidadmaxima) {
+
+
+	public Curva( Double kilometro, Double velocidadmaxima, int ciclistas) {
 		puntokilometrico = kilometro;
 		velocidadmaximacurva = velocidadmaxima;
+		
+		ciclistarhanpasadocurva= new int[ciclistas];
+		
+		for(int i=0;i<ciclistas;i++){
+			ciclistarhanpasadocurva[i]= -1;
+//			System.out.println("curvas "+ciclistarhanpasadocurva[i]);
+		}
 	}
 
 	/**
@@ -32,5 +42,14 @@ public class Curva {
 	 */
 	public Double getVelocidadmaximacurva() {
 		return velocidadmaximacurva;
+	}
+	public int getCiclistarhanpasadocurva(int i) {
+		int p = ciclistarhanpasadocurva[1];
+		return p;
+	}
+
+	public void setCiclistarhanpasadocurva(int valor, int i) {
+		
+		ciclistarhanpasadocurva[i]=valor;
 	}
 }

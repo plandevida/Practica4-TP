@@ -14,6 +14,7 @@ import javax.swing.SwingUtilities;
 import sistema.controladores.ordenes.Dispatcher;
 import sistema.controladores.parseadores.ParseadorCarrera;
 import sistema.controladores.parseadores.ParseadorComandos;
+import sistema.entidades.carretera.tramocarreraciclista.Curva;
 import sistema.entidades.carretera.tramocarreraciclista.TramoCarrera;
 import sistema.entidades.personas.ciclistas.Ciclista;
 import sistema.entidades.tiempo.Reloj;
@@ -43,7 +44,7 @@ public class CiclistaManager {
 	private List<Ciclista> ciclistas;
 	private List<Bicicleta> bicicletas;
 	private Map<Integer, MiViento> mapameteorologico;
-
+	private List<Curva> listacurvas;
 	private FactoresExternos factoresexternos;
 
 	// Medidor de tiempo del sistema
@@ -139,12 +140,13 @@ public class CiclistaManager {
 	public void iniciar() {
 		
 		listaejecutables = new ArrayList<ObjetosQueSeEjecutan>();
-
+		listacurvas = new ArrayList<Curva>();
 		reloj = Reloj.getInstance();
 		bicicletas = new ArrayList<Bicicleta>();
-
-		Eolo eolo = new Eolo(bicicletas, reloj, mapameteorologico);
-		factoresexternos = new FactoresExternos(bicicletas, carreteradecarreraciclsta, eolo, null,null);
+		
+//		Curva curva = new Curva(5d,4d,VariablesDeContexto.MAX_CICLISTAS);
+//		listacurvas.add(curva);
+		
 
 		try {
 			// Generador de nombres basado en silabas, con prefijos y sufijos.
@@ -166,7 +168,7 @@ public class CiclistaManager {
 			int fuerza = 100;
 			double tiempopedalada =(double) (new Random().nextInt((int)periodo)+3)/10;
 			
-			System.out.println(i+" t o"+tiempopedalada);
+//			System.out.println(i+" t o"+tiempopedalada);
 			Ciclista ciclista = new Ciclista(generadordenombres.compose(3), i, cadencia, bicicleta,tiempopedalada, reloj, peso, fuerza);
 			
 			ciclistas.add(ciclista);
@@ -177,7 +179,8 @@ public class CiclistaManager {
 			listasalidadatos.add(ciclista);
 			listasalidadatos.add(bicicleta);
 		} 
-		
+		Eolo eolo = new Eolo(ciclistas, reloj, mapameteorologico);
+		factoresexternos = new FactoresExternos(ciclistas, carreteradecarreraciclsta,listacurvas, eolo, null,null);
 		// Se registran los elementos con salida de datos en una lista.
 		listasalidadatos.add(reloj);
 

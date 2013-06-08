@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import sistema.entidades.carretera.tramocarreraciclista.Curva;
 import sistema.entidades.carretera.tramocarreraciclista.TramoCarrera;
+import sistema.entidades.personas.ciclistas.Ciclista;
 import sistema.entidades.tiempo.Reloj;
 import sistema.entidades.vehiculos.bicicletas.Bicicleta;
 import sistema.factoresexternos.viento.MiViento;
@@ -17,7 +19,8 @@ import sistema.interfaces.ObjetosQueSeEjecutan;
  */
 public class FactoresExternos implements ObjetosQueSeEjecutan {
 	
-	private List<Bicicleta> bicicletas;
+	private List<Ciclista> ciclistas;
+	private List<Curva> curvas;
 	private Eolo eolo;
 	private Curviolo curviolo;
 	private Pendiolo pendiolo;
@@ -25,14 +28,14 @@ public class FactoresExternos implements ObjetosQueSeEjecutan {
 	//Mapa de la carretera
 	private Map<Integer, TramoCarrera> carreteradecarreraciclista;
 	
-	public FactoresExternos(List<Bicicleta> bicis, Map<Integer, TramoCarrera> carreteradecarreraciclista, Eolo nuevoEolo, Curviolo nuevoCurviolo, Pendiolo nuevoPendiolo) {
+	public FactoresExternos(List<Ciclista> ciclistas, Map<Integer, TramoCarrera> carreteradecarreraciclista,List<Curva> curva, Eolo nuevoEolo, Curviolo nuevoCurviolo, Pendiolo nuevoPendiolo) {
 		
-		this.bicicletas = bicis;
+		this.ciclistas = ciclistas;
 		this.carreteradecarreraciclista = carreteradecarreraciclista;
-		
-		eolo = nuevoEolo != null ? nuevoEolo : new Eolo(bicicletas, Reloj.getInstance(), new HashMap<Integer, MiViento>());
-		curviolo = nuevoCurviolo != null ? nuevoCurviolo : new Curviolo();
-		pendiolo = nuevoPendiolo != null ? nuevoPendiolo : new Pendiolo(bicicletas);
+		this.curvas = curva;
+		eolo = nuevoEolo != null ? nuevoEolo : new Eolo(ciclistas, Reloj.getInstance(), new HashMap<Integer, MiViento>());
+		curviolo = nuevoCurviolo != null ? nuevoCurviolo : new Curviolo(ciclistas,curvas);
+		pendiolo = nuevoPendiolo != null ? nuevoPendiolo : new Pendiolo(ciclistas);
 	}
 	/**
 	 *  Busca el tramo en el que se encuentra la bici 
@@ -42,10 +45,10 @@ public class FactoresExternos implements ObjetosQueSeEjecutan {
 		
 		TramoCarrera tramo = new TramoCarrera(0, 0);
 		
-		for(Bicicleta bici : bicicletas) {
+		for(Ciclista cicli : ciclistas) {
 			for(Integer reco : carreteradecarreraciclista.keySet()) {
 	
-				if ( carreteradecarreraciclista.get(reco).getKilometros() <= (int) bici.getEspacioRecorrido() ) {
+				if ( carreteradecarreraciclista.get(reco).getKilometros() <= (int) cicli.getBicicletamontada().getEspacioRecorrido() ) {
 					tramo = carreteradecarreraciclista.get(reco);
 				}
 			}
@@ -57,6 +60,6 @@ public class FactoresExternos implements ObjetosQueSeEjecutan {
 	public void ejecuta() {
 		eolo.setVientoModificado();
 		pendiolo.setPendienteodificado(tramoActual());
-		curviolo.ejecuta();
+		curviolo.comporvarcurvasas();
 	}
 }

@@ -3,6 +3,7 @@ package sistema.factoresexternos;
 import java.util.List;
 import java.util.Map;
 
+import sistema.entidades.personas.ciclistas.Ciclista;
 import sistema.entidades.tiempo.Reloj;
 import sistema.entidades.vehiculos.bicicletas.Bicicleta;
 import sistema.factoresexternos.viento.MiViento;
@@ -16,13 +17,13 @@ import sistema.factoresexternos.viento.MiViento;
  */
 public class Eolo  {
  
-	private List<Bicicleta> bicicletas;
+	private List<Ciclista> ciclistas ;
 	private Reloj relojTiempo;
 	private Map<Integer, MiViento> mapameteorologico;
 	
-	public Eolo(List<Bicicleta> listabicicletas, Reloj reloj, Map<Integer, MiViento> mapaviento) {
+	public Eolo(List<Ciclista> listaciclistas, Reloj reloj, Map<Integer, MiViento> mapaviento) {
 		
-		bicicletas = listabicicletas;
+		ciclistas = listaciclistas;
 		relojTiempo = reloj;
 		mapameteorologico = mapaviento;
 	}
@@ -49,9 +50,9 @@ public class Eolo  {
 	 */
 	public void setVientoModificado() {
 
-		for(Bicicleta bici : bicicletas) {
+		for(Ciclista cicli : ciclistas) {
 			
-			bici.setViento(aceleracionViento());
+			cicli.getBicicletamontada().setViento(aceleracionViento());
 		}
 	}
 	

@@ -3,6 +3,7 @@ package sistema.factoresexternos;
 import java.util.List;
 
 import sistema.entidades.carretera.tramocarreraciclista.TramoCarrera;
+import sistema.entidades.personas.ciclistas.Ciclista;
 import sistema.entidades.vehiculos.bicicletas.Bicicleta;
 
 /**
@@ -14,11 +15,11 @@ import sistema.entidades.vehiculos.bicicletas.Bicicleta;
  */
 public class Pendiolo {
 	
-	private List<Bicicleta> bicicletas;
+	private List<Ciclista> ciclista;
 	private TramoCarrera tramoaux;
-	public Pendiolo(List<Bicicleta> listabicicletas) {
+	public Pendiolo(List<Ciclista> listaciclista) {
 		
-		bicicletas = listabicicletas;
+		ciclista = listaciclista;
 	}
 
 	private double pendienteTramoActual(TramoCarrera tramo) {
@@ -50,8 +51,8 @@ public class Pendiolo {
 	 */
 	public void setPendienteodificado(TramoCarrera tramoActual) {
 
-		for(Bicicleta bici : bicicletas) {
-			bici.setPendiente(pendienteTramoActual(tramoActual)) ;
+		for(Ciclista cicli: ciclista) {
+			cicli.getBicicletamontada().setPendiente(pendienteTramoActual(tramoActual)) ;
 			
 			}
 	}
