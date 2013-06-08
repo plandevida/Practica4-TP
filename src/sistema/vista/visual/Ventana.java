@@ -99,28 +99,28 @@ public class Ventana extends JFrame {
 				
 				String[] datos = (String[])mensajes;
 				
-				panel.setCiclistaData(datos[0] + " " + datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]), Double.valueOf(datos[4]));
+				panel.setCiclistaData(VariablesDeContexto.COLORES[0], datos[0] + " " + datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]), Double.valueOf(datos[4]));
 				
 				break;
 			case "1 ciclista":
 				
 				datos = (String[])mensajes;
 				
-				panel1.setCiclistaData(datos[0] + " " + datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]), Double.valueOf(datos[4]));
+				panel1.setCiclistaData(VariablesDeContexto.COLORES[1], datos[0] + " " + datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]), Double.valueOf(datos[4]));
 				
 				break;
 			case "2 ciclista":
 				
 				datos = (String[])mensajes;
 				
-				panel2.setCiclistaData(datos[0] + " " + datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]), Double.valueOf(datos[4]));
+				panel2.setCiclistaData(VariablesDeContexto.COLORES[2], datos[0] + " " + datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]), Double.valueOf(datos[4]));
 				
 				break;
 			case "3 ciclista":
 				
 				datos = (String[])mensajes;
 				
-				panel3.setCiclistaData(datos[0] + " " + datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]), Double.valueOf(datos[4]));
+				panel3.setCiclistaData(VariablesDeContexto.COLORES[3], datos[0] + " " + datos[1], Integer.valueOf(datos[2]), Integer.valueOf(datos[3]), Double.valueOf(datos[4]));
 				
 				break;
 			case "0 bicicleta":

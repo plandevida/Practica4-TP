@@ -1,7 +1,7 @@
 package sistema.controladores.parseadores;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import sistema.entidades.carretera.tramocarreraciclista.TramoCarrera;
 
@@ -22,7 +22,7 @@ public class ParseadorCarrera {
 	 * para obtener la configuración parseada.
 	 */
 	public ParseadorCarrera() {
-		mapa = new HashMap<Integer, TramoCarrera>();
+		mapa = new TreeMap<Integer, TramoCarrera>();
 		longitudcarrera = 0;
 	}
 	
@@ -67,7 +67,7 @@ public class ParseadorCarrera {
 				
 			} catch (NumberFormatException ne) {
 				
-				System.err.println("Error en el formato de la línea.");
+				System.err.println("Parseador de carreteras: Error en el formato de la línea.");
 			}
 		}	
 	}

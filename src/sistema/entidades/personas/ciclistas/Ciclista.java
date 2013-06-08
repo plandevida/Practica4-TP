@@ -79,7 +79,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 		
 		pedalear();
 		
-		System.out.println(getIdentificadorSalidaDatos() + " " + bicicletamontada.getEspacioRecorrido());
+//		System.out.println(getIdentificadorSalidaDatos() + " " + bicicletamontada.getEspacioRecorrido());
 	}
 	
 	/**
@@ -116,12 +116,12 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 				if (reloj.getMilisegundos() != milisegundos) {
 					
 					
-					if (contadorcadencia >= (periodo * 20)) {
+					if (contadorcadencia >= (periodo * VariablesDeContexto.VELOCIDAD_PERIODO)) {
 						
 						
-						double fuerzagastada = redondear ((bicicletamontada.darPedalada(tiempopedalada, getPeso()))/10,2); 
+						double fuerzagastada = redondear ((bicicletamontada.darPedalada(tiempopedalada, getPeso()))/VariablesDeContexto.REDUCIR_FUERZA_GASTADA,2); 
 						if (fuerza > 0) fuerza = redondear((fuerza - fuerzagastada),2);
-						
+//						System.out.println("mallot "+ numeromallot+" ve "+bicicletamontada.getVelocidad());
 //						System.out.println(numeromallot+" t "+tiempopedalada+" p "+ periodo+" f "+fuerzagastada+ " f " +fuerza );
 						contadorcadencia = 1;
 					}

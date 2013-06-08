@@ -132,14 +132,26 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 		double aceleracion = calcularAceleracionTiempoPedalada(tiempopedalada);
 		
 		double aceleracionfactores = aceleracionpendiente + aceleracionviento;
-		double velocidad = getVelocidad() + aceleracion*impulso; 
+		double velocidad = 0.00d;
 		
-		if (velocidad > velocidadmaxima(tiempopedalada)){
-			velocidad = velocidadmaxima(tiempopedalada);
+//		if (velocidad > velocidadmaxima(tiempopedalada)){
+//			velocidad = velocidadmaxima(tiempopedalada);
+//		}
+		if(aceleracion < aceleracionfactores){
+			velocidad = (getVelocidad() + aceleracionfactores*impulso);
 		}
-		
-		velocidad = (velocidad + aceleracionfactores*impulso);
-		
+		else {
+			velocidad = (getVelocidad() + aceleracion *impulso);
+			
+			if (velocidad > velocidadmaxima(tiempopedalada)){
+				velocidad = velocidadmaxima(tiempopedalada);
+			}
+			
+			velocidad = (velocidad + aceleracionfactores*impulso);
+			
+			if (velocidad<0) velocidad = 0.00d;
+		}
+
 		setVelocidad(velocidad);
 		setEspacioRecorrido(velocidad);
 		

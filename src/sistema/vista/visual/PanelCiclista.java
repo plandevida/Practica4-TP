@@ -1,6 +1,7 @@
 package sistema.vista.visual;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.text.ParseException;
 
@@ -158,8 +159,9 @@ public class PanelCiclista extends JPanel {
 	 * @param cadencia Cadencia actual del ciclista.
 	 * @param periodo Periodo de pedalada del ciclista.
 	 */
-	public void setCiclistaData(String nombre, Integer fuerza, Integer cadencia, Double periodo) {
+	public void setCiclistaData(Color colortexto, String nombre, Integer fuerza, Integer cadencia, Double periodo) {
 		
+		tnombreCiclista.setForeground(colortexto);
 		tnombreCiclista.setText(nombre);
 		PBfuerza.setValue(fuerza);
 		ftCadencia.setValue(cadencia);
@@ -207,10 +209,8 @@ public class PanelCiclista extends JPanel {
 				FormFactory.DEFAULT_ROWSPEC,}));
 		
 		MaskFormatter mask = null;
-		MaskFormatter maskvelocidad = null;
 		try {
 			mask = new MaskFormatter("#.##");
-			maskvelocidad = new MaskFormatter("#.## m/s");
 			
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -226,7 +226,7 @@ public class PanelCiclista extends JPanel {
 		JLabel lblVelocidad = new JLabel("Velocidad:");
 		panel_1.add(lblVelocidad, "2, 4, right, default");
 		
-		tVelocidad = new JFormattedTextField(maskvelocidad);
+		tVelocidad = new JFormattedTextField();
 		panel_1.add(tVelocidad, "4, 4, fill, default");
 		tVelocidad.setColumns(10);
 		

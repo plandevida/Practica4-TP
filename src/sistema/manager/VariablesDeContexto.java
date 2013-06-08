@@ -30,7 +30,7 @@ public class VariablesDeContexto {
     
     public static double LONGITUD_CARRERA = 0;
     public static final int ANCHO_REPRESENTACION_CICLISTA = 20;
-    public static final Color[] COLORES = { Color.BLUE, Color.CYAN, Color.GREEN, Color.MAGENTA, Color.ORANGE, Color.PINK, Color.RED, Color.WHITE, Color.YELLOW, Color.BLACK, Color.DARK_GRAY, Color.GRAY, Color.LIGHT_GRAY };
+    public static final Color[] COLORES = { Color.BLUE,  Color.MAGENTA, Color.ORANGE, Color.PINK, Color.RED, Color.CYAN, Color.GREEN, Color.WHITE, Color.YELLOW, Color.BLACK, Color.DARK_GRAY, Color.GRAY, Color.LIGHT_GRAY };
     public static final int  FACTORESCALA = 2;
     public static int ALTO_VENTANA = 0;
     public static int ANCHO_VENTANA = 0;
@@ -40,4 +40,7 @@ public class VariablesDeContexto {
     public static int UNIDAD_TIEMPO = 100;
     
     public static double RADIO_RUEDA = 0.2d;
+    public static int REDUCIR_FUERZA_GASTADA = 15;
+    
+    public static int VELOCIDAD_PERIODO = 20;
 }

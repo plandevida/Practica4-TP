@@ -50,37 +50,36 @@ public class Lienzo extends Canvas implements ObjetosQueSeEjecutan {
 		carretera = carreteradecarreraciclsta;
     }
 
-    private int calculaYparaPuntoCiclista(Ciclista cic/*, Map<Integer, TramoCarrera> carreteradecarreraciclsta*/) {
+    private int calculaYparaPuntoCiclista(Ciclista ciclista) {
 		int yresu = 0;
 		int dify = 0;
 		int yacum = VariablesDeContexto.ALTO_VENTANA / 4;
 		boolean encontrado = false;
 		
 		Iterator<Map.Entry<Integer,TramoCarrera>> it = carretera.entrySet().iterator();
-		Iterator<Map.Entry<Integer,TramoCarrera>> itaux = carretera.entrySet().iterator();
+		Iterator<Map.Entry<Integer,TramoCarrera>> itsiguiente = carretera.entrySet().iterator();
 		
 		if (it.hasNext()) {
-		    itaux.next();
+		    itsiguiente.next();
 		}
-		while (itaux.hasNext() && !encontrado) {
+		while (itsiguiente.hasNext() && !encontrado) {
 	
-		    Entry<Integer, TramoCarrera> tramoini = it.next();
+		    Entry<Integer, TramoCarrera> tramoactual = it.next();
 	
 		    if (it.hasNext()) {
 	
-			Entry<Integer, TramoCarrera> tramofin = itaux.next();
+			Entry<Integer, TramoCarrera> siguentetramo = itsiguiente.next();
 	
-				if (cic.getBicicletamontada().getEspacioRecorrido() >= tramoini.getKey()
-					&& cic.getBicicletamontada().getEspacioRecorrido() < tramofin.getKey()) {
+				if (ciclista.getBicicletamontada().getEspacioRecorrido() >= tramoactual.getKey()
+					&& ciclista.getBicicletamontada().getEspacioRecorrido() < siguentetramo.getKey()) {
 				    encontrado = true;
 		
-				    int metro_en_el_tramo_del_ciclista = (int) (cic.getBicicletamontada()
-					    .getEspacioRecorrido() - tramoini.getKey());
-				    int diftramos = tramofin.getKey() - tramoini.getKey();
+				    int metro_en_el_tramo_del_ciclista = (int) (ciclista.getBicicletamontada()
+					    .getEspacioRecorrido() - tramoactual.getKey());
+				    int diftramos = siguentetramo.getKey() - tramoactual.getKey();
 		
-				    dify = (int)tramoini.getValue().getPendiente();
+				    dify = (int)tramoactual.getValue().getPendiente();
 		
-//				    int yfintramo = yacum + dify; // No la estaban usando :$
 				    yresu = metro_en_el_tramo_del_ciclista * dify / diftramos;
 				    yresu = yacum
 					    - (metro_en_el_tramo_del_ciclista * dify / diftramos)
@@ -89,7 +88,7 @@ public class Lienzo extends Canvas implements ObjetosQueSeEjecutan {
 				}
 	
 		    }
-		    yacum = yacum - (int)tramoini.getValue().getPendiente();
+		    yacum = yacum - (int)tramoactual.getValue().getPendiente();
 	
 		}
 	
@@ -97,11 +96,13 @@ public class Lienzo extends Canvas implements ObjetosQueSeEjecutan {
     }
 	
     private Polygon creaPoligono(Point p1, Point p2, Point p3, Point p4) {
+    	
 		Polygon polygon = new Polygon();
 		polygon.addPoint(p1.x, p1.y);
 		polygon.addPoint(p2.x, p2.y);
 		polygon.addPoint(p3.x, p3.y);
 		polygon.addPoint(p4.x, p4.y);
+		
 		return polygon;
     }
 
@@ -123,65 +124,59 @@ public class Lienzo extends Canvas implements ObjetosQueSeEjecutan {
 		super.paint(g);
 	
 		int x = 0;
-		int xfin = 0;
 		int y = VariablesDeContexto.ALTO_LIENZO / 2;
 		double x_aux = 0;
-		int i = 0;
 		int max = (int) VariablesDeContexto.LONGITUD_CARRERA;
 		
 		Iterator<Map.Entry<Integer,TramoCarrera>> it = carretera.entrySet().iterator();
-		Iterator<Map.Entry<Integer,TramoCarrera>> itaux = carretera.entrySet().iterator();
+		Iterator<Map.Entry<Integer,TramoCarrera>> itsiguiente = carretera.entrySet().iterator();
 		
 		if (it.hasNext()) {
-		    itaux.next();
+		    itsiguiente.next();
 		}
-		while (itaux.hasNext()) {
+		while (itsiguiente.hasNext()) {
 	
-		    Entry<Integer, TramoCarrera> tramoini = it.next();
+		    Entry<Integer, TramoCarrera> tramoactual = it.next();
 	
 		    if (it.hasNext()) {
 	
-				Entry<Integer, TramoCarrera> tramofin = itaux.next();
+				Entry<Integer, TramoCarrera> tramosiguente = itsiguiente.next();
 		
 				// pintamos la carretera
 				g.setColor(Color.BLACK);
 				
-//				g.drawLine(x, y, (tramofin.getKey() / max)*Constantes.ANCHO_VariablesDeContexto, y	
-//					- tramoini.getValue());
-				g.drawLine((int)x_aux, y, (int)((tramofin.getKey()/(double)max)*VariablesDeContexto.ANCHO_LIENZO), (int) (y - tramoini.getValue().getPendiente()));
+				g.drawLine((int)x_aux, y, (int)((tramosiguente.getKey()/(double)max)*VariablesDeContexto.ANCHO_LIENZO), (int) (y - tramoactual.getValue().getPendiente()));
 				
 				System.out.println(x_aux);
-				System.out.println((int)((tramofin.getKey()/(double)max)*VariablesDeContexto.ANCHO_LIENZO));
+				System.out.println((int)((tramosiguente.getKey()/(double)max)*VariablesDeContexto.ANCHO_LIENZO));
 				
 				// pintamos el cielo
 				Polygon polygonCielo = creaPoligono(new Point((int)x_aux, 0),
 					new Point((int)x_aux, y - 1),
-					new Point((int)((tramofin.getKey()/(double)max)*VariablesDeContexto.ANCHO_LIENZO),
-								(int)(y - tramoini.getValue().getPendiente()) - 1), new Point(
-								(int)((tramofin.getKey()/(double)max)*VariablesDeContexto.ANCHO_LIENZO), 0));
+					new Point((int)((tramosiguente.getKey()/(double)max)*VariablesDeContexto.ANCHO_LIENZO),
+								(int)(y - tramoactual.getValue().getPendiente()) - 1), new Point(
+								(int)((tramosiguente.getKey()/(double)max)*VariablesDeContexto.ANCHO_LIENZO), 0));
 				
-//				Polygon polygon = new Polygon();
 		
 				pintaPoligono(polygonCielo, g, Color.CYAN);
 		
 				// pintamos el suelo
-		
 				Polygon polygonSuelo = creaPoligono(new Point((int)x_aux, VariablesDeContexto.ANCHO_LIENZO),
 													new Point((int)x_aux, y + 1),
-													new Point((int)((tramofin.getKey()/(double)max)*VariablesDeContexto.ANCHO_LIENZO),
-															(int)(y - tramoini.getValue().getPendiente()) + 1), new Point(
-															(int)((tramofin.getKey()/(double)max)*VariablesDeContexto.ANCHO_LIENZO), VariablesDeContexto.ALTO_VENTANA));
+													new Point((int)((tramosiguente.getKey()/(double)max)*VariablesDeContexto.ANCHO_LIENZO),
+															  (int)(y - tramoactual.getValue().getPendiente()) + 1), 
+													new Point((int)((tramosiguente.getKey()/(double)max)*VariablesDeContexto.ANCHO_LIENZO), VariablesDeContexto.ALTO_VENTANA));
+				
 				pintaPoligono(polygonSuelo, g, Color.GREEN);
 		
-				x = tramofin.getKey() / VariablesDeContexto.FACTORESCALA;
-				y = (int) (y - tramoini.getValue().getPendiente());
-				x_aux= (tramofin.getKey()/(double)max)* VariablesDeContexto.ANCHO_LIENZO;
+				x = tramosiguente.getKey() / VariablesDeContexto.FACTORESCALA;
+				y = (int) (y - tramoactual.getValue().getPendiente());
+				x_aux = (tramosiguente.getKey() / (double)max) * VariablesDeContexto.ANCHO_LIENZO;
 		    }
 
 		}
 
 		// pintamos los PK de las curvas
-	
 		Iterator<Curva> itcurva = curva.iterator();
 		while (itcurva.hasNext()) {
 			
@@ -218,5 +213,4 @@ public class Lienzo extends Canvas implements ObjetosQueSeEjecutan {
 		g.setColor(col);
 		g.fillPolygon(p);
     }
-
 }

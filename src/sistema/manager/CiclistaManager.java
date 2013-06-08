@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.TreeMap;
 
 import javax.swing.SwingUtilities;
 
@@ -88,7 +89,6 @@ public class CiclistaManager {
 		try {
 			// Con este método forzamos la "sincronización" de la vista.
 			SwingUtilities.invokeAndWait(new Runnable() {
-//			SwingUtilities.invokeLater(new Runnable() {
 				
 				@Override
 				public void run() {
@@ -123,7 +123,7 @@ public class CiclistaManager {
 	 */
 	private void construirCarretera(String datos) {
 
-		carreteradecarreraciclsta = new HashMap<Integer, TramoCarrera>();
+		carreteradecarreraciclsta = new TreeMap<Integer, TramoCarrera>();
 
 		ParseadorCarrera parseadorcarrera = new ParseadorCarrera(carreteradecarreraciclsta);
 
@@ -193,6 +193,7 @@ public class CiclistaManager {
 		// Se registran los elementos con salida de datos en una lista.
 		listasalidadatos.add(reloj);
 
+		listaejecutables.add(lienzo);
 		listaejecutables.add(formateador);
 		listaejecutables.add(factoresexternos);
 		listaejecutables.add(dispatcher);
@@ -288,7 +289,7 @@ public class CiclistaManager {
 				// Se comprueba que los argumentos sean en número de ellos esperado.
 				//				(argumentos 1ºs) (dientes y		  (dientes y  (radio de la rueda)
 				//								  nº de platos)	 nº piñones)
-				//					^				 ^					^   ----------^
+				//					^				 ^					^   ---------^
 				if ( args.length == 3 + numeroplatos+1 + numeropinhones+1 + 1) {
 
 					numerociclistas = Integer.valueOf(args[indicedeargumentos]);
