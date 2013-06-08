@@ -31,4 +31,7 @@ public class VariablesDeContexto {
     public static int UNIDAD_TIEMPO = 100;
     
     public static double RADIO_RUEDA = 0.2d;
+    public static int REDUCIR_FUERZA_GASTADA = 15;
+    
+    public static int VELOCIDAD_PERIODO = 20;
 }
