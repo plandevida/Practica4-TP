@@ -15,11 +15,9 @@ import sistema.entidades.personas.ciclistas.Ciclista;
  */
 public class Pendiolo {
 	
-
 	private List<Ciclista> ciclista;
-	private TramoCarrera tramoaux;
+	
 	public Pendiolo(List<Ciclista> listaciclista) {
-
 		
 		ciclista = listaciclista;
 	}

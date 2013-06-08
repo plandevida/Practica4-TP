@@ -4,7 +4,6 @@ import java.util.List;
 
 import sistema.entidades.carretera.tramocarreraciclista.Curva;
 import sistema.entidades.personas.ciclistas.Ciclista;
-import sistema.entidades.vehiculos.bicicletas.Bicicleta;
 
 /**
  * Clase que se encarga de notificar a los ciclistas las

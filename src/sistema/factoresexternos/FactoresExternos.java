@@ -8,7 +8,6 @@ import sistema.entidades.carretera.tramocarreraciclista.Curva;
 import sistema.entidades.carretera.tramocarreraciclista.TramoCarrera;
 import sistema.entidades.personas.ciclistas.Ciclista;
 import sistema.entidades.tiempo.Reloj;
-import sistema.entidades.vehiculos.bicicletas.Bicicleta;
 import sistema.factoresexternos.viento.MiViento;
 import sistema.interfaces.ObjetosQueSeEjecutan;
 
