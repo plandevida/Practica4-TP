@@ -27,7 +27,7 @@ public class Vehiculo {
 	 * @param velocidadnueva La nueva velocidad de la bicicleta.
 	 */
 	public void setVelocidad(double velocidadnueva) {
-		velocidadactual = redondear(velocidadnueva,2);
+		velocidadactual = redondear(velocidadnueva,2)+0.00d;
 	}
 	
 	/**

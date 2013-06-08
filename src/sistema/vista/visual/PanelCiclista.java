@@ -238,7 +238,7 @@ public class PanelCiclista extends JPanel {
 		JLabel lblVelocidad = new JLabel("Velocidad:");
 		panel_1.add(lblVelocidad, "2, 4, right, default");
 		
-		tVelocidad = new JFormattedTextField(maskvelocidad);
+		tVelocidad = new JFormattedTextField();
 		panel_1.add(tVelocidad, "4, 4, fill, default");
 		tVelocidad.setColumns(10);
 		
