@@ -152,9 +152,6 @@ public class CiclistaManager {
 		reloj = Reloj.getInstance();
 
 		bicicletas = new ArrayList<Bicicleta>();
-		
-//		Curva curva = new Curva(5d,4d,VariablesDeContexto.MAX_CICLISTAS);
-//		listacurvas.add(curva);
 
 		try {
 			// Generador de nombres basado en silabas, con prefijos y sufijos.
