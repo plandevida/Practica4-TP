@@ -110,6 +110,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 * Las pedaladas se dan en fuencion de la cadencia
 	 */
 	public void pedalear() {
+//		System.out.println(numeromallot+" estre "+ estrellado);
 		if(!estrellado){
 			if (fuerza>0){
 				if (reloj.getMilisegundos() != milisegundos) {
