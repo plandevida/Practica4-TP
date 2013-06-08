@@ -33,33 +33,17 @@ public class FactoresExternos implements ObjetosQueSeEjecutan {
 		this.ciclistas = ciclistas;
 		this.carreteradecarreraciclista = carreteradecarreraciclista;
 		this.curvas = curva;
-		eolo = nuevoEolo != null ? nuevoEolo : new Eolo(ciclistas, Reloj.getInstance(), new HashMap<Integer, MiViento>());
-		curviolo = nuevoCurviolo != null ? nuevoCurviolo : new Curviolo(ciclistas,curvas);
-		pendiolo = nuevoPendiolo != null ? nuevoPendiolo : new Pendiolo(ciclistas);
+		eolo = nuevoEolo != null ? nuevoEolo : new Eolo(this.ciclistas, Reloj.getInstance(), new HashMap<Integer, MiViento>());
+		curviolo = nuevoCurviolo != null ? nuevoCurviolo : new Curviolo(this.ciclistas,curvas);
+		pendiolo = nuevoPendiolo != null ? nuevoPendiolo : new Pendiolo(this.ciclistas,this.carreteradecarreraciclista);
 	}
-	/**
-	 *  Busca el tramo en el que se encuentra la bici 
-	 * @return devuelve el tramo
-	 */
-	private TramoCarrera tramoActual() {
-		
-		TramoCarrera tramo = new TramoCarrera(0, 0);
-		
-		for(Ciclista cicli : ciclistas) {
-			for(Integer reco : carreteradecarreraciclista.keySet()) {
 	
-				if ( carreteradecarreraciclista.get(reco).getKilometros() <= (int) cicli.getBicicletamontada().getEspacioRecorrido() ) {
-					tramo = carreteradecarreraciclista.get(reco);
-				}
-			}
-		}
 		
-		return tramo;
-	}
+	
 	@Override
 	public void ejecuta() {
 		eolo.setVientoModificado();
-		pendiolo.setPendienteodificado(tramoActual());
+		//pendiolo.setPendienteodificado();
 		curviolo.comporvarcurvasas();
 	}
 }
