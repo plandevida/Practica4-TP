@@ -74,7 +74,7 @@ public class CiclistaManager {
 		
 		listasalidadatos = new ArrayList<ObjetosConSalidaDeDatos>();
 		
-		presentador = new Presentador(ciclistas, listasalidadatos, mapameteorologico, parser.getOrdenes(), reloj);
+		presentador = new Presentador(ciclistas, listasalidadatos, mapameteorologico, parser.getOrdenes(), reloj, listacurvas);
 
 		formateador = new FormateadorDatosVista(listasalidadatos);
 		
@@ -123,6 +123,8 @@ public class CiclistaManager {
 		ParseadorCarrera parseadorcarrera = new ParseadorCarrera(carreteradecarreraciclsta);
 
 		parseadorcarrera.parse(datos);
+
+		VariablesDeContexto.LONGITUD_CARRERA = parseadorcarrera.getLongitudCarrera();
 	}
 	
 	/**
@@ -144,15 +146,12 @@ public class CiclistaManager {
 		listaejecutables = new ArrayList<ObjetosQueSeEjecutan>();
 
 		listacurvas = new ArrayList<Curva>();
+		
+		presentador.setListacurvas(listacurvas);
+		
 		reloj = Reloj.getInstance();
 
-
-
 		bicicletas = new ArrayList<Bicicleta>();
-		
-//		Curva curva = new Curva(5d,4d,VariablesDeContexto.MAX_CICLISTAS);
-//		listacurvas.add(curva);
-		
 
 		try {
 			// Generador de nombres basado en silabas, con prefijos y sufijos.
@@ -174,7 +173,6 @@ public class CiclistaManager {
 			int fuerza = 100;
 			double tiempopedalada =(double) (new Random().nextInt((int)periodo)+3)/10;
 			
-//			System.out.println(i+" t o"+tiempopedalada);
 			Ciclista ciclista = new Ciclista(generadordenombres.compose(3), i, cadencia, bicicleta,tiempopedalada, reloj, peso, fuerza);
 			
 			ciclistas.add(ciclista);

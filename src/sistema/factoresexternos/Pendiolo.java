@@ -17,8 +17,8 @@ import sistema.manager.VariablesDeContexto;
  */
 public class Pendiolo {
 	
-
 	private List<Ciclista> ciclista;
+
 	private TramoCarrera tramosig;		
 	private TramoCarrera tramo;
 	private Map<Integer, TramoCarrera> carreteradecarreraciclista;
@@ -26,6 +26,7 @@ public class Pendiolo {
 	public Pendiolo(List<Ciclista> listaciclista,Map<Integer, TramoCarrera> carreteradecarreraciclista) {
 	
 		this.carreteradecarreraciclista = carreteradecarreraciclista;
+
 		ciclista = listaciclista;
 	}
 	/**

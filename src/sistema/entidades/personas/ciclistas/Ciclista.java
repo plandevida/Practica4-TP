@@ -71,7 +71,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	}
 	
 	/**
-	 * Método que contiene las acciones comprendidas
+	 * Metodo que contiene las acciones comprendidas
 	 * por el iclista.
 	 */
 	@Override
@@ -158,9 +158,9 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	}
 
 	/**
-	 * Aumentar el piñón actual al mayor adyacente.
+	 * Aumentar el pinhon actual al mayor adyacente.
 	 * 
-	 * @return El piñón al que se ha cambiado.
+	 * @return El pinhon al que se ha cambiado.
 	 */
 	public int cambiarPinhon(int indicepinhon) {
 		
@@ -306,7 +306,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	}
 	
 	/**
-	 * Método que devuelve el identificador del ciclista.
+	 * Metodo que devuelve el identificador del ciclista.
 	 * 
 	 * @return Identificador único.
 	 */

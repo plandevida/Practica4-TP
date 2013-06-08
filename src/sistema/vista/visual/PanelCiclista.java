@@ -23,6 +23,7 @@ import sistema.controladores.ListenerPinhon;
 import sistema.controladores.ListenerPlato;
 import sistema.controladores.ordenes.Dispatcher;
 import sistema.controladores.parseadores.ParseadorComandos;
+import sistema.entidades.carretera.tramocarreraciclista.Curva;
 import sistema.entidades.personas.ciclistas.Ciclista;
 import sistema.entidades.tiempo.Reloj;
 import sistema.factoresexternos.viento.MiViento;
@@ -430,7 +431,7 @@ public class PanelCiclista extends JPanel {
 		
 		Map<Integer, MiViento> vientoporhoras = new HashMap<Integer, MiViento>();
 		
-		Presentador presentadorsistema = new Presentador(ciclistas, objetosamostarenvista, vientoporhoras, p.getOrdenes(), Reloj.getInstance());
+		Presentador presentadorsistema = new Presentador(ciclistas, objetosamostarenvista, vientoporhoras, p.getOrdenes(), Reloj.getInstance(), new ArrayList<Curva>());
 		
 		FormateadorDatosVista formateador = null;
 		

@@ -15,12 +15,15 @@ public class ParseadorCarrera {
 	
 	private Map<Integer, TramoCarrera> mapa;
 	
+	private Integer longitudcarrera;
+	
 	/**
 	 * Al invocar este constructor es necesario invocar a @see {@link ParseadorCarrera#getConfiguracionCarrera()}
 	 * para obtener la configuración parseada.
 	 */
 	public ParseadorCarrera() {
 		mapa = new HashMap<Integer, TramoCarrera>();
+		longitudcarrera = 0;
 	}
 	
 	/**
@@ -30,6 +33,7 @@ public class ParseadorCarrera {
 	 */
 	public ParseadorCarrera(Map<Integer, TramoCarrera> configuracion) {
 		mapa = configuracion;
+		longitudcarrera = 0;
 	}
 	
 	/**
@@ -51,6 +55,8 @@ public class ParseadorCarrera {
 				// Mapa con la pendiente y la dirección del viento.
 				TramoCarrera tramo = new TramoCarrera(kilometros, pendiente);
 				
+				longitudcarrera += kilometros;
+				
 				mapa.put(i+1, tramo);
 				
 			} catch (NumberFormatException ne) {
@@ -69,5 +75,13 @@ public class ParseadorCarrera {
 	public Map<Integer, TramoCarrera> getConfiguracionCarrera() {
 		
 		return mapa;
+	}
+	
+	/**
+	 * Obtiene los kilómetros que mide la carrera
+	 * @return
+	 */
+	public Integer getLongitudCarrera() {
+		return longitudcarrera;
 	}
 }
