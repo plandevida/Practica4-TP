@@ -43,7 +43,7 @@ public class Curviolo {
 							if (ciclista.getBicicletamontada().getVelocidad() > curva.getVelocidadmaximacurva()) ciclista.setEstrellado(true);
 						
 						
-							else curva.setCiclistarhanpasadocurva(ciclista.getNumeromallot(),ciclista.getNumeromallot());
+							else curva.setCiclistashanpasadocurva(ciclista.getNumeromallot(),ciclista.getNumeromallot());
 							
 							
 						}

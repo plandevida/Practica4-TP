@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import sistema.controladores.ordenes.Orden;
+import sistema.entidades.carretera.tramocarreraciclista.Curva;
 import sistema.entidades.personas.ciclistas.Ciclista;
 import sistema.entidades.tiempo.Reloj;
 import sistema.factoresexternos.viento.MiViento;
@@ -31,8 +32,11 @@ public class Presentador {
 	// Ordenes del parser y el sistema.
 	private Orden[] ordenes;
 	
-	// El reloj del sistema
+	// El reloj del sistema.
 	private Reloj reloj;
+	
+	// La lista con las curvas del sistema.
+	private List<Curva> listacurvas;
 	
 	/**
 	 * Constructor que define todos los elementos del presentador.
@@ -46,13 +50,15 @@ public class Presentador {
 	public Presentador(List<Ciclista> ciclistas,
 			List<ObjetosConSalidaDeDatos> objetosamostarenvista,
 			Map<Integer, MiViento> vientoporhoras,
-			Orden[] ordenesparseador, Reloj relojdelsistema) {
+			Orden[] ordenesparseador, Reloj relojdelsistema,
+			List<Curva> listadecurvas) {
 		
 		listadeciclistas = ciclistas;
 		listadeobjetosamostarenvista = objetosamostarenvista;
 		mapameteorologico = vientoporhoras;
 		ordenes = ordenesparseador;
 		reloj = relojdelsistema;
+		listacurvas = listadecurvas;
 	}
 
 	/**
@@ -73,6 +79,10 @@ public class Presentador {
 		}
 		
 		return ciclista;
+	}
+	
+	public List<Ciclista> getCiclistas() {
+		return listadeciclistas;
 	}
 	
 	/**
@@ -136,5 +146,39 @@ public class Presentador {
 	public Reloj getReloj() {
 		
 		return reloj;
+	}
+	
+	/**
+	 * Provee acceso a la lista de curvas del sistema.
+	 * 
+	 * @return Las curvas del sistema.
+	 */
+	public List<Curva> getListaCurvas() {
+		return listacurvas;
+	}
+
+	public void setListadeciclistas(List<Ciclista> listadeciclistas) {
+		this.listadeciclistas = listadeciclistas;
+	}
+
+	public void setListadeobjetosamostarenvista(
+			List<ObjetosConSalidaDeDatos> listadeobjetosamostarenvista) {
+		this.listadeobjetosamostarenvista = listadeobjetosamostarenvista;
+	}
+
+	public void setMapameteorologico(Map<Integer, MiViento> mapameteorologico) {
+		this.mapameteorologico = mapameteorologico;
+	}
+
+	public void setOrdenes(Orden[] ordenes) {
+		this.ordenes = ordenes;
+	}
+
+	public void setReloj(Reloj reloj) {
+		this.reloj = reloj;
+	}
+
+	public void setListacurvas(List<Curva> listadecurvas) {
+		this.listacurvas = listadecurvas;
 	}
 }

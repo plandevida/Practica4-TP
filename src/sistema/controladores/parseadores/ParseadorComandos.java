@@ -6,6 +6,7 @@ import sistema.controladores.ordenes.especificas.OrdenAyuda;
 import sistema.controladores.ordenes.especificas.OrdenCambiaViento;
 import sistema.controladores.ordenes.especificas.OrdenCambiarPinhon;
 import sistema.controladores.ordenes.especificas.OrdenCambiarPlato;
+import sistema.controladores.ordenes.especificas.OrdenCrearCurva;
 import sistema.controladores.ordenes.especificas.OrdenFrenar;
 
 /**
@@ -24,6 +25,7 @@ public class ParseadorComandos {
 		new OrdenCambiarPinhon(null, null),
 		new OrdenCambiarPlato(null, null),
 		new OrdenCambiaViento(null, null, null),
+		new OrdenCrearCurva(null, null),
 		new OrdenAyuda(null)
 	};
 	
