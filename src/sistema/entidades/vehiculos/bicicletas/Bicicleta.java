@@ -15,7 +15,7 @@ import sistema.manager.VariablesDeContexto;
  */
 public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 
-	// Continen el indice del piñón que se esta utilizando
+	// Continen el indice del pinhon que se esta utilizando
 	protected int platoactual;
 
 	// Continen el indice del plato que se esta utilizando
@@ -44,7 +44,7 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	}
 
 	/**
-	 * Relación entre el plato y piñón que se están usando actualmente.
+	 * Relación entre el plato y pinhon que se están usando actualmente.
 	 * 
 	 * @return Un entero que es relación entre ambos valores.
 	 */
@@ -160,7 +160,7 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	}
 	
 	/**
-	 * Incrementa el piñón de la bicicleta.
+	 * Incrementa el pinhon de la bicicleta.
 	 */
 	public void incrementarPinhon() {
 		if (pinhonactual < VariablesDeContexto.PINHONES.length - 1) {
@@ -169,7 +169,7 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	}
 	
 	/**
-	 * Decrementa el piñón de la bicicleta.
+	 * Decrementa el pinhon de la bicicleta.
 	 */
 	public void decrementarPinhon() {
 		if (pinhonactual > 0) {
@@ -234,18 +234,18 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	}
 	
 	/**
-	 * Obtiene el piñón engranado actualmente.
+	 * Obtiene el pinhon engranado actualmente.
 	 * 
-	 * @return El indice de la lista de piñones del piñón engranado
+	 * @return El indice de la lista de piñones del pinhon engranado
 	 */
 	public int getPinhonactual() {
 		return pinhonactual;
 	}
 	
 	/**
-	 * Ajusta el piñón engranado actualmente por otro.
+	 * Ajusta el pinhon engranado actualmente por otro.
 	 * 
-	 * @param pinhonactual El nuevo piñón a engranar.
+	 * @param pinhonactual El nuevo pinhon a engranar.
 	 */
 	public void setPinhonactual(int pinhonactual) {
 		if ( pinhonactual <= VariablesDeContexto.PINHONES.length - 1 || pinhonactual >= 0) {
