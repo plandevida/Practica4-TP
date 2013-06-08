@@ -17,7 +17,7 @@ public class Curviolo {
 	List<Ciclista> ciclistas;
 	List<Curva> curvas;
 	
-	public Curviolo(List<Ciclista> listaciclistas,List<Curva> curvas){
+	public Curviolo(List<Ciclista> listaciclistas, List<Curva> curvas){
 		
 		this.ciclistas = listaciclistas;
 		this.curvas = curvas;
@@ -33,20 +33,17 @@ public class Curviolo {
 					
 					double espaciorecorridoporciclista = ciclista.getBicicletamontada().getEspacioRecorrido();
 				
-					// TODO calcular la distancia necesaria para frenar hasta la velocidad de la curva
-					// comprueba que el ciclista este 															     ^
 					if (espaciorecorridoporciclista >= curva.getPuntokilometrico()) {
 					
-						if (curva.getCiclistarhanpasadocurva(ciclista.getNumeromallot()) !=ciclista.getNumeromallot()){
+						if (curva.getCiclistarhanpasadocurva(ciclista.getNumeromallot()) !=ciclista.getNumeromallot()) {
 							
-							if (ciclista.getBicicletamontada().getVelocidad() > curva.getVelocidadmaximacurva()) ciclista.setEstrellado(true);
-						
-						
-							else curva.setCiclistashanpasadocurva(ciclista.getNumeromallot(),ciclista.getNumeromallot());
-							
-							
+							if (ciclista.getBicicletamontada().getVelocidad() > curva.getVelocidadmaximacurva()) {
+								ciclista.setEstrellado(true);
+							}
+							else { 
+								curva.setCiclistashanpasadocurva(ciclista.getNumeromallot(),ciclista.getNumeromallot());
+							}
 						}
-						
 					}
 				}
 			}

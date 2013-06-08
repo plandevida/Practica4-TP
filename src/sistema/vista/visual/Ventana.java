@@ -3,7 +3,6 @@ package sistema.vista.visual;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,7 +16,7 @@ import javax.swing.border.TitledBorder;
 
 import sistema.controladores.ListenerComandos;
 import sistema.controladores.ordenes.Dispatcher;
-import sistema.entidades.personas.ciclistas.Ciclista;
+import sistema.manager.VariablesDeContexto;
 import sistema.vista.Lienzo;
 
 public class Ventana extends JFrame {
@@ -36,6 +35,8 @@ public class Ventana extends JFrame {
 	private JTextArea taRegistro;
 	
 	private Dispatcher micomandero;
+	
+	private Lienzo canvas;
 
 	/**
 	 * Launch the application.
@@ -64,11 +65,18 @@ public class Ventana extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Ventana(Dispatcher comandero) {
+	public Ventana(Dispatcher comandero, Lienzo lienzo) {
 		
 		micomandero = comandero;
+		canvas = lienzo;
 		
 		init();
+		
+		VariablesDeContexto.ANCHO_VENTANA = getWidth();
+		VariablesDeContexto.ALTO_VENTANA = getHeight();
+		
+		VariablesDeContexto.ANCHO_LIENZO = VariablesDeContexto.ANCHO_VENTANA;
+		VariablesDeContexto.ALTO_LIENZO = VariablesDeContexto.ALTO_VENTANA / 2;
 	}
 	
 	/**
@@ -239,7 +247,7 @@ public class Ventana extends JFrame {
 		JScrollPane scrollpaner = new JScrollPane(taRegistro);
 		panelComandos.add(scrollpaner);
 		
-		Lienzo canvas = new Lienzo(new ArrayList<Ciclista>());
+//		LienzoAntiguo canvas = new LienzoAntiguo(new ArrayList<Ciclista>());
 		panelGlobal.add(canvas);
 		
 		setVisible(true);

@@ -3,14 +3,9 @@ package sistema.vista.visual;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
@@ -22,13 +17,6 @@ import sistema.controladores.ListenerFrenar;
 import sistema.controladores.ListenerPinhon;
 import sistema.controladores.ListenerPlato;
 import sistema.controladores.ordenes.Dispatcher;
-import sistema.controladores.parseadores.ParseadorComandos;
-import sistema.entidades.carretera.tramocarreraciclista.Curva;
-import sistema.entidades.personas.ciclistas.Ciclista;
-import sistema.entidades.tiempo.Reloj;
-import sistema.factoresexternos.viento.MiViento;
-import sistema.interfaces.ObjetosConSalidaDeDatos;
-import sistema.manager.Presentador;
 
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -420,35 +408,35 @@ public class PanelCiclista extends JPanel {
 		tTiempo.setColumns(10);
 	}
 	
-	public static void main(String[] args) {
-		
-		JFrame v = new JFrame("Prueba Listeners");
-		
-		ParseadorComandos p = new ParseadorComandos();
-		
-		List<Ciclista> ciclistas = new ArrayList<>();
-		List<ObjetosConSalidaDeDatos> objetosamostarenvista = new ArrayList<>();
-		
-		Map<Integer, MiViento> vientoporhoras = new HashMap<Integer, MiViento>();
-		
-		Presentador presentadorsistema = new Presentador(ciclistas, objetosamostarenvista, vientoporhoras, p.getOrdenes(), Reloj.getInstance(), new ArrayList<Curva>());
-		
-		FormateadorDatosVista formateador = null;
-		
-		Dispatcher d = new Dispatcher(presentadorsistema, p, formateador);
-		
-		Ventana vv = new Ventana(d);
-		
-		formateador = new FormateadorDatosVista(objetosamostarenvista, vv);
-		
-		PanelCiclista pa = new PanelCiclista(d);
-		
-		v.getContentPane().add(pa);
-		
-		pa.setCiclistaData("0 Alfredo", 100, 60, 1d);
-		
-		v.pack();
-		v.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		v.setVisible(true);
-	}
+//	public static void main(String[] args) {
+//		
+//		JFrame v = new JFrame("Prueba Listeners");
+//		
+//		ParseadorComandos p = new ParseadorComandos();
+//		
+//		List<Ciclista> ciclistas = new ArrayList<>();
+//		List<ObjetosConSalidaDeDatos> objetosamostarenvista = new ArrayList<>();
+//		
+//		Map<Integer, MiViento> vientoporhoras = new HashMap<Integer, MiViento>();
+//		
+//		Presentador presentadorsistema = new Presentador(ciclistas, objetosamostarenvista, vientoporhoras, p.getOrdenes(), Reloj.getInstance(), new ArrayList<Curva>());
+//		
+//		FormateadorDatosVista formateador = null;
+//		
+//		Dispatcher d = new Dispatcher(presentadorsistema, p, formateador);
+//		
+//		Ventana vv = new Ventana(d);
+//		
+//		formateador = new FormateadorDatosVista(objetosamostarenvista, vv);
+//		
+//		PanelCiclista pa = new PanelCiclista(d);
+//		
+//		v.getContentPane().add(pa);
+//		
+//		pa.setCiclistaData("0 Alfredo", 100, 60, 1d);
+//		
+//		v.pack();
+//		v.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		v.setVisible(true);
+//	}
 }

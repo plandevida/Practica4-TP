@@ -26,6 +26,7 @@ import sistema.factoresexternos.FactoresExternos;
 import sistema.factoresexternos.viento.MiViento;
 import sistema.interfaces.ObjetosConSalidaDeDatos;
 import sistema.interfaces.ObjetosQueSeEjecutan;
+import sistema.vista.Lienzo;
 import sistema.vista.visual.FormateadorDatosVista;
 import sistema.vista.visual.Ventana;
 
@@ -52,7 +53,7 @@ public class CiclistaManager {
 
 	// Vistas del sistema.
 	private Ventana ventana;
-//	private Lienzo lienzo;
+	private Lienzo lienzo;
 	private FormateadorDatosVista formateador;
 
 	// Subsitemas del sistema.
@@ -73,12 +74,16 @@ public class CiclistaManager {
 		ciclistas = new ArrayList<Ciclista>();
 		
 		listasalidadatos = new ArrayList<ObjetosConSalidaDeDatos>();
+
+		listacurvas = new ArrayList<Curva>();
 		
 		presentador = new Presentador(ciclistas, listasalidadatos, mapameteorologico, parser.getOrdenes(), reloj, listacurvas);
 
 		formateador = new FormateadorDatosVista(listasalidadatos);
 		
 		dispatcher = new Dispatcher(presentador, parser, formateador);
+		
+		lienzo = new Lienzo(ciclistas, carreteradecarreraciclsta, listacurvas);
 		
 		try {
 			// Con este método forzamos la "sincronización" de la vista.
@@ -88,7 +93,7 @@ public class CiclistaManager {
 				@Override
 				public void run() {
 					
-					ventana = new Ventana(dispatcher);
+					ventana = new Ventana(dispatcher, lienzo);
 				}
 			});
 		} catch (InvocationTargetException e) {
@@ -144,8 +149,6 @@ public class CiclistaManager {
 	public void iniciar() {
 		
 		listaejecutables = new ArrayList<ObjetosQueSeEjecutan>();
-
-		listacurvas = new ArrayList<Curva>();
 		
 		presentador.setListacurvas(listacurvas);
 		
@@ -183,8 +186,10 @@ public class CiclistaManager {
 			listasalidadatos.add(ciclista);
 			listasalidadatos.add(bicicleta);
 		} 
+		
 		Eolo eolo = new Eolo(ciclistas, reloj, mapameteorologico);
 		factoresexternos = new FactoresExternos(ciclistas, carreteradecarreraciclsta,listacurvas, eolo, null,null);
+		
 		// Se registran los elementos con salida de datos en una lista.
 		listasalidadatos.add(reloj);
 

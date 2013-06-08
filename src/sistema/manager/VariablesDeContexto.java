@@ -1,5 +1,7 @@
 package sistema.manager;
 
+import java.awt.Color;
+
 import sistema.factoresexternos.viento.MiViento;
 
 public class VariablesDeContexto {
@@ -27,6 +29,13 @@ public class VariablesDeContexto {
     public static int MAX_CADENCIA = 120;
     
     public static double LONGITUD_CARRERA = 0;
+    public static final int ANCHO_REPRESENTACION_CICLISTA = 20;
+    public static final Color[] COLORES = { Color.BLUE, Color.CYAN, Color.GREEN, Color.MAGENTA, Color.ORANGE, Color.PINK, Color.RED, Color.WHITE, Color.YELLOW, Color.BLACK, Color.DARK_GRAY, Color.GRAY, Color.LIGHT_GRAY };
+    public static final int  FACTORESCALA = 2;
+    public static int ALTO_VENTANA = 0;
+    public static int ANCHO_VENTANA = 0;
+    public static int ALTO_LIENZO = 0;
+    public static int ANCHO_LIENZO = 0;
     
     public static int UNIDAD_TIEMPO = 100;
     

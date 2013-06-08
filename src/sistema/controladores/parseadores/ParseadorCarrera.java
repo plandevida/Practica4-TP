@@ -44,27 +44,32 @@ public class ParseadorCarrera {
 		// Todas las líneas del fichero.
 		String lineas[] = contenidofichero.split("\n");
 		
-		for(int i=0; i<lineas.length; i++) {
+		for(int i=0; i<lineas.length-1; i++) {
 			
 			try {
 				String cadena[] = lineas[i].split(",");
+				String cadenasiguiente[] = lineas[i+1].split(",");
 				
-				Integer kilometros = Integer.valueOf(cadena[0]);
+				Integer kilometro = Integer.valueOf(cadena[0]);
 				Integer pendiente = Integer.valueOf(cadena[1]);
+				
+				Integer kilometros = Integer.valueOf(cadenasiguiente[0]) - Integer.valueOf(cadena[0]);
 				
 				// Mapa con la pendiente y la dirección del viento.
 				TramoCarrera tramo = new TramoCarrera(kilometros, pendiente);
 				
 				longitudcarrera += kilometros;
 				
-				mapa.put(i+1, tramo);
+				mapa.put(kilometro, tramo);
+				
+				if (i == lineas.length-2)
+					mapa.put(Integer.valueOf(cadenasiguiente[0]), new TramoCarrera(0d, 0));
 				
 			} catch (NumberFormatException ne) {
 				
 				System.err.println("Error en el formato de la línea.");
 			}
-		}
-		
+		}	
 	}
 	
 	/**
