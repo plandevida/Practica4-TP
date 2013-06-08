@@ -27,8 +27,10 @@ public class TestCiclista {
 	
 	private String nombreciclista = "Juan";
 	private int numeromallot = 1;
-	private int cadenciaciclista = 1;
+	private int cadenciaciclista = 60;
 	private double tiempopedalada = 1;
+	private int peso = 65;
+	private double fuerza = 100;
 	private BicicletaMock bicicletaciclista;
 	private RelojMock relojciclista;
 	
@@ -55,7 +57,7 @@ public class TestCiclista {
 		
 		bicicletaciclista = new BicicletaMock();
 		
-		ciclista = new CiclistaMock(nombreciclista, numeromallot, cadenciaciclista, bicicletaciclista, tiempopedalada, relojciclista);
+		ciclista = new CiclistaMock(nombreciclista, numeromallot, cadenciaciclista, bicicletaciclista, tiempopedalada, relojciclista, peso, fuerza);
 	}
 	
 	@Test
@@ -78,13 +80,15 @@ public class TestCiclista {
 		
 		BicicletaMock bicicleta = ciclista.getBicicletamontada();
 		
-		ciclista.ejecuta();
+		while ( relojciclista.getMilisegundos() < 2) {
+			relojciclista.ejecuta();
+		}
 		
-		double velocidadesperada = utilidadesBicicleta.velocidadDeBici(ciclista.getCadencia(), 
-																	bicicleta.getRadiorueda(), 
-																	bicicleta.getPlatos()[bicicleta.getPlatoactual()], 
-																	bicicleta.getPinhones()[bicicleta.getPinhonactual()],
-																	bicicleta.getEspacioRecorrido());
+		ciclista.setContadorCadencia(ciclista.getPeso()+21);
+		
+		ciclista.pedalear();
+		
+		double velocidadesperada = utilidadesBicicleta.velocidadDeBici(0, ciclista.getTiempopedalada(), ciclista.getPeso(), bicicleta.getRadiorueda(), bicicleta.getPlatos()[bicicleta.getPlatoactual()], bicicleta.getPinhones()[bicicleta.getPinhonactual()]);
 		
 		assertEquals("Error: La velocidad de la bicicleta no es la correcta", velocidadesperada, bicicleta.getVelocidad(), 0);
 	}

@@ -3,6 +3,7 @@ package src.tests.sistema.entidadesmock.personas.ciclistas;
 import java.util.StringTokenizer;
 
 import sistema.interfaces.ObjetosConSalidaDeDatos;
+import sistema.manager.VariablesDeContexto;
 import src.tests.sistema.entidadesmock.personas.PersonaMock;
 import src.tests.sistema.entidadesmock.tiempo.RelojMock;
 import src.tests.sistema.entidadesmock.vehiculos.bicicletas.BicicletaMock;
@@ -16,47 +17,57 @@ import src.tests.sistema.entidadesmock.vehiculos.bicicletas.BicicletaMock;
 public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos {
 	
 	// La bicicleta que va a montar.
-	private BicicletaMock bicicletamontada;
-	
-	// El reloj del ciclista.
-	private RelojMock reloj;
-	
-	// El tiempo desde que dió la última pedalada.
-	private int segundos;
-	
-	// La candencia de la pedalada del ciclista.
-	private int cadencia;
-	
-	private int periodo;
-	
-	private double tiempopedalada;
-	
-	// Número único del ciclista en la carrera
-	private int numeromallot;
-	
-	/**
-	 * Crea un ciclista.
-	 * 
-	 * @param nombre
-	 * @param nummallot
-	 * @param cadenciaCiclista
-	 * @param bicicletaamontar
-	 * @param relojCiclista
-	 */
-	public CiclistaMock(String nombre, int nummallot, int cadenciaCiclista, BicicletaMock bicicletaamontar, double tiempopedalada, RelojMock relojCiclista) {
+		private BicicletaMock bicicletamontada;
+		
+		// El reloj del ciclista.
+		private RelojMock reloj;
+		
+		// El tiempo desde que dió la última pedalada.
+		private int milisegundos;
+		
+		// La candencia de la pedalada del ciclista.
+		private int cadencia;
+		
+		private double periodo;
+		
+		private double tiempopedalada;
+		
+		// Número único del ciclista en la carrera
+		private int numeromallot;
+		
+		private int contadorcadencia;
+		
+		// El cansancio del ciclista.
+		private double fuerza;
+		
+		private boolean estrellado;
+		
 		/**
-		 * Demomento el peso no es relevante, ni el cansancio
+		 * Crea un ciclista.
 		 * 
-		 * Esta clase hereda de persona @link Persona
+		 * @param nombre
+		 * @param nummallot
+		 * @param cadenciaCiclista
+		 * @param bicicletaamontar
+		 * @param tiempopedalada
+		 * @param relojCiclista
+		 * @param peso
+		 * @param fuerza
 		 */
-		super(nombre, 50, 100);
+	public CiclistaMock(String nombre, int nummallot, int cadenciaCiclista, BicicletaMock bicicletaamontar, double tiempopedalada, RelojMock relojCiclista, int peso, double fuerza)  {
+		
+		super(nombre, peso);
 		cadencia = cadenciaCiclista;
 		bicicletamontada = bicicletaamontar;
 		reloj = relojCiclista;
 		numeromallot = nummallot;
-		this.tiempopedalada = tiempopedalada;
-		
+		this.tiempopedalada = tiempopedalada;	
+		this.fuerza = fuerza;
 		bicicletamontada.setId(numeromallot);
+		estrellado = false;
+		
+		calcularPeriodo();
+		contadorcadencia = 1;
 	}
 	
 	/**
@@ -65,6 +76,7 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 	 */
 	@Override
 	public void ejecuta() {
+		
 		pedalear();
 	}
 	
@@ -74,12 +86,17 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 	 * @return Una cadena de texto separada por tokens.
 	 */
 	public StringTokenizer mostrarDatos() {
-		StringBuilder mensaje = new StringBuilder("#ciclista#,");
-		mensaje.append(getNombre())
-			.append(",")
-			.append(getPeso())
-			.append(",")
-			.append(getCadencia());
+		StringBuilder mensaje = new StringBuilder("#ciclista#,")
+										.append(",")
+										.append(getNumeromallot())
+										.append(",")
+										.append(getNombre())
+										.append(",")
+										.append(getFuerzaAsInt())
+										.append(",")
+										.append(getCadencia())
+										.append(",")
+										.append(getTiempopedalada());
 
 		StringTokenizer stringTokenizer = new StringTokenizer(mensaje.toString(), ",");
 
@@ -87,48 +104,67 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 	}
 	
 	/**
-	 * Metodo que da pedaladas a la bicicleta
+	 * Metodo que da pedaladas a la bicicleta y actualiza la fuerza consumida.
+	 * Las pedaladas se dan en fuencion de la cadencia
 	 */
 	public void pedalear() {
+		if(!estrellado){
+			if (fuerza>0){
+				if (reloj.getMilisegundos() != milisegundos) {
+					
+					
+					if (contadorcadencia >= (periodo * 20)) {
+						
+						
+						double fuerzagastada = redondear ((bicicletamontada.darPedalada(tiempopedalada, getPeso()))/10,2); 
+						if (fuerza > 0) fuerza = redondear((fuerza - fuerzagastada),2);
+						
+//						System.out.println(numeromallot+" t "+tiempopedalada+" p "+ periodo+" f "+fuerzagastada+ " f " +fuerza );
+						contadorcadencia = 1;
+					}
+					
+					contadorcadencia++;
+
+					milisegundos = reloj.getMilisegundos();
+				}
+			}
+		}
+	}
+	/**
+	 * Calcula el periodo y se asegura de que el tiempo de pedalada no sea mayor del de el periodo;
+	 */
+	public void calcularPeriodo() {
 		
-		if (reloj.getSegundos() != segundos) {
-			
-			bicicletamontada.darPedalada(tiempopedalada);
-	
-			segundos = reloj.getSegundos();
+		periodo = (double)60/cadencia;
+		periodo = redondear(periodo, 2);
+		if (periodo < tiempopedalada) {
+			tiempopedalada = periodo;
 		}
 	}
 	
 	/**
 	 * Frena la bicicleta.
 	 */
-	public double frenar() {
+	public void frenar(Double cantidadafrenar, Double tiempoparafrenar) {
 		
-		bicicletamontada.frenar();
+		if (reloj.getMilisegundos() != milisegundos) {
+			bicicletamontada.frenar();
 		
-		return bicicletamontada.getVelocidad();
+			milisegundos = reloj.getMilisegundos();
+		}
 	}
-	
+
 	/**
 	 * Aumentar el piñón actual al mayor adyacente.
 	 * 
 	 * @return El piñón al que se ha cambiado.
 	 */
-	public int aumentarPinhon() {
+	public int cambiarPinhon(int indicepinhon) {
 		
-		bicicletamontada.setPinhonactual(bicicletamontada.getPinhonactual()+1);
-		
-		return bicicletamontada.getPinhonactual();
-	}
-	
-	/**
-	 * Desminuir el piñón actual al menor adyacente.
-	 * 
-	 * @return El piñón al que se ha cambiado.
-	 */
-	public int disminuirPinhon() {
-		
-		bicicletamontada.setPinhonactual(bicicletamontada.getPinhonactual()-1);
+		if (indicepinhon >= 0 && indicepinhon < VariablesDeContexto.PINHONES.length) {
+			
+			bicicletamontada.setPinhonactual(indicepinhon);
+		}
 		
 		return bicicletamontada.getPinhonactual();
 	}
@@ -138,21 +174,12 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 	 * 
 	 * @return El plato al que se ha cambiado.
 	 */
-	public int aumentarPlato() {
+	public int cambiarPlato(int indiceplato) {
 		
-		bicicletamontada.setPlatoactual(bicicletamontada.getPlatoactual()+1);
+		if (indiceplato >= 0 && indiceplato< VariablesDeContexto.PLATOS.length) {
 		
-		return bicicletamontada.getPlatoactual();
-	}
-	
-	/**
-	 * Desminuir el plato actual al menor adyacente.
-	 * 
-	 * @return El plato al que se ha cambiado.
-	 */
-	public int disminuirPlato() {
-		
-		bicicletamontada.setPlatoactual(bicicletamontada.getPlatoactual()-1);
+			bicicletamontada.setPlatoactual(indiceplato);
+		}
 		
 		return bicicletamontada.getPlatoactual();
 	}
@@ -198,7 +225,7 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 	 *  
 	 * @return La cadencia
 	 */
-	public double getCadencia() {
+	public int getCadencia() {
 		return cadencia;
 	}
 	
@@ -209,6 +236,7 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 	 */
 	public void setCadencia(int cadencia) {
 		this.cadencia = cadencia;
+		calcularPeriodo();
 	}
 	
 	/**
@@ -216,17 +244,48 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 	 *  
 	 * @return La cadencia
 	 */
-	public int getPeriodo() {
+	public double getPeriodo() {
 		return periodo;
 	}
 
+	public void setContadorCadencia(int contador) {
+		contadorcadencia = contador;
+	}
+
 	/**
-	 * Cambia el periodo del ciclista.
+	 * Obtiene el tiempo de pedalada del ciclista.
 	 * 
-	 * @param cadencia Cadencia nueva.
+	 * @return Tiempo de pedalada.
 	 */
-	public void setPeriodo(int periodo) {
-		this.periodo = periodo;
+	public double getTiempopedalada() {
+		return tiempopedalada;
+	}
+
+	/**
+	 * Cambia el tiempo de pedalada del ciclista.
+	 * 
+	 * @param tiempopedalada Nuevo tiempo de pedalada.
+	 */
+	public void setTiempopedalada(Double tiempopedalada) {
+		this.tiempopedalada = tiempopedalada;
+	}
+
+	/**
+	 * Obtiene el estado de si el ciclista se ha estrellado.
+	 * 
+	 * @return True si se ha estrellado, false EOC.
+	 */
+	public boolean isEstrellado() {
+		return estrellado;
+	}
+
+	/**
+	 * Cambia el estado del ciclista si se ha estrellado.
+	 * 
+	 * @param estrellado
+	 */
+	public void setEstrellado(boolean estrellado) {
+		this.estrellado = estrellado;
 	}
 
 	/**
@@ -244,6 +303,44 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 	 * @return Identificador único.
 	 */
 	public String getIdentificadorSalidaDatos() {
-		return numeromallot + " " + getNombre(); 
+		return numeromallot + " ciclista";
+	}
+
+	/**
+	 * Obtiene la fuerza del ciclista.
+	 * 
+	 * @return La fuerza de 0 a 100
+	 */
+	public double getFuerza() {
+		return fuerza;
+	}
+	
+	/**
+	 * Obtiene la fuerza del ciclista.
+	 * 
+	 * @return La fuerza de 0 a 100
+	 */
+	public int getFuerzaAsInt() {
+		return (int)fuerza;
+	}
+
+	/**
+	 * Asigna la fuerza del ciclista.
+	 * 
+	 * @param fuerza La nueva fuerza del ciclista.
+	 */
+	public void setFuerza(double fuerza) {
+		this.fuerza = fuerza;
+	}
+	/**
+	 * Metodo que redondea decimales
+	 *
+	 * 
+	 * @param numero
+	 * @param decimales
+	 * @return numero redondeado
+	 */
+	public double redondear( double numero, int decimales ) {
+	    return Math.round(numero*Math.pow(10,decimales))/Math.pow(10,decimales);
 	}
 }

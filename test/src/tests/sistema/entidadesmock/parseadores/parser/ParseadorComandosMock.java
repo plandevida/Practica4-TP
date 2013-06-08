@@ -1,33 +1,28 @@
 package src.tests.sistema.entidadesmock.parseadores.parser;
 
-import sistema.controladores.ordenes.Dispatcher;
 import sistema.controladores.ordenes.Orden;
 import sistema.controladores.ordenes.especificas.OrdenAsingarCadencia;
+import sistema.controladores.ordenes.especificas.OrdenAyuda;
+import sistema.controladores.ordenes.especificas.OrdenCambiaViento;
 import sistema.controladores.ordenes.especificas.OrdenCambiarPinhon;
 import sistema.controladores.ordenes.especificas.OrdenCambiarPlato;
 import sistema.controladores.ordenes.especificas.OrdenFrenar;
 
 public class ParseadorComandosMock {
 	
-	// Distribuidor de ordenes
-	private Dispatcher distribuidor;
-	
 	// Lista de ordenes del sistema.
-	Orden[] ordenes = {
+	private final Orden[] ordenes = {
 		new OrdenAsingarCadencia(null, null, null),
 		new OrdenFrenar(null, null, null),
 		new OrdenCambiarPinhon(null, null),
-		new OrdenCambiarPlato(null, null)
+		new OrdenCambiarPlato(null, null),
+		new OrdenCambiaViento(null, null, null),
+		new OrdenAyuda(null)
 	};
-	
-	public ParseadorComandosMock(Dispatcher dispatcher) {
-		distribuidor = dispatcher;
-	}
 	
 	/**
 	 * Genera una orden para un elemento del sistema,
-	 * a partir de un comando recibido y la registra en el
-	 * dispatcher @see {@link Dispatcher#registrarOrdenes(Orden)}
+	 * a partir de un comando recibido
 	 * 
 	 * @param comando Comando recibido.
 	 */
@@ -45,11 +40,11 @@ public class ParseadorComandosMock {
 	}
 	
 	/**
-	 * Devuelve el distribuidor de ordenes del parseador.
+	 * Devuelve la lista de ordenes del sistema.
 	 * 
-	 * @return El distribuidor de ordenes.
+	 * @return Lista de ordenes.
 	 */
-	public Dispatcher getDispatcher() {
-		return distribuidor;
+	public Orden[] getOrdenes() {
+		return ordenes;
 	}
 }

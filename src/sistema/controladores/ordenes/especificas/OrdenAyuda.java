@@ -45,7 +45,7 @@ public class OrdenAyuda extends Orden {
 				
 				if ( tokens.length == 1 ) {
 					try {
-						ordenayuda = new OrdenAyuda(null);
+						ordenayuda = new OrdenAyuda(ordenes);
 					} catch (NumberFormatException ne) {
 						// nada que hacer.
 					}

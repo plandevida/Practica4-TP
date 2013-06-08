@@ -5,17 +5,17 @@ public class TestUtilidadesCiclista {
 	private double cadencia; 
 	
 	
-	public TestUtilidadesCiclista (double cadenciaciclista){
+	public TestUtilidadesCiclista (double cadenciaciclista) {
 		
 		cadencia = cadenciaciclista;
 	}
 	
-	public void setCadencia(double cadencianueva){
+	public void setCadencia(double cadencianueva) {
 		
 		cadencia = cadencianueva;
 	}
 	
-	public double getCadencia(){
+	public double getCadencia() {
 		
 		return cadencia;
 	}

@@ -14,10 +14,15 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import sistema.entrada.lectura.LectorManager;
+import sistema.factoresexternos.viento.MiViento;
 import sistema.manager.VariablesDeContexto;
-import src.tests.sistema.entidadesmock.FactoresExternosMock;
 import src.tests.sistema.entidadesmock.carretera.tramocarreraciclista.TramoCarreraMock;
+import src.tests.sistema.entidadesmock.factoresexternos.CurvioloMock;
+import src.tests.sistema.entidadesmock.factoresexternos.EoloMock;
+import src.tests.sistema.entidadesmock.factoresexternos.FactoresExternosMock;
+import src.tests.sistema.entidadesmock.factoresexternos.PendioloMock;
 import src.tests.sistema.entidadesmock.parseadores.parser.ParseadorCarreraMock;
+import src.tests.sistema.entidadesmock.tiempo.RelojMock;
 import src.tests.sistema.entidadesmock.vehiculos.bicicletas.BicicletaMock;
 import src.tests.utils.TestUtilidadesFactoresExternos;
 
@@ -50,7 +55,7 @@ public class TestFactoresExternos {
 		List<BicicletaMock> listabicicletas = new ArrayList<BicicletaMock>();
 		listabicicletas.add(bicicleta);
 		
-		factoresExternos = new FactoresExternosMock(listabicicletas, mapa);
+		factoresExternos = new FactoresExternosMock(listabicicletas, mapa, new EoloMock(listabicicletas, RelojMock.getInstance(), new HashMap<Integer, MiViento>()), new CurvioloMock(), new PendioloMock(listabicicletas));
 		testUtilidadesFactoresExternos = new TestUtilidadesFactoresExternos(mapa, bicicletatest);
 		
 	

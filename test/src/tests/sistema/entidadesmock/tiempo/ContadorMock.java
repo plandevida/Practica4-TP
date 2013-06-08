@@ -13,6 +13,7 @@ public class ContadorMock implements ObjetosQueSeEjecutan {
 	 * Metodo que ejecuta.
 	 */
 	public void ejecuta() {
+		
 		nuevoImpulso();
 	}
 	
@@ -22,6 +23,7 @@ public class ContadorMock implements ObjetosQueSeEjecutan {
 	public void nuevoImpulso() {
 		impulsos++;
 	}
+	
 	/**
 	 * Metodo para obtener los impulsos.
 	 * 

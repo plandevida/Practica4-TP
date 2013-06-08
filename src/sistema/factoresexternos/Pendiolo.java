@@ -4,7 +4,7 @@ import java.util.List;
 
 import sistema.entidades.carretera.tramocarreraciclista.TramoCarrera;
 import sistema.entidades.personas.ciclistas.Ciclista;
-import sistema.entidades.vehiculos.bicicletas.Bicicleta;
+
 
 /**
  * Clase que se encarga de transmitir la aceleración
@@ -15,9 +15,11 @@ import sistema.entidades.vehiculos.bicicletas.Bicicleta;
  */
 public class Pendiolo {
 	
+
 	private List<Ciclista> ciclista;
 	private TramoCarrera tramoaux;
 	public Pendiolo(List<Ciclista> listaciclista) {
+
 		
 		ciclista = listaciclista;
 	}
@@ -28,8 +30,6 @@ public class Pendiolo {
 		double angulorad = 0d;
 		double factorpendiente = 0d;
 		
-		
-		
 		angulograd = tramo.getPendiente();
 		angulorad = (angulograd * Math.PI)/180;
 		
@@ -38,9 +38,7 @@ public class Pendiolo {
 		
 		if (angulograd < 0) {
 			factorpendiente = factorpendiente + 1d;
-	
 		}
-	
 		
 		return factorpendiente;
 	}
@@ -54,7 +52,6 @@ public class Pendiolo {
 		for(Ciclista cicli: ciclista) {
 			cicli.getBicicletamontada().setPendiente(pendienteTramoActual(tramoActual)) ;
 			
-			}
+		}
 	}
-
 }

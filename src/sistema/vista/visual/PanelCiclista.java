@@ -2,6 +2,7 @@ package sistema.vista.visual;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 import sistema.controladores.ListenerCadenciaPeriodo;
 import sistema.controladores.ListenerFrenar;
@@ -23,6 +24,7 @@ import sistema.controladores.ListenerPlato;
 import sistema.controladores.ordenes.Dispatcher;
 import sistema.controladores.parseadores.ParseadorComandos;
 import sistema.entidades.personas.ciclistas.Ciclista;
+import sistema.entidades.tiempo.Reloj;
 import sistema.factoresexternos.viento.MiViento;
 import sistema.interfaces.ObjetosConSalidaDeDatos;
 import sistema.manager.Presentador;
@@ -41,11 +43,11 @@ import com.jgoodies.forms.layout.RowSpec;
 public class PanelCiclista extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField tnombreCiclista;
-	private JTextField tVelocidad;
-	private JTextField tDistancia;
-	private JTextField tCantidad;
-	private JTextField tTiempo;
+	private JFormattedTextField tnombreCiclista;
+	private JFormattedTextField tVelocidad;
+	private JFormattedTextField tDistancia;
+	private JFormattedTextField tCantidad;
+	private JFormattedTextField tTiempo;
 	private JProgressBar PBfuerza;
 	
 	private Dispatcher micomandero;
@@ -186,7 +188,7 @@ public class PanelCiclista extends JPanel {
 	public void setBicicletaData(String velocidad, String distancia, Integer pinhon, Integer plato) {
 		
 		tVelocidad.setText(velocidad);
-		tDistancia.setText(distancia);
+		tDistancia.setText(distancia + " m");
 		ftPinhon.setValue(pinhon);
 		ftPlato.setValue(plato);
 	}
@@ -215,24 +217,34 @@ public class PanelCiclista extends JPanel {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,}));
 		
+		MaskFormatter mask = null;
+		MaskFormatter maskvelocidad = null;
+		try {
+			mask = new MaskFormatter("#.##");
+			maskvelocidad = new MaskFormatter("#.## m/s");
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
 		JLabel lblNombre = new JLabel("Nombre:");
 		panel_1.add(lblNombre, "2, 2, right, default");
 		
-		tnombreCiclista = new JTextField();
+		tnombreCiclista = new JFormattedTextField();
 		panel_1.add(tnombreCiclista, "4, 2, fill, default");
 		tnombreCiclista.setColumns(10);
 		
 		JLabel lblVelocidad = new JLabel("Velocidad:");
 		panel_1.add(lblVelocidad, "2, 4, right, default");
 		
-		tVelocidad = new JTextField();
+		tVelocidad = new JFormattedTextField(maskvelocidad);
 		panel_1.add(tVelocidad, "4, 4, fill, default");
 		tVelocidad.setColumns(10);
 		
 		JLabel lblDistancia = new JLabel("Distancia:");
 		panel_1.add(lblDistancia, "2, 6, right, default");
 		
-		tDistancia = new JTextField();
+		tDistancia = new JFormattedTextField();
 		panel_1.add(tDistancia, "4, 6, fill, default");
 		tDistancia.setColumns(10);
 		
@@ -387,7 +399,7 @@ public class PanelCiclista extends JPanel {
 		JLabel lblCantidad = new JLabel("Cantidad:");
 		panel_2.add(lblCantidad, "4, 6, 4, 1, center, default");
 		
-		tCantidad = new JTextField();
+		tCantidad = new JFormattedTextField(mask);
 		panel_2.add(tCantidad, "8, 6, fill, default");
 		tCantidad.setColumns(10);
 		
@@ -402,7 +414,7 @@ public class PanelCiclista extends JPanel {
 		JLabel lblTiempo = new JLabel("Tiempo:");
 		panel_2.add(lblTiempo, "4, 8, 4, 1, center, default");
 		
-		tTiempo = new JTextField();
+		tTiempo = new JFormattedTextField(mask);
 		panel_2.add(tTiempo, "8, 8, fill, default");
 		tTiempo.setColumns(10);
 	}
@@ -418,7 +430,7 @@ public class PanelCiclista extends JPanel {
 		
 		Map<Integer, MiViento> vientoporhoras = new HashMap<Integer, MiViento>();
 		
-		Presentador presentadorsistema = new Presentador(ciclistas, objetosamostarenvista, vientoporhoras, p.getOrdenes());
+		Presentador presentadorsistema = new Presentador(ciclistas, objetosamostarenvista, vientoporhoras, p.getOrdenes(), Reloj.getInstance());
 		
 		FormateadorDatosVista formateador = null;
 		
