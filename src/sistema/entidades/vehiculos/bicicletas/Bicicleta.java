@@ -35,7 +35,7 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 		setVelocidad(0);
 		setEspacioRecorrido(0);
 		setPinhonactual(0);
-		setPlatoactual(0);
+		setPlatoactual(2);
 		radiorueda = VariablesDeContexto.RADIO_RUEDA;
 		peso = 10;
 		aceleracionpendiente = 0;
@@ -152,7 +152,7 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 			if (velocidad<0) velocidad = 0.00d;
 		}
 
-		setVelocidad(velocidad);
+		setVelocidad(velocidad * VariablesDeContexto.AUMENTO_VELOCIDAD);
 		setEspacioRecorrido(velocidad);
 		
 		return ((peso/VariablesDeContexto.FUERZA_GRAVEDAD + pesociclista/VariablesDeContexto.FUERZA_GRAVEDAD )*(aceleracion + aceleracionfactores));

@@ -40,7 +40,10 @@ public class VariablesDeContexto {
     public static int UNIDAD_TIEMPO = 100;
     
     public static double RADIO_RUEDA = 0.2d;
-    public static int REDUCIR_FUERZA_GASTADA = 15;
+    //Variables para controlar la velocidad de la aplicacion 
+    public static int REDUCIR_FUERZA_GASTADA = 15;	// Contra mas alto menos fuerza GASTAN
+    	
+    public static int VELOCIDAD_PERIODO = 20;	// Inversamente proporcional. Aumenta la velocidad en la que dan pedalas si se reduce el valor
     
-    public static int VELOCIDAD_PERIODO = 20;
+    public static int AUMENTO_VELOCIDAD = 5; //Directamente proporcional. Aumenta la velocidad del ciclista si se aumenta el valor 
 }

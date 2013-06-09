@@ -42,7 +42,7 @@ public class FactoresExternos implements ObjetosQueSeEjecutan {
 	@Override
 	public void ejecuta() {
 		eolo.setVientoModificado();
-		//pendiolo.setPendienteodificado();
+		pendiolo.setPendienteodificado();
 		curviolo.comporvarcurvasas();
 	}
 }
