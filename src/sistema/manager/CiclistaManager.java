@@ -130,6 +130,7 @@ public class CiclistaManager {
 		parseadorcarrera.parse(datos);
 
 		VariablesDeContexto.LONGITUD_CARRERA = parseadorcarrera.getLongitudCarrera();
+		VariablesDeContexto.meta = VariablesDeContexto.LONGITUD_CARRERA;
 	}
 	
 	/**
@@ -155,7 +156,7 @@ public class CiclistaManager {
 		reloj = Reloj.getInstance();
 
 		bicicletas = new ArrayList<Bicicleta>();
-
+		
 		try {
 			// Generador de nombres basado en silabas, con prefijos y sufijos.
 			generadordenombres = new NameGenerator(VariablesDeContexto.DEFAULT_SYLLABLE_FILE_PATH);

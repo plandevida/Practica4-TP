@@ -8,6 +8,7 @@ import sistema.controladores.ordenes.especificas.OrdenCambiarPinhon;
 import sistema.controladores.ordenes.especificas.OrdenCambiarPlato;
 import sistema.controladores.ordenes.especificas.OrdenCrearCurva;
 import sistema.controladores.ordenes.especificas.OrdenFrenar;
+import sistema.controladores.ordenes.especificas.OrdenPonerMeta;
 
 /**
  * Clase que construye la orden para el sistema a partir
@@ -26,7 +27,9 @@ public class ParseadorComandos {
 		new OrdenCambiarPlato(null, null),
 		new OrdenCambiaViento(null, null, null),
 		new OrdenCrearCurva(null, null),
+		new OrdenPonerMeta(null),
 		new OrdenAyuda(null)
+		
 	};
 	
 	/**

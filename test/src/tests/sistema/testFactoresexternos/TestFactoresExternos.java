@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import sistema.entidades.carretera.tramocarreraciclista.Curva;
 import sistema.entrada.lectura.LectorManager;
 import sistema.factoresexternos.viento.MiViento;
 import sistema.manager.VariablesDeContexto;
@@ -55,6 +56,8 @@ public class TestFactoresExternos {
 		List<BicicletaMock> listabicicletas = new ArrayList<BicicletaMock>();
 		listabicicletas.add(bicicleta);
 		
+	
+		
 		factoresExternos = new FactoresExternosMock(listabicicletas, mapa, new EoloMock(listabicicletas, RelojMock.getInstance(), new HashMap<Integer, MiViento>()), new CurvioloMock(), new PendioloMock(listabicicletas));
 		testUtilidadesFactoresExternos = new TestUtilidadesFactoresExternos(mapa, bicicletatest);
 		
@@ -79,7 +82,13 @@ public class TestFactoresExternos {
 		//Se ejecuta el objeto de la clase factores externos
 		factoresExternos.ejecuta();
 		
-		//Comparamos que la velocidad, al modificarla con los valores externos es la correcta
+		// Comprobamos que se crea una curva correctamente con el punto km especificados
+		assertEquals("Error:El punto km no es el correcto", testUtilidadesFactoresExternos.getListacurvas().get(0).getPuntokilometrico(),5d,0);
+		
+		// Comprobamos que se crea una curva correctamente con la velocidad maxima especificada
+		assertEquals("Error: La velocidad maxima no es la correcta", testUtilidadesFactoresExternos.getListacurvas().get(0).getVelocidadmaximacurva(),5d,0);
+		
+		//Comparamos que la velocidad, al modificarla con los valores externos es la correctaS
 		assertEquals("Error: La velocidad de la bicicleta al modificarla con los factores externos no es la correcta", bicicletatest.getVelocidad(), 
 																													   bicicleta.getVelocidad(), 0);
 	}

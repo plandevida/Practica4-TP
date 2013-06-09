@@ -39,22 +39,22 @@ public class TestReloj {
 	@Test
 	public void testResultadosEsperados() {
 		
-		for ( int i = 0; i < 100*60*60; i++) {
+		for ( int i = 0; i < 1000*60*60; i++) {
 			
 			reloj.nuevoImpulso();
 			
 			//Se mira que al hacer 100 impulsos aumente 1 segundo
-			if(i == 100) assertEquals("Error: La velocidad de la bicicleta no es la correcta", 1, reloj.getSegundos(), 0);
+			if(i == 1000) assertEquals("Error: no aumenta 1 segundo ", 1, reloj.getSegundos(), 0);
 			
 			//Se mira que al hacer 60 segundos aumente 1 minuto
-			if(i == 100*60) assertEquals("Error: La velocidad de la bicicleta no es la correcta", 1, reloj.getMinutos(), 0);
+			if(i == 1000*60) assertEquals("Error: no aumenta 1 minuto", 1, reloj.getMinutos(), 0);
 			
 			//Se mira que al hacer 60 minutos aumente 1 hora
-			if(i == 100*60*60) assertEquals("Error: La velocidad de la bicicleta no es la correcta", 1, reloj.getHoras(), 0);
+			if(i == 1000*60*60) assertEquals("Error: no aumenta 1 hora", 1, reloj.getHoras(), 0);
 		}
 		
 		//Cuando pasa 1 hora el for termina y los impulsos vuelven a cero
-		assertEquals("Error: La velocidad de la bicicleta no es la correcta", 0, reloj.getImpulsos(), 0);
+		assertEquals("Error: los impulsos no han vuelto a cero", 0, reloj.getImpulsos(), 0);
 
 		
 		

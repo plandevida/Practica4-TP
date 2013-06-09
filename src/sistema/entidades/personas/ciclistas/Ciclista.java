@@ -42,6 +42,8 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	
 	private boolean estrellado;
 	
+	private boolean ganador;
+	
 	/**
 	 * Crea un ciclista.
 	 * 
@@ -65,6 +67,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 		this.fuerza = fuerza;
 		bicicletamontada.setId(numeromallot);
 		estrellado = false;
+		ganador = false;
 		
 		calcularPeriodo();
 		contadorcadencia = 1;
@@ -110,26 +113,40 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 * Las pedaladas se dan en fuencion de la cadencia
 	 */
 	public void pedalear() {
-//		System.out.println(numeromallot+" estre "+ estrellado);
-		if(!estrellado){
-			if (fuerza>0){
-				if (reloj.getMilisegundos() != milisegundos) {
-					
-					
-					if (contadorcadencia >= (periodo * VariablesDeContexto.VELOCIDAD_PERIODO)) {
+		if(VariablesDeContexto.carrera){
+			
+			if(bicicletamontada.getEspacioRecorrido() < VariablesDeContexto.meta){
+				if(!ganador){
+				
+					if(!estrellado){
 						
-						
-						double fuerzagastada = redondear ((bicicletamontada.darPedalada(tiempopedalada, getPeso()))/VariablesDeContexto.REDUCIR_FUERZA_GASTADA,2); 
-						if (fuerza > 0) fuerza = redondear((fuerza - fuerzagastada),2);
-//						System.out.println("mallot "+ numeromallot+" ve "+bicicletamontada.getVelocidad());
-//						System.out.println(numeromallot+" t "+tiempopedalada+" p "+ periodo+" f "+fuerzagastada+ " f " +fuerza );
-						contadorcadencia = 1;
+						if (fuerza>0){
+							
+							if (reloj.getMilisegundos() != milisegundos) {
+								
+								
+								if (contadorcadencia >= (periodo * VariablesDeContexto.VELOCIDAD_PERIODO)) {
+									
+									
+									double fuerzagastada = redondear ((bicicletamontada.darPedalada(tiempopedalada, getPeso()))/VariablesDeContexto.REDUCIR_FUERZA_GASTADA,2);
+								
+									if (fuerza > 0) fuerza = redondear((fuerza - fuerzagastada),2);
+									
+										contadorcadencia = 1;
+									}
+								
+									contadorcadencia++;
+			
+									milisegundos = reloj.getMilisegundos();
+							}
+						}
 					}
-					
-					contadorcadencia++;
-
-					milisegundos = reloj.getMilisegundos();
 				}
+			}
+			else {
+				VariablesDeContexto.carrera = false;
+				ganador = true;
+				System.out.println("¡El ciclista "+numeromallot+ " ha ganado!");
 			}
 		}
 	}
@@ -340,6 +357,14 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	public void setFuerza(double fuerza) {
 		this.fuerza = fuerza;
 	}
+	public boolean isGanador() {
+		return ganador;
+	}
+
+	public void setGanador(boolean ganador) {
+		this.ganador = ganador;
+	}
+
 	/**
 	 * Metodo que redondea decimales
 	 *
