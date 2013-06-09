@@ -6,6 +6,7 @@ import java.util.StringTokenizer;
 
 import sistema.interfaces.ObjetosConSalidaDeDatos;
 import sistema.interfaces.ObjetosQueSeEjecutan;
+import sistema.manager.VariablesDeContexto;
 import sistema.vista.InterfaceSalidaDatos;
 
 public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSeEjecutan {
@@ -110,6 +111,14 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 
 			break;
 			
+		case "#fincarrera#":
+			
+			datos[0] = mensaje.nextToken();
+			
+			vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), (Object[])datos);
+
+			break;
+			
 		default:
 			
 			vista.ponerDatosEnVentana(objetoamostrar.getIdentificadorSalidaDatos(), mensaje.toString());
@@ -158,8 +167,13 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 	@Override
 	public void mostrarDatos() {
 		
-		for(ObjetosConSalidaDeDatos objetoamostrar : registroobjetossalidadatos) {
-			formateadorDatos(objetoamostrar);
+		if ( ! VariablesDeContexto.CARRERA) {
+			for(ObjetosConSalidaDeDatos objetoamostrar : registroobjetossalidadatos) {
+				formateadorDatos(objetoamostrar);
+			}
+		}
+		else {
+			formateaDato("#fincarrera#", "La carrera a finalizado.");
 		}
 	}
 	

@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -37,30 +38,6 @@ public class Ventana extends JFrame {
 	private Dispatcher micomandero;
 	
 	private Lienzo canvas;
-
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					List<Ciclista> a = new ArrayList<>();
-//					
-//					List<ObjetosConSalidaDeDatos> v = new ArrayList<>();
-//					
-//					ParseadorComandos p = new ParseadorComandos();
-//					
-//					Ventana vv = null;
-//					
-//					vv = new Ventana(new Dispatcher(new Presentador(a, v, new HashMap<Integer, MiViento>(), p.getOrdenes()), p, new FormateadorDatosVista(v, vv)));
-//					
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 
 	/**
 	 * Create the frame.
@@ -159,6 +136,11 @@ public class Ventana extends JFrame {
 			case "log":
 				
 				taRegistro.setText(taRegistro.getText() + "\n" + (String)mensajes[0]);
+				
+				break;
+			case "fincarrera":
+				
+				new JOptionPane((String)mensajes[0], JOptionPane.INFORMATION_MESSAGE).setVisible(true);
 				
 				break;
 			default:

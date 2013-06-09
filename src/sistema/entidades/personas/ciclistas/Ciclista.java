@@ -121,11 +121,12 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	/**
 	 * 
 	 */
+
 	
 	public boolean ciclistaPuedeAvanzar(){
 		boolean avanza = false;
-		if(VariablesDeContexto.carrera){
-			
+		if(VariablesDeContexto.CARRERA){
+
 			if(bicicletamontada.getEspacioRecorrido() < VariablesDeContexto.META){
 				if(!ganador){
 				
@@ -139,7 +140,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 				}
 			}
 			else if(ganador!=true){
-				VariablesDeContexto.carrera = false;
+				VariablesDeContexto.CARRERA = false;
 				ganador = true;
 				System.out.println("¡El ciclista "+numeromallot+ " ha ganado!");
 			}

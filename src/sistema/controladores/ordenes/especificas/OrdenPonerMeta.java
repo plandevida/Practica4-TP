@@ -29,7 +29,7 @@ public class OrdenPonerMeta extends Orden {
 			 for (Ciclista c : listadeciclistas){
 				 
 				 if(c.getBicicletamontada().getEspacioRecorrido() >= meta){
-					 VariablesDeContexto.carrera = false;
+					 VariablesDeContexto.CARRERA = false;
 					 c.setGanador(true);
 				 }
 			 }

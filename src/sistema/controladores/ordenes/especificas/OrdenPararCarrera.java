@@ -17,7 +17,7 @@ public class OrdenPararCarrera extends Orden{
 	@Override
 	public void ejecutarOrden() {
 		
-		VariablesDeContexto.carrera = false;
+		VariablesDeContexto.CARRERA = false;
 	}
 
 	@Override

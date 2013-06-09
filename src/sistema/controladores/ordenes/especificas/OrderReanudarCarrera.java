@@ -16,7 +16,7 @@ public class OrderReanudarCarrera extends Orden{
 
 	@Override
 	public void ejecutarOrden() {
-		VariablesDeContexto.carrera = true;
+		VariablesDeContexto.CARRERA = true;
 		
 	}
 
