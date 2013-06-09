@@ -28,7 +28,9 @@ public class VariablesDeContexto {
     public static int MAX_CICLISTAS = 4;
     public static int MAX_CADENCIA = 120;
     
+    public static boolean carrera = true;
     public static double LONGITUD_CARRERA = 0;
+    public static double meta = 0;
     public static final int ANCHO_REPRESENTACION_CICLISTA = 20;
     public static final Color[] COLORES = { Color.BLUE,  Color.MAGENTA, Color.ORANGE, Color.PINK, Color.RED, Color.CYAN, Color.GREEN, Color.WHITE, Color.YELLOW, Color.BLACK, Color.DARK_GRAY, Color.GRAY, Color.LIGHT_GRAY };
     public static final int  FACTORESCALA = 2;
