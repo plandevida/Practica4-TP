@@ -19,8 +19,8 @@ public class Pendiolo {
 	
 	private List<Ciclista> ciclista;
 
-	private TramoCarrera tramosig;		
-	private TramoCarrera tramo;
+		
+
 	private Map<Integer, TramoCarrera> carreteradecarreraciclista;
 	
 	public Pendiolo(List<Ciclista> listaciclista,Map<Integer, TramoCarrera> carreteradecarreraciclista) {
@@ -33,36 +33,33 @@ public class Pendiolo {
 	 *  Busca el tramo en el que se encuentra la bici 
 	 * @return devuelve el tramo
 	 */
-	private void tramoActual(Ciclista ciclista) {
+	private TramoCarrera tramoActual(Ciclista ciclista) {
 		
 		TramoCarrera tramo = new TramoCarrera(0, 0);
-		TramoCarrera tramosig = new TramoCarrera(0, 0);
+
 		
 			for(Integer reco : carreteradecarreraciclista.keySet()) {
 	
-				if ( carreteradecarreraciclista.get(reco).getKilometros() <= (int) ciclista.getBicicletamontada().getEspacioRecorrido() ) {
+				if ( reco <= (int) ciclista.getBicicletamontada().getEspacioRecorrido() ) {
 					tramo = carreteradecarreraciclista.get(reco);
-					if (carreteradecarreraciclista.get(reco+1)!=null) tramosig = carreteradecarreraciclista.get(reco+1);
+					
 				
 			}
 			
 		}
-			this.tramo = tramo;
-			this.tramosig = tramosig;
+			return tramo;
+		
 		
 	}
 
-	private double pendienteTramoActual() {
-		double recorrido = 0d;
+	private double pendienteTramoActual(TramoCarrera tramo) {
+		
 		double aceleracionpendiente = 0d;
 		
-		if (tramosig.getKilometros()!=0){
-			
-			recorrido = tramosig.getKilometros() - tramo.getKilometros();
-			
-			aceleracionpendiente = VariablesDeContexto.FUERZA_GRAVEDAD* (tramo.getPendiente()/recorrido); 
-		}
+
+			aceleracionpendiente = VariablesDeContexto.FUERZA_GRAVEDAD* (tramo.getPendiente()/tramo.getKilometros()); 
 		
+			return (aceleracionpendiente/10)*-1;
 		
 		 
 				
@@ -80,7 +77,7 @@ public class Pendiolo {
 //			factorpendiente = factorpendiente + 1d;
 //		}
 //		
-		return (aceleracionpendiente/10)*-1;
+		
 	}
 	
 	/**
@@ -90,8 +87,8 @@ public class Pendiolo {
 	public void setPendienteodificado() {
 
 		for(Ciclista cicli: ciclista) {
-			tramoActual(cicli);
-			cicli.getBicicletamontada().setPendiente(pendienteTramoActual()) ;
+			
+			cicli.getBicicletamontada().setPendiente(pendienteTramoActual(tramoActual(cicli))) ;
 			
 		}
 	}
