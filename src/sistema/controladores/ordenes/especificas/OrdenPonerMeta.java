@@ -19,7 +19,7 @@ public class OrdenPonerMeta extends Orden {
 		return (new StringBuilder()
 					.append("Meta posicionada en el km ")
 					.append(meta)
-					.append(" m/s")).toString();
+					.append(" Km")).toString();
 	}
 
 	@Override
