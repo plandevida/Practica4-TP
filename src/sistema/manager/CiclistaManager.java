@@ -130,7 +130,7 @@ public class CiclistaManager {
 		parseadorcarrera.parse(datos);
 
 		VariablesDeContexto.LONGITUD_CARRERA = parseadorcarrera.getLongitudCarrera();
-		VariablesDeContexto.meta = VariablesDeContexto.LONGITUD_CARRERA;
+		VariablesDeContexto.META = VariablesDeContexto.LONGITUD_CARRERA;
 	}
 	
 	/**

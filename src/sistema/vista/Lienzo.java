@@ -176,6 +176,11 @@ public class Lienzo extends Canvas implements ObjetosQueSeEjecutan {
 		    }
 
 		}
+		
+		// Pintamos la meta
+		g.setColor(Color.RED);
+		g.drawImage(Imagenes.getMeta35x25().getImage(), (int) VariablesDeContexto.META, 11, null);
+	    g.drawLine((int) VariablesDeContexto.META, 0, (int) VariablesDeContexto.META, VariablesDeContexto.ALTO_LIENZO);
 
 		// pintamos los PK de las curvas
 		Iterator<Curva> itcurva = curva.iterator();
