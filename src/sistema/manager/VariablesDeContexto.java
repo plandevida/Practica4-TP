@@ -48,5 +48,5 @@ public class VariablesDeContexto {
     	
     public static int VELOCIDAD_PERIODO = 20;	// Inversamente proporcional. Aumenta la velocidad en la que dan pedalas si se reduce el valor
     
-    public static int AUMENTO_VELOCIDAD = 5; //Directamente proporcional. Aumenta la velocidad del ciclista si se aumenta el valor 
+    public static int AUMENTO_VELOCIDAD = 2; //Directamente proporcional. Aumenta la velocidad del ciclista si se aumenta el valor 
 }

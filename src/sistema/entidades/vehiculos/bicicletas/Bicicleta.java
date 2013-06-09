@@ -152,8 +152,8 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 			if (velocidad<0) velocidad = 0.00d;
 		}
 
-		setVelocidad(velocidad * VariablesDeContexto.AUMENTO_VELOCIDAD);
-		setEspacioRecorrido(velocidad);
+		setVelocidad(velocidad);
+		setEspacioRecorrido((getVelocidad())/impulso);
 		
 		return ((peso/VariablesDeContexto.FUERZA_GRAVEDAD + pesociclista/VariablesDeContexto.FUERZA_GRAVEDAD )*(aceleracion + aceleracionfactores));
 	}
@@ -161,14 +161,14 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	/**
 	 * Decrementa la velocidad de la bicicleta.
 	 */
-	public void frenar() {
-		double velocidad = getVelocidad();
+	public void frenar(double decrementovelocidad) {
+		System.out.println(decrementovelocidad);
+		double velocidad = getVelocidad() - decrementovelocidad;
 		
-		setEspacioRecorrido(espacioDePedalada());
-		
-		double decrementovelocidad = velocidad * 0.2;
-		
-		setVelocidad(getVelocidad()-decrementovelocidad);
+		if (velocidad < 0) velocidad = 0.00d; 
+
+		setVelocidad(velocidad);
+		setEspacioRecorrido(getVelocidad()/impulso);
 	}
 	
 	/**

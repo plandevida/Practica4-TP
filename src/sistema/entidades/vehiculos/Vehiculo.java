@@ -1,5 +1,7 @@
 package sistema.entidades.vehiculos;
 
+import sistema.manager.VariablesDeContexto;
+
 /**
  * Clase que representa cualquier veículo del sistema
  * @author Daniel Serrano Torres
@@ -18,7 +20,7 @@ public class Vehiculo {
 	 * @return El valor de la velocidad del veículo.
 	 */
 	public double getVelocidad() {
-		return velocidadactual;
+		return redondear(velocidadactual/VariablesDeContexto.AUMENTO_VELOCIDAD,2);
 	}
 	
 	/**
@@ -27,7 +29,7 @@ public class Vehiculo {
 	 * @param velocidadnueva La nueva velocidad de la bicicleta.
 	 */
 	public void setVelocidad(double velocidadnueva) {
-		velocidadactual = redondear(velocidadnueva,2)+0.00d;
+		velocidadactual = redondear(velocidadnueva*VariablesDeContexto.AUMENTO_VELOCIDAD,2)+0.00d;
 	}
 	
 	/**

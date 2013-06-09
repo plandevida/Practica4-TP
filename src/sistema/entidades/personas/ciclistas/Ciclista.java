@@ -37,12 +37,20 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	
 	private int contadorcadencia;
 	
+	private int contadortiempofrenado;
+	
 	// El cansancio del ciclista.
 	private double fuerza;
 	
 	private boolean estrellado;
 	
 	private boolean ganador;
+	
+	private boolean frenando;
+	
+	private double tiempofrenado;
+	
+	private double cantidadfrenado;
 	
 	/**
 	 * Crea un ciclista.
@@ -68,9 +76,12 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 		bicicletamontada.setId(numeromallot);
 		estrellado = false;
 		ganador = false;
-		
+		frenando = false;
+		tiempofrenado = 0d;
+		cantidadfrenado = 0d;
 		calcularPeriodo();
 		contadorcadencia = 1;
+		contadortiempofrenado = 1;
 	}
 	
 	/**
@@ -107,12 +118,12 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 
 		return stringTokenizer;
 	}
-	
 	/**
-	 * Metodo que da pedaladas a la bicicleta y actualiza la fuerza consumida.
-	 * Las pedaladas se dan en fuencion de la cadencia
+	 * 
 	 */
-	public void pedalear() {
+	
+	public boolean ciclistaPuedeAvanzar(){
+		boolean avanza = false;
 		if(VariablesDeContexto.carrera){
 			
 			if(bicicletamontada.getEspacioRecorrido() < VariablesDeContexto.META){
@@ -122,23 +133,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 						
 						if (fuerza>0){
 							
-							if (reloj.getMilisegundos() != milisegundos) {
-								
-								
-								if (contadorcadencia >= (periodo * VariablesDeContexto.VELOCIDAD_PERIODO)) {
-									
-									
-									double fuerzagastada = redondear ((bicicletamontada.darPedalada(tiempopedalada, getPeso()))/VariablesDeContexto.REDUCIR_FUERZA_GASTADA,2);
-								
-									if (fuerza > 0) fuerza = redondear((fuerza - fuerzagastada),2);
-									
-										contadorcadencia = 1;
-									}
-								
-									contadorcadencia++;
-			
-									milisegundos = reloj.getMilisegundos();
-							}
+							avanza = true;
 						}
 					}
 				}
@@ -148,6 +143,33 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 				ganador = true;
 				System.out.println("¡El ciclista "+numeromallot+ " ha ganado!");
 			}
+		}
+		return avanza;
+	}
+	/**
+	 * Metodo que da pedaladas a la bicicleta y actualiza la fuerza consumida.
+	 * Las pedaladas se dan en fuencion de la cadencia
+	 */
+	public void pedalear() {
+		if (ciclistaPuedeAvanzar()){
+			if (reloj.getMilisegundos() != milisegundos) {
+				
+				if (contadorcadencia >= (periodo * VariablesDeContexto.VELOCIDAD_PERIODO)) {
+					if (!frenando){				
+						double fuerzagastada = redondear ((bicicletamontada.darPedalada(tiempopedalada, getPeso()))/VariablesDeContexto.REDUCIR_FUERZA_GASTADA,2);
+								
+						if (fuerza > 0) fuerza = redondear((fuerza - fuerzagastada),2);
+					}
+					
+					else frenar();
+					
+					contadorcadencia = 1;
+				}
+				else contadorcadencia++;
+			
+				milisegundos = reloj.getMilisegundos();
+			}
+		
 		}
 	}
 	/**
@@ -165,13 +187,24 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	/**
 	 * Frena la bicicleta.
 	 */
-	public void frenar(Double cantidadafrenar, Double tiempoparafrenar) {
-		
-		if (reloj.getMilisegundos() != milisegundos) {
-			bicicletamontada.frenar();
-		
-			milisegundos = reloj.getMilisegundos();
+	public void frenar() {
+
+		if(contadortiempofrenado <= tiempofrenado ){
+					
+			bicicletamontada.frenar(cantidadfrenado);
+					
+			contadortiempofrenado++;
+			System.out.println(contadortiempofrenado);
 		}
+				
+		else {
+			System.out.println(" estoy frenando");
+			contadortiempofrenado = 1;
+			frenando = false;
+			tiempofrenado = 0d;
+			cantidadfrenado = 0d;
+		}
+			
 	}
 
 	/**
@@ -364,7 +397,16 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	public void setGanador(boolean ganador) {
 		this.ganador = ganador;
 	}
-
+	/**
+	 * Metodo para inicializar las variables para que empiece a frenar
+	 * @param tiempofrenado tiempo que estara frenando
+	 * @param cantidad	la cantidad q frenara
+	 */
+	public void setFrenando(double tiempofrenado, double cantidad){
+		frenando = true;
+		this.tiempofrenado = tiempofrenado;
+		cantidadfrenado = cantidad/tiempofrenado;
+	}
 	/**
 	 * Metodo que redondea decimales
 	 *

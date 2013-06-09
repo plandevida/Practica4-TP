@@ -31,7 +31,7 @@ public class ParseadorComandos {
 		new OrdenCambiaViento(null, null, null),
 		new OrdenCrearCurva(null, null),
 		new OrdenPonerMeta(null),
-		new OrdenClembuterol(null),
+		new OrdenClembuterol(null,null),
 		new OrdenPararCarrera(),
 		new OrderReanudarCarrera(),
 		new OrdenAyuda(null)
