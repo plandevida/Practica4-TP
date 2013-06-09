@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import sistema.entidades.carretera.tramocarreraciclista.Curva;
 import sistema.entidades.carretera.tramocarreraciclista.TramoCarrera;
 import sistema.entidades.personas.ciclistas.Ciclista;
+import sistema.entrada.imagenes.Imagenes;
 import sistema.interfaces.ObjetosQueSeEjecutan;
 import sistema.manager.VariablesDeContexto;
 
@@ -147,8 +148,8 @@ public class Lienzo extends Canvas implements ObjetosQueSeEjecutan {
 				
 				g.drawLine((int)x_aux, y, (int)((tramosiguente.getKey()/(double)max)*VariablesDeContexto.ANCHO_LIENZO), (int) (y - tramoactual.getValue().getPendiente()));
 				
-				System.out.println(x_aux);
-				System.out.println((int)((tramosiguente.getKey()/(double)max)*VariablesDeContexto.ANCHO_LIENZO));
+//				System.out.println(x_aux);
+//				System.out.println((int)((tramosiguente.getKey()/(double)max)*VariablesDeContexto.ANCHO_LIENZO));
 				
 				// pintamos el cielo
 				Polygon polygonCielo = creaPoligono(new Point((int)x_aux, 0),
@@ -178,13 +179,16 @@ public class Lienzo extends Canvas implements ObjetosQueSeEjecutan {
 
 		// pintamos los PK de las curvas
 		Iterator<Curva> itcurva = curva.iterator();
+		int offsetY = 0;
 		while (itcurva.hasNext()) {
 			
 		    Curva tramocurva = itcurva.next();
 		    g.setColor(Color.black);
-		    g.drawString("Curva en PK " + tramocurva.getPuntokilometrico().intValue(), tramocurva.getPuntokilometrico().intValue() - 60, 30);
-		    g.drawString("con velocidad maxima " + tramocurva.getVelocidadmaximacurva(), tramocurva.getPuntokilometrico().intValue() - 80, 40);
+		    g.drawString("Curva en PK " + tramocurva.getPuntokilometrico().intValue(), tramocurva.getPuntokilometrico().intValue(), 11 + offsetY);
+		    g.drawString("con velocidad maxima " + tramocurva.getVelocidadmaximacurva(), tramocurva.getPuntokilometrico().intValue(), 21 + offsetY);
+		    g.drawLine(tramocurva.getPuntokilometrico().intValue(), 0, tramocurva.getPuntokilometrico().intValue(), VariablesDeContexto.ALTO_LIENZO);
 	
+		    offsetY += 27;
 		}
 		
 		// aqui se pondra la informacion del ciclista para que se vaya pintando,
@@ -199,10 +203,16 @@ public class Lienzo extends Canvas implements ObjetosQueSeEjecutan {
 		    else
 		    	y = calculaYparaPuntoCiclista(ciclista);
 		    
-		    g.fillOval( (int) ((ciclista.getBicicletamontada().getEspacioRecorrido() / max) * VariablesDeContexto.ANCHO_LIENZO) - VariablesDeContexto.ANCHO_REPRESENTACION_CICLISTA / 2,
-    					y,
-    					VariablesDeContexto.ANCHO_REPRESENTACION_CICLISTA,
-    					VariablesDeContexto.ANCHO_REPRESENTACION_CICLISTA);
+		    x = (int) ((ciclista.getBicicletamontada().getEspacioRecorrido() / max) * VariablesDeContexto.ANCHO_LIENZO) - VariablesDeContexto.ANCHO_REPRESENTACION_CICLISTA / 2;
+		    
+		    if ( ciclista.isEstrellado() ) {
+		    	g.drawImage(Imagenes.getMuerto20x20().getImage(), x, y, null);
+		    }
+		    else {
+			    g.fillOval( x, y,
+	    					VariablesDeContexto.ANCHO_REPRESENTACION_CICLISTA,
+	    					VariablesDeContexto.ANCHO_REPRESENTACION_CICLISTA);
+		    }
 	
 		    id_color_ciclista++;
 		}
