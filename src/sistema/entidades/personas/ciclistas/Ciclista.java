@@ -143,7 +143,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 					}
 				}
 			}
-			else {
+			else if(ganador!=true){
 				VariablesDeContexto.carrera = false;
 				ganador = true;
 				System.out.println("¡El ciclista "+numeromallot+ " ha ganado!");

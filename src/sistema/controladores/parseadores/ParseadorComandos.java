@@ -9,7 +9,9 @@ import sistema.controladores.ordenes.especificas.OrdenCambiarPlato;
 import sistema.controladores.ordenes.especificas.OrdenClembuterol;
 import sistema.controladores.ordenes.especificas.OrdenCrearCurva;
 import sistema.controladores.ordenes.especificas.OrdenFrenar;
+import sistema.controladores.ordenes.especificas.OrdenPararCarrera;
 import sistema.controladores.ordenes.especificas.OrdenPonerMeta;
+import sistema.controladores.ordenes.especificas.OrderReanudarCarrera;
 
 /**
  * Clase que construye la orden para el sistema a partir
@@ -30,6 +32,8 @@ public class ParseadorComandos {
 		new OrdenCrearCurva(null, null),
 		new OrdenPonerMeta(null),
 		new OrdenClembuterol(null),
+		new OrdenPararCarrera(),
+		new OrderReanudarCarrera(),
 		new OrdenAyuda(null)
 		
 	};
