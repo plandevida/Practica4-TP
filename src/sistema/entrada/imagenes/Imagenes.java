@@ -12,7 +12,7 @@ public class Imagenes {
 	private static ImageIcon cachedIcon;
 
 	public static ImageIcon getMuerto() {
-		cachedIcon = new ImageIcon(Imagenes.class.getResource("muerto.jpg"));
+		cachedIcon = new ImageIcon(Imagenes.class.getResource("muerto.png"));
 
 		return getCachedIcon();
 	}
