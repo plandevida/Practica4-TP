@@ -23,6 +23,18 @@ public class Imagenes {
 		return getCachedIcon();
 	}
 
+	public static ImageIcon getMeta() {
+		cachedIcon = new ImageIcon(Imagenes.class.getResource("meta.png"));
+
+		return getCachedIcon();
+	}
+
+	public static ImageIcon getMeta35x25() {
+		cachedIcon = new ImageIcon(getMeta().getImage().getScaledInstance(45, 35, Image.SCALE_FAST));
+
+		return getCachedIcon();
+	}
+
 	/**
 	 * Obtiene la última imagen cargada.
 	 * 

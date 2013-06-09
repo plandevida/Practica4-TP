@@ -34,7 +34,7 @@ public class OrdenPonerMeta extends Orden {
 				 }
 			 }
 		}
-			VariablesDeContexto.meta = meta;
+			VariablesDeContexto.META = meta;
 		
 		
 	}
@@ -83,7 +83,7 @@ public class OrdenPonerMeta extends Orden {
 
 	@Override
 	public String help(boolean detalles) {
-		return "meta <punto_kilometrico";
+		return "meta <punto_kilometrico>";
 	}
 
 }

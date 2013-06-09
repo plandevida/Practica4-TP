@@ -115,7 +115,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	public void pedalear() {
 		if(VariablesDeContexto.carrera){
 			
-			if(bicicletamontada.getEspacioRecorrido() < VariablesDeContexto.meta){
+			if(bicicletamontada.getEspacioRecorrido() < VariablesDeContexto.META){
 				if(!ganador){
 				
 					if(!estrellado){
