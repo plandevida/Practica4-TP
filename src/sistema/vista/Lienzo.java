@@ -216,7 +216,6 @@ public class Lienzo extends Canvas implements ObjetosQueSeEjecutan {
 	
 		    id_color_ciclista++;
 		}
-
     }
 
     private void pintaPoligono(Polygon p, Graphics g, Color col) {
