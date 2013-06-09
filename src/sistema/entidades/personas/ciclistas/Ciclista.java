@@ -113,7 +113,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 * Las pedaladas se dan en fuencion de la cadencia
 	 */
 	public void pedalear() {
-		if(VariablesDeContexto.carrera){
+		if(VariablesDeContexto.CARRERA) {
 			
 			if(bicicletamontada.getEspacioRecorrido() < VariablesDeContexto.META){
 				if(!ganador){
@@ -144,7 +144,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 				}
 			}
 			else {
-				VariablesDeContexto.carrera = false;
+				VariablesDeContexto.CARRERA = false;
 				ganador = true;
 				System.out.println("¡El ciclista "+numeromallot+ " ha ganado!");
 			}
