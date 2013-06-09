@@ -1,7 +1,10 @@
 package src.tests.utils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import sistema.entidades.carretera.tramocarreraciclista.Curva;
 import sistema.factoresexternos.viento.MiViento;
 import sistema.manager.VariablesDeContexto;
 import src.tests.sistema.entidadesmock.carretera.tramocarreraciclista.TramoCarreraMock;
@@ -11,11 +14,12 @@ public class TestUtilidadesFactoresExternos {
 	
 	private Map<Integer, TramoCarreraMock> carreteradecarreraciclista;
 	private BicicletaMock bici;
-	
+	private List<Curva> listacurvas;
 	
 	public TestUtilidadesFactoresExternos(Map<Integer, TramoCarreraMock> carreteradecarreraciclista, BicicletaMock bici){
 		this.carreteradecarreraciclista = carreteradecarreraciclista;
 		this.bici = bici;
+		listacurvas = new ArrayList<Curva>();
 	}
 	
 	
@@ -89,6 +93,20 @@ public class TestUtilidadesFactoresExternos {
 		
 		bici.setVelocidad(velocidad);
 	}
+	public void añadirCurva(){
+		listacurvas.add(new Curva(5d,5d,4));
+	}
+	
+	public List<Curva> getListacurvas() {
+		return listacurvas;
+	}
+
+
+	public void setListacurvas(List<Curva> listacurvas) {
+		this.listacurvas = listacurvas;
+	}
+
+
 	/**
 	 * Ejecuta los factores externos
 	 * 
@@ -96,6 +114,7 @@ public class TestUtilidadesFactoresExternos {
 	public boolean ejecutar() {
 		
 		setVelocidadModificada();
+		añadirCurva();
 		
 		return true;
 	}

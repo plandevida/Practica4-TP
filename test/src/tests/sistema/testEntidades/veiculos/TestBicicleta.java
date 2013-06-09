@@ -18,6 +18,7 @@ import src.tests.sistema.entidadesmock.parseadores.parser.ParseadorCarreraMock;
 import src.tests.sistema.entidadesmock.vehiculos.bicicletas.BicicletaMock;
 import src.tests.utils.TestUtilidadesBicicleta;
 import src.tests.utils.TestUtilidadesCiclista;
+import src.tests.utils.UtilidadesNumericas;
 
 
 @RunWith(JUnit4.class)
@@ -126,9 +127,9 @@ public class TestBicicleta {
 		
 		velocidadfrenado = -(velocidadfrenado *0.2);
 		
-		double velocidadesperadafrenando = velocidadesperada + velocidadfrenado;
-		
-		assertEquals("Error: La velocidad de frenado de la bicicleta no es la correcta", velocidadesperadafrenando, bicicleta.getVelocidad(), 0);
+		double velocidadesperadafrenando = UtilidadesNumericas.redondear(velocidadesperada + velocidadfrenado,1);
+
+		assertEquals("Error: La velocidad de frenado de la bicicleta no es la correcta", velocidadesperadafrenando, UtilidadesNumericas.redondear(bicicleta.getVelocidad(),1), 0);
 		
 		
 		
