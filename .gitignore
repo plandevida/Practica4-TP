@@ -4,6 +4,6 @@
 *.jar
 *.war
 *.ear
-*.DS_STORE
+*.DS_Store
 /bin/*
 /bin
