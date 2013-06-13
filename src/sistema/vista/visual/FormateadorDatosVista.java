@@ -167,7 +167,7 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 	@Override
 	public void mostrarDatos() {
 		
-		if ( ! VariablesDeContexto.CARRERA) {
+		if (  VariablesDeContexto.CARRERA) {
 			for(ObjetosConSalidaDeDatos objetoamostrar : registroobjetossalidadatos) {
 				formateadorDatos(objetoamostrar);
 			}

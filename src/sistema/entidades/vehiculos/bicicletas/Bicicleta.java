@@ -162,11 +162,15 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	 * Decrementa la velocidad de la bicicleta.
 	 */
 	public void frenar(double decrementovelocidad) {
-		System.out.println(decrementovelocidad);
-		double velocidad = getVelocidad() - decrementovelocidad;
+//		System.out.println(decrementovelocidad);
+		double velocidad = 0.00d;
+		if(decrementovelocidad > 0){
+			 velocidad = getVelocidad() - decrementovelocidad;
 		
-		if (velocidad < 0) velocidad = 0.00d; 
-
+			if (velocidad < 0) velocidad = 0.00d; 
+		}
+		
+		
 		setVelocidad(velocidad);
 		setEspacioRecorrido(getVelocidad()/impulso);
 	}
