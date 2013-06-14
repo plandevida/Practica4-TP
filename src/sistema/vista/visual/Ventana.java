@@ -57,6 +57,15 @@ public class Ventana extends JFrame {
 	}
 	
 	/**
+	 * Pone un mensaje en la ventana de log
+	 * @param mensaje
+	 */
+	public void ponerEnLog(String mensaje) {
+		
+		ponerDatosEnVentana("log", mensaje);
+	}
+	
+	/**
 	 * Añade nueva información en un área de texto o crea una nueva
 	 * si fuese necesario.
 	 * 
@@ -140,7 +149,7 @@ public class Ventana extends JFrame {
 				break;
 			case "fincarrera":
 				
-				new JOptionPane((String)mensajes[0], JOptionPane.INFORMATION_MESSAGE).setVisible(true);
+				JOptionPane.showMessageDialog(this, (String)mensajes[0], "Aviso", JOptionPane.INFORMATION_MESSAGE);
 				
 				break;
 			default:
@@ -195,16 +204,16 @@ public class Ventana extends JFrame {
 		panelsuperior.add(panelCiclistas, BorderLayout.CENTER);
 		panelCiclistas.setLayout(new GridLayout(1, 4, 0, 0));
 		
-		panel = new PanelCiclista(micomandero);
+		panel = new PanelCiclista(micomandero, this);
 		panelCiclistas.add(panel);
 		
-		panel1 = new PanelCiclista(micomandero);
+		panel1 = new PanelCiclista(micomandero, this);
 		panelCiclistas.add(panel1);
 		
-		panel2 = new PanelCiclista(micomandero);
+		panel2 = new PanelCiclista(micomandero, this);
 		panelCiclistas.add(panel2);
 		
-		panel3 = new PanelCiclista(micomandero);
+		panel3 = new PanelCiclista(micomandero, this);
 		panelCiclistas.add(panel3);
 		
 		JPanel panelComandos = new JPanel();
@@ -216,7 +225,7 @@ public class Ventana extends JFrame {
 		taComandos = new JTextArea();
 		taComandos.setBorder(new TitledBorder("Comandos"));
 		taComandos.setAutoscrolls(true);
-		taComandos.addKeyListener(new ListenerComandos(micomandero));
+		taComandos.addKeyListener(new ListenerComandos(micomandero, this));
 		
 		JScrollPane scrollpane = new JScrollPane(taComandos);
 		panelComandos.add(scrollpane);
@@ -229,7 +238,6 @@ public class Ventana extends JFrame {
 		JScrollPane scrollpaner = new JScrollPane(taRegistro);
 		panelComandos.add(scrollpaner);
 		
-//		LienzoAntiguo canvas = new LienzoAntiguo(new ArrayList<Ciclista>());
 		panelGlobal.add(canvas);
 		
 		setVisible(true);

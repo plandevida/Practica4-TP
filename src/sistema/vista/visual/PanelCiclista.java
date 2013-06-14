@@ -45,13 +45,16 @@ public class PanelCiclista extends JPanel {
 	private JFormattedTextField ftPeriodo;
 	private JFormattedTextField ftPlato;
 	private JFormattedTextField ftPinhon;
+	
+	private Ventana ventana;
 
 	/**
 	 * Create the panel.
 	 */
-	public PanelCiclista(Dispatcher comandero) {
+	public PanelCiclista(Dispatcher comandero, Ventana ventana) {
 		
 		micomandero = comandero;
+		this.ventana = ventana;
 		
 		init();
 	}
@@ -70,17 +73,11 @@ public class PanelCiclista extends JPanel {
 	 * 
 	 * @return Cantidad a frenar
 	 */
-	public Double getCantidadFrenado() {
+	public Double getCantidadFrenado() throws NumberFormatException {
 
 		Double cantidad = null;
 		
-		try {
-			cantidad = Double.valueOf(tCantidad.getText());
-			
-		} catch (NumberFormatException ne) {
-			ne.printStackTrace();
-		}
-		
+		cantidad = Double.valueOf(tCantidad.getText());
 		return cantidad;
 	}
 	
@@ -137,16 +134,11 @@ public class PanelCiclista extends JPanel {
 	 * 
 	 * @return El tiempo de frenado.
 	 */
-	public Double getTiempoFrenado() {
+	public Double getTiempoFrenado() throws NumberFormatException {
 		
 		Double tiempo = null;
 		
-		try {
-			tiempo = Double.valueOf(tTiempo.getText());
-			
-		} catch (NumberFormatException ne) {
-			ne.printStackTrace();
-		}
+		tiempo = Double.valueOf(tTiempo.getText());
 		
 		return tiempo;
 	}
@@ -210,7 +202,7 @@ public class PanelCiclista extends JPanel {
 		
 		MaskFormatter mask = null;
 		try {
-			mask = new MaskFormatter("#.##");
+			mask = new MaskFormatter("##.##");
 			
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -288,21 +280,21 @@ public class PanelCiclista extends JPanel {
 		btnMasCadencia.setMinimumSize(new Dimension(20, 15));
 		btnMasCadencia.setPreferredSize(new Dimension(10, 15));
 		btnMasCadencia.setActionCommand("+ cadencia");
-		btnMasCadencia.addActionListener(new ListenerCadenciaPeriodo(micomandero, this));
+		btnMasCadencia.addActionListener(new ListenerCadenciaPeriodo(micomandero, ventana, this));
 		panelBotonesCadencia.add(btnMasCadencia, BorderLayout.NORTH);
 		
 		JButton btnMenosCadencia = new JButton("-");
 		btnMenosCadencia.setPreferredSize(new Dimension(10, 15));
 		btnMenosCadencia.setMinimumSize(new Dimension(20, 15));
 		btnMenosCadencia.setActionCommand("- cadencia");
-		btnMenosCadencia.addActionListener(new ListenerCadenciaPeriodo(micomandero, this));
+		btnMenosCadencia.addActionListener(new ListenerCadenciaPeriodo(micomandero, ventana, this));
 		panelBotonesCadencia.add(btnMenosCadencia, BorderLayout.SOUTH);
 		
 		JLabel lblPlato = new JLabel("Plato:");
 		panel_2.add(lblPlato, "8, 2, center, default");
 		
 		JButton btnFrenar = new JButton("Frenar");
-		btnFrenar.addActionListener(new ListenerFrenar(micomandero, this, false));
+		btnFrenar.addActionListener(new ListenerFrenar(micomandero, ventana, this, false));
 		
 		ftPlato = new JFormattedTextField();
 		ftPlato.setPreferredSize(new Dimension(100, 28));
@@ -317,14 +309,14 @@ public class PanelCiclista extends JPanel {
 		btnMasPlato.setPreferredSize(new Dimension(10, 15));
 		btnMasPlato.setMinimumSize(new Dimension(20, 15));
 		btnMasPlato.setActionCommand("+");
-		btnMasPlato.addActionListener(new ListenerPlato(micomandero, this));
+		btnMasPlato.addActionListener(new ListenerPlato(micomandero, ventana, this));
 		panelBotonoesPlato.add(btnMasPlato, BorderLayout.NORTH);
 		
 		JButton btnMenosPlato = new JButton("-");
 		btnMenosPlato.setPreferredSize(new Dimension(10, 15));
 		btnMenosPlato.setMinimumSize(new Dimension(20, 15));
 		btnMenosPlato.setActionCommand("-");
-		btnMenosPlato.addActionListener(new ListenerPlato(micomandero, this));
+		btnMenosPlato.addActionListener(new ListenerPlato(micomandero, ventana, this));
 		panelBotonoesPlato.add(btnMenosPlato, BorderLayout.SOUTH);
 		
 		JLabel lblPeriodo = new JLabel("Periodo:");
@@ -345,14 +337,14 @@ public class PanelCiclista extends JPanel {
 		btnMasPeriodo.setPreferredSize(new Dimension(10, 15));
 		btnMasPeriodo.setMinimumSize(new Dimension(20, 15));
 		btnMasPeriodo.setActionCommand("+ periodo");
-		btnMasPeriodo.addActionListener(new ListenerCadenciaPeriodo(micomandero, this));
+		btnMasPeriodo.addActionListener(new ListenerCadenciaPeriodo(micomandero, ventana, this));
 		panelBotonesPeriodo.add(btnMasPeriodo, BorderLayout.NORTH);
 		
 		JButton btnMenosPeriodo = new JButton("-");
 		btnMenosPeriodo.setPreferredSize(new Dimension(10, 15));
 		btnMenosPeriodo.setMinimumSize(new Dimension(20, 15));
 		btnMenosPeriodo.setActionCommand("- periodo");
-		btnMenosPeriodo.addActionListener(new ListenerCadenciaPeriodo(micomandero, this));
+		btnMenosPeriodo.addActionListener(new ListenerCadenciaPeriodo(micomandero, ventana, this));
 		panelBotonesPeriodo.add(btnMenosPeriodo, BorderLayout.SOUTH);
 		
 		JLabel lblPin = new JLabel("Piñón:");
@@ -371,14 +363,14 @@ public class PanelCiclista extends JPanel {
 		btnMasPinhon.setPreferredSize(new Dimension(10, 15));
 		btnMasPinhon.setMinimumSize(new Dimension(20, 15));
 		btnMasPinhon.setActionCommand("+");
-		btnMasPinhon.addActionListener(new ListenerPinhon(micomandero, this));
+		btnMasPinhon.addActionListener(new ListenerPinhon(micomandero, ventana, this));
 		panel.add(btnMasPinhon, BorderLayout.NORTH);
 		
 		JButton btnMenosPinhon = new JButton("-");
 		btnMenosPinhon.setPreferredSize(new Dimension(10, 15));
 		btnMenosPinhon.setMinimumSize(new Dimension(20, 15));
 		btnMenosPinhon.setActionCommand("-");
-		btnMenosPinhon.addActionListener(new ListenerPinhon(micomandero, this));
+		btnMenosPinhon.addActionListener(new ListenerPinhon(micomandero, ventana, this));
 		panel.add(btnMenosPinhon, BorderLayout.SOUTH);
 		
 		btnFrenar.setPreferredSize(new Dimension(80, 29));
@@ -397,7 +389,7 @@ public class PanelCiclista extends JPanel {
 		btnFs.setMinimumSize(new Dimension(70, 29));
 		btnFs.setToolTipText("Frena en seco al ciclista");
 		// Añadimos el controlador para frenar
-		btnFs.addActionListener(new ListenerFrenar(micomandero, this, true));
+		btnFs.addActionListener(new ListenerFrenar(micomandero, ventana, this, true));
 		panel_2.add(btnFs, "2, 8");
 		
 		JLabel lblTiempo = new JLabel("Tiempo:");
@@ -407,36 +399,4 @@ public class PanelCiclista extends JPanel {
 		panel_2.add(tTiempo, "8, 8, fill, default");
 		tTiempo.setColumns(10);
 	}
-	
-//	public static void main(String[] args) {
-//		
-//		JFrame v = new JFrame("Prueba Listeners");
-//		
-//		ParseadorComandos p = new ParseadorComandos();
-//		
-//		List<Ciclista> ciclistas = new ArrayList<>();
-//		List<ObjetosConSalidaDeDatos> objetosamostarenvista = new ArrayList<>();
-//		
-//		Map<Integer, MiViento> vientoporhoras = new HashMap<Integer, MiViento>();
-//		
-//		Presentador presentadorsistema = new Presentador(ciclistas, objetosamostarenvista, vientoporhoras, p.getOrdenes(), Reloj.getInstance(), new ArrayList<Curva>());
-//		
-//		FormateadorDatosVista formateador = null;
-//		
-//		Dispatcher d = new Dispatcher(presentadorsistema, p, formateador);
-//		
-//		Ventana vv = new Ventana(d);
-//		
-//		formateador = new FormateadorDatosVista(objetosamostarenvista, vv);
-//		
-//		PanelCiclista pa = new PanelCiclista(d);
-//		
-//		v.getContentPane().add(pa);
-//		
-//		pa.setCiclistaData("0 Alfredo", 100, 60, 1d);
-//		
-//		v.pack();
-//		v.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		v.setVisible(true);
-//	}
 }

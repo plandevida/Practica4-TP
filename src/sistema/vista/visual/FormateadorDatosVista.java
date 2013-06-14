@@ -168,12 +168,18 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 	public void mostrarDatos() {
 		
 		if (  VariablesDeContexto.CARRERA) {
+			
 			for(ObjetosConSalidaDeDatos objetoamostrar : registroobjetossalidadatos) {
 				formateadorDatos(objetoamostrar);
 			}
 		}
 		else {
-			formateaDato("#fincarrera#", "La carrera a finalizado.");
+			if(!VariablesDeContexto.CARTEL){
+				
+				formateaDato("#fincarrera#", "La carrera a finalizado.");
+				
+				VariablesDeContexto.CARTEL = true;
+			}
 		}
 	}
 	

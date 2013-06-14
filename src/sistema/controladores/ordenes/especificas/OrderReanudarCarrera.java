@@ -10,14 +10,16 @@ public class OrderReanudarCarrera extends Orden{
 	}
 	@Override
 	public String mostrarMensaje() {
+		
 		return (new StringBuilder()
 					.append("La carrera se ha reanudado ")).toString();
 	}
 
 	@Override
 	public void ejecutarOrden() {
-		VariablesDeContexto.CARRERA = true;
 		
+		VariablesDeContexto.CARRERA = true;
+		VariablesDeContexto.CARTEL = false;
 	}
 
 	@Override
@@ -49,14 +51,12 @@ public class OrderReanudarCarrera extends Orden{
 
 	@Override
 	protected boolean comprobarSintaxis(String[] tokenscomando) {
+		
 		return (tokenscomando[0].equalsIgnoreCase("reanudar"));
 	}
 
 	@Override
-	public void configurarContexto(Presentador presentador) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void configurarContexto(Presentador presentador) { }
 
 	@Override
 	public String help(boolean detalles) {

@@ -60,10 +60,6 @@ public class OrdenFrenar extends OrdenParaCiclista {
 							
 							if (cantidadfrendada >= 0) {
 								
-								if (cantidadfrendada > 0) {
-									cantidadfrendada = cantidadfrendada;
-								}
-								
 								tiempofrenada = Double.valueOf(tokens[5]);
 								
 								if (tiempofrenada >= 0) {
