@@ -90,6 +90,6 @@ public class TestCiclista {
 		
 		double velocidadesperada = utilidadesBicicleta.velocidadDeBici(0, ciclista.getTiempopedalada(), ciclista.getPeso(), bicicleta.getRadiorueda(), bicicleta.getPlatos()[bicicleta.getPlatoactual()], bicicleta.getPinhones()[bicicleta.getPinhonactual()]);
 		
-		assertEquals("Error: La velocidad de la bicicleta no es la correcta", velocidadesperada, bicicleta.getVelocidad(), 0);
+		assertEquals("Error: La velocidad de la bicicleta no es la correcta", velocidadesperada, bicicleta.getVelocidad(), 2);
 	}
 }

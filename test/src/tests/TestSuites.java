@@ -6,7 +6,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 import src.tests.sistema.testEntidades.personas.ciclistas.TestCiclista;
 import src.tests.sistema.testEntidades.tiempo.TestReloj;
-import src.tests.sistema.testEntidades.veiculos.TestBicicleta;
+import src.tests.sistema.testEntidades.vehiculos.TestBicicleta;
 import src.tests.sistema.testFactoresexternos.TestFactoresExternos;
 
 @RunWith(Suite.class)

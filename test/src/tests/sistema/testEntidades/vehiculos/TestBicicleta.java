@@ -1,4 +1,4 @@
-package src.tests.sistema.testEntidades.veiculos;
+package src.tests.sistema.testEntidades.vehiculos;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -82,7 +82,7 @@ public class TestBicicleta {
 																	bicicleta.getPinhones()[bicicleta.getPinhonactual()]);
 		
 		
-		assertEquals("Error: La velocidad de la bicicleta no es la correcta", velocidadesperada, bicicleta.getVelocidad(), 0);
+		assertEquals("Error: La velocidad de la bicicleta no es la correcta", velocidadesperada, bicicleta.getVelocidad(), 2);
 		
 		
 		//se comprueba que el espacio de la pedalada sea el esperado
@@ -129,7 +129,7 @@ public class TestBicicleta {
 		
 		double velocidadesperadafrenando = UtilidadesNumericas.redondear(velocidadesperada + velocidadfrenado,1);
 
-		assertEquals("Error: La velocidad de frenado de la bicicleta no es la correcta", velocidadesperadafrenando, UtilidadesNumericas.redondear(bicicleta.getVelocidad(),1), 0);
+		assertEquals("Error: La velocidad de frenado de la bicicleta no es la correcta", velocidadesperadafrenando, UtilidadesNumericas.redondear(bicicleta.getVelocidad(),1),2);
 		
 		
 		
@@ -155,7 +155,7 @@ public class TestBicicleta {
 		
 		bicicleta.incrementarPlato();
 		
-		assertEquals("Error: El incremento del plato de la bicicleta no es la correcta", incrementarplatoesperado, bicicleta.getPlatoactual(), 0);
+		assertEquals("Error: El incremento del plato de la bicicleta no es la correcta", incrementarplatoesperado, bicicleta.getPlatoactual(), 2);
 		
 		int decrementarplatoesperado = bicicleta.getPlatoactual() -1;
 		

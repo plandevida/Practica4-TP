@@ -1,7 +1,6 @@
 package src.tests.utils;
 
-
-
+import sistema.manager.VariablesDeContexto;
 
 public class TestUtilidadesBicicleta {
 
@@ -22,14 +21,27 @@ public class TestUtilidadesBicicleta {
 		
 		double aceleracionfactores = aceleracionpendiente + aceleracionviento;
 		double velocidad = velocidadanterior + aceleracion*impulso; 
-		
-		if (velocidad > velocidadmaxima(tiempopedalada, radiorueda, dientesPlato, dientesPinhon)) {
-			velocidad = velocidadmaxima(tiempopedalada, radiorueda, dientesPlato, dientesPinhon);
+		if(aceleracion < aceleracionfactores){
+			velocidad = (velocidadanterior + aceleracionfactores*impulso);
 		}
+		else {
+			velocidad = (velocidadanterior + aceleracion *impulso);
+			
+			if (velocidad > velocidadmaxima(tiempopedalada, radiorueda, dientesPlato, dientesPinhon)){
+				velocidad = velocidadmaxima(tiempopedalada, radiorueda, dientesPlato, dientesPinhon);
+			}
+			
+			velocidad = (velocidad + aceleracionfactores*impulso);
+			
+			if (velocidad<0) velocidad = 0.00d;
+		}
+//		if (velocidad > velocidadmaxima(tiempopedalada, radiorueda, dientesPlato, dientesPinhon)) {
+//			velocidad = velocidadmaxima(tiempopedalada, radiorueda, dientesPlato, dientesPinhon);
+//		}
+//		
+//		velocidad = (velocidad + aceleracionfactores*impulso);
 		
-		velocidad = (velocidad + aceleracionfactores*impulso);
-		
-		return UtilidadesNumericas.redondear(velocidad, 2);
+		return UtilidadesNumericas.redondear(velocidad*VariablesDeContexto.AUMENTO_VELOCIDAD, 2);
 	}
 	
 	private double velocidadmaxima(double tiempopedalada, double radiorueda, int dientesPlato, int dientesPinhon) {

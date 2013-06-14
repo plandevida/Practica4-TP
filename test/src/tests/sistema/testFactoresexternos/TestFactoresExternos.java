@@ -13,7 +13,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import sistema.entidades.carretera.tramocarreraciclista.Curva;
 import sistema.entrada.lectura.LectorManager;
 import sistema.factoresexternos.viento.MiViento;
 import sistema.manager.VariablesDeContexto;

@@ -36,7 +36,7 @@ public class BicicletaMock extends Vehiculo implements ObjetosConSalidaDeDatos {
 		setVelocidad(0);
 		setEspacioRecorrido(0);
 		setPinhonactual(0);
-		setPlatoactual(0);
+		setPlatoactual(2);
 		radiorueda = VariablesDeContexto.RADIO_RUEDA;
 		peso = 10;
 		aceleracionpendiente = 0;
@@ -133,16 +133,31 @@ public class BicicletaMock extends Vehiculo implements ObjetosConSalidaDeDatos {
 		double aceleracion = calcularAceleracionTiempoPedalada(tiempopedalada);
 		
 		double aceleracionfactores = aceleracionpendiente + aceleracionviento;
-		double velocidad = getVelocidad() + aceleracion*impulso;
+//		double velocidad = getVelocidad() + aceleracion*impulso;
+		double velocidad = 0.00d;
 		
-		if (velocidad > velocidadmaxima(tiempopedalada)) {
-			velocidad = velocidadmaxima(tiempopedalada);
+		if(aceleracion < aceleracionfactores){
+			velocidad = (getVelocidad() + aceleracionfactores*impulso);
 		}
-		
-		velocidad = (velocidad + aceleracionfactores*impulso);
-		
+		else {
+			velocidad = (getVelocidad() + aceleracion *impulso);
+			
+			if (velocidad > velocidadmaxima(tiempopedalada)) {
+				velocidad = velocidadmaxima(tiempopedalada);
+			}
+			
+			velocidad = (velocidad + aceleracionfactores*impulso);
+			
+			if (velocidad<0) velocidad = 0.00d;
+		}
+//		if (velocidad > velocidadmaxima(tiempopedalada)) {
+//			velocidad = velocidadmaxima(tiempopedalada);
+//		}
+//		
+//		velocidad = (velocidad + aceleracionfactores*impulso);
+//		
 		setVelocidad(velocidad);
-		setEspacioRecorrido(velocidad);
+		setEspacioRecorrido((getVelocidad())/impulso);
 		
 		return ((peso/VariablesDeContexto.FUERZA_GRAVEDAD + pesociclista/VariablesDeContexto.FUERZA_GRAVEDAD )*(aceleracion + aceleracionfactores));
 	}

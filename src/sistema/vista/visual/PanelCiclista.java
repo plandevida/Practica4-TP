@@ -3,7 +3,6 @@ package sistema.vista.visual;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.text.ParseException;
 
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -11,7 +10,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
-import javax.swing.text.MaskFormatter;
 
 import sistema.controladores.ListenerCadenciaPeriodo;
 import sistema.controladores.ListenerFrenar;
@@ -170,7 +168,7 @@ public class PanelCiclista extends JPanel {
 	 */
 	public void setBicicletaData(String velocidad, String distancia, Integer pinhon, Integer plato) {
 		
-		tVelocidad.setText(velocidad);
+		tVelocidad.setText(velocidad + " m/s");
 		tDistancia.setText(distancia + " m");
 		ftPinhon.setValue(pinhon);
 		ftPlato.setValue(plato);
@@ -200,13 +198,13 @@ public class PanelCiclista extends JPanel {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,}));
 		
-		MaskFormatter mask = null;
-		try {
-			mask = new MaskFormatter("##.##");
-			
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+//		MaskFormatter mask = null;
+//		try {
+//			mask = new MaskFormatter("#.##");
+//			
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		panel_1.add(lblNombre, "2, 2, right, default");
@@ -380,7 +378,7 @@ public class PanelCiclista extends JPanel {
 		JLabel lblCantidad = new JLabel("Cantidad:");
 		panel_2.add(lblCantidad, "4, 6, 4, 1, center, default");
 		
-		tCantidad = new JFormattedTextField(mask);
+		tCantidad = new JFormattedTextField(/*mask*/);
 		panel_2.add(tCantidad, "8, 6, fill, default");
 		tCantidad.setColumns(10);
 		
@@ -395,7 +393,7 @@ public class PanelCiclista extends JPanel {
 		JLabel lblTiempo = new JLabel("Tiempo:");
 		panel_2.add(lblTiempo, "4, 8, 4, 1, center, default");
 		
-		tTiempo = new JFormattedTextField(mask);
+		tTiempo = new JFormattedTextField(/*mask*/);
 		panel_2.add(tTiempo, "8, 8, fill, default");
 		tTiempo.setColumns(10);
 	}

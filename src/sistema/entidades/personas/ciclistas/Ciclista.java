@@ -83,7 +83,11 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 		contadorcadencia = 1;
 		contadortiempofrenado = 1;
 	}
-	
+
+
+	public void setContadorCadencia(int contador) {
+		contadorcadencia = contador;
+	}
 	/**
 	 * Metodo que contiene las acciones comprendidas
 	 * por el iclista.

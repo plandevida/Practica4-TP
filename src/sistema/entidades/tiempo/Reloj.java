@@ -3,7 +3,6 @@ package sistema.entidades.tiempo;
 import java.util.StringTokenizer;
 
 import sistema.interfaces.ObjetosConSalidaDeDatos;
-import sistema.manager.VariablesDeContexto;
 
 public class Reloj extends Contador implements ObjetosConSalidaDeDatos {
 	
