@@ -10,18 +10,36 @@ import sistema.manager.Presentador;
 public class OrdenCambiaViento extends Orden {
 
 	// El viento definido por horas.
+	/**
+	 * @uml.property  name="mapameteorologico"
+	 */
 	private Map<Integer, MiViento> mapameteorologico;
 	
 	// Hora en la que el viento cambiará
+	/**
+	 * @uml.property  name="hora"
+	 * @uml.associationEnd  qualifier="this:sistema.controladores.ordenes.especificas.OrdenCambiaViento sistema.factoresexternos.viento.MiViento"
+	 */
 	private Integer hora;
 	
 	// El nuevo viento en la hora indicada
+	/**
+	 * @uml.property  name="viento"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private MiViento viento;
 	
 	// El reloj, para controlar si nos hemos pasado de la hora.
+	/**
+	 * @uml.property  name="reloj"
+	 * @uml.associationEnd  
+	 */
 	private Reloj reloj;
 	
 	// La velocidad con la que el viento sopla.
+	/**
+	 * @uml.property  name="velocidadviento"
+	 */
 	private Double velocidadviento;
 	
 	public OrdenCambiaViento(MiViento nuevoviento, Integer enlahora, Double velocidad) {

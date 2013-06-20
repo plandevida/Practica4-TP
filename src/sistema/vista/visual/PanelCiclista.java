@@ -33,17 +33,61 @@ import com.jgoodies.forms.layout.RowSpec;
 public class PanelCiclista extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	/**
+	 * @uml.property  name="tnombreCiclista"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private JFormattedTextField tnombreCiclista;
+	/**
+	 * @uml.property  name="tVelocidad"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private JFormattedTextField tVelocidad;
+	/**
+	 * @uml.property  name="tDistancia"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private JFormattedTextField tDistancia;
+	/**
+	 * @uml.property  name="tCantidad"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private JFormattedTextField tCantidad;
+	/**
+	 * @uml.property  name="tTiempo"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private JFormattedTextField tTiempo;
+	/**
+	 * @uml.property  name="pBfuerza"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private JProgressBar PBfuerza;
 	
+	/**
+	 * @uml.property  name="micomandero"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private Dispatcher micomandero;
+	/**
+	 * @uml.property  name="ftCadencia"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="java.lang.Integer"
+	 */
 	private JFormattedTextField ftCadencia;
+	/**
+	 * @uml.property  name="ftPeriodo"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="java.lang.Double"
+	 */
 	private JFormattedTextField ftPeriodo;
+	/**
+	 * @uml.property  name="ftPlato"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="java.lang.Integer"
+	 */
 	private JFormattedTextField ftPlato;
+	/**
+	 * @uml.property  name="ftPinhon"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="java.lang.Integer"
+	 */
 	private JFormattedTextField ftPinhon;
 
 	/**

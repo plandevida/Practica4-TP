@@ -5,6 +5,10 @@ import sistema.manager.Presentador;
 
 public class OrdenAyuda extends Orden {
 
+	/**
+	 * @uml.property  name="ordenes"
+	 * @uml.associationEnd  multiplicity="(0 -1)"
+	 */
 	private Orden[] ordenes;
 	
 	public OrdenAyuda(Orden[] ordenesparseador) {

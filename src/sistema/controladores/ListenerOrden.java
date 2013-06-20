@@ -4,16 +4,16 @@ import sistema.controladores.ordenes.Dispatcher;
 
 /**
  * Interfaz para los controladores.
- * 
- * @author Daniel Serrano Torres
- * @author Alvaro Quesada Pimentel
+ * @author  Daniel Serrano Torres
+ * @author  Alvaro Quesada Pimentel
  */
 public interface ListenerOrden {
 	
 	/**
 	 * Obtiene el comandero del sistema.
-	 * 
-	 * @return El comandero.
+	 * @return   El comandero.
+	 * @uml.property  name="dispatcher"
+	 * @uml.associationEnd  
 	 */
 	public Dispatcher getDispatcher();
 }

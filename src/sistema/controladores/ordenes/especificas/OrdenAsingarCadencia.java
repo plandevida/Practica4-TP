@@ -15,8 +15,17 @@ import sistema.manager.VariablesDeContexto;
  */
 public class OrdenAsingarCadencia extends OrdenParaCiclista {
 	
+	/**
+	 * @uml.property  name="aumentocadencia"
+	 */
 	private Integer aumentocadencia;
+	/**
+	 * @uml.property  name="periodotiempopedalada"
+	 */
 	private Double periodotiempopedalada;
+	/**
+	 * @uml.property  name="idciclista"
+	 */
 	private Integer idciclista;
 	
 	/**

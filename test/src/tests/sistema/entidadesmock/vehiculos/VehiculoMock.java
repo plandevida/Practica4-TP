@@ -7,9 +7,15 @@ package src.tests.sistema.entidadesmock.vehiculos;
  */
 public class VehiculoMock {
 
+	/**
+	 * @uml.property  name="velocidadactual"
+	 */
 	protected double velocidadactual;
 	
 	//Espacio que lleva recorrido
+	/**
+	 * @uml.property  name="espaciorecorrido"
+	 */
 	protected double espaciorecorrido;
 	
 	/**

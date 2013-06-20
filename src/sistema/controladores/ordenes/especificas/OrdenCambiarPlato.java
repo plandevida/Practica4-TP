@@ -8,7 +8,13 @@ import sistema.manager.VariablesDeContexto;
 
 public class OrdenCambiarPlato extends OrdenParaCiclista {
 	
+	/**
+	 * @uml.property  name="idciclista"
+	 */
 	private Integer idciclista;
+	/**
+	 * @uml.property  name="indiceplato"
+	 */
 	private Integer indiceplato;
 	
 	public OrdenCambiarPlato(Integer plato, Integer idciclista) {

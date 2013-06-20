@@ -16,19 +16,40 @@ import sistema.manager.VariablesDeContexto;
 public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 
 	// Continen el indice del pinhon que se esta utilizando
+	/**
+	 * @uml.property  name="platoactual"
+	 */
 	protected int platoactual;
 
 	// Continen el indice del plato que se esta utilizando
+	/**
+	 * @uml.property  name="pinhonactual"
+	 */
 	protected int pinhonactual;
 	
+	/**
+	 * @uml.property  name="radiorueda"
+	 */
 	protected double radiorueda;
 	
+	/**
+	 * @uml.property  name="aceleracionpendiente"
+	 */
 	protected double aceleracionpendiente;
 	
+	/**
+	 * @uml.property  name="aceleracionviento"
+	 */
 	protected double aceleracionviento;
 	
+	/**
+	 * @uml.property  name="peso"
+	 */
 	protected int peso;
 	
+	/**
+	 * @uml.property  name="impulso"
+	 */
 	protected int impulso;
 	public Bicicleta() {
 	
@@ -227,8 +248,8 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	
 	/**
 	 * Obtiene el plato engranado actualmente.
-	 *  
-	 * @return El indice de la lista de platos del plato engranado.
+	 * @return  El indice de la lista de platos del plato engranado.
+	 * @uml.property  name="platoactual"
 	 */
 	public int getPlatoactual() {
 		return platoactual;
@@ -236,8 +257,8 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	
 	/**
 	 * Ajusta el plato engranado actualmente por otro.
-	 * 
-	 * @param platoactual El nuevo plato a engranar.
+	 * @param platoactual  El nuevo plato a engranar.
+	 * @uml.property  name="platoactual"
 	 */
 	public void setPlatoactual(int platoactual) {
 		if ( platoactual <= VariablesDeContexto.PLATOS.length - 1 || platoactual >= 0) {
@@ -247,8 +268,8 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	
 	/**
 	 * Obtiene el pinhon engranado actualmente.
-	 * 
-	 * @return El indice de la lista de piñones del pinhon engranado
+	 * @return  El indice de la lista de piñones del pinhon engranado
+	 * @uml.property  name="pinhonactual"
 	 */
 	public int getPinhonactual() {
 		return pinhonactual;
@@ -256,8 +277,8 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	
 	/**
 	 * Ajusta el pinhon engranado actualmente por otro.
-	 * 
-	 * @param pinhonactual El nuevo pinhon a engranar.
+	 * @param pinhonactual  El nuevo pinhon a engranar.
+	 * @uml.property  name="pinhonactual"
 	 */
 	public void setPinhonactual(int pinhonactual) {
 		if ( pinhonactual <= VariablesDeContexto.PINHONES.length - 1 || pinhonactual >= 0) {
@@ -267,20 +288,31 @@ public class Bicicleta extends Vehiculo implements ObjetosConSalidaDeDatos {
 	
 	/**
 	 * Obtiene el radio de la rueda.
-	 * 
-	 * @return Valor del radio de la rueda.
+	 * @return  Valor del radio de la rueda.
+	 * @uml.property  name="radiorueda"
 	 */
 	public double getRadiorueda() {
 		return radiorueda;
 	}
 	
 	// identificador de la bicicleta
+	/**
+	 * @uml.property  name="id"
+	 */
 	private int id;
 	
+	/**
+	 * @param numerocorredor
+	 * @uml.property  name="id"
+	 */
 	public void setId(int numerocorredor) {
 		id = numerocorredor;
 	}
 	
+	/**
+	 * @return
+	 * @uml.property  name="id"
+	 */
 	public int getId() {
 		return id;
 	}

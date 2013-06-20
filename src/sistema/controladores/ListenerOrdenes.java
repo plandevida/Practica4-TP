@@ -9,6 +9,10 @@ import sistema.controladores.ordenes.Dispatcher;
  * @author Alvaro Quesada Pimentel
  */
 public abstract class ListenerOrdenes implements ListenerOrden {
+	/**
+	 * @uml.property  name="comandero"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private Dispatcher comandero;
 	
 	/**

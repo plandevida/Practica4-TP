@@ -48,13 +48,28 @@ import java.util.ArrayList;
  *
  */
 public class NameGenerator {
+	/**
+	 * @uml.property  name="pre"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="java.lang.String"
+	 */
 	ArrayList<String> pre = new ArrayList<String>();
+	/**
+	 * @uml.property  name="mid"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="java.lang.String"
+	 */
 	ArrayList<String> mid = new ArrayList<String>();
+	/**
+	 * @uml.property  name="sur"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="java.lang.String"
+	 */
 	ArrayList<String> sur = new ArrayList<String>();
 	
 	final private static char[] vocals = {'a', 'e', 'i', 'o', 'u',/* '�', '�', '�', '�',*/ 'y'};
 	final private static char[] consonants = {'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y'};
 	
+	/**
+	 * @uml.property  name="fileName"
+	 */
 	private String fileName;
 	
 	/**

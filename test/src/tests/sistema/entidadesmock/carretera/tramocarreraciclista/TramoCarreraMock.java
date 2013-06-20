@@ -11,6 +11,9 @@ import sistema.entidades.carretera.Carretera;
  */
 public class TramoCarreraMock extends Carretera {
 	
+	/**
+	 * @uml.property  name="pendiente"
+	 */
 	private int pendiente;
 	
 	/**
@@ -28,8 +31,8 @@ public class TramoCarreraMock extends Carretera {
 	
 	/**
 	 * Pendiente del tramo.
-	 * 
-	 * @return La pendiente.
+	 * @return  La pendiente.
+	 * @uml.property  name="pendiente"
 	 */
 	public int getPendiente() {
 		return pendiente;

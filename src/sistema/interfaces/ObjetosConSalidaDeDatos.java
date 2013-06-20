@@ -2,6 +2,9 @@ package sistema.interfaces;
 
 import java.util.StringTokenizer;
 
+/**
+ * @author  dserrano
+ */
 public interface ObjetosConSalidaDeDatos {
 	
 	/**
@@ -13,7 +16,8 @@ public interface ObjetosConSalidaDeDatos {
 	
 	/**
 	 * Retorna un identificador para ubicar sus datos en la vista.
-	 * @return El identificador.
+	 * @return  El identificador.
+	 * @uml.property  name="identificadorSalidaDatos"
 	 */
 	public String getIdentificadorSalidaDatos();
 }

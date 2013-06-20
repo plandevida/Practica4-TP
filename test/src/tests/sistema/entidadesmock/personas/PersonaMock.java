@@ -4,9 +4,15 @@ import sistema.interfaces.ObjetosQueSeEjecutan;
 
 public class PersonaMock implements ObjetosQueSeEjecutan {
 	//nombre de la persona
+	/**
+	 * @uml.property  name="nombre"
+	 */
 	private String nombre;
 	
 	//peso de la persona
+	/**
+	 * @uml.property  name="peso"
+	 */
 	private int peso;
 	
 	public PersonaMock(String nombrepersona, int pesopersona) {
@@ -21,16 +27,16 @@ public class PersonaMock implements ObjetosQueSeEjecutan {
 	
 	/**
 	 * Obtiene el peso de la persona.
-	 *  
-	 * @return El peso
+	 * @return  El peso
+	 * @uml.property  name="peso"
 	 */
 	public int getPeso() {
 		return peso;
 	}
 	/**
 	 * Cambia el peso de la persona.
-	 *  
-	 *  @param peso Peso nuevo de la persona.
+	 * @param peso  Peso nuevo de la persona.
+	 * @uml.property  name="peso"
 	 */
 	public void setPeso(int peso) {
 		this.peso = peso;
@@ -38,8 +44,8 @@ public class PersonaMock implements ObjetosQueSeEjecutan {
 
 	/**
 	 * Obtiene el nombre de la persona.
-	 *  
-	 * @return El nombre
+	 * @return  El nombre
+	 * @uml.property  name="nombre"
 	 */
 
 	public String getNombre() {
@@ -47,8 +53,8 @@ public class PersonaMock implements ObjetosQueSeEjecutan {
 	}
 	/**
 	 * Cambia el nombre de la persona.
-	 *  
-	 *  @param nombre Nombre nuevo de la persona.
+	 * @param nombre  Nombre nuevo de la persona.
+	 * @uml.property  name="nombre"
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;

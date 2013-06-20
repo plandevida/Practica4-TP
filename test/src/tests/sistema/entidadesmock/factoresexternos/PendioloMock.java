@@ -7,6 +7,9 @@ import src.tests.sistema.entidadesmock.vehiculos.bicicletas.BicicletaMock;
 
 public class PendioloMock {
 	
+	/**
+	 * @uml.property  name="bicicletas"
+	 */
 	private List<BicicletaMock> bicicletas;
 	public PendioloMock(List<BicicletaMock> listabicicletas) {
 		

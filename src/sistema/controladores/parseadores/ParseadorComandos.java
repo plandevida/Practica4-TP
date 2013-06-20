@@ -8,6 +8,7 @@ import sistema.controladores.ordenes.especificas.OrdenCambiarPinhon;
 import sistema.controladores.ordenes.especificas.OrdenCambiarPlato;
 import sistema.controladores.ordenes.especificas.OrdenClembuterol;
 import sistema.controladores.ordenes.especificas.OrdenCrearCurva;
+import sistema.controladores.ordenes.especificas.OrdenEmpezarCarrera;
 import sistema.controladores.ordenes.especificas.OrdenFrenar;
 import sistema.controladores.ordenes.especificas.OrdenPararCarrera;
 import sistema.controladores.ordenes.especificas.OrdenPonerMeta;
@@ -23,6 +24,10 @@ import sistema.controladores.ordenes.especificas.OrderReanudarCarrera;
 public class ParseadorComandos {
 	
 	// Lista de ordenes del sistema.
+	/**
+	 * @uml.property  name="ordenes"
+	 * @uml.associationEnd  multiplicity="(0 -1)"
+	 */
 	private final Orden[] ordenes = {
 		new OrdenAsingarCadencia(null, null, null),
 		new OrdenFrenar(null, null, null),
@@ -34,6 +39,7 @@ public class ParseadorComandos {
 		new OrdenClembuterol(null,null),
 		new OrdenPararCarrera(),
 		new OrderReanudarCarrera(),
+		new OrdenEmpezarCarrera(),
 		new OrdenAyuda(null)
 		
 	};
@@ -59,8 +65,8 @@ public class ParseadorComandos {
 	
 	/**
 	 * Devuelve la lista de ordenes del sistema.
-	 * 
-	 * @return Lista de ordenes.
+	 * @return  Lista de ordenes.
+	 * @uml.property  name="ordenes"
 	 */
 	public Orden[] getOrdenes() {
 		return ordenes;

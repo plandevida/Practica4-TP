@@ -15,9 +15,16 @@ import sistema.vista.visual.PanelCiclista;
 public class ListenerFrenar extends ListenerOrdenes implements ActionListener {
 
 	// Panel del cual se obtienen los datos.
+	/**
+	 * @uml.property  name="panel"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private PanelCiclista panel;
 	
 	// Variable para distinguir el caso de frenado.
+	/**
+	 * @uml.property  name="frenarenseco"
+	 */
 	private boolean frenarenseco;
 	
 	/**

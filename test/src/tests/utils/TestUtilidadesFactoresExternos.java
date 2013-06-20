@@ -12,8 +12,20 @@ import src.tests.sistema.entidadesmock.vehiculos.bicicletas.BicicletaMock;
 
 public class TestUtilidadesFactoresExternos {
 	
+	/**
+	 * @uml.property  name="carreteradecarreraciclista"
+	 * @uml.associationEnd  qualifier="reco:java.lang.Integer src.tests.sistema.entidadesmock.carretera.tramocarreraciclista.TramoCarreraMock"
+	 */
 	private Map<Integer, TramoCarreraMock> carreteradecarreraciclista;
+	/**
+	 * @uml.property  name="bici"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private BicicletaMock bici;
+	/**
+	 * @uml.property  name="listacurvas"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="sistema.entidades.carretera.tramocarreraciclista.Curva"
+	 */
 	private List<Curva> listacurvas;
 	
 	public TestUtilidadesFactoresExternos(Map<Integer, TramoCarreraMock> carreteradecarreraciclista, BicicletaMock bici){

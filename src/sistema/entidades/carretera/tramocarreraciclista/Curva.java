@@ -8,8 +8,17 @@ package sistema.entidades.carretera.tramocarreraciclista;
  */
 public class Curva {
 	
+	/**
+	 * @uml.property  name="puntokilometrico"
+	 */
 	private Double puntokilometrico;
+	/**
+	 * @uml.property  name="velocidadmaximacurva"
+	 */
 	private Double velocidadmaximacurva;
+	/**
+	 * @uml.property  name="ciclistarhanpasadocurva" multiplicity="(0 -1)" dimension="1"
+	 */
 	private int[] ciclistarhanpasadocurva;
 
 	public Curva( Double kilometro, Double velocidadmaxima, int ciclistas) {
@@ -26,8 +35,8 @@ public class Curva {
 
 	/**
 	 * Obtiene el punto kilométrico donde está la curva.
-	 * 
-	 * @return El punto kilometrico
+	 * @return  El punto kilometrico
+	 * @uml.property  name="puntokilometrico"
 	 */
 	public Double getPuntokilometrico() {
 		
@@ -36,8 +45,8 @@ public class Curva {
 
 	/**
 	 * Obtiene la velocidad máxima a la que se puede pasar por la curva.
-	 * 
-	 * @return La velocidad máxima de la curva.
+	 * @return  La velocidad máxima de la curva.
+	 * @uml.property  name="velocidadmaximacurva"
 	 */
 	public Double getVelocidadmaximacurva() {
 		

@@ -17,29 +17,61 @@ import src.tests.sistema.entidadesmock.vehiculos.bicicletas.BicicletaMock;
 public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos {
 	
 	// La bicicleta que va a montar.
+		/**
+		 * @uml.property  name="bicicletamontada"
+		 * @uml.associationEnd  multiplicity="(1 1)"
+		 */
 		private BicicletaMock bicicletamontada;
 		
 		// El reloj del ciclista.
+		/**
+		 * @uml.property  name="reloj"
+		 * @uml.associationEnd  multiplicity="(1 1)"
+		 */
 		private RelojMock reloj;
 		
 		// El tiempo desde que dió la última pedalada.
+		/**
+		 * @uml.property  name="milisegundos"
+		 */
 		private int milisegundos;
 		
 		// La candencia de la pedalada del ciclista.
+		/**
+		 * @uml.property  name="cadencia"
+		 */
 		private int cadencia;
 		
+		/**
+		 * @uml.property  name="periodo"
+		 */
 		private double periodo;
 		
+		/**
+		 * @uml.property  name="tiempopedalada"
+		 */
 		private double tiempopedalada;
 		
 		// Número único del ciclista en la carrera
+		/**
+		 * @uml.property  name="numeromallot"
+		 */
 		private int numeromallot;
 		
+		/**
+		 * @uml.property  name="contadorcadencia"
+		 */
 		private int contadorcadencia;
 		
 		// El cansancio del ciclista.
+		/**
+		 * @uml.property  name="fuerza"
+		 */
 		private double fuerza;
 		
+		/**
+		 * @uml.property  name="estrellado"
+		 */
 		private boolean estrellado;
 		
 		/**
@@ -186,8 +218,8 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 	
 	/**
 	 * Obtiene la bicicleta que se esta montando.
-	 *  
-	 * @return la bicicleta que se esta montando
+	 * @return  la bicicleta que se esta montando
+	 * @uml.property  name="bicicletamontada"
 	 */
 	public BicicletaMock getBicicletamontada() {
 		return bicicletamontada;
@@ -195,8 +227,8 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 	
 	/**
 	 * Cambia la bicicleta que se esta montando.
-	 * 
-	 * @param bicicletamontada Bicicleta que se esta montando.
+	 * @param bicicletamontada  Bicicleta que se esta montando.
+	 * @uml.property  name="bicicletamontada"
 	 */
 	public void setBicicletamontada(BicicletaMock bicicletamontada) {
 		this.bicicletamontada = bicicletamontada;
@@ -204,8 +236,8 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 	
 	/**
 	 * Obtiene el reloj.
-	 *  
-	 * @return el reloj
+	 * @return  el reloj
+	 * @uml.property  name="reloj"
 	 */
 	public RelojMock getReloj() {
 		return reloj;
@@ -213,8 +245,8 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 	
 	/**
 	 * Cambia el reloj.
-	 * 
-	 * @param reloj Reloj del ciclista.
+	 * @param reloj  Reloj del ciclista.
+	 * @uml.property  name="reloj"
 	 */
 	public void setReloj(RelojMock reloj) {
 		this.reloj = reloj;
@@ -222,8 +254,8 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 	
 	/**
 	 * Obtiene la cadencia del ciclista
-	 *  
-	 * @return La cadencia
+	 * @return  La cadencia
+	 * @uml.property  name="cadencia"
 	 */
 	public int getCadencia() {
 		return cadencia;
@@ -231,8 +263,8 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 	
 	/**
 	 * Cambia la candencia del ciclista.
-	 * 
-	 * @param cadencia Cadencia nueva.
+	 * @param cadencia  Cadencia nueva.
+	 * @uml.property  name="cadencia"
 	 */
 	public void setCadencia(int cadencia) {
 		this.cadencia = cadencia;
@@ -241,8 +273,8 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 	
 	/**
 	 * Obtiene el periodo del ciclista
-	 *  
-	 * @return La cadencia
+	 * @return  La cadencia
+	 * @uml.property  name="periodo"
 	 */
 	public double getPeriodo() {
 		return periodo;
@@ -254,8 +286,8 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 
 	/**
 	 * Obtiene el tiempo de pedalada del ciclista.
-	 * 
-	 * @return Tiempo de pedalada.
+	 * @return  Tiempo de pedalada.
+	 * @uml.property  name="tiempopedalada"
 	 */
 	public double getTiempopedalada() {
 		return tiempopedalada;
@@ -272,8 +304,8 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 
 	/**
 	 * Obtiene el estado de si el ciclista se ha estrellado.
-	 * 
-	 * @return True si se ha estrellado, false EOC.
+	 * @return  True si se ha estrellado, false EOC.
+	 * @uml.property  name="estrellado"
 	 */
 	public boolean isEstrellado() {
 		return estrellado;
@@ -281,8 +313,8 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 
 	/**
 	 * Cambia el estado del ciclista si se ha estrellado.
-	 * 
-	 * @param estrellado
+	 * @param  estrellado
+	 * @uml.property  name="estrellado"
 	 */
 	public void setEstrellado(boolean estrellado) {
 		this.estrellado = estrellado;
@@ -290,8 +322,8 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 
 	/**
 	 * Obtiene el número del mallot del ciclista.
-	 * 
-	 * @return Número del mallot.
+	 * @return  Número del mallot.
+	 * @uml.property  name="numeromallot"
 	 */
 	public int getNumeromallot() {
 		return numeromallot;
@@ -308,8 +340,8 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 
 	/**
 	 * Obtiene la fuerza del ciclista.
-	 * 
-	 * @return La fuerza de 0 a 100
+	 * @return  La fuerza de 0 a 100
+	 * @uml.property  name="fuerza"
 	 */
 	public double getFuerza() {
 		return fuerza;
@@ -326,8 +358,8 @@ public class CiclistaMock extends PersonaMock implements ObjetosConSalidaDeDatos
 
 	/**
 	 * Asigna la fuerza del ciclista.
-	 * 
-	 * @param fuerza La nueva fuerza del ciclista.
+	 * @param fuerza  La nueva fuerza del ciclista.
+	 * @uml.property  name="fuerza"
 	 */
 	public void setFuerza(double fuerza) {
 		this.fuerza = fuerza;

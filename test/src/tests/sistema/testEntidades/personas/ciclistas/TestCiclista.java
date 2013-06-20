@@ -23,19 +23,56 @@ import src.tests.utils.TestUtilidadesBicicleta;
 @RunWith(JUnit4.class)
 public class TestCiclista {
 	
+	/**
+	 * @uml.property  name="ciclista"
+	 * @uml.associationEnd  
+	 */
 	private CiclistaMock ciclista;
 	
+	/**
+	 * @uml.property  name="nombreciclista"
+	 */
 	private String nombreciclista = "Juan";
+	/**
+	 * @uml.property  name="numeromallot"
+	 */
 	private int numeromallot = 1;
+	/**
+	 * @uml.property  name="cadenciaciclista"
+	 */
 	private int cadenciaciclista = 60;
+	/**
+	 * @uml.property  name="tiempopedalada"
+	 */
 	private double tiempopedalada = 1;
+	/**
+	 * @uml.property  name="peso"
+	 */
 	private int peso = 65;
+	/**
+	 * @uml.property  name="fuerza"
+	 */
 	private double fuerza = 100;
+	/**
+	 * @uml.property  name="bicicletaciclista"
+	 * @uml.associationEnd  
+	 */
 	private BicicletaMock bicicletaciclista;
+	/**
+	 * @uml.property  name="relojciclista"
+	 * @uml.associationEnd  
+	 */
 	private RelojMock relojciclista;
 	
+	/**
+	 * @uml.property  name="mapa"
+	 */
 	private Map<Integer, TramoCarreraMock> mapa;
 	
+	/**
+	 * @uml.property  name="utilidadesBicicleta"
+	 * @uml.associationEnd  
+	 */
 	private TestUtilidadesBicicleta utilidadesBicicleta;
 	
 	@Before

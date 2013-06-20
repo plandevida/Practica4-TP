@@ -4,6 +4,9 @@ import sistema.interfaces.ObjetosQueSeEjecutan;
 
 public class Contador implements ObjetosQueSeEjecutan {
 	//el numero de impulsos que lleva 
+	/**
+	 * @uml.property  name="impulsos"
+	 */
 	protected int impulsos;
 	
 	public Contador() {
@@ -26,8 +29,8 @@ public class Contador implements ObjetosQueSeEjecutan {
 	
 	/**
 	 * Metodo para obtener los impulsos.
-	 * 
-	 * @return Los impulsos.
+	 * @return  Los impulsos.
+	 * @uml.property  name="impulsos"
 	 */
 	public int getImpulsos() {
 		return impulsos;

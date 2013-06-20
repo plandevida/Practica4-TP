@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import sistema.entidades.tiempo.Reloj;
 import sistema.interfaces.ObjetosConSalidaDeDatos;
 import sistema.interfaces.ObjetosQueSeEjecutan;
 import sistema.manager.VariablesDeContexto;
@@ -12,7 +13,15 @@ import sistema.vista.InterfaceSalidaDatos;
 public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSeEjecutan {
 
 	// Lista de objetos que se van a mostrar
+	/**
+	 * @uml.property  name="registroobjetossalidadatos"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="sistema.interfaces.ObjetosConSalidaDeDatos"
+	 */
 	private List<ObjetosConSalidaDeDatos> registroobjetossalidadatos;
+	/**
+	 * @uml.property  name="vista"
+	 * @uml.associationEnd  
+	 */
 	private Ventana vista;
 	
 	public FormateadorDatosVista(List<ObjetosConSalidaDeDatos> listadeobjetosamostrar, Ventana ventana) {
@@ -41,6 +50,10 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 		}
 	}
 	
+	/**
+	 * @param ventana
+	 * @uml.property  name="vista"
+	 */
 	public void setVista(Ventana ventana) {
 		vista = ventana;
 	}
@@ -167,13 +180,18 @@ public class FormateadorDatosVista implements InterfaceSalidaDatos, ObjetosQueSe
 	@Override
 	public void mostrarDatos() {
 		
-		if ( ! VariablesDeContexto.CARRERA) {
-			for(ObjetosConSalidaDeDatos objetoamostrar : registroobjetossalidadatos) {
+		for(ObjetosConSalidaDeDatos objetoamostrar : registroobjetossalidadatos) {
+			if ( VariablesDeContexto.CARRERA) {
 				formateadorDatos(objetoamostrar);
 			}
-		}
-		else {
-			formateaDato("#fincarrera#", "La carrera a finalizado.");
+			else {
+				if (objetoamostrar instanceof Reloj) {
+					formateadorDatos(objetoamostrar);
+				}
+				if (VariablesDeContexto.ALGUN_GANADOR) {
+					formateaDato("#fincarrera#", "La carrera a finalizado.");
+				}
+			}
 		}
 	}
 	

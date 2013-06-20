@@ -14,7 +14,13 @@ import sistema.entidades.personas.ciclistas.Ciclista;
  */
 public class Curviolo {
 
+	/**
+	 * @uml.property  name="ciclistas"
+	 */
 	List<Ciclista> ciclistas;
+	/**
+	 * @uml.property  name="curvas"
+	 */
 	List<Curva> curvas;
 	
 	public Curviolo(List<Ciclista> listaciclistas, List<Curva> curvas){

@@ -11,7 +11,15 @@ import sistema.entrada.lectura.teclado.LecturaTeclado;
  */
 public class LectorManager {
 	
+	/**
+	 * @uml.property  name="teclado"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private LecturaTeclado teclado;
+	/**
+	 * @uml.property  name="fichero"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private LecturaFichero fichero;
 	
 	/**

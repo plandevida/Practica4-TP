@@ -17,39 +17,86 @@ import sistema.manager.VariablesDeContexto;
 public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	
 	// La bicicleta que va a montar.
+	/**
+	 * @uml.property  name="bicicletamontada"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private Bicicleta bicicletamontada;
 	
 	// El reloj del ciclista.
+	/**
+	 * @uml.property  name="reloj"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private Reloj reloj;
 	
 	// El tiempo desde que dió la última pedalada.
+	/**
+	 * @uml.property  name="milisegundos"
+	 */
 	private int milisegundos;
 	
 	// La candencia de la pedalada del ciclista.
+	/**
+	 * @uml.property  name="cadencia"
+	 */
 	private int cadencia;
 	
+	/**
+	 * @uml.property  name="periodo"
+	 */
 	private double periodo;
 	
+	/**
+	 * @uml.property  name="tiempopedalada"
+	 */
 	private double tiempopedalada;
 	
 	// Número único del ciclista en la carrera
+	/**
+	 * @uml.property  name="numeromallot"
+	 */
 	private int numeromallot;
 	
+	/**
+	 * @uml.property  name="contadorcadencia"
+	 */
 	private int contadorcadencia;
 	
+	/**
+	 * @uml.property  name="contadortiempofrenado"
+	 */
 	private int contadortiempofrenado;
 	
 	// El cansancio del ciclista.
+	/**
+	 * @uml.property  name="fuerza"
+	 */
 	private double fuerza;
 	
+	/**
+	 * @uml.property  name="estrellado"
+	 */
 	private boolean estrellado;
 	
+	/**
+	 * @uml.property  name="ganador"
+	 */
 	private boolean ganador;
 	
+	/**
+	 * @uml.property  name="frenando"
+	 */
 	private boolean frenando;
 	
+	/**
+	 * @uml.property  name="tiempofrenado"
+	 */
 	private double tiempofrenado;
 	
+	/**
+	 * @uml.property  name="cantidadfrenado"
+	 */
 	private double cantidadfrenado;
 	
 	/**
@@ -128,9 +175,9 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 		if(VariablesDeContexto.CARRERA){
 
 			if(bicicletamontada.getEspacioRecorrido() < VariablesDeContexto.META){
-				if(!ganador){
+				if( !ganador){
 				
-					if(!estrellado){
+					if( !estrellado){
 						
 						if (fuerza>0){
 							
@@ -139,9 +186,10 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 					}
 				}
 			}
-			else if(ganador!=true){
+			else if( !ganador){
 				VariablesDeContexto.CARRERA = false;
 				ganador = true;
+				VariablesDeContexto.ALGUN_GANADOR = ganador;
 				System.out.println("¡El ciclista "+numeromallot+ " ha ganado!");
 			}
 		}
@@ -240,8 +288,8 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	
 	/**
 	 * Obtiene la bicicleta que se esta montando.
-	 *  
-	 * @return la bicicleta que se esta montando
+	 * @return  la bicicleta que se esta montando
+	 * @uml.property  name="bicicletamontada"
 	 */
 	public Bicicleta getBicicletamontada() {
 		return bicicletamontada;
@@ -249,8 +297,8 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	
 	/**
 	 * Cambia la bicicleta que se esta montando.
-	 * 
-	 * @param bicicletamontada Bicicleta que se esta montando.
+	 * @param bicicletamontada  Bicicleta que se esta montando.
+	 * @uml.property  name="bicicletamontada"
 	 */
 	public void setBicicletamontada(Bicicleta bicicletamontada) {
 		this.bicicletamontada = bicicletamontada;
@@ -258,8 +306,8 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	
 	/**
 	 * Obtiene el reloj.
-	 *  
-	 * @return el reloj
+	 * @return  el reloj
+	 * @uml.property  name="reloj"
 	 */
 	public Reloj getReloj() {
 		return reloj;
@@ -267,8 +315,8 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	
 	/**
 	 * Cambia el reloj.
-	 * 
-	 * @param reloj Reloj del ciclista.
+	 * @param reloj  Reloj del ciclista.
+	 * @uml.property  name="reloj"
 	 */
 	public void setReloj(Reloj reloj) {
 		this.reloj = reloj;
@@ -276,8 +324,8 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	
 	/**
 	 * Obtiene la cadencia del ciclista
-	 *  
-	 * @return La cadencia
+	 * @return  La cadencia
+	 * @uml.property  name="cadencia"
 	 */
 	public int getCadencia() {
 		return cadencia;
@@ -285,8 +333,8 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	
 	/**
 	 * Cambia la candencia del ciclista.
-	 * 
-	 * @param cadencia Cadencia nueva.
+	 * @param cadencia  Cadencia nueva.
+	 * @uml.property  name="cadencia"
 	 */
 	public void setCadencia(int cadencia) {
 		this.cadencia = cadencia;
@@ -295,8 +343,8 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	
 	/**
 	 * Obtiene el periodo del ciclista
-	 *  
-	 * @return La cadencia
+	 * @return  La cadencia
+	 * @uml.property  name="periodo"
 	 */
 	public double getPeriodo() {
 		return periodo;
@@ -313,8 +361,8 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 
 	/**
 	 * Obtiene el tiempo de pedalada del ciclista.
-	 * 
-	 * @return Tiempo de pedalada.
+	 * @return  Tiempo de pedalada.
+	 * @uml.property  name="tiempopedalada"
 	 */
 	public double getTiempopedalada() {
 		return tiempopedalada;
@@ -331,8 +379,8 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 
 	/**
 	 * Obtiene el estado de si el ciclista se ha estrellado.
-	 * 
-	 * @return True si se ha estrellado, false EOC.
+	 * @return  True si se ha estrellado, false EOC.
+	 * @uml.property  name="estrellado"
 	 */
 	public boolean isEstrellado() {
 		return estrellado;
@@ -340,8 +388,8 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 
 	/**
 	 * Cambia el estado del ciclista si se ha estrellado.
-	 * 
-	 * @param estrellado
+	 * @param  estrellado
+	 * @uml.property  name="estrellado"
 	 */
 	public void setEstrellado(boolean estrellado) {
 		this.estrellado = estrellado;
@@ -349,8 +397,8 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 
 	/**
 	 * Obtiene el número del mallot del ciclista.
-	 * 
-	 * @return Número del mallot.
+	 * @return  Número del mallot.
+	 * @uml.property  name="numeromallot"
 	 */
 	public int getNumeromallot() {
 		return numeromallot;
@@ -367,8 +415,8 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 
 	/**
 	 * Obtiene la fuerza del ciclista.
-	 * 
-	 * @return La fuerza de 0 a 100
+	 * @return  La fuerza de 0 a 100
+	 * @uml.property  name="fuerza"
 	 */
 	public double getFuerza() {
 		return fuerza;
@@ -385,16 +433,24 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 
 	/**
 	 * Asigna la fuerza del ciclista.
-	 * 
-	 * @param fuerza La nueva fuerza del ciclista.
+	 * @param fuerza  La nueva fuerza del ciclista.
+	 * @uml.property  name="fuerza"
 	 */
 	public void setFuerza(double fuerza) {
 		this.fuerza = fuerza;
 	}
+	/**
+	 * @return
+	 * @uml.property  name="ganador"
+	 */
 	public boolean isGanador() {
 		return ganador;
 	}
 
+	/**
+	 * @param ganador
+	 * @uml.property  name="ganador"
+	 */
 	public void setGanador(boolean ganador) {
 		this.ganador = ganador;
 	}
@@ -403,7 +459,7 @@ public class Ciclista extends Persona implements ObjetosConSalidaDeDatos {
 	 * @param tiempofrenado tiempo que estara frenando
 	 * @param cantidad	la cantidad q frenara
 	 */
-	public void setFrenando(double tiempofrenado, double cantidad){
+	public void setFrenando(double tiempofrenado, double cantidad) {
 		frenando = true;
 		this.tiempofrenado = tiempofrenado;
 		cantidadfrenado = cantidad/tiempofrenado;

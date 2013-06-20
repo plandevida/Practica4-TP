@@ -8,20 +8,35 @@ import sistema.manager.VariablesDeContexto;
 public class Reloj extends Contador implements ObjetosConSalidaDeDatos {
 	
 	// Los milisegundos que lleva.
+	/**
+	 * @uml.property  name="milisegundos"
+	 */
 	private int milisegundos;
 	
 	// Los segundos que lleva, es una unidad mas pequeña que los minutos
+	/**
+	 * @uml.property  name="segundos"
+	 */
 	private int segundos;
 	
 	// Los minutos que lleva, es una unidad mas pequeña que las horas
+	/**
+	 * @uml.property  name="minutos"
+	 */
 	private int minutos;
 	
 	// Las horas que lleva, es la unidad mas grande del programa
+	/**
+	 * @uml.property  name="horas"
+	 */
 	private int horas;
 	
 	// Instancia del reloj usando el patrón singleton
 	private static Reloj INSTANCIA = null;
 	
+	/**
+	 * @uml.property  name="totalImpulsos"
+	 */
 	private int totalImpulsos;
 	
 	private Reloj() {
@@ -99,8 +114,8 @@ public class Reloj extends Contador implements ObjetosConSalidaDeDatos {
 	
 	/**
 	 * Metodo para obtener los milisegundos.
-	 * 
-	 * @return Los milisegundos
+	 * @return  Los milisegundos
+	 * @uml.property  name="milisegundos"
 	 */
 	public int getMilisegundos() {
 		return milisegundos;
@@ -108,8 +123,8 @@ public class Reloj extends Contador implements ObjetosConSalidaDeDatos {
 	
 	/**
 	 * Metodo para obtener los segundos.
-	 * 
-	 * @return Los segundos.
+	 * @return  Los segundos.
+	 * @uml.property  name="segundos"
 	 */
 	public int getSegundos() {
 		return segundos;
@@ -117,8 +132,8 @@ public class Reloj extends Contador implements ObjetosConSalidaDeDatos {
 	
 	/**
 	 * Metodo para obtener los minutos.
-	 * 
-	 * @return Los minutos.
+	 * @return  Los minutos.
+	 * @uml.property  name="minutos"
 	 */
 	public int getMinutos() {
 		return minutos;
@@ -126,13 +141,17 @@ public class Reloj extends Contador implements ObjetosConSalidaDeDatos {
 	
 	/**
 	 * Metodo para obtener las horas.
-	 * 
-	 * @return Las horas.
+	 * @return  Las horas.
+	 * @uml.property  name="horas"
 	 */
 	public int getHoras() {
 		return horas;
 	}
 	
+	/**
+	 * @return
+	 * @uml.property  name="totalImpulsos"
+	 */
 	public int getTotalImpulsos() {
 		return totalImpulsos;
 	}

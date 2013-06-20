@@ -16,8 +16,18 @@ import sistema.factoresexternos.viento.MiViento;
  */
 public class Eolo  {
  
+	/**
+	 * @uml.property  name="ciclistas"
+	 */
 	private List<Ciclista> ciclistas ;
+	/**
+	 * @uml.property  name="relojTiempo"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private Reloj relojTiempo;
+	/**
+	 * @uml.property  name="mapameteorologico"
+	 */
 	private Map<Integer, MiViento> mapameteorologico;
 	
 	public Eolo(List<Ciclista> listaciclistas, Reloj reloj, Map<Integer, MiViento> mapaviento) {

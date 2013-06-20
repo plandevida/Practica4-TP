@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -16,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import sistema.controladores.ListenerComandos;
+import sistema.controladores.ListenerEmpezarParar;
 import sistema.controladores.ordenes.Dispatcher;
 import sistema.manager.VariablesDeContexto;
 import sistema.vista.Lienzo;
@@ -24,19 +26,59 @@ public class Ventana extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * @uml.property  name="contentPane"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private JPanel contentPane;
 	
+	/**
+	 * @uml.property  name="txtReloj"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private JTextField txtReloj;
 	
+	/**
+	 * @uml.property  name="panel"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private PanelCiclista panel;
+	/**
+	 * @uml.property  name="panel1"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private PanelCiclista panel1;
+	/**
+	 * @uml.property  name="panel2"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private PanelCiclista panel2;
+	/**
+	 * @uml.property  name="panel3"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private PanelCiclista panel3;
+	/**
+	 * @uml.property  name="taComandos"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private JTextArea taComandos;
+	/**
+	 * @uml.property  name="taRegistro"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private JTextArea taRegistro;
 	
+	/**
+	 * @uml.property  name="micomandero"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private Dispatcher micomandero;
 	
+	/**
+	 * @uml.property  name="canvas"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private Lienzo canvas;
 
 	/**
@@ -140,7 +182,7 @@ public class Ventana extends JFrame {
 				break;
 			case "fincarrera":
 				
-				new JOptionPane((String)mensajes[0], JOptionPane.INFORMATION_MESSAGE).setVisible(true);
+				JOptionPane.showMessageDialog(this, (String)mensajes[0], "Aviso", JOptionPane.INFORMATION_MESSAGE);
 				
 				break;
 			default:
@@ -182,6 +224,11 @@ public class Ventana extends JFrame {
 		txtReloj.setPreferredSize(new Dimension(150, 28));
 		panelReloj.add(txtReloj);
 		txtReloj.setColumns(10);
+		
+		JButton btnEmpezar = new JButton("Empezar");
+		btnEmpezar.addActionListener(new ListenerEmpezarParar(micomandero, btnEmpezar));
+		sl_panelReloj.putConstraint(SpringLayout.WEST, btnEmpezar, 10, SpringLayout.WEST, panelReloj);
+		panelReloj.add(btnEmpezar);
 		
 		JPanel panelGlobal = new JPanel();
 		panelGlobal.setLayout(new GridLayout(2, 1, 0, 0));

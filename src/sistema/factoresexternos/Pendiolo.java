@@ -17,10 +17,17 @@ import sistema.manager.VariablesDeContexto;
  */
 public class Pendiolo {
 	
+	/**
+	 * @uml.property  name="ciclista"
+	 */
 	private List<Ciclista> ciclista;
 
 		
 
+	/**
+	 * @uml.property  name="carreteradecarreraciclista"
+	 * @uml.associationEnd  qualifier="reco:java.lang.Integer sistema.entidades.carretera.tramocarreraciclista.TramoCarrera"
+	 */
 	private Map<Integer, TramoCarrera> carreteradecarreraciclista;
 	
 	public Pendiolo(List<Ciclista> listaciclista,Map<Integer, TramoCarrera> carreteradecarreraciclista) {

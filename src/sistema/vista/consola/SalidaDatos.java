@@ -17,7 +17,9 @@ import sistema.vista.InterfaceSalidaDatos;
 public class SalidaDatos implements InterfaceSalidaDatos{
 
 	/**
-	 *  Lista de objetos que se van a mostrar
+	 * Lista de objetos que se van a mostrar
+	 * @uml.property  name="registroobjetossalidadatos"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="sistema.interfaces.ObjetosConSalidaDeDatos"
 	 */
 	private List<ObjetosConSalidaDeDatos> registroobjetossalidadatos;
 

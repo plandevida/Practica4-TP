@@ -10,6 +10,9 @@ import sistema.entrada.lectura.InterfazLectura;
 
 public class LecturaFichero implements InterfazLectura {
 
+	/**
+	 * @uml.property  name="fileinput"
+	 */
 	private BufferedReader fileinput;
 	
 	/**

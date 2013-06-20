@@ -14,6 +14,10 @@ import sistema.vista.visual.PanelCiclista;
  */
 public class ListenerCadenciaPeriodo extends ListenerOrdenes implements ActionListener {
 
+	/**
+	 * @uml.property  name="panel"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private PanelCiclista panel;
 	
 	public ListenerCadenciaPeriodo(Dispatcher comandero, PanelCiclista panelorigendatos) {

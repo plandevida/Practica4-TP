@@ -12,12 +12,31 @@ import src.tests.sistema.entidadesmock.vehiculos.bicicletas.BicicletaMock;
 
 public class FactoresExternosMock implements ObjetosQueSeEjecutan {
 	
+	/**
+	 * @uml.property  name="bicicletas"
+	 */
 	private List<BicicletaMock> bicicletas;
+	/**
+	 * @uml.property  name="eolo"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private EoloMock eolo;
+	/**
+	 * @uml.property  name="curviolo"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private CurvioloMock curviolo;
+	/**
+	 * @uml.property  name="pendiolo"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private PendioloMock pendiolo;
 	
 	//Mapa de la carretera
+	/**
+	 * @uml.property  name="carreteradecarreraciclista"
+	 * @uml.associationEnd  qualifier="reco:java.lang.Integer src.tests.sistema.entidadesmock.carretera.tramocarreraciclista.TramoCarreraMock"
+	 */
 	private Map<Integer, TramoCarreraMock> carreteradecarreraciclista;
 	
 	public FactoresExternosMock(List<BicicletaMock> bicis, Map<Integer, TramoCarreraMock> carreteradecarreraciclista, EoloMock nuevoEolo, CurvioloMock nuevoCurviolo, PendioloMock nuevoPendiolo) {

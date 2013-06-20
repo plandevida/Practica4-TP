@@ -24,10 +24,25 @@ import src.tests.utils.UtilidadesNumericas;
 @RunWith(JUnit4.class)
 
 public class TestBicicleta {
+	/**
+	 * @uml.property  name="bicicleta"
+	 * @uml.associationEnd  
+	 */
 	private BicicletaMock bicicleta;
+	/**
+	 * @uml.property  name="utilidadesBicicleta"
+	 * @uml.associationEnd  
+	 */
 	private TestUtilidadesBicicleta utilidadesBicicleta;
+	/**
+	 * @uml.property  name="utilidadesCiclista"
+	 * @uml.associationEnd  
+	 */
 	private TestUtilidadesCiclista utilidadesCiclista;
 	
+	/**
+	 * @uml.property  name="mapa"
+	 */
 	private Map<Integer, TramoCarreraMock> mapa;
 	
 	@Before

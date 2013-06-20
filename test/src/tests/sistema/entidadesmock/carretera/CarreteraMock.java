@@ -8,6 +8,9 @@ package src.tests.sistema.entidadesmock.carretera;
  */
 public class CarreteraMock {
 	
+	/**
+	 * @uml.property  name="kilometros"
+	 */
 	private double kilometros;
 	
 	public CarreteraMock(double kilometrosdecarretera) {
@@ -16,8 +19,8 @@ public class CarreteraMock {
 	
 	/**
 	 * Los kilómetros que mide el tramo.
-	 * 
-	 * @return El número de kilómetros.
+	 * @return  El número de kilómetros.
+	 * @uml.property  name="kilometros"
 	 */
 	public double getKilometros() {
 		return kilometros;
@@ -25,8 +28,8 @@ public class CarreteraMock {
 	
 	/**
 	 * Configura los kilómetros de la carretera
-	 * 
-	 * @param kilometrosdecarretera
+	 * @param  kilometrosdecarretera
+	 * @uml.property  name="kilometros"
 	 */
 	public void setKilometros(double kilometrosdecarretera) {
 		kilometros = kilometrosdecarretera;

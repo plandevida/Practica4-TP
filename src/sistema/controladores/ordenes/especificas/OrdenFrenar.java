@@ -8,8 +8,18 @@ import sistema.manager.VariablesDeContexto;
 
 public class OrdenFrenar extends OrdenParaCiclista {
 	
+	/**
+	 * @uml.property  name="idciclista"
+	 */
 	private Integer idciclista;
-	private Double cantidadfrendada, tiempofrenada;
+	/**
+	 * @uml.property  name="cantidadfrendada"
+	 */
+	private Double cantidadfrendada;
+	/**
+	 * @uml.property  name="tiempofrenada"
+	 */
+	private Double tiempofrenada;
 	
 	public OrdenFrenar(Double cantidad, Double tiempo, Integer idciclista) {
 		
@@ -59,10 +69,6 @@ public class OrdenFrenar extends OrdenParaCiclista {
 							cantidadfrendada = Double.valueOf(tokens[3]);
 							
 							if (cantidadfrendada >= 0) {
-								
-								if (cantidadfrendada > 0) {
-									cantidadfrendada = cantidadfrendada;
-								}
 								
 								tiempofrenada = Double.valueOf(tokens[5]);
 								

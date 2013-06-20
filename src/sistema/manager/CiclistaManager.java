@@ -40,30 +40,95 @@ import sistema.vista.visual.Ventana;
 public class CiclistaManager {
 
 	// Listas con los elemenos del contexto del sistema
+	/**
+	 * @uml.property  name="listaejecutables"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="sistema.entidades.personas.ciclistas.Ciclista"
+	 */
 	private List<ObjetosQueSeEjecutan> listaejecutables;
+	/**
+	 * @uml.property  name="listasalidadatos"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="sistema.entidades.vehiculos.bicicletas.Bicicleta"
+	 */
 	private List<ObjetosConSalidaDeDatos> listasalidadatos;
+	/**
+	 * @uml.property  name="carreteradecarreraciclsta"
+	 */
 	private Map<Integer, TramoCarrera> carreteradecarreraciclsta;
+	/**
+	 * @uml.property  name="ciclistas"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="sistema.entidades.personas.ciclistas.Ciclista"
+	 */
 	private List<Ciclista> ciclistas;
+	/**
+	 * @uml.property  name="bicicletas"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="sistema.entidades.vehiculos.bicicletas.Bicicleta"
+	 */
 	private List<Bicicleta> bicicletas;
+	/**
+	 * @uml.property  name="mapameteorologico"
+	 */
 	private Map<Integer, MiViento> mapameteorologico;
+	/**
+	 * @uml.property  name="listacurvas"
+	 */
 	private List<Curva> listacurvas;
+	/**
+	 * @uml.property  name="factoresexternos"
+	 * @uml.associationEnd  
+	 */
 	private FactoresExternos factoresexternos;
 
 	// Medidor de tiempo del sistema
+	/**
+	 * @uml.property  name="reloj"
+	 * @uml.associationEnd  
+	 */
 	private Reloj reloj;
 
 	// Vistas del sistema.
+	/**
+	 * @uml.property  name="ventana"
+	 * @uml.associationEnd  
+	 */
 	private Ventana ventana;
+	/**
+	 * @uml.property  name="lienzo"
+	 * @uml.associationEnd  
+	 */
 	private Lienzo lienzo;
+	/**
+	 * @uml.property  name="formateador"
+	 * @uml.associationEnd  
+	 */
 	private FormateadorDatosVista formateador;
 
 	// Subsitemas del sistema.
+	/**
+	 * @uml.property  name="dispatcher"
+	 * @uml.associationEnd  
+	 */
 	private Dispatcher dispatcher;
+	/**
+	 * @uml.property  name="parser"
+	 * @uml.associationEnd  
+	 */
 	private ParseadorComandos parser;
+	/**
+	 * @uml.property  name="presentador"
+	 * @uml.associationEnd  
+	 */
 	private Presentador presentador;
 
+	/**
+	 * @uml.property  name="lectorconfiguracion"
+	 * @uml.associationEnd  
+	 */
 	private LectorManager lectorconfiguracion;
 	
+	/**
+	 * @uml.property  name="generadordenombres"
+	 * @uml.associationEnd  
+	 */
 	private NameGenerator generadordenombres;
 
 	private void crearGUI() {
@@ -194,10 +259,10 @@ public class CiclistaManager {
 		// Se registran los elementos con salida de datos en una lista.
 		listasalidadatos.add(reloj);
 
-		listaejecutables.add(lienzo);
 		listaejecutables.add(formateador);
 		listaejecutables.add(factoresexternos);
 		listaejecutables.add(dispatcher);
+		listaejecutables.add(lienzo);
 		
 		// Se registran los elementos ejecutables en una lista.
 		listaejecutables.add(reloj);
@@ -217,25 +282,40 @@ public class CiclistaManager {
 			
 			if (miliseg != (int)(Calendar.getInstance().getTimeInMillis() % 10)) {
 				
-				// Solo se ejecuta nuestro "thread" si desde la última ejecución ha pasado como mínimo el valos de UNIDADO_TIEMPO.
-				if ( Math.abs(milisegundospropiosdespues-milisegundospropiosantes) >= VariablesDeContexto.UNIDAD_TIEMPO) {
-					
-					// Obtenemos el momento de ejecución.
-					milisegundospropiosantes = reloj.getMilisegundos();
-					
-					for (ObjetosQueSeEjecutan objetoejecutable : listaejecutables) {
+				
+					// Solo se ejecuta nuestro "thread" si desde la última ejecución ha pasado como mínimo el valos de UNIDADO_TIEMPO.
+					if ( Math.abs(milisegundospropiosdespues-milisegundospropiosantes) >= VariablesDeContexto.UNIDAD_TIEMPO) {
 						
-						objetoejecutable.ejecuta();
-					}
-					
-					// Obtenemos el momento de después de haber ejecutado.
-					milisegundospropiosdespues = reloj.getMilisegundos();
+						// Obtenemos el momento de ejecución.
+						milisegundospropiosantes = reloj.getMilisegundos();
+						
+						if ( VariablesDeContexto.CARRERA ) {
+							for (ObjetosQueSeEjecutan objetoejecutable : listaejecutables) {
+								
+								objetoejecutable.ejecuta();
+							}
+							
+							// Obtenemos el momento de después de haber ejecutado.
+//							milisegundospropiosdespues = reloj.getMilisegundos();
+						}
+						else {
+							dispatcher.ejecuta();
+							formateador.ejecuta();
+							if ( VariablesDeContexto.EMPEZADA ) {
+								reloj.ejecuta();
+//								milisegundospropiosdespues = reloj.getMilisegundos();
+							}
+						}
 				}
 				else {
 					// Si no ha pasado el tiempo suficiente, seguimos contando impulsos.
-					reloj.ejecuta();
-					milisegundospropiosdespues = reloj.getMilisegundos();
+					if ( VariablesDeContexto.EMPEZADA ) {
+						reloj.ejecuta();
+					}
+//					milisegundospropiosdespues = reloj.getMilisegundos();
 				}
+				dispatcher.ejecuta();
+				milisegundospropiosdespues = reloj.getMilisegundos();
 	
 				miliseg = (int)(Calendar.getInstance().getTimeInMillis() % 10);
 			}

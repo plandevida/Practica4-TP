@@ -14,6 +14,10 @@ import sistema.vista.visual.PanelCiclista;
  */
 public class ListenerPlato extends ListenerOrdenes implements ActionListener {
 
+	/**
+	 * @uml.property  name="panel"
+	 * @uml.associationEnd  multiplicity="(1 1)"
+	 */
 	private PanelCiclista panel;
 	
 	public ListenerPlato(Dispatcher comandero, PanelCiclista panelorigendatos) {

@@ -8,7 +8,13 @@ import sistema.manager.VariablesDeContexto;
 
 public class OrdenCambiarPinhon extends OrdenParaCiclista {
 	
+	/**
+	 * @uml.property  name="idciclista"
+	 */
 	private Integer idciclista;
+	/**
+	 * @uml.property  name="indicepinhon"
+	 */
 	private Integer indicepinhon;
 	
 	public OrdenCambiarPinhon(Integer pinhon, Integer idciclista) {

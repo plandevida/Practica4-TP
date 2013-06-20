@@ -11,6 +11,10 @@ import sistema.controladores.ordenes.especificas.OrdenFrenar;
 public class ParseadorComandosMock {
 	
 	// Lista de ordenes del sistema.
+	/**
+	 * @uml.property  name="ordenes"
+	 * @uml.associationEnd  multiplicity="(0 -1)"
+	 */
 	private final Orden[] ordenes = {
 		new OrdenAsingarCadencia(null, null, null),
 		new OrdenFrenar(null, null, null),
@@ -41,8 +45,8 @@ public class ParseadorComandosMock {
 	
 	/**
 	 * Devuelve la lista de ordenes del sistema.
-	 * 
-	 * @return Lista de ordenes.
+	 * @return  Lista de ordenes.
+	 * @uml.property  name="ordenes"
 	 */
 	public Orden[] getOrdenes() {
 		return ordenes;
