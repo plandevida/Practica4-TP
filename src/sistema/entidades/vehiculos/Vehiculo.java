@@ -9,15 +9,9 @@ import sistema.manager.VariablesDeContexto;
  */
 public class Vehiculo {
 
-	/**
-	 * @uml.property  name="velocidadactual"
-	 */
 	protected double velocidadactual;
 	
 	//Espacio que lleva recorrido
-	/**
-	 * @uml.property  name="espaciorecorrido"
-	 */
 	protected double espaciorecorrido;
 	
 	/**

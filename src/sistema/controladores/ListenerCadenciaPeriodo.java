@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import sistema.controladores.ordenes.Dispatcher;
 import sistema.vista.visual.PanelCiclista;
+import sistema.vista.visual.Ventana;
 
 /**
  * Controlador para la cadencia y el periodo.
@@ -14,14 +15,11 @@ import sistema.vista.visual.PanelCiclista;
  */
 public class ListenerCadenciaPeriodo extends ListenerOrdenes implements ActionListener {
 
-	/**
-	 * @uml.property  name="panel"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
 	private PanelCiclista panel;
 	
-	public ListenerCadenciaPeriodo(Dispatcher comandero, PanelCiclista panelorigendatos) {
-		super(comandero);
+	public ListenerCadenciaPeriodo(Dispatcher comandero, Ventana ventana, PanelCiclista panelorigendatos) {
+
+		super(comandero, ventana);
 		
 		panel = panelorigendatos;
 	}

@@ -8,13 +8,8 @@ import sistema.manager.Presentador;
 import sistema.manager.VariablesDeContexto;
 
 public class OrdenPonerMeta extends Orden {
-	/**
-	 * @uml.property  name="meta"
-	 */
+
 	private Double meta;
-	/**
-	 * @uml.property  name="listadeciclistas"
-	 */
 	private List<Ciclista> listadeciclistas;
 	
 	public OrdenPonerMeta(Double meta){

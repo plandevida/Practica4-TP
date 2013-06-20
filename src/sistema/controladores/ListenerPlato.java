@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import sistema.controladores.ordenes.Dispatcher;
 import sistema.vista.visual.PanelCiclista;
+import sistema.vista.visual.Ventana;
 
 /**
  * Controlador para cambiar de plato la bicicleta de un ciclista.
@@ -14,14 +15,11 @@ import sistema.vista.visual.PanelCiclista;
  */
 public class ListenerPlato extends ListenerOrdenes implements ActionListener {
 
-	/**
-	 * @uml.property  name="panel"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
 	private PanelCiclista panel;
 	
-	public ListenerPlato(Dispatcher comandero, PanelCiclista panelorigendatos) {
-		super(comandero);
+	public ListenerPlato(Dispatcher comandero, Ventana ventana, PanelCiclista panelorigendatos) {
+		
+		super(comandero, ventana);
 		
 		panel = panelorigendatos;
 	}

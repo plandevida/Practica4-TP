@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import sistema.controladores.ListenerOrdenes;
 import sistema.controladores.ordenes.Dispatcher;
 import sistema.vista.visual.PanelCiclista;
+import sistema.vista.visual.Ventana;
 
 /**
  * Clase controlador que genera las ordenes de frenar de los ciclistas.
@@ -15,16 +16,9 @@ import sistema.vista.visual.PanelCiclista;
 public class ListenerFrenar extends ListenerOrdenes implements ActionListener {
 
 	// Panel del cual se obtienen los datos.
-	/**
-	 * @uml.property  name="panel"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
 	private PanelCiclista panel;
 	
 	// Variable para distinguir el caso de frenado.
-	/**
-	 * @uml.property  name="frenarenseco"
-	 */
 	private boolean frenarenseco;
 	
 	/**
@@ -34,10 +28,10 @@ public class ListenerFrenar extends ListenerOrdenes implements ActionListener {
 	 * @param panelciclista Origen de los datos.
 	 * @param enseco Determina si frenar en seco o no.
 	 */
-	public ListenerFrenar(Dispatcher comandero, PanelCiclista panelciclista, boolean enseco) {
+	public ListenerFrenar(Dispatcher comandero, Ventana ventana, PanelCiclista panelciclista, boolean enseco) {
 		
 		// Ponemos el dispatcher como miembro de la clase.
-		super(comandero);
+		super(comandero, ventana);
 		
 		panel = panelciclista;
 		frenarenseco = enseco;
@@ -50,13 +44,27 @@ public class ListenerFrenar extends ListenerOrdenes implements ActionListener {
 		
 		String comando = "";
 		
+		Double tiempo = null;
+		Double cantidad = null;
+		
 		if (frenarenseco) {
-			comando = "ciclista " + idciclista + " frena 0 en 0";
+			
+			try {
+				tiempo = panel.getTiempoFrenado();
+			} catch (NumberFormatException ne) {
+				getVentana().ponerEnLog("Debe especificarse el tiempo que permanecerá frenado.");
+			}
+			
+			comando = "ciclista " + idciclista + " frena 0 en " + tiempo;
 		}
 		else {
 			
-			Double cantidad = panel.getCantidadFrenado();
-			Double tiempo = panel.getTiempoFrenado();
+			try {
+				tiempo = panel.getTiempoFrenado();
+				cantidad = panel.getCantidadFrenado();
+			} catch (NumberFormatException ne) {
+				getVentana().ponerEnLog("Debe especificarse el tiempo que permanecerá frenado y la cantidad a frenar.");
+			}
 			
 			comando = "ciclista " + idciclista + " frena " + cantidad + " en " + tiempo;
 		}

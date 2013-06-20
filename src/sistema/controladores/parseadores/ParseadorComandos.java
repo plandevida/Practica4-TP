@@ -24,10 +24,6 @@ import sistema.controladores.ordenes.especificas.OrderReanudarCarrera;
 public class ParseadorComandos {
 	
 	// Lista de ordenes del sistema.
-	/**
-	 * @uml.property  name="ordenes"
-	 * @uml.associationEnd  multiplicity="(0 -1)"
-	 */
 	private final Orden[] ordenes = {
 		new OrdenAsingarCadencia(null, null, null),
 		new OrdenFrenar(null, null, null),
@@ -66,7 +62,6 @@ public class ParseadorComandos {
 	/**
 	 * Devuelve la lista de ordenes del sistema.
 	 * @return  Lista de ordenes.
-	 * @uml.property  name="ordenes"
 	 */
 	public Orden[] getOrdenes() {
 		return ordenes;

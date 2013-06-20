@@ -17,7 +17,6 @@ public interface ObjetosConSalidaDeDatos {
 	/**
 	 * Retorna un identificador para ubicar sus datos en la vista.
 	 * @return  El identificador.
-	 * @uml.property  name="identificadorSalidaDatos"
 	 */
 	public String getIdentificadorSalidaDatos();
 }

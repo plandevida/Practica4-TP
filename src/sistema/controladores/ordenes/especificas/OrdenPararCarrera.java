@@ -6,7 +6,7 @@ import sistema.manager.VariablesDeContexto;
 
 public class OrdenPararCarrera extends Orden{
 	
-	public OrdenPararCarrera(){	
+	public OrdenPararCarrera() {	
 	}
 	@Override
 	public String mostrarMensaje() {

@@ -28,9 +28,10 @@ public class VariablesDeContexto {
     public static int MAX_CICLISTAS = 4;
     public static int MAX_CADENCIA = 120;
     
-    public static boolean CARRERA = false;
-    public static boolean ALGUN_GANADOR = false;
-    public static boolean EMPEZADA = false;
+    // public static boolean ALGUN_GANADOR = false;
+    // public static boolean EMPEZADA = false;
+    public static boolean CARTEL = false;
+    public static boolean CARRERA = true;
     public static double LONGITUD_CARRERA = 0;
     public static double META = 0;
     public static final int ANCHO_REPRESENTACION_CICLISTA = 20;

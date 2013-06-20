@@ -3,16 +3,11 @@ package sistema.entidades.personas;
 import sistema.interfaces.ObjetosQueSeEjecutan;
 
 public class Persona implements ObjetosQueSeEjecutan {
+	
 	//nombre de la persona
-	/**
-	 * @uml.property  name="nombre"
-	 */
 	private String nombre;
 	
 	//peso de la persona
-	/**
-	 * @uml.property  name="peso"
-	 */
 	private int peso;
 	
 	public Persona(String nombrepersona, int pesopersona) {
@@ -28,7 +23,6 @@ public class Persona implements ObjetosQueSeEjecutan {
 	/**
 	 * Obtiene el peso de la persona.
 	 * @return  El peso
-	 * @uml.property  name="peso"
 	 */
 	public int getPeso() {
 		return peso;
@@ -36,7 +30,6 @@ public class Persona implements ObjetosQueSeEjecutan {
 	/**
 	 * Cambia el peso de la persona.
 	 * @param peso  Peso nuevo de la persona.
-	 * @uml.property  name="peso"
 	 */
 	public void setPeso(int peso) {
 		this.peso = peso;
@@ -45,7 +38,6 @@ public class Persona implements ObjetosQueSeEjecutan {
 	/**
 	 * Obtiene el nombre de la persona.
 	 * @return  El nombre
-	 * @uml.property  name="nombre"
 	 */
 
 	public String getNombre() {
@@ -54,7 +46,6 @@ public class Persona implements ObjetosQueSeEjecutan {
 	/**
 	 * Cambia el nombre de la persona.
 	 * @param nombre  Nombre nuevo de la persona.
-	 * @uml.property  name="nombre"
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;

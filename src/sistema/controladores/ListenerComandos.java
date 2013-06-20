@@ -6,6 +6,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JTextArea;
 
 import sistema.controladores.ordenes.Dispatcher;
+import sistema.vista.visual.Ventana;
 
 /**
  * Controlador para la entrada de comandos al sistema.
@@ -15,8 +16,9 @@ import sistema.controladores.ordenes.Dispatcher;
  */
 public class ListenerComandos extends ListenerOrdenes implements KeyListener {
 	
-	public ListenerComandos(Dispatcher comandero) {
-		super(comandero);
+	public ListenerComandos(Dispatcher comandero, Ventana ventana) {
+
+		super(comandero, ventana);
 	}
 
 	@Override

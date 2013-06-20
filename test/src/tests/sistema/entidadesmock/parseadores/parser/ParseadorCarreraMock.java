@@ -8,9 +8,6 @@ import src.tests.sistema.entidadesmock.carretera.tramocarreraciclista.TramoCarre
 
 public class ParseadorCarreraMock {
 	
-	/**
-	 * @uml.property  name="mapa"
-	 */
 	private Map<Integer, TramoCarreraMock> mapa;
 	
 	/**

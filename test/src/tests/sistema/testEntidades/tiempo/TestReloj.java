@@ -16,10 +16,6 @@ import src.tests.sistema.entidadesmock.tiempo.RelojMock;
 @RunWith(JUnit4.class)
 public class TestReloj {
 
-	/**
-	 * @uml.property  name="reloj"
-	 * @uml.associationEnd  
-	 */
 	private RelojMock reloj;
 	
 	@Before

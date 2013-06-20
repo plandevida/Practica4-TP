@@ -1,4 +1,4 @@
-package src.tests.sistema.testEntidades.veiculos;
+package src.tests.sistema.testEntidades.vehiculos;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -24,25 +24,11 @@ import src.tests.utils.UtilidadesNumericas;
 @RunWith(JUnit4.class)
 
 public class TestBicicleta {
-	/**
-	 * @uml.property  name="bicicleta"
-	 * @uml.associationEnd  
-	 */
+
 	private BicicletaMock bicicleta;
-	/**
-	 * @uml.property  name="utilidadesBicicleta"
-	 * @uml.associationEnd  
-	 */
 	private TestUtilidadesBicicleta utilidadesBicicleta;
-	/**
-	 * @uml.property  name="utilidadesCiclista"
-	 * @uml.associationEnd  
-	 */
 	private TestUtilidadesCiclista utilidadesCiclista;
 	
-	/**
-	 * @uml.property  name="mapa"
-	 */
 	private Map<Integer, TramoCarreraMock> mapa;
 	
 	@Before
@@ -97,7 +83,7 @@ public class TestBicicleta {
 																	bicicleta.getPinhones()[bicicleta.getPinhonactual()]);
 		
 		
-		assertEquals("Error: La velocidad de la bicicleta no es la correcta", velocidadesperada, bicicleta.getVelocidad(), 0);
+		assertEquals("Error: La velocidad de la bicicleta no es la correcta", velocidadesperada, bicicleta.getVelocidad(), 2);
 		
 		
 		//se comprueba que el espacio de la pedalada sea el esperado
@@ -144,7 +130,7 @@ public class TestBicicleta {
 		
 		double velocidadesperadafrenando = UtilidadesNumericas.redondear(velocidadesperada + velocidadfrenado,1);
 
-		assertEquals("Error: La velocidad de frenado de la bicicleta no es la correcta", velocidadesperadafrenando, UtilidadesNumericas.redondear(bicicleta.getVelocidad(),1), 0);
+		assertEquals("Error: La velocidad de frenado de la bicicleta no es la correcta", velocidadesperadafrenando, UtilidadesNumericas.redondear(bicicleta.getVelocidad(),1),2);
 		
 		
 		
@@ -170,7 +156,7 @@ public class TestBicicleta {
 		
 		bicicleta.incrementarPlato();
 		
-		assertEquals("Error: El incremento del plato de la bicicleta no es la correcta", incrementarplatoesperado, bicicleta.getPlatoactual(), 0);
+		assertEquals("Error: El incremento del plato de la bicicleta no es la correcta", incrementarplatoesperado, bicicleta.getPlatoactual(), 2);
 		
 		int decrementarplatoesperado = bicicleta.getPlatoactual() -1;
 		

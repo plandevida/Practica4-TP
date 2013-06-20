@@ -32,27 +32,12 @@ public class Lienzo extends Canvas implements ObjetosQueSeEjecutan {
 
     private static final long serialVersionUID = 1L;
 	 
-    /**
-	 * @uml.property  name="contentPane"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
     private JPanel contentPane;
     
-    /**
-	 * @uml.property  name="lista_de_ciclistas"
-	 */
     private List<Ciclista> lista_de_ciclistas;
     
-    /**
-	 * @uml.property  name="carretera"
-	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="sistema.entidades.carretera.tramocarreraciclista.TramoCarrera" qualifier="key:java.lang.Integer sistema.entidades.carretera.tramocarreraciclista.TramoCarrera"
-	 */
     private Map<Integer, TramoCarrera> carretera;
     
-    /**
-	 * @uml.property  name="curva"
-	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="sistema.entidades.carretera.tramocarreraciclista.Curva"
-	 */
     private List<Curva> curva;
 
     public Lienzo(List<Ciclista> micic, Map<Integer, TramoCarrera> carreteradecarreraciclsta, List<Curva> curv) {

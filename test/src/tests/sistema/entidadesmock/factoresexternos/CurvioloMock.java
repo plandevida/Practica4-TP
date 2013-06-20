@@ -8,13 +8,7 @@ import src.tests.sistema.entidadesmock.personas.ciclistas.CiclistaMock;
 
 public class CurvioloMock implements ObjetosQueSeEjecutan {
 
-	/**
-	 * @uml.property  name="ciclistas"
-	 */
 	List<CiclistaMock> ciclistas;
-	/**
-	 * @uml.property  name="curvas"
-	 */
 	List<Curva> curvas;
 	
 	@Override

@@ -13,7 +13,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import sistema.entidades.carretera.tramocarreraciclista.Curva;
 import sistema.entrada.lectura.LectorManager;
 import sistema.factoresexternos.viento.MiViento;
 import sistema.manager.VariablesDeContexto;
@@ -30,32 +29,13 @@ import src.tests.utils.TestUtilidadesFactoresExternos;
 @RunWith(JUnit4.class)
 public class TestFactoresExternos {
 	
-	/**
-	 * @uml.property  name="bicicleta"
-	 * @uml.associationEnd  
-	 */
 	private BicicletaMock bicicleta;
-	/**
-	 * @uml.property  name="bicicletatest"
-	 * @uml.associationEnd  
-	 */
 	private BicicletaMock bicicletatest;
-	/**
-	 * @uml.property  name="factoresExternos"
-	 * @uml.associationEnd  
-	 */
 	private FactoresExternosMock factoresExternos;
-	/**
-	 * @uml.property  name="mapa"
-	 */
 	private Map<Integer, TramoCarreraMock> mapa;
 	
-	
-	/**
-	 * @uml.property  name="testUtilidadesFactoresExternos"
-	 * @uml.associationEnd  
-	 */
 	TestUtilidadesFactoresExternos testUtilidadesFactoresExternos;
+	
 	@Before
 	public void run() {
 		

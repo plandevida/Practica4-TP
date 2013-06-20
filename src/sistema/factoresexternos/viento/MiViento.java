@@ -15,12 +15,8 @@ public enum MiViento {
 	
 	/**
 	 * factor que se usa para determinar la dirección de la velocidad del viento
-	 * @uml.property  name="factor"
 	 */
 	private int factor;
-	/**
-	 * @uml.property  name="velocidad"
-	 */
 	private double velocidad;
 	
 	MiViento(int factorViento) {
@@ -46,7 +42,6 @@ public enum MiViento {
 	/**
 	 * Obtiene el factor del viento por el cual hay que multiplicar la velocidad
 	 * @return  El factor del viento.
-	 * @uml.property  name="factor"
 	 */
 	public int getFactor() {
 		return factor;
@@ -55,7 +50,6 @@ public enum MiViento {
 	/**
 	 * Asigna una velocidad al viento.
 	 * @param velocidaddelviento  La nueva velocidad del viento.
-	 * @uml.property  name="velocidad"
 	 */
 	public void setVelocidad(double velocidaddelviento) {
 		velocidad = velocidaddelviento;
@@ -64,7 +58,6 @@ public enum MiViento {
 	/**
 	 * Obtiene la velocidad del viento.
 	 * @return  La velocidad.
-	 * @uml.property  name="velocidad"
 	 */
 	public double getVelocidad() {
 		return velocidad;

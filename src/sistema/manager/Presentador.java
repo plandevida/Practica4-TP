@@ -21,41 +21,21 @@ import sistema.vista.InterfaceSalidaDatos;
 public class Presentador {
 	
 	// Los ciclistas del sistema que participane el la carrera
-	/**
-	 * @uml.property  name="listadeciclistas"
-	 */
 	private List<Ciclista> listadeciclistas;
 	
 	// Los elementos que se muestran en la vista.
-	/**
-	 * @uml.property  name="listadeobjetosamostarenvista"
-	 */
 	private List<ObjetosConSalidaDeDatos> listadeobjetosamostarenvista;
 	
 	// El viento definido por horas.
-	/**
-	 * @uml.property  name="mapameteorologico"
-	 */
 	private Map<Integer, MiViento> mapameteorologico;
 	
 	// Ordenes del parser y el sistema.
-	/**
-	 * @uml.property  name="ordenes"
-	 * @uml.associationEnd  multiplicity="(0 -1)"
-	 */
 	private Orden[] ordenes;
 	
 	// El reloj del sistema.
-	/**
-	 * @uml.property  name="reloj"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
 	private Reloj reloj;
 	
 	// La lista con las curvas del sistema.
-	/**
-	 * @uml.property  name="listacurvas"
-	 */
 	private List<Curva> listacurvas;
 	
 	/**
@@ -151,7 +131,6 @@ public class Presentador {
 	/**
 	 * Provee acceso a la lista de ordenes del sistema.
 	 * @return  La lista de ordenes aceptada por el sistema.
-	 * @uml.property  name="ordenes"
 	 */
 	public Orden[] getOrdenes() {
 		
@@ -161,7 +140,6 @@ public class Presentador {
 	/**
 	 * Provee acceso al reloj del sistema.
 	 * @return  El reloj del sistema.
-	 * @uml.property  name="reloj"
 	 */
 	public Reloj getReloj() {
 		
@@ -192,7 +170,6 @@ public class Presentador {
 
 	/**
 	 * @param ordenes
-	 * @uml.property  name="ordenes"
 	 */
 	public void setOrdenes(Orden[] ordenes) {
 		this.ordenes = ordenes;
@@ -200,7 +177,6 @@ public class Presentador {
 
 	/**
 	 * @param reloj
-	 * @uml.property  name="reloj"
 	 */
 	public void setReloj(Reloj reloj) {
 		this.reloj = reloj;

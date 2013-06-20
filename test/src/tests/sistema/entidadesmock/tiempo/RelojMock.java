@@ -7,35 +7,20 @@ import sistema.interfaces.ObjetosConSalidaDeDatos;
 public class RelojMock extends ContadorMock implements ObjetosConSalidaDeDatos {
 	
 	// Los milisegundos que lleva.
-	/**
-	 * @uml.property  name="milisegundos"
-	 */
 	private int milisegundos;
 	
 	// Los segundos que lleva, es una unidad mas pequeña que los minutos
-	/**
-	 * @uml.property  name="segundos"
-	 */
 	private int segundos;
 	
 	// Los minutos que lleva, es una unidad mas pequeña que las horas
-	/**
-	 * @uml.property  name="minutos"
-	 */
 	private int minutos;
 	
 	// Las horas que lleva, es la unidad mas grande del programa
-	/**
-	 * @uml.property  name="horas"
-	 */
 	private int horas;
 	
 	// Instancia del reloj usando el patrón singleton
 	private static RelojMock INSTANCIA = null;
 	
-	/**
-	 * @uml.property  name="totalImpulsos"
-	 */
 	private int totalImpulsos;
 	
 	private RelojMock() {
@@ -112,7 +97,6 @@ public class RelojMock extends ContadorMock implements ObjetosConSalidaDeDatos {
 	/**
 	 * Metodo para obtener los milisegundos.
 	 * @return  Los milisegundos
-	 * @uml.property  name="milisegundos"
 	 */
 	public int getMilisegundos() {
 		return milisegundos;
@@ -121,7 +105,6 @@ public class RelojMock extends ContadorMock implements ObjetosConSalidaDeDatos {
 	/**
 	 * Metodo para obtener los segundos.
 	 * @return  Los segundos.
-	 * @uml.property  name="segundos"
 	 */
 	public int getSegundos() {
 		return segundos;
@@ -130,7 +113,6 @@ public class RelojMock extends ContadorMock implements ObjetosConSalidaDeDatos {
 	/**
 	 * Metodo para obtener los minutos.
 	 * @return  Los minutos.
-	 * @uml.property  name="minutos"
 	 */
 	public int getMinutos() {
 		return minutos;
@@ -139,7 +121,6 @@ public class RelojMock extends ContadorMock implements ObjetosConSalidaDeDatos {
 	/**
 	 * Metodo para obtener las horas.
 	 * @return  Las horas.
-	 * @uml.property  name="horas"
 	 */
 	public int getHoras() {
 		return horas;
@@ -147,7 +128,6 @@ public class RelojMock extends ContadorMock implements ObjetosConSalidaDeDatos {
 	
 	/**
 	 * @return
-	 * @uml.property  name="totalImpulsos"
 	 */
 	public int getTotalImpulsos() {
 		return totalImpulsos;

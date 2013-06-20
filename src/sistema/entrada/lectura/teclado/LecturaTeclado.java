@@ -15,9 +15,6 @@ import sistema.entrada.lectura.InterfazLectura;
  */
 public class LecturaTeclado implements InterfazLectura {
 
-	/**
-	 * @uml.property  name="lectura"
-	 */
 	private BufferedReader lectura;
 
 	public LecturaTeclado() {

@@ -10,22 +10,9 @@ import sistema.manager.VariablesDeContexto;
 
 public class OrdenCrearCurva extends Orden {
 	
-	/**
-	 * @uml.property  name="puntoKM"
-	 */
 	private Double puntoKM;
-	/**
-	 * @uml.property  name="velocidaddepasomax"
-	 */
 	private Double velocidaddepasomax;
-	/**
-	 * @uml.property  name="listadecurvas"
-	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="sistema.entidades.carretera.tramocarreraciclista.Curva"
-	 */
 	private List<Curva> listadecurvas;
-	/**
-	 * @uml.property  name="listadeciclistas"
-	 */
 	private List<Ciclista> listadeciclistas;
 
 	public OrdenCrearCurva(Double puntokilometroco, Double velocidadmaximadecurva) {

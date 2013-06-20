@@ -8,17 +8,8 @@ import sistema.manager.VariablesDeContexto;
 
 public class OrdenFrenar extends OrdenParaCiclista {
 	
-	/**
-	 * @uml.property  name="idciclista"
-	 */
 	private Integer idciclista;
-	/**
-	 * @uml.property  name="cantidadfrendada"
-	 */
 	private Double cantidadfrendada;
-	/**
-	 * @uml.property  name="tiempofrenada"
-	 */
 	private Double tiempofrenada;
 	
 	public OrdenFrenar(Double cantidad, Double tiempo, Integer idciclista) {

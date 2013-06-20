@@ -18,7 +18,7 @@ public class OrdenEmpezarCarrera extends Orden{
 	public void ejecutarOrden() {
 		
 		VariablesDeContexto.CARRERA = true;
-		VariablesDeContexto.EMPEZADA = true;
+//		VariablesDeContexto.EMPEZADA = true;
 	}
 
 	@Override

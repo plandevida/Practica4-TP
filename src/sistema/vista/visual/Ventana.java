@@ -26,59 +26,18 @@ public class Ventana extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
-	/**
-	 * @uml.property  name="contentPane"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
 	private JPanel contentPane;
 	
-	/**
-	 * @uml.property  name="txtReloj"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
 	private JTextField txtReloj;
-	
-	/**
-	 * @uml.property  name="panel"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
 	private PanelCiclista panel;
-	/**
-	 * @uml.property  name="panel1"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
 	private PanelCiclista panel1;
-	/**
-	 * @uml.property  name="panel2"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
 	private PanelCiclista panel2;
-	/**
-	 * @uml.property  name="panel3"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
 	private PanelCiclista panel3;
-	/**
-	 * @uml.property  name="taComandos"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
 	private JTextArea taComandos;
-	/**
-	 * @uml.property  name="taRegistro"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
 	private JTextArea taRegistro;
 	
-	/**
-	 * @uml.property  name="micomandero"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
 	private Dispatcher micomandero;
 	
-	/**
-	 * @uml.property  name="canvas"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
 	private Lienzo canvas;
 
 	/**
@@ -96,6 +55,15 @@ public class Ventana extends JFrame {
 		
 		VariablesDeContexto.ANCHO_LIENZO = VariablesDeContexto.ANCHO_VENTANA;
 		VariablesDeContexto.ALTO_LIENZO = VariablesDeContexto.ALTO_VENTANA / 2;
+	}
+	
+	/**
+	 * Pone un mensaje en la ventana de log
+	 * @param mensaje
+	 */
+	public void ponerEnLog(String mensaje) {
+		
+		ponerDatosEnVentana("log", mensaje);
 	}
 	
 	/**
@@ -226,7 +194,7 @@ public class Ventana extends JFrame {
 		txtReloj.setColumns(10);
 		
 		JButton btnEmpezar = new JButton("Empezar");
-		btnEmpezar.addActionListener(new ListenerEmpezarParar(micomandero, btnEmpezar));
+		btnEmpezar.addActionListener(new ListenerEmpezarParar(micomandero,this, btnEmpezar));
 		sl_panelReloj.putConstraint(SpringLayout.WEST, btnEmpezar, 10, SpringLayout.WEST, panelReloj);
 		panelReloj.add(btnEmpezar);
 		
@@ -242,16 +210,16 @@ public class Ventana extends JFrame {
 		panelsuperior.add(panelCiclistas, BorderLayout.CENTER);
 		panelCiclistas.setLayout(new GridLayout(1, 4, 0, 0));
 		
-		panel = new PanelCiclista(micomandero);
+		panel = new PanelCiclista(micomandero, this);
 		panelCiclistas.add(panel);
 		
-		panel1 = new PanelCiclista(micomandero);
+		panel1 = new PanelCiclista(micomandero, this);
 		panelCiclistas.add(panel1);
 		
-		panel2 = new PanelCiclista(micomandero);
+		panel2 = new PanelCiclista(micomandero, this);
 		panelCiclistas.add(panel2);
 		
-		panel3 = new PanelCiclista(micomandero);
+		panel3 = new PanelCiclista(micomandero, this);
 		panelCiclistas.add(panel3);
 		
 		JPanel panelComandos = new JPanel();
@@ -263,7 +231,7 @@ public class Ventana extends JFrame {
 		taComandos = new JTextArea();
 		taComandos.setBorder(new TitledBorder("Comandos"));
 		taComandos.setAutoscrolls(true);
-		taComandos.addKeyListener(new ListenerComandos(micomandero));
+		taComandos.addKeyListener(new ListenerComandos(micomandero, this));
 		
 		JScrollPane scrollpane = new JScrollPane(taComandos);
 		panelComandos.add(scrollpane);
@@ -276,7 +244,6 @@ public class Ventana extends JFrame {
 		JScrollPane scrollpaner = new JScrollPane(taRegistro);
 		panelComandos.add(scrollpaner);
 		
-//		LienzoAntiguo canvas = new LienzoAntiguo(new ArrayList<Ciclista>());
 		panelGlobal.add(canvas);
 		
 		setVisible(true);

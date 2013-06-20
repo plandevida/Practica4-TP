@@ -11,16 +11,11 @@ import sistema.entidades.personas.ciclistas.Ciclista;
 public abstract class OrdenParaCiclista extends Orden {
 
 	// Ciclista al que se le va a ejecutar la orden.
-	/**
-	 * @uml.property  name="ciclista"
-	 * @uml.associationEnd  
-	 */
 	private Ciclista ciclista;
 	
 	/**
 	 * Configura el ciclista.
 	 * @param  ciclista
-	 * @uml.property  name="ciclista"
 	 */
 	protected void setCiclista(Ciclista ciclista) {
 		this.ciclista = ciclista;
@@ -29,7 +24,6 @@ public abstract class OrdenParaCiclista extends Orden {
 	/**
 	 * Obtiene el ciclista de la orden
 	 * @return  El ciclista para el que está  dirigida la orden.
-	 * @uml.property  name="ciclista"
 	 */
 	protected Ciclista getCiclista() {
 		return ciclista;

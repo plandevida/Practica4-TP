@@ -16,40 +16,19 @@ import sistema.manager.VariablesDeContexto;
 public class BicicletaMock extends Vehiculo implements ObjetosConSalidaDeDatos {
 
 	// Continen el indice del piñón que se esta utilizando
-	/**
-	 * @uml.property  name="platoactual"
-	 */
 	protected int platoactual;
 
 	// Continen el indice del plato que se esta utilizando
-	/**
-	 * @uml.property  name="pinhonactual"
-	 */
 	protected int pinhonactual;
 	
-	/**
-	 * @uml.property  name="radiorueda"
-	 */
 	protected double radiorueda;
 	
-	/**
-	 * @uml.property  name="aceleracionpendiente"
-	 */
 	protected double aceleracionpendiente;
 	
-	/**
-	 * @uml.property  name="aceleracionviento"
-	 */
 	protected double aceleracionviento;
 	
-	/**
-	 * @uml.property  name="peso"
-	 */
 	protected int peso;
 	
-	/**
-	 * @uml.property  name="impulso"
-	 */
 	protected int impulso;
 	
 	public BicicletaMock() {
@@ -57,7 +36,7 @@ public class BicicletaMock extends Vehiculo implements ObjetosConSalidaDeDatos {
 		setVelocidad(0);
 		setEspacioRecorrido(0);
 		setPinhonactual(0);
-		setPlatoactual(0);
+		setPlatoactual(2);
 		radiorueda = VariablesDeContexto.RADIO_RUEDA;
 		peso = 10;
 		aceleracionpendiente = 0;
@@ -154,16 +133,25 @@ public class BicicletaMock extends Vehiculo implements ObjetosConSalidaDeDatos {
 		double aceleracion = calcularAceleracionTiempoPedalada(tiempopedalada);
 		
 		double aceleracionfactores = aceleracionpendiente + aceleracionviento;
-		double velocidad = getVelocidad() + aceleracion*impulso;
+		double velocidad = 0.00d;
 		
-		if (velocidad > velocidadmaxima(tiempopedalada)) {
-			velocidad = velocidadmaxima(tiempopedalada);
+		if(aceleracion < aceleracionfactores){
+			velocidad = (getVelocidad() + aceleracionfactores*impulso);
+		}
+		else {
+			velocidad = (getVelocidad() + aceleracion *impulso);
+			
+			if (velocidad > velocidadmaxima(tiempopedalada)) {
+				velocidad = velocidadmaxima(tiempopedalada);
+			}
+			
+			velocidad = (velocidad + aceleracionfactores*impulso);
+			
+			if (velocidad<0) velocidad = 0.00d;
 		}
 		
-		velocidad = (velocidad + aceleracionfactores*impulso);
-		
 		setVelocidad(velocidad);
-		setEspacioRecorrido(velocidad);
+		setEspacioRecorrido((getVelocidad())/impulso);
 		
 		return ((peso/VariablesDeContexto.FUERZA_GRAVEDAD + pesociclista/VariablesDeContexto.FUERZA_GRAVEDAD )*(aceleracion + aceleracionfactores));
 	}
@@ -238,7 +226,6 @@ public class BicicletaMock extends Vehiculo implements ObjetosConSalidaDeDatos {
 	/**
 	 * Obtiene el plato engranado actualmente.
 	 * @return  El indice de la lista de platos del plato engranado.
-	 * @uml.property  name="platoactual"
 	 */
 	public int getPlatoactual() {
 		return platoactual;
@@ -247,7 +234,6 @@ public class BicicletaMock extends Vehiculo implements ObjetosConSalidaDeDatos {
 	/**
 	 * Ajusta el plato engranado actualmente por otro.
 	 * @param platoactual  El nuevo plato a engranar.
-	 * @uml.property  name="platoactual"
 	 */
 	public void setPlatoactual(int platoactual) {
 		if ( platoactual <= VariablesDeContexto.PLATOS.length - 1 || platoactual >= 0) {
@@ -258,7 +244,6 @@ public class BicicletaMock extends Vehiculo implements ObjetosConSalidaDeDatos {
 	/**
 	 * Obtiene el piñón engranado actualmente.
 	 * @return  El indice de la lista de piñones del piñón engranado
-	 * @uml.property  name="pinhonactual"
 	 */
 	public int getPinhonactual() {
 		return pinhonactual;
@@ -267,7 +252,6 @@ public class BicicletaMock extends Vehiculo implements ObjetosConSalidaDeDatos {
 	/**
 	 * Ajusta el piñón engranado actualmente por otro.
 	 * @param pinhonactual  El nuevo piñón a engranar.
-	 * @uml.property  name="pinhonactual"
 	 */
 	public void setPinhonactual(int pinhonactual) {
 		if ( pinhonactual <= VariablesDeContexto.PINHONES.length - 1 || pinhonactual >= 0) {
@@ -278,21 +262,16 @@ public class BicicletaMock extends Vehiculo implements ObjetosConSalidaDeDatos {
 	/**
 	 * Obtiene el radio de la rueda.
 	 * @return  Valor del radio de la rueda.
-	 * @uml.property  name="radiorueda"
 	 */
 	public double getRadiorueda() {
 		return radiorueda;
 	}
 	
 	// identificador de la bicicleta
-	/**
-	 * @uml.property  name="id"
-	 */
 	private int id;
 	
 	/**
 	 * @param numerocorredor
-	 * @uml.property  name="id"
 	 */
 	public void setId(int numerocorredor) {
 		id = numerocorredor;
@@ -300,7 +279,6 @@ public class BicicletaMock extends Vehiculo implements ObjetosConSalidaDeDatos {
 	
 	/**
 	 * @return
-	 * @uml.property  name="id"
 	 */
 	public int getId() {
 		return id;

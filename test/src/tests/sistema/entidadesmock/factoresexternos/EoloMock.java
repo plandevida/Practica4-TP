@@ -9,18 +9,8 @@ import src.tests.sistema.entidadesmock.vehiculos.bicicletas.BicicletaMock;
 
 public class EoloMock {
 	 
-	/**
-	 * @uml.property  name="bicicletas"
-	 */
 	private List<BicicletaMock> bicicletas;
-	/**
-	 * @uml.property  name="relojTiempo"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
 	private RelojMock relojTiempo;
-	/**
-	 * @uml.property  name="mapameteorologico"
-	 */
 	private Map<Integer, MiViento> mapameteorologico;
 	
 	public EoloMock(List<BicicletaMock> listabicicletas, RelojMock reloj, Map<Integer, MiViento> mapaviento) {

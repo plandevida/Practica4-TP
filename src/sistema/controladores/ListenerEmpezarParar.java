@@ -7,21 +7,15 @@ import javax.swing.JButton;
 
 import sistema.controladores.ordenes.Dispatcher;
 import sistema.manager.VariablesDeContexto;
+import sistema.vista.visual.Ventana;
 
 public class ListenerEmpezarParar extends ListenerOrdenes implements ActionListener {
-
-	/**
-	 * @uml.property  name="cont"
-	 */
+	
 	private boolean cont;
-	/**
-	 * @uml.property  name="boton"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
 	private JButton boton;
 	
-	public ListenerEmpezarParar(Dispatcher comandero, JButton botonorigen) {
-		super(comandero);
+	public ListenerEmpezarParar(Dispatcher comandero, Ventana ventana, JButton botonorigen) {
+		super(comandero, ventana);
 		
 		cont = false;
 		boton = botonorigen;

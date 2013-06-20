@@ -11,9 +11,7 @@ public interface ListenerOrden {
 	
 	/**
 	 * Obtiene el comandero del sistema.
-	 * @return   El comandero.
-	 * @uml.property  name="dispatcher"
-	 * @uml.associationEnd  
+	 * @return   El comandero. 
 	 */
 	public Dispatcher getDispatcher();
 }

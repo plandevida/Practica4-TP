@@ -18,34 +18,13 @@ import sistema.interfaces.ObjetosQueSeEjecutan;
  */
 public class FactoresExternos implements ObjetosQueSeEjecutan {
 	
-	/**
-	 * @uml.property  name="ciclistas"
-	 */
 	private List<Ciclista> ciclistas;
-	/**
-	 * @uml.property  name="curvas"
-	 */
 	private List<Curva> curvas;
-	/**
-	 * @uml.property  name="eolo"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
 	private Eolo eolo;
-	/**
-	 * @uml.property  name="curviolo"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
 	private Curviolo curviolo;
-	/**
-	 * @uml.property  name="pendiolo"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
 	private Pendiolo pendiolo;
 	
 	//Mapa de la carretera
-	/**
-	 * @uml.property  name="carreteradecarreraciclista"
-	 */
 	private Map<Integer, TramoCarrera> carreteradecarreraciclista;
 	
 	public FactoresExternos(List<Ciclista> ciclistas, Map<Integer, TramoCarrera> carreteradecarreraciclista,List<Curva> curva, Eolo nuevoEolo, Curviolo nuevoCurviolo, Pendiolo nuevoPendiolo) {

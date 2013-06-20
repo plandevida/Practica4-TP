@@ -10,21 +10,9 @@ import sistema.manager.VariablesDeContexto;
 
 public class OrdenClembuterol extends Orden {
 	
-	/**
-	 * @uml.property  name="listadeciclistas"
-	 */
 	private List<Ciclista> listadeciclistas;
-	/**
-	 * @uml.property  name="listadecurvas"
-	 */
 	private List<Curva> listadecurvas;
-	/**
-	 * @uml.property  name="nmaillot"
-	 */
 	private Integer nmaillot;
-	/**
-	 * @uml.property  name="especial"
-	 */
 	private Boolean especial;
 	
 	public OrdenClembuterol(Integer numeromaillot,Boolean especial){

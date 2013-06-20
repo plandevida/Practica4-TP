@@ -8,9 +8,6 @@ package sistema.entidades.carretera;
  */
 public class Carretera {
 	
-	/**
-	 * @uml.property  name="kilometros"
-	 */
 	private double kilometros;
 	
 	public Carretera(double kilometrosdecarretera) {
@@ -20,7 +17,6 @@ public class Carretera {
 	/**
 	 * Los kilómetros que mide el tramo.
 	 * @return  El número de kilómetros.
-	 * @uml.property  name="kilometros"
 	 */
 	public double getKilometros() {
 		return kilometros;
@@ -29,7 +25,6 @@ public class Carretera {
 	/**
 	 * Configura los kilómetros de la carretera
 	 * @param  kilometrosdecarretera
-	 * @uml.property  name="kilometros"
 	 */
 	public void setKilometros(double kilometrosdecarretera) {
 		kilometros = kilometrosdecarretera;

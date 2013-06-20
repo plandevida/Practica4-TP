@@ -13,15 +13,8 @@ import sistema.entidades.carretera.tramocarreraciclista.TramoCarrera;
  */
 public class ParseadorCarrera {
 	
-	/**
-	 * @uml.property  name="mapa"
-	 * @uml.associationEnd  qualifier="kilometro:java.lang.Integer sistema.entidades.carretera.tramocarreraciclista.TramoCarrera"
-	 */
 	private Map<Integer, TramoCarrera> mapa;
 	
-	/**
-	 * @uml.property  name="longitudcarrera"
-	 */
 	private Integer longitudcarrera;
 	
 	/**

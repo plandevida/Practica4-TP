@@ -3,10 +3,7 @@ package src.tests.sistema.entidadesmock.tiempo;
 import sistema.interfaces.ObjetosQueSeEjecutan;
 
 public class ContadorMock implements ObjetosQueSeEjecutan {
-	//el numero de impulsos que lleva 
-	/**
-	 * @uml.property  name="impulsos"
-	 */
+	//el numero de impulsos que lleva
 	protected int impulsos;
 	
 	public ContadorMock() {
@@ -30,7 +27,6 @@ public class ContadorMock implements ObjetosQueSeEjecutan {
 	/**
 	 * Metodo para obtener los impulsos.
 	 * @return  Los impulsos.
-	 * @uml.property  name="impulsos"
 	 */
 	public int getImpulsos() {
 		return impulsos;

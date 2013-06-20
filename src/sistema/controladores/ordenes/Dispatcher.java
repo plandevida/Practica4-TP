@@ -16,31 +16,15 @@ import sistema.vista.visual.FormateadorDatosVista;
 public class Dispatcher implements ObjetosQueSeEjecutan {
 	
 	// Cola de ordenes a procesar.
-	/**
-	 * @uml.property  name="listadeordenes"
-	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="sistema.controladores.ordenes.Orden"
-	 */
 	private PriorityQueue<Orden> listadeordenes;
 	
 	// El presentador del sistema.
-	/**
-	 * @uml.property  name="presentador"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
 	private Presentador presentador;
 	
 	// El parseador de comandos del sistema.
-	/**
-	 * @uml.property  name="parser"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
 	private ParseadorComandos parser;
 	
 	// El formateador de datos para la vista.
-	/**
-	 * @uml.property  name="fomateador"
-	 * @uml.associationEnd  multiplicity="(1 1)"
-	 */
 	private FormateadorDatosVista fomateador;
 	
 	/**
@@ -97,7 +81,6 @@ public class Dispatcher implements ObjetosQueSeEjecutan {
 	/**
 	 * Obtiene el presentador del Dispatcher.
 	 * @return  El presentador.
-	 * @uml.property  name="presentador"
 	 */
 	public Presentador getPresentador() {
 		return presentador;

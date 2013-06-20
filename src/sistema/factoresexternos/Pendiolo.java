@@ -17,17 +17,8 @@ import sistema.manager.VariablesDeContexto;
  */
 public class Pendiolo {
 	
-	/**
-	 * @uml.property  name="ciclista"
-	 */
 	private List<Ciclista> ciclista;
 
-		
-
-	/**
-	 * @uml.property  name="carreteradecarreraciclista"
-	 * @uml.associationEnd  qualifier="reco:java.lang.Integer sistema.entidades.carretera.tramocarreraciclista.TramoCarrera"
-	 */
 	private Map<Integer, TramoCarrera> carreteradecarreraciclista;
 	
 	public Pendiolo(List<Ciclista> listaciclista,Map<Integer, TramoCarrera> carreteradecarreraciclista) {
@@ -67,24 +58,6 @@ public class Pendiolo {
 			aceleracionpendiente = VariablesDeContexto.FUERZA_GRAVEDAD* (tramo.getPendiente()/tramo.getKilometros()); 
 		
 			return (aceleracionpendiente/10)*-1;
-		
-		 
-				
-//		int angulograd = 0;
-//		double angulorad = 0d;
-//		double factorpendiente = 0d;
-//		
-//		angulograd = tramo.getPendiente();
-//		angulorad = (angulograd * Math.PI)/180;
-//		
-//	
-//		factorpendiente = Math.cos(angulorad);
-//		
-//		if (angulograd < 0) {
-//			factorpendiente = factorpendiente + 1d;
-//		}
-//		
-		
 	}
 	
 	/**
