@@ -196,7 +196,7 @@ public class Ventana extends JFrame {
 		JButton btnEmpezar = new JButton("Empezar");
 		btnEmpezar.addActionListener(new ListenerEmpezarParar(micomandero,this, btnEmpezar));
 		sl_panelReloj.putConstraint(SpringLayout.WEST, btnEmpezar, 10, SpringLayout.WEST, panelReloj);
-		panelReloj.add(btnEmpezar);
+		//panelReloj.add(btnEmpezar);
 		
 		JPanel panelGlobal = new JPanel();
 		panelGlobal.setLayout(new GridLayout(2, 1, 0, 0));
