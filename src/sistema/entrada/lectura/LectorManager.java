@@ -2,8 +2,6 @@ package sistema.entrada.lectura;
 
 import sistema.entrada.lectura.fichero.LecturaFichero;
 import sistema.entrada.lectura.teclado.LecturaTeclado;
-import sistema.interfaces.ObjetosQueSeEjecutan;
-import sistema.manager.Presentador;
 
 /**
  * Clase que invoca a los sub-sistemas de lectura.
@@ -11,7 +9,7 @@ import sistema.manager.Presentador;
  * @author Daniel Serrano Torres
  * @author Alvaro Quesada Pimentel
  */
-public class LectorManager implements ObjetosQueSeEjecutan {
+public class LectorManager {
 	
 	private LecturaTeclado teclado;
 	private LecturaFichero fichero;
@@ -70,11 +68,6 @@ public class LectorManager implements ObjetosQueSeEjecutan {
 		return fichero.cargarFicheroyLimpiar();
 	}
 	
-	public void cargarOrdenes(Presentador presentador) {
-		
-		String comandos = cargarFicheroYlimpiar();
-	}
-	
 	/**
 	 * Cierra todos los flujos de lecturas.
 	 * 
@@ -91,10 +84,5 @@ public class LectorManager implements ObjetosQueSeEjecutan {
 		}
 		
 		return correcto;
-	}
-
-	@Override
-	public void ejecuta() {
-		
 	}
 }

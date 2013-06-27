@@ -190,14 +190,14 @@ public class CiclistaManager {
 		Eolo eolo = new Eolo(ciclistas, reloj, mapameteorologico);
 		factoresexternos = new FactoresExternos(ciclistas, carreteradecarreraciclsta,listacurvas, eolo, null,null);
 		
-		lectorconfiguracion = new LectorManager(VariablesDeContexto.FILE_COMMAND_PATH, true);
+//		lectorconfiguracion = new LectorManager(VariablesDeContexto.FILE_COMMAND_PATH, true);
 		
 		// Se registran los elementos con salida de datos en una lista.
 		listasalidadatos.add(reloj);
 
 		listaejecutables.add(formateador);
 		listaejecutables.add(factoresexternos);
-		listaejecutables.add(lectorconfiguracion);
+//		listaejecutables.add(lectorconfiguracion);
 		listaejecutables.add(dispatcher);
 		listaejecutables.add(lienzo);
 		

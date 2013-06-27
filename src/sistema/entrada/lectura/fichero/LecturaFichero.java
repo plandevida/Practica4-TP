@@ -71,14 +71,17 @@ public class LecturaFichero implements InterfazLectura {
 			
 			String aux = fileinput.readLine();
 			
-			while( ! aux.equals("EOF")) {
-				
+			do {
 				cadena += aux + "\n";
 				aux = fileinput.readLine();
-			}
+				
+			} while( aux != null && ! aux.equals("EOF") );
+			
 		} catch (IOException io) {
 			System.err.println("Error al leer el fichero de configuración de la aplicación");
 		}
+		
+//		limpiar();
 		
 		return cadena;
 	}

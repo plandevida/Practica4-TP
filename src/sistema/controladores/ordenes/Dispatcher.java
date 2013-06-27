@@ -3,8 +3,10 @@ package sistema.controladores.ordenes;
 import java.util.PriorityQueue;
 
 import sistema.controladores.parseadores.ParseadorComandos;
+import sistema.entrada.lectura.LectorManager;
 import sistema.interfaces.ObjetosQueSeEjecutan;
 import sistema.manager.Presentador;
+import sistema.manager.VariablesDeContexto;
 import sistema.vista.visual.FormateadorDatosVista;
 
 /**
@@ -27,6 +29,9 @@ public class Dispatcher implements ObjetosQueSeEjecutan {
 	// El formateador de datos para la vista.
 	private FormateadorDatosVista fomateador;
 	
+	// El lector de comandos
+	private LectorManager lectorcomandos;
+	
 	/**
 	 * Crea una instancia del distribuidor con la lista de elementos
 	 * y la cola de ordenes vacía.
@@ -37,6 +42,8 @@ public class Dispatcher implements ObjetosQueSeEjecutan {
 		presentador = presentadorsistema;
 		parser = parseadorcomandos;
 		fomateador = formateadordatovista;
+		
+		lectorcomandos = new LectorManager(VariablesDeContexto.FILE_COMMAND_PATH, true);
 	}
 	
 	/**
@@ -88,6 +95,12 @@ public class Dispatcher implements ObjetosQueSeEjecutan {
 
 	@Override
 	public void ejecuta() {
+		
+		String comandos = lectorcomandos.cargarFicheroYlimpiar();
+		
+		for (String comando : comandos.split("\n")) {
+			parsearComando(comando);
+		}
 		
 		dispatch();
 	}

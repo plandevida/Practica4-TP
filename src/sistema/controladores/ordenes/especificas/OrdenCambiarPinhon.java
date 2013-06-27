@@ -28,7 +28,7 @@ public class OrdenCambiarPinhon extends OrdenParaCiclista {
 	public String mostrarMensaje() {
 		
 		return (new StringBuilder()
-				.append("Pión ")
+				.append("Piñón ")
 				.append("ciclista : ")
 				.append(idciclista)
 				.append(" piñon: ")
@@ -85,7 +85,7 @@ public class OrdenCambiarPinhon extends OrdenParaCiclista {
 	@Override
 	public String help(boolean detalles) {
 		
-		return "bicicleta <numero_bicicleta> cambia plato <numero_plato>";
+		return "bicicleta <numero_bicicleta> cambia piñon <numero_piñon>";
 	}
 
 	@Override
