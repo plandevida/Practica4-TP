@@ -81,7 +81,7 @@ public class LecturaFichero implements InterfazLectura {
 			System.err.println("Error al leer el fichero de configuración de la aplicación");
 		}
 		
-//		limpiar();
+		limpiar();
 		
 		return cadena;
 	}
